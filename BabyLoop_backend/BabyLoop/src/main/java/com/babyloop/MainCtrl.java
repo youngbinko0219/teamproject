@@ -1,23 +1,11 @@
 package com.babyloop;
 
-import java.io.IOException;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import jakarta.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/boby.loop")
 public class MainCtrl {
 	
-	@Value("${my.reacthost}")
-	private String reacthost;
-	
-	@GetMapping("/")
-	public void main(HttpServletResponse resp) throws IOException{
-		resp.sendRedirect(reacthost);
-	}
 }
