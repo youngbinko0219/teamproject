@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,11 +22,13 @@ public class AuthCtrl {
 	IMemberService memberDAO;
 	
 	@PostMapping("/login")
-	public Map<String,String> login(MemberDTO memberDTO){
+	public Map<String,String> login(@RequestBody MemberDTO memberDTO){
 		Map<String,String> map = new HashMap<>();
 		
 		try {
 			int result = memberDAO.login(memberDTO);
+			System.out.println(memberDTO.getUser_id());
+			System.out.println(memberDTO.getUser_pw());
 			
 			if(result==1) {
 				map.put("message", "success");

@@ -7,11 +7,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.babyloop.auth.member.IMemberService">
 
 	<select id="login"
-		resultType="com.babyloop.auth.member.MemberDTO">
+		parameterType="com.babyloop.auth.member.MemberDTO">
 	
-		SELECT user_id, user_pw
+		SELECT count(*)
 		FROM member
-		WHERE user_id=#{user_id} AND  user_pw=#{user_pw}
+		WHERE user_id=#{user_id} AND user_pw=#{user_pw}
 		<!-- 추후 암호화 -->
 	</select>
 	
