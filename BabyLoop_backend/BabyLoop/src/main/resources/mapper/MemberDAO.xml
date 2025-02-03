@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.babyloop.auth.member.IMemberService">
+
+	<select id="login"
+		parameterType="com.babyloop.auth.member.MemberDTO">
+	
+		SELECT count(*)
+		FROM member
+		WHERE user_id=#{user_id} AND user_pw=#{user_pw}
+		<!-- 추후 암호화 -->
+	</select>
+	
+</mapper>

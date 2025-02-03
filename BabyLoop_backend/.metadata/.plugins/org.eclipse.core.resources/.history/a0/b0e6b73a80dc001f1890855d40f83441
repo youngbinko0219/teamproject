@@ -1,0 +1,14 @@
+spring.application.name=BabyLoop
+
+#포트 설정
+server.port=8888
+
+#MaraiDB 설정
+spring.datasource.url=jdbc:mariadb://localhost:3306/babyloop
+spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
+#ì´ë¦ì ì¶íì íµì¼
+spring.datasource.username=babyloop
+spring.datasource.password=1234
+
+#Mybatic ê²½ë¡ ì¤ì 
+mybatis.mapper-locations=classpath:/mappers/**/*.xml
