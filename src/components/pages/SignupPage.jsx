@@ -21,13 +21,10 @@ const SignupPage = () => {
   };
 
   return (
-    <div
-      className="d-flex justify-content-center align-items-center min-vh-100 bg-light"
-      style={{ width: "100%", height: "100vh" }}
-    >
+    <div className="d-flex justify-content-center align-items-center min-vh-100 bg-light w-100">
       <div
-        className="bg-white p-4 rounded-4 shadow w-100"
-        style={{ maxWidth: "500px" }}
+        className="bg-white p-4 rounded-4 shadow mx-auto"
+        style={{ maxWidth: "1920px", margin: "0 auto" }}
       >
         {/* 로고 영역 */}
         <div className="d-flex justify-content-center mb-4">
@@ -35,7 +32,11 @@ const SignupPage = () => {
             src={logo}
             alt="Babyloop Logo"
             className="h-auto"
-            style={{ maxWidth: "100%", height: "auto" }}
+            style={{
+              maxWidth: "100%",
+              height: "auto",
+              display: "block",
+            }}
           />
         </div>
 

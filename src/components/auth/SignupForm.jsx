@@ -1,6 +1,7 @@
 import { useState } from "react";
 import AddressSearch from "./AddressSearch";
 import BirthDatePicker from "./DatePicker";
+import axios from "axios";
 
 const SignupForm = ({ onSubmit }) => {
   // 상태 관리
@@ -15,7 +16,11 @@ const SignupForm = ({ onSubmit }) => {
     user_addr3: "", // 상세주소
     user_gender: "",
     user_birth: "",
+    verificationCode: "", // 인증번호
   });
+
+  const [isVerificationSent, setIsVerificationSent] = useState(false); // 인증 메일 발송 상태
+  const [isVerificationComplete, setIsVerificationComplete] = useState(false); // 인증 완료 상태
 
   // 주소 검색 완료 핸들러
   const handleAddressComplete = (data) => {
@@ -26,9 +31,66 @@ const SignupForm = ({ onSubmit }) => {
     });
   };
 
+  // 아이디 중복 검사 핸들러
+  const handleCheckDuplicateId = async () => {
+    try {
+      // TODO: 중복 검사 API 호출
+      const response = await axios.get(
+        `/api/check-id?userId=${formData.user_id}`
+      );
+      if (response.data.isDuplicate) {
+        alert("이미 사용 중인 아이디입니다.");
+      } else {
+        alert("사용 가능한 아이디입니다.");
+      }
+    } catch (error) {
+      console.error("중복 검사 오류:", error);
+      alert("중복 검사 중 오류가 발생했습니다.");
+    }
+  };
+
+  // 이메일 인증 메일 발송 핸들러
+  const handleSendVerificationEmail = async () => {
+    try {
+      // TODO: 이메일 인증 메일 발송 API 호출
+      const response = await axios.post("/api/send-verification-email", {
+        email: formData.user_email,
+      });
+      if (response.status === 200) {
+        alert("인증 메일이 발송되었습니다. 이메일을 확인해 주세요.");
+        setIsVerificationSent(true); // 인증 메일 발송 상태 업데이트
+      }
+    } catch (error) {
+      console.error("이메일 인증 오류:", error);
+      alert("이메일 인증 중 오류가 발생했습니다.");
+    }
+  };
+
+  // 인증번호 확인 핸들러
+  const handleVerifyCode = async () => {
+    try {
+      // TODO: 인증번호 확인 API 호출
+      const response = await axios.post("/api/verify-code", {
+        email: formData.user_email,
+        code: formData.verificationCode,
+      });
+      if (response.status === 200) {
+        alert("인증이 완료되었습니다.");
+        setIsVerificationComplete(true); // 인증 완료 상태 업데이트
+      }
+    } catch (error) {
+      console.error("인증번호 확인 오류:", error);
+      alert("인증번호가 일치하지 않습니다.");
+    }
+  };
+
   // 폼 제출 처리
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!isVerificationComplete) {
+      alert("이메일 인증을 완료해 주세요.");
+      return;
+    }
     onSubmit(formData);
   };
 
@@ -36,21 +98,30 @@ const SignupForm = ({ onSubmit }) => {
     <form onSubmit={handleSubmit} className="needs-validation" noValidate>
       {/* 아이디 */}
       <div className="mb-3">
-        <label className="form-label">아이디 *</label>
-        <input
-          type="text"
-          className="form-control"
-          onChange={(e) =>
-            setFormData({ ...formData, user_id: e.target.value })
-          }
-          required
-        />
+        <label className="form-label">* 아이디</label>
+        <div className="input-group">
+          <input
+            type="text"
+            className="form-control"
+            onChange={(e) =>
+              setFormData({ ...formData, user_id: e.target.value })
+            }
+            required
+          />
+          <button
+            type="button"
+            className="btn btn-outline-secondary"
+            onClick={handleCheckDuplicateId}
+          >
+            중복 검사
+          </button>
+        </div>
         <div className="invalid-feedback">아이디를 입력해주세요</div>
       </div>
 
       {/* 비밀번호 */}
       <div className="mb-3">
-        <label className="form-label">비밀번호 *</label>
+        <label className="form-label">* 비밀번호</label>
         <input
           type="password"
           className="form-control"
@@ -63,7 +134,7 @@ const SignupForm = ({ onSubmit }) => {
 
       {/* 이름 */}
       <div className="mb-3">
-        <label className="form-label">이름 *</label>
+        <label className="form-label">* 이름</label>
         <input
           type="text"
           className="form-control"
@@ -76,20 +147,54 @@ const SignupForm = ({ onSubmit }) => {
 
       {/* 이메일 */}
       <div className="mb-3">
-        <label className="form-label">이메일 *</label>
-        <input
-          type="email"
-          className="form-control"
-          onChange={(e) =>
-            setFormData({ ...formData, user_email: e.target.value })
-          }
-          required
-        />
+        <label className="form-label">* 이메일</label>
+        <div className="input-group">
+          <input
+            type="email"
+            className="form-control"
+            onChange={(e) =>
+              setFormData({ ...formData, user_email: e.target.value })
+            }
+            required
+          />
+          <button
+            type="button"
+            className="btn btn-outline-secondary"
+            onClick={handleSendVerificationEmail}
+            disabled={isVerificationSent} // 인증 메일 발송 후 버튼 비활성화
+          >
+            {isVerificationSent ? "인증 메일 발송됨" : "인증 메일 발송"}
+          </button>
+        </div>
       </div>
+
+      {/* 인증번호 입력 필드 (히든 상태) */}
+      {isVerificationSent && !isVerificationComplete && (
+        <div className="mb-3">
+          <label className="form-label">* 인증번호</label>
+          <div className="input-group">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="인증번호를 입력하세요"
+              onChange={(e) =>
+                setFormData({ ...formData, verificationCode: e.target.value })
+              }
+            />
+            <button
+              type="button"
+              className="btn btn-outline-secondary"
+              onClick={handleVerifyCode}
+            >
+              인증번호 확인
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* 전화번호 */}
       <div className="mb-3">
-        <label className="form-label">전화번호</label>
+        <label className="form-label">* 전화번호</label>
         <input
           type="tel"
           className="form-control"
@@ -101,7 +206,7 @@ const SignupForm = ({ onSubmit }) => {
 
       {/* 주소 검색 */}
       <div className="mb-3">
-        <label className="form-label">주소 *</label>
+        <label className="form-label">* 주소</label>
         <AddressSearch onComplete={handleAddressComplete} />
 
         {/* 우편번호 입력 칸 */}
@@ -150,7 +255,7 @@ const SignupForm = ({ onSubmit }) => {
 
       {/* 생년월일 */}
       <div className="mb-4">
-        <label className="form-label">생년월일</label>
+        <label className="form-label"></label>
         <BirthDatePicker
           onChange={(date) => setFormData({ ...formData, user_birth: date })}
         />

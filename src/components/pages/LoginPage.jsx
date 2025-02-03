@@ -2,6 +2,7 @@ import LoginForm from "../auth/LoginForm";
 import LoginButton from "../auth/LoginButton";
 import logo from "../../assets/logo.png";
 import axios from "axios";
+import "./LoginPage.css";
 
 const LoginPage = () => {
   const handleLogin = async (credentials) => {
@@ -37,12 +38,12 @@ const LoginPage = () => {
 
   return (
     <div
-      className="d-flex justify-content-center align-items-center min-vh-100 bg-light"
+      className="d-flex justify-content-center align-items-center min-vh-100 bg-light flex-direction-column"
       style={{ width: "100%", height: "100vh" }}
     >
       <div
         className="bg-white p-4 rounded-4 shadow w-100"
-        style={{ maxWidth: "500px" }}
+        style={{ maxWidth: "500px", margin: "0 auto" }}
       >
         {/* 로고 */}
         <div className="d-flex justify-content-center mb-4">

@@ -1,11 +1,7 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginPage from "../pages/LoginPage";
 import SignupPage from "../pages/SignupPage";
+import HomePage from "../pages/HomePage";
 
 const AppRouter = () => {
   return (
@@ -13,8 +9,7 @@ const AppRouter = () => {
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />{" "}
-        {/* 회원가입 페이지 라우트 추가 */}
-        <Route path="/" element={<Navigate replace to="/login" />} />
+        <Route path="/" element={<HomePage />} />
         <Route
           path="*"
           element={

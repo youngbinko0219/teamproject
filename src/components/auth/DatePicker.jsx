@@ -8,7 +8,7 @@ const BirthDatePicker = ({ onChange }) => {
       onChange={onChange}
       dateFormat="yyyy-MM-dd"
       className="form-control"
-      placeholderText="생년월일 선택"
+      placeholderText="생년월일"
     />
   );
 };
