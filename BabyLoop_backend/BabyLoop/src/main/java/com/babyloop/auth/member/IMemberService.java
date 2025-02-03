@@ -6,4 +6,5 @@ import org.apache.ibatis.annotations.Mapper;
 public interface IMemberService {
 
 	public int login(MemberDTO memberDTO);
+	public int register(MemberDTO memberDTO);
 }

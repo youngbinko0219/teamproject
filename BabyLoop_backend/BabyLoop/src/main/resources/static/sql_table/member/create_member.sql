@@ -11,7 +11,7 @@ create table member(
 	user_addr2 varchar(200) NOT NULL, #주소
 	user_addr3 varchar(200) NOT NULL, #상세주소
 	user_gender varchar(20) NOT NULL, #성별
-	user_birth date NOT NULL, #생년월일
+	user_birth date, #생년월일
 	created_at date DEFAULT CURRENT_TIMESTAMP, #가입일
 	points int DEFAULT 3000,
 	login_type varchar(100) NOT NULL #로그인 수단

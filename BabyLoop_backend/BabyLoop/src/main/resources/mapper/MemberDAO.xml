@@ -15,4 +15,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<!-- 추후 암호화 -->
 	</select>
 	
+	<insert id="register"
+		parameterType="com.babyloop.auth.member.MemberDTO">
+		
+		INSERT INTO member(
+			user_id,user_pw, user_name, user_email,
+    		user_phone, user_addr1, user_addr2, user_addr3,
+    		user_gender, user_birth, login_type)
+    	VALUES(
+    		#{user_id}, #{user_pw}, #{suer_name}, #{user_email},
+    		#{user_phone}, #{user_addr1}, #{user_addr2}, #{user_addr3},
+    		#{user_gender}, #{user_birth}, '일반로그인'
+    	)
+		
+	</insert>
+	
 </mapper>

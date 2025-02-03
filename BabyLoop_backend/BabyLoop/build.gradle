@@ -52,6 +52,7 @@ dependencies {
 	
 	//MariaDB 연결 의존성
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+	
 }
 
 tasks.named('test') {
