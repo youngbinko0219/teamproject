@@ -5,14 +5,14 @@ import {
   Navigate,
 } from "react-router-dom";
 import LoginPage from "../pages/LoginPage";
-// import SignupPage from "../pages/SignupPage"; // 회원가입 페이지 추가
+import SignupPage from "../pages/SignupPage";
 
 const AppRouter = () => {
   return (
     <Router>
       <Routes>
         <Route path="/login" element={<LoginPage />} />
-        {/* <Route path="/signup" element={<SignupPage />} />{" "} */}
+        <Route path="/signup" element={<SignupPage />} />{" "}
         {/* 회원가입 페이지 라우트 추가 */}
         <Route path="/" element={<Navigate replace to="/login" />} />
         <Route
