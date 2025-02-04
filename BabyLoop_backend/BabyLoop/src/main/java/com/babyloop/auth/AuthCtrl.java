@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.babyloop.auth.member.IMemberService;
 import com.babyloop.auth.member.MemberDTO;
+import com.babyloop.auth.smtp.EmailSending;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -126,5 +127,30 @@ public class AuthCtrl {
 	    return map;
 	}
 
+	
+	@Autowired
+	EmailSending email;
 
+	//이메일 발송
+	@PostMapping("/emailSend")
+	public Map<String,String> emailSend(HttpSession session,
+			String userEmail){
+		Map<String, String> map = new HashMap<>();
+		
+		
+		try {
+			String code = email.myEmailSender(session, userEmail);
+			
+			session.setAttribute("code", code);
+			session.setAttribute("userEmail", userEmail);
+		
+			map.put("message", "success");
+		} catch (Exception e) {
+			e.printStackTrace();
+			map.put("message", "error");
+		}
+		
+		return map;
+	}
+	
 }
