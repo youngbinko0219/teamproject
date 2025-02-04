@@ -20,7 +20,7 @@ public class EmailSending {
 	@Value("${spring.mail.username}")
 	private String from;
 	
-	public void myEmailSender(HttpSession session,
+	public String myEmailSender(HttpSession session,
 				String userEmail) {
 		
 		//6자리 랜덤 코드
@@ -60,12 +60,12 @@ public class EmailSending {
 			h.setText(emailContent, true);
 			
 			//이메일 발송
-			mailSender.send(m);
+			mailSender.send(m);	
+			return code;
 			
-			System.out.println("이메일 전송 성공");
-
 		} catch (Exception e) {
 			e.printStackTrace();
+			return null;
 		}
 	}
 	
@@ -73,7 +73,7 @@ public class EmailSending {
 	//이메일 인증 코드 생성
 	private String emailCode() {
 		Random rand = new Random();
-		return String.format("%06%",rand.nextInt(1000000));
+		return String.format("%06d",rand.nextInt(1000000));
 	}
 	
 }

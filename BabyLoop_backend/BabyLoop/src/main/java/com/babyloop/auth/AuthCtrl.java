@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.babyloop.auth.member.IMemberService;
@@ -26,6 +27,7 @@ public class AuthCtrl {
 	@Autowired
 	IMemberService memberDAO;
 	
+	//비밀번호 암호화
 	private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 	
 	//로그인
@@ -34,9 +36,6 @@ public class AuthCtrl {
 									HttpSession session){
 		
 		Map<String,String> map = new HashMap<>();
-		
-		//비밀번호 암호화
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		
 		try {	
 			String encryptedPassword = memberDAO.login(memberDTO);
@@ -63,7 +62,8 @@ public class AuthCtrl {
 	
 	//회원가입
 	@PostMapping("/signup")
-	public Map<String,String> signup(@RequestBody MemberDTO memberDTO){
+	public Map<String,String> signup(HttpSession session,
+			@RequestBody MemberDTO memberDTO){
 		
 		Map<String,String> map = new HashMap<>();
 		
@@ -74,6 +74,11 @@ public class AuthCtrl {
 			int result = memberDAO.register(memberDTO,encryptedPassword);
 			
 			if(result==1) {
+				
+				//회원가입 성공시 세션 삭제
+	            session.removeAttribute("userEmail");
+	            session.removeAttribute("code");
+	            
 				map.put("message", "success");
 			}else {
 				map.put("message", "fail");
@@ -129,22 +134,28 @@ public class AuthCtrl {
 
 	
 	@Autowired
-	EmailSending email;
+	private EmailSending email;
 
 	//이메일 발송
 	@PostMapping("/emailSend")
 	public Map<String,String> emailSend(HttpSession session,
-			String userEmail){
+			@RequestParam("user_email") String userEmail){
 		Map<String, String> map = new HashMap<>();
-		
 		
 		try {
 			String code = email.myEmailSender(session, userEmail);
+			
+			// null 값이면 fail
+	        if (code == null) {
+	            map.put("message", "fail");
+	            return map;
+	        }
 			
 			session.setAttribute("code", code);
 			session.setAttribute("userEmail", userEmail);
 		
 			map.put("message", "success");
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			map.put("message", "error");
