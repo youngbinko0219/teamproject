@@ -19,27 +19,16 @@ public class WebSecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
 		
 		http
-			.csrf((csrf)->csrf.disable())
-			
-			//요청 권한 설정
-			.authorizeHttpRequests(auth->auth
-				//지정 경로는 로그인없이 허용
-				.requestMatchers("/","/oauth2/**").permitAll()
+			.csrf((csrf)-> csrf.disable())
+			.authorizeHttpRequests((auth)->auth
+				.requestMatchers("/").permitAll()
+				.requestMatchers("/auth/**").permitAll()
 				.anyRequest().authenticated()
 			)
-			// 로그인 폼 설정
-			.formLogin(form->form
-				.loginPage(react+"/login")
-				//로그인 처리하는 경로
-				.loginProcessingUrl("/auth/login")
-				//이동은 React에서 처리
-//			)
-//			.oauth2Login(oauth2->oauth2
-//				//로그인 성공시 이동 페이지
-//				.defaultSuccessUrl(react+"/login")
-			);
-		
+			
+			.formLogin((form)-> form.disable());
+			
+			
 		return http.build();
 	}
-
 }

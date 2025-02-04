@@ -1,7 +1,7 @@
 #회원 관리 생성
 create table member(
 	user_idx int AUTO_INCREMENT PRIMARY KEY, #고유번호
-	grade_idx int NOT NULL, #등급 고유번호
+	grade_idx int, #등급 고유번호
 	user_id varchar(20) NOT NULL, #아이디
 	user_pw varchar(255) NOT NULL, #비번
 	user_name varchar(100) NOT NULL, #이름
