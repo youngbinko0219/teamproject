@@ -1,0 +1,30 @@
+.thumbnail-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+  }
+  
+  /* 메인 이미지 박스 */
+  .main-image {
+    width: 680px;
+    height: 500px;
+    background: #dbd7d5;
+    border-radius: 4px;
+  }
+  
+  /* 서브 이미지 리스트 */
+  .sub-images {
+    display: flex;
+    gap: 25px;
+  }
+  
+  /* 서브 이미지 박스 */
+  .sub-image {
+    width: 210px;
+    height: 140px;
+    background: #dbd7d5;
+    border-radius: 4px;
+  }
+  

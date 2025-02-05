@@ -1,8 +1,12 @@
-import AppRouter from "./components/routes/Router";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React from "react";
+import ProductDetailPage from "./components/pages/ProductDetailPage";
 
 function App() {
-  return <AppRouter />;
+  return (
+    <div>
+      <ProductDetailPage /> 
+    </div>
+  );
 }
 
 export default App;
