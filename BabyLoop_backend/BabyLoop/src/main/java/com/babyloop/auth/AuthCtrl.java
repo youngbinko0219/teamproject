@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.babyloop.auth.member.IMemberService;
 import com.babyloop.auth.member.MemberDTO;
+import com.babyloop.auth.security.JwtUtil;
 import com.babyloop.auth.smtp.EmailSending;
 
 import jakarta.servlet.http.HttpSession;
@@ -27,13 +30,15 @@ public class AuthCtrl {
 	@Autowired
 	IMemberService memberDAO;
 	
+	@Autowired
+	private JwtUtil jwtUtil;
+	
 	//비밀번호 암호화
 	private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 	
 	//로그인
 	@PostMapping("/login")
-	public Map<String,String> login(@RequestBody MemberDTO memberDTO,
-									HttpSession session){
+	public Map<String,String> login(@RequestBody MemberDTO memberDTO){
 		
 		Map<String,String> map = new HashMap<>();
 		
@@ -44,10 +49,12 @@ public class AuthCtrl {
 				encoder.matches(memberDTO.getUser_pw(),
 				encryptedPassword)) {
 				
-				//세션 저장
-				session.setAttribute("user", memberDTO.getUser_id());
+				//JWT 발급
+				String token = jwtUtil.generateToken(memberDTO.getUser_id());
+				
 				//성공 메시지
 				map.put("message", "success");
+				map.put("token", token);
 			}else {
 				//실패 메시지
 				map.put("message", "fail");
@@ -140,6 +147,7 @@ public class AuthCtrl {
 	@PostMapping("/emailSend")
 	public Map<String,String> emailSend(HttpSession session,
 			@RequestParam("user_email") String userEmail){
+		
 		Map<String, String> map = new HashMap<>();
 		
 		try {
@@ -163,5 +171,5 @@ public class AuthCtrl {
 		
 		return map;
 	}
-	
+
 }

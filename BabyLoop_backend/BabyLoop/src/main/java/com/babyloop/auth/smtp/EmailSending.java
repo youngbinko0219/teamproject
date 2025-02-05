@@ -2,10 +2,13 @@ package com.babyloop.auth.smtp;
 
 import java.util.Random;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
+
+import com.babyloop.auth.security.JwtUtil;
 
 import jakarta.mail.internet.MimeMessage;
 import jakarta.servlet.http.HttpSession;
@@ -14,12 +17,13 @@ import lombok.RequiredArgsConstructor;
 @Component
 @RequiredArgsConstructor
 public class EmailSending {
-
+	
 	private final JavaMailSender mailSender;
 	
 	@Value("${spring.mail.username}")
 	private String from;
 	
+	//이메일 발송 및 JWT 생성
 	public String myEmailSender(HttpSession session,
 				String userEmail) {
 		
@@ -52,7 +56,7 @@ public class EmailSending {
 			        + "</div>"
 			        + "<p style=\"font-size: 16px; text-align: center; margin-top: 20px;\">인증 코드가 보이지 않거나 문제가 발생하면, 고객센터에 문의해 주세요.</p>"
 			        + "<p style=\"font-size: 16px; text-align: center; color: #777;\">감사합니다.</p>"
-			        + "<p style=\"font-size: 14px; text-align: center; color: #999;\">이 메일은 자동 발송된 메일입니다. 회신하지 마세요.</p>"
+			        + "<p style=\"font-size: 14px; text-align: center; color: #999;\">이 메일은 자동 발송된 메일입니다. 회신 불가</p>"
 			        + "</div>"
 			        + "</body></html>";
 			

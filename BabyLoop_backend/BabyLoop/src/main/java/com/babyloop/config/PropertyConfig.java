@@ -1,4 +1,4 @@
-package com.babyloop;
+package com.babyloop.config;
 
 import org.springframework.beans.factory.config.PropertiesFactoryBean;
 import org.springframework.context.annotation.Bean;

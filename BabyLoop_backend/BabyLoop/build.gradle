@@ -56,6 +56,15 @@ dependencies {
 	//email전송 의존성
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
 	
+   	//Jwt
+	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+	implementation 'io.jsonwebtoken:jjwt-impl:0.11.5'
+	implementation 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+    //추가 의존성 (JJWT 내부에서 사용됨)
+    implementation 'org.bouncycastle:bcprov-jdk15on:1.70'  // JWT 서명 관련
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2' // JSON 파싱 관련
+    implementation 'commons-codec:commons-codec:1.15' // Base64 인코딩 관련
 }
 
 tasks.named('test') {
