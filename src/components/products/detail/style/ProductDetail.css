@@ -1,0 +1,10 @@
+.product-detail {
+  display: flex;
+  justify-content: center;
+  align-items: stretch; /* 피그마 기준 */
+  gap: 49px; /* 피그마 기준 */
+  width: 100%;
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 20px;
+}

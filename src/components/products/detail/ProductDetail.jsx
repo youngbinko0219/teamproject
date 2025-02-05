@@ -1,12 +1,16 @@
 import React from "react";
-import Thumbnail from "./Thumbnail";
-import "./style/ProductDetail.css"; // 스타일 가져오기
+import ProductInfo from "./info/ProductInfo";
+import "./info/ProductInfo.css";
+import Thumbnail from "./thumnail/Thumbnail";
 
 const ProductDetail = () => {
   return (
     <div className="product-detail">
-      {/* 썸네일 박스 */}
+      {/* 상품 이미지(섬네일) */}
       <Thumbnail />
+
+      {/* 상품 정보 */}
+      <ProductInfo />
     </div>
   );
 };
