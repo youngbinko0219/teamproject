@@ -1,0 +1,15 @@
+.wishlist-button {
+    padding: 10px 15px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    background: white;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  
+  .wishlist-button.active {
+    background: #fa9d9a;
+    color: white;
+  }
+  

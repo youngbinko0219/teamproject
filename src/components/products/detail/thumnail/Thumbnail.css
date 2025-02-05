@@ -8,7 +8,7 @@
 }
 
 .main-image {
-  width: 680px; /* 피그마 기준 */
+  width: 680px; 
   height: 500px;
   border-radius: 4px;
   background: #dbd7d5;

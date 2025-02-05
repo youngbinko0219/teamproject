@@ -1,5 +1,5 @@
 import React from "react";
-import "./Thumbnail.css"; // 섬네일 관련 CSS
+import "./Thumbnail.css"; 
 
 const Thumbnail = () => {
   return (

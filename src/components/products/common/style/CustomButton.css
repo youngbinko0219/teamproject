@@ -1,0 +1,19 @@
+.custom-button {
+    padding: 10px 15px;
+    border-radius: 4px;
+    border: 1px solid black;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background 0.3s ease;
+  }
+  
+  .custom-button.cart {
+    background: #fa9d9a;
+    color: white;
+  }
+  
+  .custom-button.rent {
+    background: white;
+    color: black;
+  }
+  
