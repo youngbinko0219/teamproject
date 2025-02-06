@@ -1,0 +1,50 @@
+.main-container {
+  max-width: 100%; /* 화면 크기에 맞춰 최대 너비 자동 조정 */
+  margin: 0 auto;
+}
+
+.category-section {
+  width: 30%;
+  float: left;
+}
+
+.banner-section {
+  width: 70%;
+  float: left;
+}
+
+.product-section {
+  margin-top: 40px;
+}
+
+.product-section h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.view-all-button {
+  display: block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.view-all-button:hover {
+  background-color: #2980b9;
+}
+
+.all-products-section {
+  margin-top: 40px;
+}
+
+.all-products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+}

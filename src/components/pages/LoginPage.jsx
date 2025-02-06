@@ -8,7 +8,7 @@ const LoginPage = () => {
   const handleLogin = async (credentials) => {
     try {
       // 1. 스프링 부트 API 호출
-      const response = await axios.post("http://192.168.0.16:8080/api/login", {
+      const response = await axios.post("http://localhost:8080/auth/login", {
         username: credentials.username,
         password: credentials.password,
       });
