@@ -6,6 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.babyloop.auth.member.IMemberService">
 
+
+	<!-- 로그인 쿼리 -->
 	<select id="login"
 		parameterType="com.babyloop.auth.member.MemberDTO">
 	
@@ -15,6 +17,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	</select>
 	
+	
+	<!-- 회원가입 쿼리 -->
 	<insert id="register"
 		parameterType="com.babyloop.auth.member.MemberDTO">
 		
@@ -30,5 +34,41 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	)
 		
 	</insert>
+	
+	
+	<!-- 아이디 중복체크 쿼리 -->
+	<select id="idcheck"
+		parameterType="com.babyloop.auth.member.MemberDTO">
+		
+		SELECT user_id
+		FROM member
+		WHERE user_id=#{user_id}
+		
+	</select>
+	
+	
+	<!-- 아이디 찾기 쿼리 -->
+	<select id="idSearch"
+		parameterType="com.babyloop.auth.member.MemberDTO">
+		
+		SELECT user_id
+		FROM member
+		WHERE user_name=#{user_name} AND
+			user_email=#{user_email}
+		
+	</select>
+	
+	
+	<!-- 비밀번호 찾기 -->
+	<select id="pwSearch"
+		parameterType="com.babyloop.auth.member.MemberDTO">
+		
+		SELECT user_pw
+		FROM member
+		WHERE user_id=#{user_id} AND
+			user_email=#{user_email} AND
+			user_name=#{user_name}
+		
+	</select>
 	
 </mapper>

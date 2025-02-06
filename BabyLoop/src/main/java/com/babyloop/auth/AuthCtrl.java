@@ -37,7 +37,7 @@ public class AuthCtrl {
 	//비밀번호 암호화
 	private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 	
-	//로그인
+	//로그인 Post
 	@PostMapping("/login")
 	public Map<String,String> login(@RequestBody MemberDTO memberDTO){
 		
@@ -68,7 +68,7 @@ public class AuthCtrl {
 	}
 	
 	
-	//회원가입
+	//회원가입 Post
 	@PostMapping("/signup")
 	public Map<String,String> signup(HttpSession session,
 			@RequestBody MemberDTO memberDTO,
@@ -111,9 +111,6 @@ public class AuthCtrl {
 			if(result==1) {
 				map.put("message", "success");
 				
-	            //세션 삭제
-	            session.removeAttribute("code");
-	            session.removeAttribute("user_email");
 			}else {
 				map.put("message", "fail");
 			}
@@ -126,7 +123,7 @@ public class AuthCtrl {
 	}
 	
 	
-	//JWT 토큰 존재 확인
+	//JWT 토큰 존재 확인 Get
 	@GetMapping("/jwtcheck")
 	public Map<String, String> jwtCheck(@RequestHeader("Authorization") String token) {
 	    Map<String, String> map = new HashMap<>();
@@ -166,7 +163,7 @@ public class AuthCtrl {
 	}
 	
 	
-	//로그아웃
+	//로그아웃 Post
 	@PostMapping("/logout")
 	public Map<String, String> logout(@RequestHeader(value = "Authorization", required = false) String token) {
 	    Map<String, String> map = new HashMap<>();
@@ -192,7 +189,8 @@ public class AuthCtrl {
 	@Autowired
 	private EmailSending email;
 
-	//이메일 발송
+	
+	//이메일 인증 발송 Post
 	@PostMapping("/emailSend")
 	public Map<String,String> emailSend(HttpSession session,
 			@RequestParam("user_email") String user_email){
@@ -200,7 +198,7 @@ public class AuthCtrl {
 		Map<String, String> map = new HashMap<>();
 		
 		try {
-			String code = email.myEmailSender(user_email);
+			String code = email.checkEmailSender(user_email);
 			
 			// null 값이면 fail
 	        if (code == null) {
@@ -227,5 +225,85 @@ public class AuthCtrl {
 		
 		return map;
 	}
+	 
+	
+	//아이디 중복확인 체크 Get
+	@GetMapping("/checkid")
+	public Map<String,String> checkid(@RequestBody MemberDTO memberDTO){
+		
+		Map<String, String> map = new HashMap<>();
+		
+		try {
+			String result = memberDAO.idcheck(memberDTO);
 
+			if(result == null) {
+				map.put("message", "success");				
+			}else {
+				map.put("message", "fail");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			map.put("message", "error");
+		}
+		
+		return map;
+	}
+	
+	
+	//아이디 찾기 Get
+	@GetMapping("/search-id")
+	public Map<String,String> searchId(@RequestBody MemberDTO memberDTO){
+		
+		Map<String, String> map = new HashMap<>();
+		
+		try {
+			String result = memberDAO.idSearch(memberDTO);
+
+			if(result == null) {
+				map.put("message", "fail");				
+			}else {
+				map.put("message", "success");
+				map.put("user_id", result);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			map.put("message", "error");
+		}
+		
+		return map;
+	}
+	
+	
+	//비밀번호 찾기 Post
+	@PostMapping("/search-pw")
+	public Map<String,String> search(@RequestBody MemberDTO memberDTO){
+		
+		Map<String, String> map = new HashMap<>();
+		
+		try {
+			String result = memberDAO.pwSearch(memberDTO);
+
+			if(result == null) {
+				map.put("message", "fail");				
+			}else {
+				String code = email.pwEmailSender(memberDTO.getUser_email());
+				
+				//임시비밀번호 암호화
+				String encryptedPassword = encoder.encode(code);
+				
+				
+				
+				map.put("message", "success");
+				map.put("user_id", result);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			map.put("message", "error");
+		}
+		
+		return map;
+	}
 }
