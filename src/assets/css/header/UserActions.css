@@ -1,0 +1,14 @@
+.user-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.user-actions a {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.user-actions a:hover {
+  color: #007bff;
+}

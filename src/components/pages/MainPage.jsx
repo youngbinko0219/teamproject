@@ -1,3 +1,5 @@
+import Header from "../header/Header"; // 헤더 임포트
+import Footer from "../footer/Footer"; // 푸터 임포트
 import MainBanner from "../main/MainBanner";
 import CategoryList from "../main/CategoryList";
 import TodayProducts from "../main/TodayProducts";
@@ -10,6 +12,9 @@ import ProductSection from "../main/ProductSection";
 const MainPage = () => {
   return (
     <div className="main-page-container">
+      {/* 헤더 */}
+      <Header />
+
       {/* 메인 배너 */}
       <MainBanner />
 
@@ -43,6 +48,9 @@ const MainPage = () => {
       <section className="all-products-section">
         <AllProducts />
       </section>
+
+      {/* 푸터 */}
+      <Footer />
     </div>
   );
 };

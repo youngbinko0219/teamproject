@@ -1,0 +1,22 @@
+.footer {
+  background-color: #2c3e50;
+  color: white;
+  padding: 3rem 5%;
+  margin-top: auto;
+}
+
+.footer-links,
+.social-media,
+.newsletter,
+.contact-info,
+.app-download {
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .footer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}

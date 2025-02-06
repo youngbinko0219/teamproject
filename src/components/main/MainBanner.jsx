@@ -3,7 +3,7 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa"; // 화살표 아
 import "../../assets/css/main/MainBanner.css";
 
 const bannerImages = [
-  "/assets/images/banner1.jpg",
+  "../../assets/images/banner1.jpg",
   "/assets/images/banner2.jpg",
   "/assets/images/banner3.jpg",
 ];

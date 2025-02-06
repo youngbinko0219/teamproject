@@ -2,7 +2,7 @@ import LoginForm from "../auth/LoginForm";
 import LoginButton from "../auth/LoginButton";
 import logo from "../../assets/logo.png";
 import axios from "axios";
-import "./LoginPage.css";
+import "../../assets/css/pages/LoginPage.css";
 
 const LoginPage = () => {
   const handleLogin = async (credentials) => {

@@ -1,50 +1,28 @@
-.main-container {
-  max-width: 100%; /* 화면 크기에 맞춰 최대 너비 자동 조정 */
-  margin: 0 auto;
+.main-page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* 전체 화면 높이 */
+  padding-top: 60px; /* 헤더 높이만큼 여백 추가 */
 }
 
-.category-section {
-  width: 30%;
-  float: left;
+/* 헤더와 푸터 사이의 컨텐츠를 중앙에 배치 */
+.main-page-container > *:not(header):not(footer) {
+  flex: 1;
+  padding: 2rem 5%;
 }
 
-.banner-section {
-  width: 70%;
-  float: left;
-}
-
-.product-section {
-  margin-top: 40px;
-}
-
-.product-section h2 {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-.view-all-button {
-  display: block;
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #3498db;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  text-align: center;
-}
-
-.view-all-button:hover {
-  background-color: #2980b9;
-}
-
+/* 각 섹션 간격 조정 */
+.category-section,
+.today-products-section,
+.best-products-section,
+.new-products-section,
 .all-products-section {
-  margin-top: 40px;
+  margin-bottom: 3rem;
 }
 
-.all-products-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 20px;
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .main-page-container > *:not(header):not(footer) {
+    padding: 1rem;
+  }
 }
