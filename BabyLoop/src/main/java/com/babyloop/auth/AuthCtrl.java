@@ -85,7 +85,7 @@ public class AuthCtrl {
 	            return map;
 	        }
 			
-			//이메일 null 이거나 JWT의 일치하지않으면 fail
+			//JWT의 null 이면 fail
 			if(!jwtUtil.isTokenValid(token)) {
 				map.put("message", "fail");
 				return map;
@@ -96,9 +96,8 @@ public class AuthCtrl {
 			
 			//세션가져오기
 	        String sessionCode = (String) session.getAttribute("code");
-	        String sessionEmail = (String) session.getAttribute("user_email");
 
-	        if (!emailToken.equals(sessionEmail) || sessionCode == null) {
+	        if (!emailToken.equals(memberDTO.getUser_email()) || sessionCode == null) {
 	            map.put("message", "fail");
 	            return map;
 	        }
@@ -192,13 +191,19 @@ public class AuthCtrl {
 	
 	//이메일 인증 발송 Post
 	@PostMapping("/emailSend")
-	public Map<String,String> emailSend(HttpSession session,
-			@RequestParam("user_email") String user_email){
+	public Map<String,String> emailSend(HttpSession session,@RequestBody MemberDTO memberDTO){
 		
 		Map<String, String> map = new HashMap<>();
 		
 		try {
-			String code = email.checkEmailSender(user_email);
+			//이미 인증을 받은 이메일이 있으면 return
+			String result = memberDAO.emailCheck(memberDTO);
+			if(result!=null) {
+				map.put("message", "equals");
+				return map;
+			}
+			
+			String code = email.checkEmailSender(memberDTO.getUser_email());
 			
 			// null 값이면 fail
 	        if (code == null) {
@@ -207,11 +212,10 @@ public class AuthCtrl {
 	        }
 			
 	        //이메일 인증용 JWT토큰
-	        String token = jwtUtil.generateEmailToken(user_email);
+	        String token = jwtUtil.generateEmailToken(memberDTO.getUser_email());
 	        
 	        //인증번호 세션에 저장
 			session.setAttribute("code", code);
-			session.setAttribute("user_email", user_email);
 		
 			//JSON형식
 			map.put("token", token);
@@ -259,10 +263,17 @@ public class AuthCtrl {
 		
 		try {
 			String result = memberDAO.idSearch(memberDTO);
-
+			
+			
 			if(result == null) {
 				map.put("message", "fail");				
 			}else {
+				//아이디 앞5글자만 공개
+				String front = result.substring(0,5);
+				String back = result.substring(5);
+				back = back.replaceAll(".", "*");
+				result = front+back;
+				
 				map.put("message", "success");
 				map.put("user_id", result);
 			}
@@ -286,17 +297,22 @@ public class AuthCtrl {
 			String result = memberDAO.pwSearch(memberDTO);
 
 			if(result == null) {
-				map.put("message", "fail");				
+				map.put("message", "fail");		
+				
 			}else {
 				String code = email.pwEmailSender(memberDTO.getUser_email());
 				
 				//임시비밀번호 암호화
 				String encryptedPassword = encoder.encode(code);
 				
+				int change = memberDAO.changePw(memberDTO,encryptedPassword);
 				
+				if(change==1) {
+					map.put("message", "success");
+				}else {
+					map.put("message", "fail");
+				}
 				
-				map.put("message", "success");
-				map.put("user_id", result);
 			}
 			
 		} catch (Exception e) {

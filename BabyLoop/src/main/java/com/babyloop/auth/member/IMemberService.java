@@ -21,4 +21,11 @@ public interface IMemberService {
 	
 	//비밀번호 찾기
 	public String pwSearch(MemberDTO memberDTO);
+	
+	//인증받은 이메일 체크
+	public String emailCheck(MemberDTO memberDTO);
+	
+	//임시비밀번호 저장
+	public int changePw(@Param("member") MemberDTO memberDTO,
+			@Param("encryptedPassword") String encryptedPaString);
 }
