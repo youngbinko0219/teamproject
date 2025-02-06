@@ -1,0 +1,17 @@
+package com.babyloop.auth;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.babyloop.auth.member.IMemberService;
+
+@RestController
+public class AuthCtrl {
+
+	IMemberService memberDao;
+	
+	@GetMapping("/baby.loop/auth")
+	public String login() {
+		return ""	;
+	}
+}

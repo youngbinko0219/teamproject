@@ -1,0 +1,16 @@
+package com.babyloop;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import jakarta.servlet.http.HttpServletResponse;
+
+@RestController
+public class MainCtrl {
+
+	@GetMapping("/baby.loop")
+	public void main(HttpServletResponse response) throws IOException{
+		response.sendRedirect(
+				"http://localhost:5173/boby.loop");
+	}
+}

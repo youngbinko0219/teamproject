@@ -1,0 +1,6 @@
+package com.babyloop.auth.member;
+
+@Data
+public class MemberDTO {
+	
+}
