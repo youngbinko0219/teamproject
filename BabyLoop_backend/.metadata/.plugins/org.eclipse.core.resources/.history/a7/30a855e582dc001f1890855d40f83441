@@ -1,9 +1,0 @@
-package com.babyloop.auth.member;
-
-import lombok.Data;
-
-@Data
-p
-ublic class MemberDTO {
-	
-}
