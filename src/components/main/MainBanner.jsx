@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa"; // 화살표 아이콘
 import "../../assets/css/main/MainBanner.css";
+import banner1 from "../../assets/images/banner1.jpg";
 
 const bannerImages = [
-  "../../assets/images/banner1.jpg",
+  { banner1 },
   "/assets/images/banner2.jpg",
   "/assets/images/banner3.jpg",
 ];

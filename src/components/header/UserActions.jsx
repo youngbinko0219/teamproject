@@ -26,6 +26,14 @@ const UserActions = () => {
           <Link to="/mypage" className="icon-link">
             <FaUser className="action-icon" />
           </Link>
+          <button
+            onClick={() => {
+              localStorage.removeItem("accessToken");
+              setIsLoggedIn(false);
+            }}
+          >
+            로그아웃
+          </button>
         </div>
       ) : (
         // 비로그인 상태: 로그인/회원가입 버튼

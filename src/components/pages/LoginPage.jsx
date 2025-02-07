@@ -10,20 +10,24 @@ const LoginPage = () => {
     try {
       // 1. 스프링 부트 API 호출
       const response = await axios.post("http://localhost:8080/auth/login", {
-        username: credentials.username,
-        password: credentials.password,
+        user_id: credentials.username,
+        user_pw: credentials.password,
       });
 
       // 2. 응답 처리
-      if (response.status === 200) {
-        const data = response.data;
-        console.log("로그인 성공:", data);
+      const { status, message, accessToken } = response.data; // 응답에서 message와 accessToken 추출
 
-        // 3. JWT 토큰 저장 (예시)
-        localStorage.setItem("accessToken", data.accessToken);
+      if (status === "success") {
+        console.log("로그인 성공");
+
+        // 3. JWT 토큰 저장
+        localStorage.setItem("accessToken", accessToken);
 
         // 4. 메인 페이지로 리다이렉트
         window.location.href = "/";
+      } else if (status === "fail") {
+        console.log("로그인 실패: " + message);
+        alert(message || "아이디와 비밀번호를 확인해 주세요.");
       }
     } catch (error) {
       console.error("로그인 오류:", error);

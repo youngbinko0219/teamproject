@@ -9,12 +9,22 @@ const SignupPage = () => {
     try {
       const response = await axios.post(
         "http://localhost:8080/auth/signup",
-        userData
+        userData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // 토큰을 헤더에 추가
+          },
+        }
       );
-      console.log("회원가입 성공:", response.data);
-      alert("회원가입이 완료되었습니다!");
 
-      window.location.href = "/login";
+      if (response.data === "success") {
+        console.log("회원가입 성공:", response.data);
+        alert("회원가입이 완료되었습니다!");
+        navigate("/login"); // 성공 시 로그인 페이지로 이동
+      } else {
+        console.error("회원가입 실패:", response.data);
+        alert("회원가입 실패: " + response.data);
+      }
     } catch (error) {
       console.error("회원가입 오류:", error);
       alert("회원가입 중 오류가 발생했습니다.");

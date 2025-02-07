@@ -51,8 +51,8 @@ const LoginForm = ({ onSubmit }) => {
         <a
           href="/forgot-password"
           className="text-decoration-none text-primary"
-        >
-          비밀번호 찾기
+        >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          아이디/비밀번호 찾기
         </a>
       </div>
 

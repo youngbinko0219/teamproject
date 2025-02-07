@@ -65,7 +65,6 @@ const SignupForm = ({ onSubmit }) => {
         if (data.message === "success") {
           localStorage.setItem("token", data.token);
           localStorage.setItem("code", data.code);
-          window.location.href = "/";
         } else {
           alert("이메일 인증에 실패했습니다.");
         }
@@ -79,21 +78,14 @@ const SignupForm = ({ onSubmit }) => {
   };
 
   // 인증번호 확인 핸들러
-  const handleVerifyCode = async () => {
-    try {
-      const response = await axios.post(
-        "http://localhost:8080/auth/checkmail",
-        {
-          email: formData.user_email,
-          code: formData.verificationCode,
-        }
-      );
-      if (response.status === 200) {
-        setVerificationMessage("인증번호가 일치합니다."); // 인증번호 일치 메시지
-        setIsVerificationComplete(true); // 인증 완료 상태 업데이트
-      }
-    } catch (error) {
-      console.error("인증번호 확인 오류:", error);
+  const handleVerifyCode = () => {
+    const storedCode = localStorage.getItem("code"); // 로컬 스토리지에서 저장된 코드 가져오기
+    const enteredCode = formData.verificationCode; // 사용자가 입력한 인증 코드
+
+    if (storedCode === enteredCode) {
+      setVerificationMessage("인증번호가 일치합니다."); // 인증번호 일치 메시지
+      setIsVerificationComplete(true); // 인증 완료 상태 업데이트
+    } else {
       setVerificationMessage("인증번호가 일치하지 않습니다."); // 인증번호 불일치 메시지
     }
   };
