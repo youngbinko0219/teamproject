@@ -21,6 +21,7 @@ const SignupForm = ({ onSubmit }) => {
 
   const [isVerificationSent, setIsVerificationSent] = useState(false); // 인증 메일 발송 상태
   const [isVerificationComplete, setIsVerificationComplete] = useState(false); // 인증 완료 상태
+  const [verificationMessage, setVerificationMessage] = useState(""); // 인증 메시지 상태
 
   // 주소 검색 완료 핸들러
   const handleAddressComplete = (data) => {
@@ -34,7 +35,6 @@ const SignupForm = ({ onSubmit }) => {
   // 아이디 중복 검사 핸들러
   const handleCheckDuplicateId = async () => {
     try {
-      // TODO: 중복 검사 API 호출
       const response = await axios.get(
         `/api/check-id?userId=${formData.user_id}`
       );
@@ -52,12 +52,24 @@ const SignupForm = ({ onSubmit }) => {
   // 이메일 인증 메일 발송 핸들러
   const handleSendVerificationEmail = async () => {
     try {
-      // TODO: 이메일 인증 메일 발송 API 호출
-      const response = await axios.post("/api/send-verification-email", {
-        email: formData.user_email,
-      });
+      const response = await axios.post(
+        "http://localhost:8080/auth/emailSend",
+        {
+          user_email: formData.user_email,
+        }
+      );
+
       if (response.status === 200) {
-        alert("인증 메일이 발송되었습니다. 이메일을 확인해 주세요.");
+        const data = response.data; // 응답 데이터 가져오기
+
+        if (data.message === "success") {
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("code", data.code);
+          window.location.href = "/";
+        } else {
+          alert("이메일 인증에 실패했습니다.");
+        }
+
         setIsVerificationSent(true); // 인증 메일 발송 상태 업데이트
       }
     } catch (error) {
@@ -69,18 +81,20 @@ const SignupForm = ({ onSubmit }) => {
   // 인증번호 확인 핸들러
   const handleVerifyCode = async () => {
     try {
-      // TODO: 인증번호 확인 API 호출
-      const response = await axios.post("/api/verify-code", {
-        email: formData.user_email,
-        code: formData.verificationCode,
-      });
+      const response = await axios.post(
+        "http://localhost:8080/auth/checkmail",
+        {
+          email: formData.user_email,
+          code: formData.verificationCode,
+        }
+      );
       if (response.status === 200) {
-        alert("인증이 완료되었습니다.");
+        setVerificationMessage("인증번호가 일치합니다."); // 인증번호 일치 메시지
         setIsVerificationComplete(true); // 인증 완료 상태 업데이트
       }
     } catch (error) {
       console.error("인증번호 확인 오류:", error);
-      alert("인증번호가 일치하지 않습니다.");
+      setVerificationMessage("인증번호가 일치하지 않습니다."); // 인증번호 불일치 메시지
     }
   };
 
@@ -161,7 +175,7 @@ const SignupForm = ({ onSubmit }) => {
             type="button"
             className="btn btn-outline-secondary"
             onClick={handleSendVerificationEmail}
-            disabled={isVerificationSent} // 인증 메일 발송 후 버튼 비활성화
+            disabled={isVerificationSent}
           >
             {isVerificationSent ? "인증 메일 발송됨" : "인증 메일 발송"}
           </button>
@@ -189,6 +203,9 @@ const SignupForm = ({ onSubmit }) => {
               인증번호 확인
             </button>
           </div>
+          {verificationMessage && (
+            <div className="mt-2 text-danger">{verificationMessage}</div>
+          )}
         </div>
       )}
 

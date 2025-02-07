@@ -1,0 +1,16 @@
+.review-summary {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .stars {
+    font-size: 18px;
+    color: #ffcc00;
+  }
+  
+  .review-count {
+    font-size: 14px;
+    color: #666;
+  }
+  

@@ -1,0 +1,46 @@
+.dropdown {
+  position: relative;
+  width: 100%;
+  max-width: 570px; /* 부모 요소 크기에 맞게 설정 */
+}
+
+.dropdown-btn {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  text-align: left;
+  background: #fff;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  position: absolute;
+  width: 100%; /* 버튼과 동일한 너비 */
+  max-width: 570px; /* 부모 요소 크기에 맞게 설정 */
+  background: white;
+  border: 1px solid #656768;
+  border-radius: 4px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  padding: 0;
+  overflow: hidden; /* 내용 넘치지 않게 설정 */
+}
+
+.dropdown-menu li {
+  padding: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  color: #424551;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto; /* 강제 100% 해제 */
+  text-align: center; /* 가운데 정렬 */
+  white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+}
+
+.dropdown-menu li:hover {
+  background: #fa9d9a;
+  color: white;
+}

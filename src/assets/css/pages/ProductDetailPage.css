@@ -1,0 +1,21 @@
+.product-detail-page {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: white; /* ✅ 피그마 기준 배경색 */
+  padding-top: 65px; /* ✅ 피그마 기준 여백 반영 */
+}
+
+.product-detail-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1299px; /* ✅ 피그마 그대로 반영 */
+  margin-left: auto;
+  margin-right: auto;
+  gap: 50px;
+}

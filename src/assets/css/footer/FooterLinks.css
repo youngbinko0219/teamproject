@@ -1,0 +1,27 @@
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.footer-links h4 {
+  color: #f39c12;
+  margin-bottom: 1rem;
+}
+
+.footer-links a {
+  display: block;
+  color: #ecf0f1;
+  text-decoration: none;
+  margin: 0.5rem 0;
+}
+
+.footer-links a:hover {
+  color: #007bff;
+}
+
+@media (max-width: 768px) {
+  .footer-links {
+    grid-template-columns: 1fr;
+  }
+}

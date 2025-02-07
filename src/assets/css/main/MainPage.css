@@ -1,0 +1,28 @@
+.main-page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* 전체 화면 높이 */
+  padding-top: 60px; /* 헤더 높이만큼 여백 추가 */
+}
+
+/* 헤더와 푸터 사이의 컨텐츠를 중앙에 배치 */
+.main-page-container > *:not(header):not(footer) {
+  flex: 1;
+  padding: 2rem 5%;
+}
+
+/* 각 섹션 간격 조정 */
+.category-section,
+.today-products-section,
+.best-products-section,
+.new-products-section,
+.all-products-section {
+  margin-bottom: 3rem;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .main-page-container > *:not(header):not(footer) {
+    padding: 1rem;
+  }
+}

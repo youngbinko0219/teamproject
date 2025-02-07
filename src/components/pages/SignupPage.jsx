@@ -7,7 +7,7 @@ const SignupPage = () => {
   const handleSignup = async (userData) => {
     try {
       const response = await axios.post(
-        "http://192.168.0.16:8080/api/signup",
+        "http://localhost:8080/auth/signup",
         userData
       );
       console.log("회원가입 성공:", response.data);

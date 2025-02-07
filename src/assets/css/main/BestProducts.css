@@ -1,0 +1,16 @@
+.best-products-container {
+  padding: 20px;
+  text-align: center;
+}
+
+.slider-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.product-slide {
+  width: 300px;
+  transition: transform 0.3s ease-in-out;
+}

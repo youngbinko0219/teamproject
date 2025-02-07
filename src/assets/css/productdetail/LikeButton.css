@@ -1,0 +1,35 @@
+.like-button {
+  width: 38px;  /* 🔥 피그마 기준 */
+  height: 38px;
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.heart-icon {
+  font-size: 23.75px;  /* 🔥 피그마 기준 */
+  position: relative;
+  top: 8.31px;
+  left: 7.12px;
+}
+
+.liked .heart-icon {
+  color: #FA9D9A;  /* 🔥 피그마 코드 반영 */
+}
+
+.not-liked .heart-icon {
+  color: #bbb;
+}
+
+.like-button:hover .not-liked {
+  color: #FA9D9A;
+}
+
+.like-button:active {
+  transform: scale(0.9);
+}

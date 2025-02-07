@@ -1,0 +1,21 @@
+.arrow-button {
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 10px;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.arrow-button:hover {
+  color: #007bff;
+}
+
+.arrow-button.left {
+  margin-right: 10px;
+}
+
+.arrow-button.right {
+  margin-left: 10px;
+}

@@ -1,0 +1,81 @@
+.product-info {
+  width: 570px;  /* 피그마 기준 */
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+}
+
+.product-name {
+  font-size: 32px;
+  font-weight: bold;
+  color: black;
+}
+
+.product-price {
+  font-size: 24px;
+  font-weight: bold;
+  color: #e74c3c;
+}
+
+.review-summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.product-availability {
+  font-size: 18px;
+  font-weight: bold;
+  color: #129025;
+}
+
+.product-description {
+  font-size: 18px;
+  line-height: 25px;
+  color: black;
+}
+
+.divider {
+  border: 1px solid #ddd;
+  margin: 15px 0;
+  width: 100%; /* 피그마 기준 전체 너비 */
+  align-self: stretch;
+}
+
+.rental-period-section,
+.option-selection-section,
+.rental-start-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.purchase-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between; /* 버튼 간격 조정 */
+  width: 100%;
+}
+
+.purchase-buttons .add-to-cart,
+.purchase-buttons .buy-now {
+  flex: 1;
+  height: 52px;
+  padding: 10px;
+  font-size: 18px;
+  border: none;
+  border-radius: 6px;
+  background: #FA9D9A;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.purchase-buttons .add-to-cart:hover,
+.purchase-buttons .buy-now:hover {
+  background: #f07b7b;
+}
