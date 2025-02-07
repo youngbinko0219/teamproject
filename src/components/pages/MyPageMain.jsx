@@ -1,68 +1,105 @@
 import React from "react";
 import "../Style/MyPageMainStyle.css";
 
-  const SidebarItem = ({ icon, text }) => {
-    return (
-      <div className="flex items-center gap-2 pl-12 py-2 cursor-pointer opacity-70 hover:opacity-100">
-        <div className="w-5 h-5 bg-gray-300 rounded" /> {/* 아이콘 자리 */}
-        <span className="text-gray-600 font-bold text-sm">{text}</span>
+const Sidebar = () => {
+  return (
+    <div className="sidebar">
+      <div className="sidebar-item">
+        <span className="sidebar-text">개인 정보</span>
       </div>
-    );
-  };
-
-  const Sidebar = () => {
-    return (
-      <div className="w-64 bg-white shadow-lg rounded-lg border border-gray-200 p-4">
-        <SidebarItem text="개인 정보" />
-        <SidebarItem text="대여 내역 조회" />
-        <SidebarItem text="찜 목록" />
-        <SidebarItem text="물품 상태 체크" />
-        <SidebarItem text="상품 회수 서비스" />
+      <div className="sidebar-item">
+        <span className="sidebar-text">대여 내역 조회</span>
       </div>
-    );
-  };
-
-  const Card = ({ title, subtitle, buttonText }) => {
-    return (
-      <div className="w-[676px] h-[459px] bg-white border border-gray-300 rounded-xl p-6 relative">
-        <h2 className="text-3xl font-semibold text-gray-900 mb-4">{title}</h2>
-        <p className="text-lg text-gray-600">{subtitle}</p>
-        <button className="mt-6 px-6 py-2 bg-red-400 text-white rounded-full font-bold text-lg absolute bottom-6 left-1/2 transform -translate-x-1/2">
-          {buttonText}
-        </button>
+      <div className="sidebar-item">
+        <span className="sidebar-text">찜 목록</span>
       </div>
-    );
-  };
+      <div className="sidebar-item">
+        <span className="sidebar-text">물품 상태 체크</span>
+      </div>
+      <div className="sidebar-item">
+        <span className="sidebar-text">상품 회수 서비스</span>
+      </div>
+    </div>
+  );
+};
 
-  const Dashboard = () => {
-    return (
-      <div className="flex w-full min-h-screen bg-gray-100 p-10 gap-6">
-        <Sidebar />
-        <div className="flex flex-col gap-6">
-          <div className="flex gap-6">
-            <Card
-              title="가나디 회원님, 등급은 골드입니다."
-              subtitle="현재 보유중인 포인트는 3,000점 입니다."
-              buttonText="내역 보기"
-            />
-            <Card title="내 정보" subtitle="" buttonText="개인정보 수정" />
-          </div>
-          <Card title="주문 조회" subtitle="" buttonText="자세히 보기" />
+const LoginSection = () => {
+  return (
+    <div className="login-section">
+      <h2 className="login-title">회원 정보</h2>
+      <div className="login-box">
+        {/* 왼쪽 정렬된 사용자 정보 */}
+        <div className="login-info">
+          <div className="login-icon" />  
+        </div>
+        <div className="login-text">
+        <span>가나디</span><br />
+        <small>ID</small>
+        </div>
+
+        {/* 오른쪽 정렬된 계정 관리 버튼 */}
+        <button className="login-button">계정 관리</button>
+      </div>
+    </div>
+  );
+};
+
+const GradeSection = () => {
+  return (
+    <div className="login-section">
+      <h2 className="login-title">회원 등급</h2>
+      <div className="login-box">
+        <div className="login-icon" />
+        <span className="login-text">등급</span>
+        <button className="login-button">계정 관리</button>
+      </div>
+    </div>
+  );
+};
+
+const RentalHistory = () => {
+  return (
+    <div className="rental-history">
+      <h2 className="section-title">대여 내역</h2>
+      <div className="rental-item">
+        <div className="rental-thumbnail" />
+        <div className="rental-details">
+          <span className="rental-name">카시트</span>
+          <span className="rental-date">10 Oct 21, by Jane Ostin</span>
         </div>
       </div>
-    );
-  };
+      <div className="rental-item">
+        <div className="rental-thumbnail" />
+        <div className="rental-details">
+          <span className="rental-name">유모차</span>
+          <span className="rental-date">10 Oct 21, by Jane Ostin</span>
+        </div>
+      </div>
+    </div>
+  );
+};
 
-  function MyPageMain() {
-    return (
-      <>
-        <SidebarItem />
-        <Card />
-        <Dashboard />
-        {/* <Sidebar /> */}
-      </>
-    );
-  }
-  
-  export default MyPageMain;
-  
+const Dashboard = () => {
+  return (
+    <div className="dashboard">
+      <Sidebar />
+      <div className="dashboard-content">
+        <h1 className="profile-title">마이페이지</h1>
+        <LoginSection />
+        <RentalHistory />
+      </div>
+    </div>
+  );
+};
+
+function MyPageMain() {
+  return (
+    <>
+
+      <Dashboard />
+      {/* <Sidebar /> */}
+    </>
+  );
+}
+
+export default MyPageMain;

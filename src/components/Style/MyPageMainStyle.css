@@ -1,15 +1,20 @@
-/* Dashboard.css */
+/* 반응형 대시보드 레이아웃 */
 .dashboard {
-  display: flex;
-  width: 100%;
+  width: 100%; /* 기본적으로 전체 너비 사용 */
+  max-width: 1200px; /* 최대 1200px */
   min-height: 100vh;
-  background-color: #f3f4f6;
-  padding: 2.5rem;
+  margin: 0 auto;
+  display: flex;
+  background-color: #fcfcfd;
+  padding: 1.5rem;
   gap: 1.5rem;
+  flex-wrap: wrap;
 }
 
+/* 사이드바 */
 .sidebar {
   width: 16rem;
+  height: 15rem;
   background-color: white;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 0.5rem;
@@ -20,10 +25,7 @@
 .sidebar-item {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding-left: 3rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding: 0.5rem 1rem;
   cursor: pointer;
   opacity: 0.7;
   transition: opacity 0.2s;
@@ -33,62 +35,130 @@
   opacity: 1;
 }
 
-.icon-placeholder {
-  width: 1.25rem;
-  height: 1.25rem;
-  background-color: #d1d5db;
-  border-radius: 0.25rem;
-}
-
 .sidebar-text {
   color: #4b5563;
   font-weight: bold;
   font-size: 0.875rem;
 }
 
+/* 메인 컨텐츠 */
 .dashboard-content {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  flex-grow: 1;
 }
 
-.card-container {
-  display: flex;
-  gap: 1.5rem;
+/* 프로필 섹션 */
+.profile-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #23262f;
+  margin-bottom: 1.5rem;
 }
 
-.card {
-  width: 676px;
-  height: 459px;
+/* 로그인 섹션 */
+.login-section {
   background-color: white;
-  border: 1px solid #d1d5db;
-  border-radius: 1rem;
   padding: 1.5rem;
-  position: relative;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
 }
 
-.card-title {
-  font-size: 1.875rem;
-  font-weight: 600;
-  color: #1f2937;
+.login-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #23262f;
   margin-bottom: 1rem;
 }
 
-.card-subtitle {
-  font-size: 1.125rem;
-  color: #6b7280;
+.login-box {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: #f7f7f7;
+  padding: 1rem;
+  border-radius: 16px;
 }
 
-.card-button {
-  margin-top: 1.5rem;
-  padding: 0.75rem 1.5rem;
+.login-icon {
+  width: 2rem;
+  height: 2rem;
+  background-color: #d1d5db;
+  border-radius: 50%;
+  flex-shrink:0;
+}
+
+.login-text {
+  font-size: 1rem;
+  color: #4b5563;
+}
+
+.login-button {
+  /* 버튼의 내부 여백 */
+  padding: 0.5rem 1rem;
+  /* 배경색을 빨간색 계열로 지정 */
   background-color: #f87171;
+  /* 버튼 텍스트 색상을 흰색으로 지정 */
   color: white;
-  border-radius: 9999px;
+  /* 버튼의 테두리를 제거 */
+  border: none;
+  /* 버튼 모서리를 둥글게 지정 */
+  border-radius: 0.5rem;
+  /* 텍스트를 굵게 설정 */
   font-weight: bold;
-  font-size: 1.125rem;
-  position: absolute;
-  bottom: 1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
+  /* 버튼에 마우스를 올렸을 때의 시각적 피드백을 위해 커서를 포인터로 변경 */
+  cursor: pointer;
+  /* 배경색이 부드럽게 전환되도록 효과 추가 */
+  transition: background-color 0.2s;
+}
+
+
+.login-button:hover {
+  background-color: #e63946;
+}
+
+/* 대여 내역 섹션 */
+.rental-history {
+  background-color: white;
+  padding: 1.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #23262f;
+  margin-bottom: 1rem;
+}
+
+.rental-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.rental-thumbnail {
+  width: 4rem;
+  height: 4rem;
+  background-color: #d1d5db;
+  border-radius: 0.5rem;
+}
+
+.rental-details {
+  flex-grow: 1;
+}
+
+.rental-name {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #363940;
+}
+
+.rental-date {
+  font-size: 0.875rem;
+  color: #95a1bb;
 }

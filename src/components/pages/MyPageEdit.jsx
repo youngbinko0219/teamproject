@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../Style/MyPageEditStyle.css";
+import axios from "axios";
 
 function MyPageEdit() {
   // 상태를 관리하기 위한 useState 훅 사용
@@ -13,6 +14,30 @@ function MyPageEdit() {
     event.preventDefault(); // 폼 제출 기본 동작 방지
     // 폼 제출 로직을 여기에 작성
     console.log({ username, email, password, phone });
+  };
+
+  const handleSendUserInfo = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:8080/auth/info{user_id}"
+      );
+
+      if (response.status === 200) {
+        const data = response.data; // 응답 데이터 가져오기
+
+        if (data.message === "success") {
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("code", data.code);
+        } else {
+          alert("이메일 인증에 실패했습니다.");
+        }
+
+        setIsVerificationSent(true); // 인증 메일 발송 상태 업데이트
+      }
+    } catch (error) {
+      console.error("이메일 인증 오류:", error);
+      alert("이메일 인증 중 오류가 발생했습니다.");
+    }
   };
 
   return (
