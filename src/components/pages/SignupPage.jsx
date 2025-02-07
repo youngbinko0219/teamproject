@@ -1,6 +1,7 @@
 import SignupForm from "../auth/SignupForm";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/images/logo.png";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const SignupPage = () => {
   // 회원가입 데이터 처리 함수
@@ -28,16 +29,18 @@ const SignupPage = () => {
       >
         {/* 로고 영역 */}
         <div className="d-flex justify-content-center mb-4">
-          <img
-            src={logo}
-            alt="Babyloop Logo"
-            className="h-auto"
-            style={{
-              maxWidth: "100%",
-              height: "auto",
-              display: "block",
-            }}
-          />
+          <Link to="/">
+            <img
+              src={logo}
+              alt="Babyloop Logo"
+              className="h-auto"
+              style={{
+                maxWidth: "200px",
+                height: "auto",
+                display: "block",
+              }}
+            />
+          </Link>
         </div>
 
         {/* 회원가입 폼 */}

@@ -1,8 +1,9 @@
 import LoginForm from "../auth/LoginForm";
 import LoginButton from "../auth/LoginButton";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/images/logo.png";
 import axios from "axios";
 import "../../assets/css/pages/LoginPage.css";
+import { Link } from "react-router-dom";
 
 const LoginPage = () => {
   const handleLogin = async (credentials) => {
@@ -47,12 +48,14 @@ const LoginPage = () => {
       >
         {/* 로고 */}
         <div className="d-flex justify-content-center mb-4">
-          <img
-            src={logo}
-            alt="Babyloop Logo"
-            className="h-auto"
-            style={{ maxWidth: "100%", height: "auto" }}
-          />
+          <Link to="/">
+            <img
+              src={logo}
+              alt="Babyloop Logo"
+              className="h-auto"
+              style={{ maxWidth: "200px", height: "auto" }}
+            />
+          </Link>
         </div>
 
         {/* 로그인 폼 */}

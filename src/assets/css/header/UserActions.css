@@ -1,14 +1,53 @@
+/* 기존 스타일 유지 */
 .user-actions {
   display: flex;
   gap: 1rem;
+  align-items: center;
 }
 
-.user-actions a {
+/* 로그인/회원가입 버튼 스타일 */
+.auth-link {
   color: #333;
   text-decoration: none;
   font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.3s;
 }
 
-.user-actions a:hover {
+.auth-link:hover {
+  background-color: #f5f5f5;
+}
+
+/* 로그인 상태 아이콘 스타일 */
+.logged-in-icons {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.icon-link {
+  color: #333;
+  transition: color 0.3s;
+  position: relative;
+}
+
+.action-icon {
+  font-size: 1.2rem;
+}
+
+.icon-link:hover {
   color: #007bff;
+}
+
+/* 아이콘 배지 (옵션) */
+.icon-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.7rem;
 }
