@@ -1,0 +1,94 @@
+/* Dashboard.css */
+.dashboard {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f3f4f6;
+  padding: 2.5rem;
+  gap: 1.5rem;
+}
+
+.sidebar {
+  width: 16rem;
+  background-color: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  border: 1px solid #e5e7eb;
+  padding: 1rem;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-left: 3rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.sidebar-item:hover {
+  opacity: 1;
+}
+
+.icon-placeholder {
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: #d1d5db;
+  border-radius: 0.25rem;
+}
+
+.sidebar-text {
+  color: #4b5563;
+  font-weight: bold;
+  font-size: 0.875rem;
+}
+
+.dashboard-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.card-container {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.card {
+  width: 676px;
+  height: 459px;
+  background-color: white;
+  border: 1px solid #d1d5db;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  position: relative;
+}
+
+.card-title {
+  font-size: 1.875rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 1rem;
+}
+
+.card-subtitle {
+  font-size: 1.125rem;
+  color: #6b7280;
+}
+
+.card-button {
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #f87171;
+  color: white;
+  border-radius: 9999px;
+  font-weight: bold;
+  font-size: 1.125rem;
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
