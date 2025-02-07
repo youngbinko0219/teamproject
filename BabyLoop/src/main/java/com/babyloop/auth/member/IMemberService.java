@@ -1,5 +1,7 @@
 package com.babyloop.auth.member;
 
+import java.util.ArrayList;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -28,4 +30,7 @@ public interface IMemberService {
 	//임시비밀번호 저장
 	public int changePw(@Param("member") MemberDTO memberDTO,
 			@Param("encryptedPassword") String encryptedPaString);
+	
+	//회원정보
+	public ArrayList<MemberDTO> memberInfo(String userId);
 }

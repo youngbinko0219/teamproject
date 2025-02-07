@@ -1,18 +1,18 @@
 package com.babyloop.auth;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.babyloop.auth.member.IMemberService;
@@ -70,7 +70,7 @@ public class AuthCtrl {
 	
 	//회원가입 Post
 	@PostMapping("/signup")
-	public Map<String,String> signup(HttpSession session,
+	public Map<String,String> signup(
 			@RequestBody MemberDTO memberDTO,
 			@RequestHeader("Authorization") String token){
 		
@@ -93,12 +93,10 @@ public class AuthCtrl {
 			
 			// token 풀기
 			String emailToken = jwtUtil.extractClaims(token).getSubject();
-			
-			//세션가져오기
-	        String sessionCode = (String) session.getAttribute("code");
 
-	        if (!emailToken.equals(memberDTO.getUser_email()) || sessionCode == null) {
+	        if (!emailToken.equals(memberDTO.getUser_email())) {
 	            map.put("message", "fail");
+	            
 	            return map;
 	        }
 			
@@ -117,7 +115,6 @@ public class AuthCtrl {
 			e.printStackTrace();
 			map.put("message", "error");
 		}
-		
 		return map;
 	}
 	
@@ -191,7 +188,7 @@ public class AuthCtrl {
 	
 	//이메일 인증 발송 Post
 	@PostMapping("/emailSend")
-	public Map<String,String> emailSend(HttpSession session,@RequestBody MemberDTO memberDTO){
+	public Map<String,String> emailSend(@RequestBody MemberDTO memberDTO){
 		
 		Map<String, String> map = new HashMap<>();
 		
@@ -213,9 +210,6 @@ public class AuthCtrl {
 			
 	        //이메일 인증용 JWT토큰
 	        String token = jwtUtil.generateEmailToken(memberDTO.getUser_email());
-	        
-	        //인증번호 세션에 저장
-			session.setAttribute("code", code);
 		
 			//JSON형식
 			map.put("token", token);
@@ -321,5 +315,15 @@ public class AuthCtrl {
 		}
 		
 		return map;
+	}
+	
+	
+	//회원정보
+	@GetMapping("/info/{user_id}")
+	public List<MemberDTO> userInfo(@PathVariable("user_id") String userId){
+		
+		ArrayList<MemberDTO> result = memberDAO.memberInfo(userId);
+
+		return result;
 	}
 }

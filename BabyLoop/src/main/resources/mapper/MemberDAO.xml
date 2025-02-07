@@ -30,8 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	        #{member.user_id}, #{encryptedPassword},
 	        #{member.user_name}, #{member.user_email}, #{member.user_phone},
 	        #{member.user_addr1}, #{member.user_addr2}, #{member.user_addr3},
-	        #{member.user_gender}, #{member.user_birth}
-    	)
+	        #{member.user_gender}, #{member.user_birth})
 		
 	</insert>
 	
@@ -53,8 +52,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 		SELECT user_id
 		FROM member
-		WHERE user_name=#{user_name} AND
-			user_email=#{user_email}
+		WHERE user_email=#{user_email}
 		
 	</select>
 	
@@ -66,8 +64,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT user_pw
 		FROM member
 		WHERE user_id=#{user_id} AND
-			user_email=#{user_email} AND
-			user_name=#{user_name}
+			user_email=#{user_email}
 		
 	</select>
 	
@@ -94,5 +91,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			user_name=#{member.user_name}
 	
 	</update>
+	
+	
+	<!-- 회원 정보 -->
+	<select id="memberInfo"
+		parameterType="com.babyloop.auth.member.MemberDTO">
+	
+		SELECT *
+		FROM member
+		WHERE user_id=#{user_id}
+	
+	</select>
 	
 </mapper>

@@ -17,6 +17,6 @@ public class MemberDTO {
 	private String user_birth;
 	private String created_at;
 	private int points;
-	private String login_type;
+	private String provider;
 	
 }
