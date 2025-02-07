@@ -1,11 +1,13 @@
 import SignupForm from "../auth/SignupForm";
 import logo from "../../assets/images/logo.png";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignupPage = () => {
+  const navigate = useNavigate();
   // 회원가입 데이터 처리 함수
   const handleSignup = async (userData) => {
+    const token = localStorage.getItem("token");
     try {
       const response = await axios.post(
         "http://localhost:8080/auth/signup",
@@ -17,13 +19,13 @@ const SignupPage = () => {
         }
       );
 
-      if (response.data === "success") {
+      if (response.data.message === "success") {
         console.log("회원가입 성공:", response.data);
         alert("회원가입이 완료되었습니다!");
         navigate("/login"); // 성공 시 로그인 페이지로 이동
       } else {
         console.error("회원가입 실패:", response.data);
-        alert("회원가입 실패: " + response.data);
+        alert("회원가입 실패: " + response.data.message);
       }
     } catch (error) {
       console.error("회원가입 오류:", error);

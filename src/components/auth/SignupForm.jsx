@@ -23,6 +23,8 @@ const SignupForm = ({ onSubmit }) => {
   const [isVerificationComplete, setIsVerificationComplete] = useState(false); // 인증 완료 상태
   const [verificationMessage, setVerificationMessage] = useState(""); // 인증 메시지 상태
 
+
+  
   // 주소 검색 완료 핸들러
   const handleAddressComplete = (data) => {
     setFormData({

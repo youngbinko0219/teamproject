@@ -1,0 +1,17 @@
+/* 카드 스타일링 */
+.card {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+/* 입력 필드 포커스 효과 */
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* 버튼 호버 효과 */
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}

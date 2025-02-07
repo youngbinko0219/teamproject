@@ -13,6 +13,7 @@
   padding: 0.5rem 1rem;
   border-radius: 4px;
   transition: all 0.3s;
+  white-space: nowrap;
 }
 
 .auth-link:hover {

@@ -4,6 +4,8 @@ import SignupPage from "../pages/SignupPage";
 import MainPage from "../pages/MainPage";
 import AllProducts from "../main/AllProducts";
 import BestProducts from "../main/BestProducts";
+import ForgotIdPage from "../pages/ForgotIdPage";
+import ForgotPwPage from "../pages/ForgotPwPage";
 
 const AppRouter = () => {
   return (
@@ -11,6 +13,8 @@ const AppRouter = () => {
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />{" "}
+        <Route path="/forgotid" element={<ForgotIdPage />} />
+        <Route path="/forgotpw" element={<ForgotPwPage />} />
         <Route path="/" element={<MainPage />} />
         <Route path="/all-products" element={<AllProducts />} />
         <Route path="/best-products" element={<BestProducts />} />

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import RememberMeCheckbox from "./RememberMeCheckbox";
 import PasswordToggle from "./PasswordToggle";
+import { Link } from "react-router-dom";
 
 const LoginForm = ({ onSubmit }) => {
   const [username, setUsername] = useState("");
@@ -45,15 +46,18 @@ const LoginForm = ({ onSubmit }) => {
         <PasswordToggle targetId="password" />
       </div>
 
-      {/* 로그인 상태 유지 & 비밀번호 찾기 */}
+      {/* 로그인 상태 유지 & 아이디/비밀번호 찾기 */}
       <div className="d-flex justify-content-between align-items-center mb-3">
         <RememberMeCheckbox onChange={(checked) => setRememberMe(checked)} />
-        <a
-          href="/forgot-password"
-          className="text-decoration-none text-primary"
-        >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          아이디/비밀번호 찾기
-        </a>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;
+          <Link to="/forgotid" className="text-decoration-none text-primary">
+            아이디
+          </Link>
+          <span className="mx-2">/</span>
+          <Link to="/forgotpw" className="text-decoration-none text-primary">
+            비밀번호 찾기
+          </Link>
+        </div>
       </div>
 
       {/* 기본 로그인 버튼 */}
