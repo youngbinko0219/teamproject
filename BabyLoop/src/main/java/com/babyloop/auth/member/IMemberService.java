@@ -12,8 +12,10 @@ public interface IMemberService {
 	public String login(MemberDTO memberDTO);
 	
 	//회원가입
-	public int register(@Param("member") MemberDTO memberDTO,
+	public int signupMember(@Param("member") MemberDTO memberDTO,
 						@Param("encryptedPassword") String encryptedPaString);
+	public int signupGrade(MemberDTO memberDTO);
+	
 	
 	//아이디 중복체크
 	public String idcheck(MemberDTO emberDTO);

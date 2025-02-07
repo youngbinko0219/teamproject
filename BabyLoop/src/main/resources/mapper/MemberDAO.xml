@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<!-- 회원가입 쿼리 -->
-	<insert id="register"
+	<insert id="signupMember"
 		parameterType="com.babyloop.auth.member.MemberDTO">
 		
 		INSERT INTO member(
@@ -32,6 +32,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	        #{member.user_addr1}, #{member.user_addr2}, #{member.user_addr3},
 	        #{member.user_gender}, #{member.user_birth})
 		
+	</insert>
+	<insert id="signupGrade"
+		parameterType="com.babyloop.auth.member.MemberDTO">
+	
+		INSERT INTO grades(user_id)
+	   	VALUES (#{user_id})
+	
 	</insert>
 	
 	

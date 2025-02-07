@@ -20,9 +20,6 @@ import com.babyloop.auth.member.MemberDTO;
 import com.babyloop.auth.security.JwtUtil;
 import com.babyloop.auth.smtp.EmailSending;
 
-import jakarta.servlet.http.HttpSession;
-
-
 @RestController
 @RequestMapping("/auth")
 public class AuthCtrl {
@@ -103,9 +100,10 @@ public class AuthCtrl {
 			//비밀번호 암호화
 			String encryptedPassword = encoder.encode(memberDTO.getUser_pw());
 			
-			int result = memberDAO.register(memberDTO,encryptedPassword);
+			int result1 = memberDAO.signupMember(memberDTO,encryptedPassword);
+			int result2 = memberDAO.signupGrade(memberDTO);
 			
-			if(result==1) {
+			if(result1==1 && result2==1) {
 				map.put("message", "success");
 				
 			}else {
@@ -326,4 +324,6 @@ public class AuthCtrl {
 
 		return result;
 	}
+	
+	
 }
