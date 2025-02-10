@@ -1,0 +1,48 @@
+/* 🔹 리뷰 필터 전체 */
+.review-filter {
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+  padding: 16px 0;
+  border-bottom: 2px solid #fa9d9a;
+}
+
+/* 🔹 필터 버튼 */
+.filter-btn {
+  font-size: 16px;
+  font-weight: 500;
+  color: #3c3c3c;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 16px;
+  transition: color 0.3s ease-in-out;
+}
+
+.filter-btn:hover {
+  color: #fa9d9a;
+}
+
+.filter-btn.active {
+  color: #fa9d9a;
+  font-weight: 600;
+  border-bottom: 2px solid #fa9d9a;
+}
+
+/* 🔹 리뷰 작성 버튼 */
+.write-review-btn {
+  margin-left: auto;
+  background: #fa9d9a;
+  color: #fafafa;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.write-review-btn:hover {
+  background: #f57c7c;
+}

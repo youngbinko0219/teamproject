@@ -1,0 +1,35 @@
+/* src/assets/css/productdetail/ReviewPagination.css */
+
+.review-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .pagination-btn {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-family: "ABeeZee", sans-serif;
+    font-style: italic;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  
+  .pagination-btn.active {
+    background: #fa9d9a;
+    color: white;
+  }
+  
+  .pagination-btn.disabled {
+    background: #e4e9ee;
+    color: #7a7a7a;
+    cursor: not-allowed;
+  }
+  

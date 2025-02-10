@@ -1,0 +1,179 @@
+/* ✅ 리뷰 섹션 전체 */
+.review-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    padding-bottom: 65px;
+  }
+  
+  /* ✅ 필터 버튼 */
+  .review-filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+  }
+  
+  .filter-btn {
+    padding: 10px 25px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    color: #666;
+  }
+  
+  .filter-btn.active {
+    font-weight: bold;
+    color: #FF6B6B;
+    border-bottom: 3px solid #FF6B6B;
+  }
+  
+  /* ✅ 리뷰 목록 */
+  .review-list {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+  }
+  
+  /* ✅ 개별 리뷰 아이템 */
+  .review-item {
+    padding: 25px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  /* ✅ 리뷰 헤더 */
+  .review-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  /* ✅ 별점 */
+  .review-rating {
+    color: #FFA500;
+    font-size: 20px;
+    display: flex;
+    gap: 2px;
+  }
+  
+  /* ✅ 리뷰 내용 */
+  .review-text {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-top: 8px;
+    color: #333;
+  }
+  
+  /* ✅ 리뷰 이미지 */
+  .review-images {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .review-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  /* ✅ 리뷰 액션 버튼 */
+  .review-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .helpful-btn {
+    border: none;
+    background: #FFAD33;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s ease;
+  }
+  
+  .helpful-btn:hover {
+    background: #FF9700;
+  }
+  
+  .report-btn {
+    border: none;
+    background: transparent;
+    color: #888;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  /* ✅ 리뷰 작성 버튼 (우측 상단) */
+  .write-review-btn {
+    background: #FF6B6B;
+    color: white;
+    font-size: 16px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s ease;
+  }
+  
+  .write-review-btn:hover {
+    background: #E94E4E;
+  }
+  
+  /* ✅ 페이지네이션 */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    gap: 12px;
+  }
+  
+  .page-number {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.2s;
+  }
+  
+  .page-number.active {
+    background: #FF6B6B;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.2);
+  }
+
+ 
+  .helpful-btn:focus,
+  .report-btn:focus {
+    outline: none;
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+    transform: scale(0.98);
+    transition: 0.1s;
+  }
+
+
+/* ✅ 도움순 / 최신순 / 리뷰 작성하기 버튼 포커스 제거 */
+.filter-btn:focus,
+.write-review-btn:focus {
+  outline: none;
+  box-shadow: none;
+}
