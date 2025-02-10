@@ -16,10 +16,11 @@ const ProductDetailPage = () => {
       </div>
     </div>
 
-    <ProductBanner imageUrl={bannerImg} />
-
     {/* 구분선 */}
     <div className="divider"></div>
+
+    <ProductBanner imageUrl={bannerImg} />
+
     
     <div className="product-tabs-wrapper">
         <ProductTabs />

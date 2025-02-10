@@ -1,11 +1,11 @@
 .product-detail-page {
   width: 100vw;
-  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   background: white; /* ✅ 피그마 기준 배경색 */
   padding-top: 65px; /* ✅ 피그마 기준 여백 반영 */
+  padding-bottom: 92px;
 }
 
 .product-detail-top {
@@ -30,6 +30,7 @@
 
 /* 🛒 네비게이션 탭 전체 */
 .product-tabs-wrapper {
+  pa
   width: 100%;
   max-width: 1299px; /* ✅ 상품 상세 정보와 동일한 너비로 설정 */
   margin: 0 auto; /* ✅ 중앙 정렬 */
