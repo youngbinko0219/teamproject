@@ -2,7 +2,9 @@ import React from "react";
 import Thumbnail from "../productdetail/Thumbnail";
 import ProductInfo from "../productdetail/ProductInfo";
 import ProductTabs from "../productdetail/ProductTabs";
+import ProductBanner from "../productdetail/ProductBanner";
 import "../../assets/css/pages/ProductDetailPage.css";
+import bannerImg from "../../assets/images/banner1.jpg";
 
 const ProductDetailPage = () => {
   return (<>
@@ -14,6 +16,11 @@ const ProductDetailPage = () => {
       </div>
     </div>
 
+    <ProductBanner imageUrl={bannerImg} />
+
+    {/* 구분선 */}
+    <div className="divider"></div>
+    
     <div className="product-tabs-wrapper">
         <ProductTabs />
     </div>
