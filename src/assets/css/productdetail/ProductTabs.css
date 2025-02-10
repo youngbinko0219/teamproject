@@ -1,0 +1,72 @@
+.product-tabs {
+  width: 100%;
+  padding-left: 8px;
+  padding-right: 8px;
+  background: #FAFAFA;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.tab-item {
+  padding: 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  display: flex;
+  cursor: pointer;
+}
+
+.tab-item div {
+  color: #3C3C3C;
+  font-size: 20px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 500;
+  line-height: 28.8px;
+  word-wrap: break-word;
+}
+
+.tab-item.active {
+  border-bottom: 2px solid #FA9D9A;
+}
+
+.tab-item.active div {
+  color: #FA9D9A;
+}
+.product-tabs-container {
+  width: 100%;
+  padding-left: 8px;
+  padding-right: 8px;
+  background: #FAFAFA;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.tab-item {
+  padding: 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  display: flex;
+  cursor: pointer;
+}
+
+.tab-item div {
+  color: #3C3C3C;
+  font-size: 20px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 500;
+  line-height: 28.8px;
+  word-wrap: break-word;
+}
+
+.tab-item.active {
+  border-bottom: 2px solid #FA9D9A;
+}
+
+.tab-item.active div {
+  color: #FA9D9A;
+}

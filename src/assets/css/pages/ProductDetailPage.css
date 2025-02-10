@@ -19,3 +19,15 @@
   margin-right: auto;
   gap: 50px;
 }
+
+/* 🛒 네비게이션 탭 전체 */
+.product-tabs-wrapper {
+  width: 100%;
+  max-width: 1299px; /* ✅ 상품 상세 정보와 동일한 너비로 설정 */
+  margin: 0 auto; /* ✅ 중앙 정렬 */
+  background: #FAFAFA;
+  padding: 8px 0;
+  display: flex;
+  justify-content: flex-start; /* ✅ 내부 아이템은 왼쪽 정렬 유지 */
+  align-items: center;
+}
