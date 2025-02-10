@@ -5,19 +5,17 @@ const Dropdown = ({ options, selected, onSelect }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="dropdown">
+    <div className={`dropdown ${isOpen ? "expanded" : ""}`}>
       <button className="dropdown-btn" onClick={() => setIsOpen(!isOpen)}>
         {selected}
       </button>
-      {isOpen && (
-        <ul className="dropdown-menu">
-          {options.map((option) => (
-            <li key={option} onClick={() => { onSelect(option); setIsOpen(false); }}>
-              {option}
-            </li>
-          ))}
-        </ul>
-      )}
+      <ul className="dropdown-menu">
+        {options.map((option) => (
+          <li key={option} onClick={() => { onSelect(option); setIsOpen(false); }}>
+            {option}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

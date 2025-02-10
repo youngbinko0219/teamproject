@@ -14,9 +14,12 @@ const ProductInfo = () => {
     <div className="product-info">
       <h1 className="product-name">아기용 프리미엄 다기능 점퍼루</h1>
       <p className="product-price">25,000원</p>
-      <ReviewSummary totalReviews={150} averageRating={4.5} />
-      <p className="product-availability available">대여가능</p>
+      <div className="product-review">
+        <ReviewSummary totalReviews={150} averageRating={4.5} />
+        <p className="product-availability available">대여가능</p>
+      </div>
       <p className="product-description">
+        신나는 음악과 함께 아기의 운동 신경을 발달 시켜주는 다기능 점퍼루! 엄마, 아빠도 안심하고 사용할 수 있는 안전한 유아용품이에요!
         신나는 음악과 함께 아기의 운동 신경을 발달 시켜주는 다기능 점퍼루! 엄마, 아빠도 안심하고 사용할 수 있는 안전한 유아용품이에요!
       </p>
     
@@ -25,19 +28,19 @@ const ProductInfo = () => {
     
       {/* 대여 기간 선택 */}
       <div className="rental-period-section">
-        <h3>대여 기간</h3>
+        <h3 className="product-rental-text">대여 기간</h3>
         <RentalPeriodSelector selectedPeriod={selectedRentalPeriod} onSelect={setSelectedRentalPeriod} />
       </div>
     
       {/* 옵션 선택 */}
       <div className="option-selection-section">
-        <h3>옵션 선택</h3>
+        <h3 className="product-option-text">옵션 선택</h3>
         <Dropdown options={["기본형", "고급형", "프리미엄형"]} selected={selectedOption} onSelect={setSelectedOption} />
       </div>
     
       {/* 대여 시작일 선택 */}
       <div className="rental-start-section">
-        <h3>대여 시작</h3>
+        <h3 className="product-start-text">대여 시작</h3>
         <Dropdown options={["날짜 선택"]} selected={"날짜 선택"} onSelect={() => {}} />
       </div>
     
