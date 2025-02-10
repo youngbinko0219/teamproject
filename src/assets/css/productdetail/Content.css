@@ -1,0 +1,32 @@
+.product-detail-content {
+    width: 100%; /* 부모 요소인 .product-section을 기준으로 맞춤 */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: #ffffff;
+  }
+  
+  .temp-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .temp-text {
+    font-size: 18px;
+    color: #666;
+    text-align: center;
+  }
+  
+  .temp-images {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .detail-image {
+    width: 100%;
+    max-width: 600px; /* 이미지 크기 조절 */
+    height: auto;
+  }
+  

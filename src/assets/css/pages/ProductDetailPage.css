@@ -14,7 +14,7 @@
   justify-content: center;
   align-items: flex-start;
   width: 100%;
-  max-width: 1299px; /* ✅ 피그마 그대로 반영 */
+  max-width: 1300px; /* ✅ 피그마 그대로 반영 */
   margin-left: auto;
   margin-right: auto;
   gap: 50px;
@@ -32,7 +32,7 @@
 .product-tabs-wrapper {
   pa
   width: 100%;
-  max-width: 1299px; /* ✅ 상품 상세 정보와 동일한 너비로 설정 */
+  max-width: 1300px; /* ✅ 상품 상세 정보와 동일한 너비로 설정 */
   margin: 0 auto; /* ✅ 중앙 정렬 */
   background: #FAFAFA;
   padding: 8px 0;
@@ -40,3 +40,19 @@
   justify-content: flex-start; /* ✅ 내부 아이템은 왼쪽 정렬 유지 */
   align-items: center;
 }
+
+.product-section {
+  width: 100%;
+  max-width: 1300px; /* 피그마에 맞게 너비 조정 */
+  margin: 50px auto;
+  padding: 30px 20px;
+  background: #f9f9f9; /* 피그마 배경색 */
+  border-radius: 10px; /* 둥근 모서리 추가 */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 효과 */
+}
+
+/* 각 섹션별 여백 조정 */
+#detail { margin-top: 65px; }
+#exchange { margin-top: 65px; }
+#review { margin-top: 65px; }
+#inquiry { margin-top: 65px; }
