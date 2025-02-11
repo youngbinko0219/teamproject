@@ -1,24 +1,17 @@
-import React from "react";
-import "../../assets/css/productdetail/ReviewSummaryDetail.css";
+const ReviewSummaryDetail = ({ ratingDistribution }) => {
+  const maxCount = Math.max(...ratingDistribution) || 1; // 0일 경우 대비
 
-const ReviewSummaryDetail = ({ averageRating, totalReviews, reviewStats }) => {
   return (
-    <div className="review-summary-detail">
-      <div className="summary-left">
-        <div className="review-score">{averageRating.toFixed(1)}</div>
-        <div className="review-text">{totalReviews}명의 구매자가 리뷰를 남겼어요!</div>
-      </div>
-      <div className="summary-right">
-        {reviewStats.map((item, index) => (
-          <div key={index} className="review-bar">
-            <span className="label">{item.label}</span>
-            <div className="bar">
-              <div className="filled" style={{ width: `${item.percentage}%` }}></div>
-            </div>
-            <span className="count">{item.count}</span>
+    <div className="rating-breakdown">
+      {["아주 만족해요", "맘에 들어요", "보통이에요", "그냥 그래요", "별로예요"].map((label, index) => (
+        <div key={index} className="rating-bar">
+          <span>{label}</span>
+          <div className="bar">
+            <div className="fill" style={{ width: `${(ratingDistribution[index] / maxCount) * 100}%` }}></div>
           </div>
-        ))}
-      </div>
+          <span>{ratingDistribution[index]}</span>
+        </div>
+      ))}
     </div>
   );
 };

@@ -1,20 +1,58 @@
 .review-summary {
   display: flex;
   align-items: center;
-  gap: 5px;
-  font-size: 16px;
-  font-family: "Noto Sans KR", sans-serif;
-  font-weight: 400;
-  color: #3c3c3c;
+  gap: 20px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  width: 100%;
+  max-width: 800px;
 }
 
-.review-summary .stars {
-  color: #ffad33; /* ⭐ 별 색상 */
-  font-size: 18px;
+.review-header {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
 }
 
-.review-summary .review-count {
-  color: #7a7a7a;
+.star-icon {
+  font-size: 36px;
+  color: #ff7070;
+  margin-right: 10px;
+}
+
+.rating-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.rating-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bar {
+  flex-grow: 1;
+  height: 10px;
+  background: #eee;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  background: #6a8ad4;
+  border-radius: 5px;
+}
+
+.review-summary p {
   font-size: 14px;
+  color: #333;
+  margin: 5px 0;
 }
-  
