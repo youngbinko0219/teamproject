@@ -4,11 +4,13 @@ import ReviewSummary from "./ReviewSummary";
 import RentalPeriodSelector from "./RentalPeriodSelector";
 import Dropdown from "./Dropdown";
 import QuantitySelector from "./QuantitySelector";
+import RentalDatePicker from "./RentalDatePicker";
 import LikeButton from "./LikeButton";
 
 const ProductInfo = () => {
   const [selectedRentalPeriod, setSelectedRentalPeriod] = useState("30일");
   const [selectedOption, setSelectedOption] = useState("옵션을 선택해주세요");
+  const [selectedRentalDate, setSelectedRentalDate] = useState(null);
 
   return (
     <div className="product-info">
@@ -41,7 +43,7 @@ const ProductInfo = () => {
       {/* 대여 시작일 선택 */}
       <div className="rental-start-section">
         <h3 className="product-start-text">대여 시작</h3>
-        <Dropdown options={["날짜 선택"]} selected={"날짜 선택"} onSelect={() => {}} />
+        <RentalDatePicker selectedDate={selectedRentalDate} onSelect={setSelectedRentalDate} /> {/* ✅ 적용 */}
       </div>
     
       {/* 장바구니 & 즉시 구매 */}

@@ -1,18 +1,12 @@
+/* 상품 정보 섹션 전체 */
 .product-info {
-  width: 570px;  /* 피그마 기준 */
+  width: 570px;
   display: flex;
   flex-direction: column;
   position: relative;
 }
 
-.product-review {
-  margin: 0px;
-  padding-top: 23px;
-  display: flex;
-  align-items: center; /* 수직 중앙 정렬 */
-  gap: 10px; /* 요소 간 간격 조절 */
-}
-
+/* 상품 이름 */
 .product-name {
   margin: 0px;
   font-size: 32px;
@@ -20,6 +14,7 @@
   color: black;
 }
 
+/* 상품 가격 */
 .product-price {
   margin: 0px;
   padding-top: 23px;
@@ -28,20 +23,16 @@
   color: #e74c3c;
 }
 
-.product-rental-text, 
-.product-option-text, 
-.product-start-text {
-  margin: 0px;
-  padding-bottom: 10px;
-}
 
-.review-summary {
+/* 평균별점 및 총 리뷰 수 */
+.product-review {
   margin: 0px;
+  padding-top: 23px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
-
+/* 대여 가능 여부*/
 .product-availability {
   margin: 0px;
   font-size: 18px;
@@ -49,6 +40,7 @@
   color: #129025;
 }
 
+/* 상품 설명 */
 .product-description {
   padding-top: 23px;
   padding-bottom: 23px;
@@ -58,6 +50,7 @@
   color: black;
 }
 
+/* 구분선 */
 .divider {
   border: 1px solid #ddd;
   width: 100%; /* 피그마 기준 전체 너비 */
@@ -65,31 +58,44 @@
   margin: 0px;
 }
 
+/* 대여 기간 + 옵션 선택 + 대여 시작일 전체 */
 .rental-period-section,
 .option-selection-section,
 .rental-start-section {
   display: flex;
   flex-direction: column;
-  margin: 0px;
-  padding-top: 23px;
+  margin-top: 23px; /* ✅ 기존 padding 대신 margin 적용 */
+  width: 100%; /* ✅ 부모 크기 따라가도록 설정 */
+  max-width: 570px; /* ✅ ProductInfo와 동일한 크기로 유지 */
 }
 
+/* RentalDatePicker가 부모 크기를 따라가도록 강제 적용 */
+.rental-start-section .rental-datepicker {
+  width: 100%;
+}
+
+/* 대여 기간 + 옵션 선택 + 대여 시작일 제목 */
+.product-rental-text, 
+.product-option-text, 
+.product-start-text {
+  margin: 0px;
+  padding-bottom: 10px;
+}
+
+/* 장바구니 & 즉시 구매 버튼 */
 .purchase-buttons {
   display: flex;
   align-items: center;
   gap: 26px;
-  padding-top: 23px;
-  justify-content: space-between; /* 버튼 간격 조정 */
+  margin-top: 23px; /* ✅ 버튼도 공백 맞추기 */
+  justify-content: space-between;
   width: 100%;
 }
 
-.purchase-buttons 
-.add-to-cart,
-.purchase-buttons 
-.buy-now {
+.purchase-buttons .add-to-cart,
+.purchase-buttons .buy-now {
   flex: 1;
   height: 52px;
-  padding-top: 23px;
   font-size: 18px;
   border: none;
   border-radius: 6px;
