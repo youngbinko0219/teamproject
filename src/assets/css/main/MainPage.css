@@ -1,28 +1,34 @@
-.main-page-container {
+.banner-category-section {
   display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* 전체 화면 높이 */
-  padding-top: 60px; /* 헤더 높이만큼 여백 추가 */
-}
-
-/* 헤더와 푸터 사이의 컨텐츠를 중앙에 배치 */
-.main-page-container > *:not(header):not(footer) {
-  flex: 1;
-  padding: 2rem 5%;
-}
-
-/* 각 섹션 간격 조정 */
-.category-section,
-.today-products-section,
-.best-products-section,
-.new-products-section,
-.all-products-section {
+  gap: 20px; /* 카테고리와 배너 사이의 간격 */
   margin-bottom: 3rem;
 }
 
-/* 반응형 디자인 */
+/* 카테고리 영역 */
+.category-container {
+  width: 30%; /* 카테고리는 30% 너비 차지 */
+}
+
+/* 배너 영역 */
+.banner-container {
+  width: 70%; /* 배너는 70% 너비 차지 */
+}
+
+/* 배너 이미지 크기 조정 */
+.banner-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px; /* 모서리 둥글게 */
+}
+
+/* 반응형 디자인 (모바일에서 세로로 쌓기) */
 @media (max-width: 768px) {
-  .main-page-container > *:not(header):not(footer) {
-    padding: 1rem;
+  .banner-category-section {
+    flex-direction: column;
+  }
+
+  .category-container,
+  .banner-container {
+    width: 100%;
   }
 }

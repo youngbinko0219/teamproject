@@ -1,18 +1,22 @@
 .category-list {
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
   padding: 16px;
   background-color: #f8f9fa;
   border-radius: 8px;
-  width: 30%;
+  width: 100%; /* 부모 너비 100% 차지 */
+  max-width: 300px; /* 최대 너비 설정 */
+  box-sizing: border-box; /* 패딩 포함 크기 계산 */
 }
 
 .category-title {
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 8px;
+  width: 100%;
+  white-space: nowrap; /* 줄바꿈 방지 */
 }
 
 .category-item {
@@ -21,8 +25,32 @@
   padding: 8px 12px;
   border-radius: 4px;
   transition: background-color 0.2s ease-in-out;
+  white-space: nowrap; /* 텍스트 줄바꿈 방지 */
 }
 
 .category-item:hover {
   background-color: #e9ecef;
+}
+
+/* NewProductsPage 레이아웃을 위한 스타일 */
+.new-products-page {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.new-products-content {
+  flex-grow: 1; /* 가로로 확장되도록 설정 */
+}
+
+@media screen and (max-width: 768px) {
+  .new-products-page {
+    flex-direction: column; /* 모바일에서는 세로로 배치 */
+  }
+
+  .category-list,
+  .new-products-content {
+    width: 100%; /* 모바일에서 전체 너비 차지 */
+    max-width: none; /* 최대 너비 제한 제거 */
+  }
 }

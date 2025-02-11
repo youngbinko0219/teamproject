@@ -5,7 +5,25 @@
 
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(4, 1fr); /* 기본 4열 */
   gap: 20px;
   margin-top: 20px;
+}
+
+@media (max-width: 1024px) {
+  .products-grid {
+    grid-template-columns: repeat(3, 1fr); /* 화면이 좁아지면 3열로 변경 */
+  }
+}
+
+@media (max-width: 768px) {
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr); /* 태블릿에서는 2열 */
+  }
+}
+
+@media (max-width: 480px) {
+  .products-grid {
+    grid-template-columns: 1fr; /* 모바일에서는 1열 */
+  }
 }

@@ -15,38 +15,54 @@ const MainPage = () => {
       {/* 헤더 */}
       <Header />
 
-      {/* 메인 배너 */}
-      <MainBanner />
-
-      {/* 카테고리 섹션 */}
-      <section className="category-section">
-        <CategoryList />
+      {/* 메인 배너 & 카테고리 섹션 */}
+      <section className="banner-category-section">
+        <div className="category-container">
+          <CategoryList />
+        </div>
+        <div className="banner-container">
+          <MainBanner />
+        </div>
       </section>
 
       {/* 오늘의 상품 섹션 */}
       <section className="today-products-section">
-        <ProductSection title="오늘의 상품">
+        <ProductSection
+          title="오늘의 상품"
+          buttonProps={{ to: "/today-products", label: "오늘의 상품 보기" }}
+        >
           <TodayProducts />
         </ProductSection>
       </section>
 
       {/* 베스트 상품 섹션 */}
       <section className="best-products-section">
-        <ProductSection title="베스트 상품">
+        <ProductSection
+          title="베스트 상품"
+          buttonProps={{ to: "/best-products", label: "베스트 상품 보기" }}
+        >
           <BestProducts />
         </ProductSection>
       </section>
 
       {/* 새로운 상품 섹션 */}
       <section className="new-products-section">
-        <ProductSection title="신상품">
+        <ProductSection
+          title="신상품"
+          buttonProps={{ to: "/new-products", label: "새로운 상품 보기" }}
+        >
           <NewProducts />
         </ProductSection>
       </section>
 
       {/* 모든 상품 섹션 */}
       <section className="all-products-section">
-        <AllProducts />
+        <ProductSection
+          title="모든 상품"
+          buttonProps={{ to: "/all-products", label: "모든 상품 보기" }}
+        >
+          <AllProducts />
+        </ProductSection>
       </section>
 
       {/* 푸터 */}

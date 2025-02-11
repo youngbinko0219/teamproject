@@ -6,7 +6,7 @@ const FooterLinks = () => {
     <div className="footer-links">
       <div>
         <h4>Support</h4>
-        <Link to="/privacy-policy">Privacy Policy</Link>
+        <Link to="/privacy-policy">개인정보 처리 방침</Link>
         <Link to="/terms-of-use">Terms of Use</Link>
       </div>
       <div>

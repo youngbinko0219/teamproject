@@ -45,6 +45,18 @@ const AllProducts = () => {
           price: 60000,
           image: "/assets/images/car-seat.jpg",
         },
+        {
+          id: 7,
+          name: "자동차 시트",
+          price: 60000,
+          image: "/assets/images/car-seat.jpg",
+        },
+        {
+          id: 8,
+          name: "자동차 시트",
+          price: 60000,
+          image: "/assets/images/car-seat.jpg",
+        },
       ];
       setProducts(dummyProducts);
     };
