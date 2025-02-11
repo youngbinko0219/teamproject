@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../../assets/css/productdetail/ProductInfo.css";
-import ReviewSummary from "./ReviewSummary";
+import ReviewSummarySimple from "./ReviewSummarySimple";
 import RentalPeriodSelector from "./RentalPeriodSelector";
 import Dropdown from "./Dropdown";
 import QuantitySelector from "./QuantitySelector";
@@ -17,7 +17,7 @@ const ProductInfo = () => {
       <h1 className="product-name">아기용 프리미엄 다기능 점퍼루</h1>
       <p className="product-price">25,000원</p>
       <div className="product-review">
-        <ReviewSummary totalReviews={150} averageRating={4.5} />
+        <ReviewSummarySimple totalReviews={150} averageRating={4.5} />
         <p className="product-availability available">대여가능</p>
       </div>
       <p className="product-description">

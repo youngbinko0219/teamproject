@@ -8,7 +8,6 @@ import ReviewSection from "../productdetail/ReviewSection";
 import bannerTop from "../../assets/images/banner1.jpg"; // 상세정보 위 배너
 import bannerReview from "../../assets/images/banner1.jpg"; // 상품 후기 안 배너
 import "../../assets/css/pages/ProductDetailPage.css";
-import Pagination from "../productdetail/Pagination";
 
 const ProductDetailPage = () => {
 
