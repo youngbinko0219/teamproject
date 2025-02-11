@@ -1,11 +1,22 @@
 export const reviews = [
-    { user: "qw***12", rating: 5, comment: "아기용 프리미엄 다기능 점퍼루 매우 만족합니다!", date: "2025-01-01" },
-    { user: "kk***34", rating: 4, comment: "기능도 좋고 튼튼해서 만족합니다!", date: "2025-01-02" },
-    { user: "yy***21", rating: 3, comment: "보통이에요, 나쁘진 않지만 특별하진 않아요.", date: "2025-01-03" },
-    { user: "zz***56", rating: 2, comment: "기대한 것보다 별로였어요.", date: "2025-01-04" },
-    { user: "aa***99", rating: 1, comment: "너무 별로예요, 다시는 안 살 것 같아요.", date: "2025-01-05" },
-    { user: "bb***78", rating: 5, comment: "우리 아이가 너무 좋아해요! 추천합니다.", date: "2025-01-06" },
-    { user: "cc***45", rating: 4, comment: "색상도 예쁘고 사용하기 편해요.", date: "2025-01-07" },
-    { user: "dd***23", rating: 5, comment: "고민하다 샀는데 정말 만족합니다!", date: "2025-01-08" }
-  ];
-  
+  { user: "qw***12", rating: 5, comment: "아기용 프리미엄 다기능 점퍼루 매우 만족합니다!", date: "2025-01-01", likes: 87, photo: true },
+  { user: "kk***34", rating: 4, comment: "기능도 좋고 튼튼해서 만족합니다!", date: "2025-01-02", likes: 43, photo: false },
+  { user: "yy***21", rating: 3, comment: "보통이에요, 나쁘진 않지만 특별하진 않아요.", date: "2025-01-03", likes: 20, photo: true },
+  { user: "zz***56", rating: 2, comment: "기대한 것보다 별로였어요.", date: "2025-01-04", likes: 15, photo: false },
+  { user: "aa***99", rating: 1, comment: "너무 별로예요, 다시는 안 살 것 같아요.", date: "2025-01-05", likes: 5, photo: false },
+  { user: "bb***78", rating: 5, comment: "우리 아기가 너무 좋아해요! 추천합니다.", date: "2025-01-06", likes: 65, photo: true },
+  { user: "cc***45", rating: 4, comment: "색상도 예쁘고 사용하기 편해요.", date: "2025-01-07", likes: 34, photo: false },
+  { user: "dd***23", rating: 5, comment: "고민하다 샀는데 정말 만족합니다!", date: "2025-01-08", likes: 78, photo: true },
+  { user: "ee***76", rating: 3, comment: "가격 대비 괜찮은 편이에요.", date: "2025-01-09", likes: 18, photo: false },
+  { user: "ff***98", rating: 1, comment: "배송이 너무 늦었어요.", date: "2025-01-10", likes: 3, photo: false },
+  { user: "gg***32", rating: 5, comment: "친구 선물로 샀는데 너무 좋아해요!", date: "2025-01-11", likes: 92, photo: true },
+  { user: "hh***54", rating: 4, comment: "디자인이 예쁘고 만족합니다.", date: "2025-01-12", likes: 45, photo: false },
+  { user: "ii***67", rating: 3, comment: "생각보다 크기가 작네요.", date: "2025-01-13", likes: 14, photo: false },
+  { user: "jj***89", rating: 2, comment: "설명서가 너무 복잡해서 힘들었어요.", date: "2025-01-14", likes: 8, photo: false },
+  { user: "kk***12", rating: 5, comment: "아기 장난감 중 최고입니다!", date: "2025-01-15", likes: 120, photo: true },
+  { user: "ll***34", rating: 4, comment: "내구성이 좋고 튼튼해요.", date: "2025-01-16", likes: 50, photo: true },
+  { user: "mm***78", rating: 3, comment: "무난하게 사용할 수 있어요.", date: "2025-01-17", likes: 21, photo: false },
+  { user: "nn***90", rating: 2, comment: "생각보다 조립이 어려워요.", date: "2025-01-18", likes: 10, photo: false },
+  { user: "oo***55", rating: 1, comment: "가격 대비 별로입니다.", date: "2025-01-19", likes: 6, photo: false },
+  { user: "pp***77", rating: 5, comment: "우리집 필수템이 됐어요!", date: "2025-01-20", likes: 130, photo: true }
+];

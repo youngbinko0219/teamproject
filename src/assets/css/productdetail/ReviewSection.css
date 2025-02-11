@@ -125,3 +125,29 @@
   background: #ff758c;
   color: white;
 }
+
+.review-controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.review-controls button {
+  padding: 8px 16px;
+  border: none;
+  background: #ddd;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.review-controls button.active {
+  background: #ff758c;
+  color: white;
+}
+
+.review-controls label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
