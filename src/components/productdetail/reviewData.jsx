@@ -9,7 +9,6 @@ export const reviews = [
   { id: 8, user: "dd***23", rating: 5, comment: "완전 추천합니다!", date: "2025-01-08", photo: "https://via.placeholder.com/100", likes: 22 },
   { id: 9, user: "ee***98", rating: 3, comment: "기대보다 평범", date: "2025-01-09", photo: null, likes: 7 },
   { id: 10, user: "ff***11", rating: 2, comment: "그냥 그랬어요", date: "2025-01-10", photo: null, likes: 5 },
-
   { id: 11, user: "gg***33", rating: 1, comment: "다시는 안살 듯", date: "2025-01-11", photo: "https://via.placeholder.com/100", likes: 2 },
   { id: 12, user: "hh***67", rating: 5, comment: "만족합니다!", date: "2025-01-12", photo: null, likes: 18 },
   { id: 13, user: "ii***29", rating: 4, comment: "좋아요", date: "2025-01-13", photo: "https://via.placeholder.com/100", likes: 11 },

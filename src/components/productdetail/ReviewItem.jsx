@@ -1,30 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import ReportModal from "./ReportModal";
+import "../../assets/css/productdetail/ReviewItem.css"
 
 const ReviewItem = ({ review }) => {
   const [likes, setLikes] = useState(review.likes || 0);
   const [liked, setLiked] = useState(false);
-
-  useEffect(() => {
-    const storedLikes = JSON.parse(localStorage.getItem("likedReviews")) || {};
-    if (storedLikes[review.id]) {
-      setLiked(true);
-    }
-  }, [review.id]);
+  const [isModalOpen, setIsModalOpen] = useState(false); // 모달 상태
 
   const handleLike = () => {
-    const storedLikes = JSON.parse(localStorage.getItem("likedReviews")) || {};
-
-    if (liked) {
-      setLikes(prev => prev - 1);
-      delete storedLikes[review.id]; // 좋아요 취소
-    } else {
-      setLikes(prev => prev + 1);
-      storedLikes[review.id] = true; // 좋아요 저장
-    }
-
-    localStorage.setItem("likedReviews", JSON.stringify(storedLikes));
+    setLikes(prev => (liked ? prev - 1 : prev + 1));
     setLiked(prev => !prev);
   };
+
 
   return (
     <div className="review-item">
@@ -32,13 +19,26 @@ const ReviewItem = ({ review }) => {
         <span className="review-user">{review.user}</span>
         <span className="review-date">({review.date})</span>
       </div>
+
       <p>{review.comment}</p>
       {review.photo && <img src={review.photo} alt="리뷰 사진" className="review-photo" />}
+
       <div className="review-actions">
         <button className={`like-button ${liked ? "liked" : ""}`} onClick={handleLike}>
           👍 {likes}
         </button>
       </div>
+
+      {/* 🚨 신고하기 버튼 */}
+      <button className="report-button" onClick={() => setIsModalOpen(true)}>🚨 신고하기</button>
+      {/* 신고 모달 */}
+      {isModalOpen && (
+        <ReportModal 
+          isOpen={isModalOpen} 
+          onClose={() => setIsModalOpen(false)} 
+          review={review} 
+        />
+      )}
     </div>
   );
 };
