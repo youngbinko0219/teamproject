@@ -1,0 +1,123 @@
+/* 반응형 대시보드 레이아웃 */
+.dashboard {
+  width: 100%;
+  max-width: 1200px;
+  min-height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  background-color: #fcfcfd;
+  padding: 1.5rem;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* 사이드바 */
+.sidebar {
+  width: 16rem;
+  height: auto;
+  background-color: white;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  border: 1px solid #e5e7eb;
+  padding: 1rem;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  border-radius: 0.3rem;
+}
+
+.sidebar-item:hover {
+  opacity: 1;
+  background-color: #f1f3f5;
+}
+
+.sidebar-text {
+  color: #4b5563;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+/* 메인 컨텐츠 */
+.dashboard-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  flex-grow: 1;
+}
+
+/* 대여 내역 섹션 */
+.rental-history {
+  background-color: white;
+  padding: 1.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  overflow-x: auto;
+}
+
+/* 제목 스타일 */
+.section-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #23262f;
+  margin-bottom: 1rem;
+}
+
+/* 위시리스트 스타일 */
+.wishlist-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 1.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.wishlist-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #23262f;
+  margin-bottom: 1rem;
+}
+
+.wishlist-items {
+  list-style-type: none;
+  padding: 0;
+}
+
+.wishlist-item {
+  padding: 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.wishlist-item a {
+  text-decoration: none;
+  color: #4b5563;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+.wishlist-item a:hover {
+  color: #e63946;
+}
+
+/* 반응형 위시리스트 */
+@media (max-width: 768px) {
+  .wishlist-container {
+    padding: 1rem;
+  }
+  .wishlist-title {
+    font-size: 1.2rem;
+  }
+  .wishlist-item {
+    font-size: 0.9rem;
+  }
+}

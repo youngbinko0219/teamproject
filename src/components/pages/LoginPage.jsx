@@ -1,28 +1,45 @@
 import LoginForm from "../auth/LoginForm";
 import LoginButton from "../auth/LoginButton";
-import logo from "../../assets/logo.png";
+import logo from "../assets/images/logo.png";
 import axios from "axios";
-import "./LoginPage.css";
+import { Link } from "react-router-dom";
+import userStore from "../zustand/useUserStore.jsx";
 
 const LoginPage = () => {
+
   const handleLogin = async (credentials) => {
+    
+    //store 불러오기
+    const { login } = userStore((state) => ({
+      user_id: state.user_id,
+      login: state.login,
+      logout: state.logout,
+    }));
+
     try {
       // 1. 스프링 부트 API 호출
-      const response = await axios.post("http://192.168.0.16:8080/api/login", {
-        username: credentials.username,
-        password: credentials.password,
+      const response = await axios.post("http://localhost:8080/auth/login", {
+        user_id: credentials.username,
+        user_pw: credentials.password,
       });
 
       // 2. 응답 처리
-      if (response.status === 200) {
-        const data = response.data;
-        console.log("로그인 성공:", data);
+      const { status, message, accessToken } = response.data; // 응답에서 message와 accessToken 추출
 
-        // 3. JWT 토큰 저장 (예시)
-        localStorage.setItem("accessToken", data.accessToken);
+      if (status === "success") {
+        console.log("로그인 성공");
+        
+      // Zustand Store 상태 업데이트
+      login(credentials.username); // userStore에 user_id 업데이트
+
+        // 3. JWT 토큰 저장
+        localStorage.setItem("accessToken", accessToken);
 
         // 4. 메인 페이지로 리다이렉트
         window.location.href = "/";
+      } else if (status === "fail") {
+        console.log("로그인 실패: " + message);
+        alert(message || "아이디와 비밀번호를 확인해 주세요.");
       }
     } catch (error) {
       console.error("로그인 오류:", error);
@@ -47,12 +64,14 @@ const LoginPage = () => {
       >
         {/* 로고 */}
         <div className="d-flex justify-content-center mb-4">
-          <img
-            src={logo}
-            alt="Babyloop Logo"
-            className="h-auto"
-            style={{ maxWidth: "100%", height: "auto" }}
-          />
+          <Link to="/">
+            <img
+              src={logo}
+              alt="Babyloop Logo"
+              className="h-auto"
+              style={{ maxWidth: "200px", height: "auto" }}
+            />
+          </Link>
         </div>
 
         {/* 로그인 폼 */}

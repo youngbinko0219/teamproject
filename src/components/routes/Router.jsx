@@ -4,6 +4,10 @@ import SignupPage from "../pages/SignupPage";
 import HomePage from "../pages/HomePage";
 import MyPageEdit from "../pages/MyPageEdit";
 import MyPageMain from "../pages/MyPageMain";
+import RentalHistory from "../pages/RentalHistory";
+import Status from "../pages/Status";
+import WishList from "../pages/WishList";
+
 
 const AppRouter = () => {
   return (
@@ -14,6 +18,9 @@ const AppRouter = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/mypageedit" element={<MyPageEdit />} /> 
         <Route path="/mypagemain" element={<MyPageMain />} /> 
+        <Route path="/rental" element={<RentalHistory />} /> 
+        <Route path="/status" element={<Status />} /> 
+        <Route path="/wishlist" element={<WishList />} /> 
         <Route
           path="*"
           element={

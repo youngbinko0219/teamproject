@@ -1,5 +1,5 @@
 import React from "react";
-import "../Style/MyPageMainStyle.css";
+import "../../assets/css/pages/Style/MyPageMainStyle.css";
 
 const Sidebar = () => {
   return (
@@ -95,7 +95,10 @@ const Dashboard = () => {
 function MyPageMain() {
   return (
     <>
-
+      <Sidebar />
+      <LoginSection />
+      <GradeSection />
+      <RentalHistory />
       <Dashboard />
       {/* <Sidebar /> */}
     </>
