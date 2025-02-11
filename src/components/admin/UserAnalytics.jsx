@@ -1,4 +1,4 @@
-// import "../../assets/css/admin/UserAnalytics.css";
+import "../../assets/css/admin/UserAnalytics.css";
 
 const UserAnalytics = () => {
   return (

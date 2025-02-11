@@ -1,0 +1,44 @@
+.product-management {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+}
+
+.product-management table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.product-management th,
+.product-management td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.product-management th {
+  background-color: #f8f9fa;
+}
+
+.product-management button {
+  padding: 5px 10px;
+  margin: 0 3px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.product-management button:nth-child(1) {
+  /* 수정 버튼 */
+  background-color: #17a2b8;
+  color: white;
+}
+
+.product-management button:nth-child(2) {
+  /* 삭제 버튼 */
+  background-color: #dc3545;
+  color: white;
+}

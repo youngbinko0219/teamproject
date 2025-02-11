@@ -1,0 +1,21 @@
+/* 관리자 대시보드 메인 레이아웃 */
+.admin-dashboard {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.dashboard-content {
+  display: flex;
+  flex: 1;
+  margin-top: 60px; /* 헤더 높이만큼 조정 */
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  margin-left: 250px; /* 사이드바 너비만큼 조정 */
+  background-color: white;
+  min-height: calc(100vh - 60px);
+}

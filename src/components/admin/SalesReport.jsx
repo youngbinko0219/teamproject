@@ -1,4 +1,4 @@
-// import "../../assets/css/admin/SalesReport.css";
+import "../../assets/css/admin/SalesReport.css";
 
 const SalesReport = () => {
   return (
