@@ -1,5 +1,8 @@
 import { Pie } from "react-chartjs-2";
-// import "../../assets/css/admin/PieChart.css";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+
+// 차트 요소 등록
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 const PieChart = () => {
   const data = {

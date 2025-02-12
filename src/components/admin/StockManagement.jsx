@@ -1,6 +1,23 @@
 import { useEffect, useState } from "react";
 import "../../assets/css/admin/StockManagement.css";
 import axios from "axios";
+import MockAdapter from "axios-mock-adapter";
+
+// Mock 데이터 설정
+const mock = new MockAdapter(axios);
+
+// 가짜 재고 데이터
+const mockStockData = [
+  { id: 1, productName: "유모차", stock: 50 },
+  { id: 2, productName: "카시트", stock: 20 },
+  { id: 3, productName: "아기침대", stock: 5 },
+];
+
+// API Mock 설정
+mock.onGet("/admin/stock").reply(200, mockStockData);
+mock.onPost(/\/admin\/stock\/\d+\/set-notification/).reply(200, {
+  message: "알림 설정 완료",
+});
 
 const StockManagement = () => {
   const [stockItems, setStockItems] = useState([]);
@@ -16,13 +33,15 @@ const StockManagement = () => {
       }
     };
     fetchStockItems();
-  }, []); // 빈 배열을 두 번째 인자로 전달해 최초 렌더링 시 한 번만 호출
+  }, []);
 
   // 알림 설정 버튼 클릭 처리 함수
   const handleSetNotification = async (productId) => {
     try {
-      await axios.post(`/admin/stock/${productId}/set-notification`);
-      alert("알림이 설정되었습니다.");
+      const response = await axios.post(
+        `/admin/stock/${productId}/set-notification`
+      );
+      alert(response.data.message); // "알림 설정 완료" 메시지 출력
     } catch (error) {
       console.error("Error setting notification:", error);
       alert("알림 설정에 실패했습니다.");

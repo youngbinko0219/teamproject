@@ -10,6 +10,7 @@ import NewProductsPage from "../pages/NewProductsPage";
 import BestProductsPage from "../pages/BestProductsPage";
 import AllProductsPage from "../pages/AllProductsPage";
 import AdminDashboardPage from "../pages/AdminDashboardPage";
+import AdminLoginPage from "../pages/AdminLoginPage";
 
 const AppRouter = () => {
   return (
@@ -25,7 +26,8 @@ const AppRouter = () => {
         <Route path="/today-products" element={<TodayProductsPage />} />
         <Route path="/best-products" element={<BestProductsPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="/admin" element={<AdminDashboardPage />} />
+        <Route path="/admin" element={<AdminLoginPage />} /> {/* 어드민 로그인 페이지 */}
+        <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
         <Route
           path="*"
           element={
