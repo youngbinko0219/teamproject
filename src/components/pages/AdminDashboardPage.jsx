@@ -2,13 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import AdminHeader from "../admin/AdminHeader";
 import AdminSidebar from "../admin/AdminSidebar";
-import ProductManagement from "../admin/ProductManagement";
-import StockManagement from "../admin/StockManagement";
-import UserManagement from "../admin/UserManagement";
-import SalesReport from "../admin/SalesReport";
-import UserAnalytics from "../admin/UserAnalytics";
 import DashboardOverview from "../admin/DashboardOverview";
-import NotificationSettings from "../admin/NotificationSettings";
 import "../../assets/css/pages/AdminDashboardPage.css";
 
 const AdminDashboardPage = () => {
@@ -34,12 +28,6 @@ const AdminDashboardPage = () => {
         {/* 메인 컨텐츠 */}
         <main className="main-content">
           <DashboardOverview />
-          <ProductManagement />
-          <StockManagement />
-          <UserManagement />
-          <SalesReport />
-          <UserAnalytics />
-          <NotificationSettings />
         </main>
       </div>
     </div>
