@@ -97,24 +97,84 @@ import "../../assets/css/admin/ProductManagement.css";
 import axios from "axios";
 
 const ProductManagement = () => {
-  // useState와 useEffect는 컴포넌트 내부에서 호출해야 합니다.
   const [products, setProducts] = useState([]);
+  const [newProduct, setNewProduct] = useState({
+    name: "",
+    price: "",
+    stock: "",
+  });
 
+  // 상품 목록 불러오기
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get("/admin/products");
-        setProducts(response.data);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
     fetchProducts();
-  }, []); // 빈 배열을 두 번째 인자로 전달해 최초 렌더링 시 한 번만 호출
+  }, []);
+
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get("/admin/products");
+      setProducts(response.data);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
+
+  // 입력 필드 값 변경 처리
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setNewProduct((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  // 상품 등록 처리
+  const handleAddProduct = async (e) => {
+    e.preventDefault(); // 폼 제출 시 페이지 새로고침 방지
+    try {
+      await axios.post("/admin/products", newProduct);
+      alert("상품이 성공적으로 등록되었습니다.");
+      setNewProduct({ name: "", price: "", stock: "" }); // 입력 필드 초기화
+      fetchProducts(); // 상품 목록 다시 불러오기
+    } catch (error) {
+      console.error("Error adding product:", error);
+      alert("상품 등록에 실패했습니다.");
+    }
+  };
 
   return (
     <div className="product-management">
       <h2>상품 관리</h2>
+
+      {/* 상품 등록 폼 */}
+      <form onSubmit={handleAddProduct} className="add-product-form">
+        <input
+          type="text"
+          name="name"
+          value={newProduct.name}
+          placeholder="상품명"
+          onChange={handleInputChange}
+          required
+        />
+        <input
+          type="number"
+          name="price"
+          value={newProduct.price}
+          placeholder="가격"
+          onChange={handleInputChange}
+          required
+        />
+        <input
+          type="number"
+          name="stock"
+          value={newProduct.stock}
+          placeholder="재고 수량"
+          onChange={handleInputChange}
+          required
+        />
+        <button type="submit">상품 등록</button>
+      </form>
+
+      {/* 상품 목록 */}
       <table>
         <thead>
           <tr>
@@ -126,7 +186,6 @@ const ProductManagement = () => {
           </tr>
         </thead>
         <tbody>
-          {/* fetched products 데이터를 매핑 */}
           {products.map((product) => (
             <tr key={product.id}>
               <td>{product.name}</td>
