@@ -98,11 +98,10 @@ import axios from "axios";
 
 const ProductManagement = () => {
   const [products, setProducts] = useState([]);
-  const [newProduct, setNewProduct] = useState({
-    name: "",
-    price: "",
-    stock: "",
-  });
+  const [productName, setProductName] = useState("");
+  const [price, setPrice] = useState("");
+  const [stock, setStock] = useState("");
+  const [image, setImage] = useState(null);
 
   // 상품 목록 불러오기
   useEffect(() => {
@@ -118,27 +117,37 @@ const ProductManagement = () => {
     }
   };
 
-  // 입력 필드 값 변경 처리
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setNewProduct((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+  // 상품 등록 함수
+  const handleProductSubmit = async (e) => {
+    e.preventDefault();
 
-  // 상품 등록 처리
-  const handleAddProduct = async (e) => {
-    e.preventDefault(); // 폼 제출 시 페이지 새로고침 방지
+    const formData = new FormData();
+    formData.append("name", productName);
+    formData.append("price", price);
+    formData.append("stock", stock);
+    formData.append("image", image); // 이미지 파일 추가
+
     try {
-      await axios.post("/admin/products", newProduct);
-      alert("상품이 성공적으로 등록되었습니다.");
-      setNewProduct({ name: "", price: "", stock: "" }); // 입력 필드 초기화
-      fetchProducts(); // 상품 목록 다시 불러오기
+      await axios.post("/admin/products", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      alert("상품이 등록되었습니다.");
+      fetchProducts(); // 상품 목록 새로고침
+      resetForm(); // 폼 초기화
     } catch (error) {
       console.error("Error adding product:", error);
       alert("상품 등록에 실패했습니다.");
     }
+  };
+
+  // 폼 초기화
+  const resetForm = () => {
+    setProductName("");
+    setPrice("");
+    setStock("");
+    setImage(null);
   };
 
   return (
@@ -146,29 +155,32 @@ const ProductManagement = () => {
       <h2>상품 관리</h2>
 
       {/* 상품 등록 폼 */}
-      <form onSubmit={handleAddProduct} className="add-product-form">
+      <form onSubmit={handleProductSubmit} className="product-form">
         <input
           type="text"
-          name="name"
-          value={newProduct.name}
           placeholder="상품명"
-          onChange={handleInputChange}
+          value={productName}
+          onChange={(e) => setProductName(e.target.value)}
           required
         />
         <input
           type="number"
-          name="price"
-          value={newProduct.price}
           placeholder="가격"
-          onChange={handleInputChange}
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
           required
         />
         <input
           type="number"
-          name="stock"
-          value={newProduct.stock}
-          placeholder="재고 수량"
-          onChange={handleInputChange}
+          placeholder="재고"
+          value={stock}
+          onChange={(e) => setStock(e.target.value)}
+          required
+        />
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => setImage(e.target.files[0])}
           required
         />
         <button type="submit">상품 등록</button>
@@ -178,6 +190,7 @@ const ProductManagement = () => {
       <table>
         <thead>
           <tr>
+            <th>이미지</th>
             <th>상품명</th>
             <th>가격</th>
             <th>재고</th>
@@ -188,6 +201,13 @@ const ProductManagement = () => {
         <tbody>
           {products.map((product) => (
             <tr key={product.id}>
+              <td>
+                <img
+                  src={`/images/${product.image}`}
+                  alt={product.name}
+                  style={{ width: "50px", height: "50px" }}
+                />
+              </td>
               <td>{product.name}</td>
               <td>{product.price}원</td>
               <td>{product.stock}개</td>
