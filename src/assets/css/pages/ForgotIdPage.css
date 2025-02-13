@@ -1,17 +1,103 @@
+/* 전체 페이지 중앙 정렬 */
+.forgot-id-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f9f9f9;
+}
+
+/* 로고 이미지 스타일 */
+.logo-container {
+  margin-bottom: 2rem;
+}
+
+.logo-image {
+  width: 250px;
+}
+
 /* 카드 스타일링 */
 .card {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  padding: 3rem;
+  width: 600px;
+  text-align: center;
+}
+
+/* 제목 스타일 */
+.card h2 {
+  font-size: 2rem;
+  color: #333333;
+  margin-bottom: 1.5rem;
+}
+
+/* 입력 필드 스타일 */
+.form-label {
+  font-weight: bold;
+  display: block;
+  text-align: left;
+  margin-bottom: 0.5rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 /* 입력 필드 포커스 효과 */
 .form-control:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  border-color: #ff9f9f;
+  outline: none;
+  box-shadow: 0 0 5px rgba(255, 159, 159, 0.5);
+}
+
+/* 버튼 스타일 */
+.btn-primary {
+  background-color: #ff9f9f;
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 /* 버튼 호버 효과 */
 .btn-primary:hover {
-  background-color: #0056b3;
-  border-color: #0056b3;
+  background-color: #ff7f7f;
+}
+
+/* 회원가입 링크 스타일 */
+.text-muted {
+  color: #666666;
+}
+
+.text-primary {
+  color: #ff9f9f;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.text-primary:hover {
+  color: #ff7f7f;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+  .card {
+    width: 90%;
+    padding: 2rem;
+  }
+
+  .logo-image {
+    width: 200px;
+  }
 }

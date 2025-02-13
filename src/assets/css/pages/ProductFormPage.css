@@ -1,0 +1,25 @@
+/* 레이아웃 전체 컨테이너 */
+.admin-dashboard {
+  display: flex;
+  flex-direction: column;
+  /* 헤더가 상단에 오고, 그 아래에 내용이 오도록 세로 배치 */
+}
+
+/* 사이드바와 메인 콘텐츠를 가로로 나란히 배치 */
+.dashboard-content {
+  display: flex;
+  flex: 1;
+}
+
+/* 사이드바 스타일 (예시) */
+.admin-sidebar {
+  width: 240px; /* 사이드바 너비 */
+  /* 필요하다면 position, height 등 추가 설정 */
+}
+
+/* 메인 콘텐츠 영역 */
+.main-content {
+  flex: 1; /* 남은 공간을 메인 콘텐츠가 채움 */
+  padding: 20px; /* 여백 */
+  box-sizing: border-box;
+}

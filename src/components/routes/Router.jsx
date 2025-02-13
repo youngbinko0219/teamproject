@@ -11,7 +11,11 @@ import BestProductsPage from "../pages/BestProductsPage";
 import AllProductsPage from "../pages/AllProductsPage";
 import AdminDashboardPage from "../pages/AdminDashboardPage";
 import AdminLoginPage from "../pages/AdminLoginPage";
-import ProductForm from "../admin/ProductForm";
+import ProductManagementPage from "../pages/ProductManagementPage";
+import ProductFormPage from "../pages/ProductFormPage";
+import StockManagementPage from "../pages/StockManagementPage ";
+import UserManagementPage from "../pages/UserManagement";
+import SalesReportPage from "../pages/SalesReportPage";
 
 const AppRouter = () => {
   return (
@@ -30,7 +34,11 @@ const AppRouter = () => {
         <Route path="/admin" element={<AdminLoginPage />} />{" "}
         {/* 어드민 로그인 페이지 */}
         <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
-        <Route path="/admin/products/regist" element={<ProductForm />} />
+        <Route path="/admin/products/regist" element={<ProductFormPage />} />
+        <Route path="/admin/products" element={<ProductManagementPage />} />
+        <Route path="/admin/stock" element={<StockManagementPage />} />
+        <Route path="/admin/users" element={<UserManagementPage />} />
+        <Route path="/admin/sales" element={<SalesReportPage />} />
         <Route
           path="*"
           element={

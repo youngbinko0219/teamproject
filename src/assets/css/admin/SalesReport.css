@@ -3,19 +3,52 @@
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  margin-bottom: 20px;
 }
 
-.report-data {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-  margin-top: 15px;
+.total-sales {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
 }
 
-.report-data p {
+.category-breakdown {
+  margin-top: 20px;
+}
+
+.category-section {
+  margin-bottom: 25px;
+}
+
+.category-section h4 {
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+.subcategory-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 15px;
+}
+
+.subcategory-table th,
+.subcategory-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.subcategory-table th {
   background-color: #f8f9fa;
-  padding: 15px;
-  border-radius: 6px;
-  margin: 0;
+  font-weight: 600;
+}
+
+.subcategory-table tr:hover {
+  background-color: #f8f9fa;
+}
+
+.loading,
+.error {
+  padding: 20px;
+  text-align: center;
+  color: #666;
 }

@@ -1,0 +1,24 @@
+/* 전체 어드민 대시보드 레이아웃 */
+.admin-dashboard {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+/* 어드민 헤더 스타일은 AdminHeader.css에 정의되어 있음 */
+
+/* 어드민 콘텐츠 영역 레이아웃 */
+.dashboard-content {
+  display: flex;
+  flex: 1;
+}
+
+/* 어드민 사이드바 스타일은 AdminSidebar.css에 정의되어 있음 */
+
+/* 메인 콘텐츠 영역 스타일 */
+.main-content {
+  flex: 1;
+  padding: 20px;
+  background-color: #f8f9fa;
+}

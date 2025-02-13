@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #f8f9fa;
+  background-color: white; /* 전체 배경은 흰색으로 변경 */
 }
 
 .dashboard-content {
@@ -12,10 +12,19 @@
   margin-top: 60px; /* 헤더 높이만큼 조정 */
 }
 
+/* 어드민 사이드바는 별도로 스타일이 적용됨 (예: width: 250px) */
+.admin-sidebar {
+  width: 250px;
+}
+
+/* 메인 콘텐츠 영역에만 회색 배경을 적용하고, 가운데 정렬 */
 .main-content {
   flex: 1;
   padding: 20px;
-  margin-left: 250px; /* 사이드바 너비만큼 조정 */
-  background-color: white;
+  background-color: #f8f9fa; /* 회색 배경 */
   min-height: calc(100vh - 60px);
+  margin-left: 250px; /* 사이드바 너비만큼 밀어줌 */
+  display: flex;
+  justify-content: center; /* 내부 콘텐츠(판매 리포트) 중앙 정렬 */
+  align-items: center; /* 세로 중앙 정렬 (필요한 경우) */
 }
