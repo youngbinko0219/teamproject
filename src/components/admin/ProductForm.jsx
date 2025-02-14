@@ -1,4 +1,3 @@
-// src/components/admin/ProductForm.jsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../assets/css/admin/ProductForm.css";
@@ -11,9 +10,12 @@ const ProductForm = () => {
   const [category, setCategory] = useState("");
   const [subCategory, setSubCategory] = useState("");
   const [description, setDescription] = useState("");
-  // 여러 장의 상품 이미지를 업로드할 수 있도록 FileList를 관리
-  const [productImages, setProductImages] = useState([]);
-  // 상세 설명 이미지는 단일 파일로 관리
+
+  // 메인 상품 이미지 (1장)
+  const [mainImage, setMainImage] = useState(null);
+  // 서브 상품 이미지 (최대 3장)
+  const [subImages, setSubImages] = useState([]);
+  // 상세 설명 이미지 (1장)
   const [detailImage, setDetailImage] = useState(null);
 
   const navigate = useNavigate();
@@ -32,13 +34,23 @@ const ProductForm = () => {
     위생건강: ["기저귀 갈이대", "유아욕조", "스팀청소기"],
   };
 
-  const handleProductImagesChange = (e) => {
-    // 여러 파일을 FileList 형태로 받아옴
-    setProductImages(e.target.files);
+  // 메인 상품 이미지 변경 핸들러 (단일 파일)
+  const handleMainImageChange = (e) => {
+    setMainImage(e.target.files[0]);
   };
 
+  // 서브 상품 이미지 변경 핸들러 (최대 3개)
+  const handleSubImagesChange = (e) => {
+    const files = Array.from(e.target.files);
+    if (files.length > 3) {
+      alert("서브 상품 이미지는 최대 3장까지만 업로드할 수 있습니다.");
+      return;
+    }
+    setSubImages(files);
+  };
+
+  // 상세 설명 이미지 변경 핸들러 (단일 파일)
   const handleDetailImageChange = (e) => {
-    // 상세 설명 이미지는 단일 파일 선택
     setDetailImage(e.target.files[0]);
   };
 
@@ -53,12 +65,15 @@ const ProductForm = () => {
     formData.append("subCategory", subCategory);
     formData.append("description", description);
 
-    // 여러 장의 상품 이미지 추가
-    if (productImages.length > 0) {
-      for (let i = 0; i < productImages.length; i++) {
-        formData.append("productImages", productImages[i]);
-      }
+    // 메인 상품 이미지 추가 (단일 파일)
+    if (mainImage) {
+      formData.append("mainImage", mainImage);
     }
+
+    // 서브 상품 이미지 추가 (최대 3장)
+    subImages.forEach((image) => {
+      formData.append(`subImages`, image);
+    });
 
     // 상세 설명 이미지 추가 (단일 파일)
     if (detailImage) {
@@ -137,14 +152,27 @@ const ProductForm = () => {
         onChange={(e) => setDescription(e.target.value)}
         required
       ></textarea>
-      <label>상품 이미지 (여러 장 업로드 가능)</label>
+
+      {/* 메인 상품 이미지 업로드 (1장) */}
+      <label>메인 상품 이미지 (1장)</label>
+      <input
+        type="file"
+        accept="image/*"
+        onChange={handleMainImageChange}
+        required
+      />
+
+      {/* 서브 상품 이미지 업로드 (최대 3장) */}
+      <label>서브 상품 이미지 (최대 3장)</label>
       <input
         type="file"
         accept="image/*"
         multiple
-        onChange={handleProductImagesChange}
-        required
+        onChange={handleSubImagesChange}
       />
+      <p>{subImages.length}개 선택됨 (최대 3개 가능)</p>
+
+      {/* 상세 설명 이미지 업로드 (1장) */}
       <label>상세 설명 이미지 (세로로 긴 이미지 한 장)</label>
       <input
         type="file"
@@ -152,6 +180,7 @@ const ProductForm = () => {
         onChange={handleDetailImageChange}
         required
       />
+
       <button type="submit">상품 등록</button>
     </form>
   );
