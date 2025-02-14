@@ -23,6 +23,9 @@ const AdminSidebar = () => {
         <li>
           <Link to="/admin/sales">판매 리포트</Link>
         </li>
+        <li>
+          <Link to="/admin/ad">광고 관리</Link>
+        </li>
       </ul>
     </aside>
   );

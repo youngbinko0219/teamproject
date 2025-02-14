@@ -16,6 +16,7 @@ import ProductFormPage from "../pages/ProductFormPage";
 import StockManagementPage from "../pages/StockManagementPage ";
 import UserManagementPage from "../pages/UserManagement";
 import SalesReportPage from "../pages/SalesReportPage";
+import AdminAdPage from "../pages/AdminAdPage";
 
 const AppRouter = () => {
   return (
@@ -39,6 +40,7 @@ const AppRouter = () => {
         <Route path="/admin/stock" element={<StockManagementPage />} />
         <Route path="/admin/users" element={<UserManagementPage />} />
         <Route path="/admin/sales" element={<SalesReportPage />} />
+        <Route path="/admin/ad" element={<AdminAdPage />} />
         <Route
           path="*"
           element={

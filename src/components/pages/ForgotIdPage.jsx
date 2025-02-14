@@ -11,8 +11,8 @@ const ForgotIdPage = () => {
     e.preventDefault(); // 기본 폼 제출 동작 방지
 
     try {
-      const response = await fetch("http://localhost8080/auth/search_id", {
-        method: "POST",
+      const response = await fetch("http://localhost:8080/auth/search-id", {
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
         },

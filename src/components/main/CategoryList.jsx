@@ -3,30 +3,24 @@ import "../../assets/css/main/CategoryList.css";
 
 const categories = [
   {
-    name: "아기가구",
-    subcategories: ["바운서", "아기 체육관", "아기 침대", "범퍼 침대"],
+    name: "아기 가구",
+    subcategories: ["바운서", "아기 체육관", "아기 침대"],
   },
   {
-    name: "놀이용품",
-    subcategories: [
-      "쏘서/점퍼루",
-      "보행기/러닝홈",
-      "트램폴린/미끄럼틀",
-      "승용완구",
-      "장난감/백일상",
-    ],
+    name: "놀이 용품",
+    subcategories: ["쏘서/점퍼루", "보행기/러닝홈", "대형완구", "장난감"],
   },
   {
-    name: "이동용품",
-    subcategories: ["유모차/웨건", "카시트", "아기띠"],
+    name: "이동 용품",
+    subcategories: ["유모차/웨건", "카시트"],
   },
   {
-    name: "유아식사",
+    name: "이유식",
     subcategories: ["식탁의자", "유축기/소독기"],
   },
   {
     name: "위생&건강",
-    subcategories: ["기저귀 갈이대", "유아욕조", "스팀청소기"],
+    subcategories: ["기저귀 갈이대", "유아욕조"],
   },
 ];
 

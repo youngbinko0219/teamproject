@@ -12,7 +12,7 @@ const ForgotPwPage = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost8080/auth/search_pw", {
+      const response = await fetch("http://192.168.0.16:8080/auth/search_pw", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

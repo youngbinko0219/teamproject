@@ -8,6 +8,7 @@
   width: 100%;
   top: 0;
   z-index: 1000;
+  border-bottom: 2px solid #ff7f7f;
 }
 
 @media (max-width: 768px) {

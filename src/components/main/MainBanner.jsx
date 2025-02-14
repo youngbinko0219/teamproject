@@ -1,64 +1,78 @@
 import { useState, useEffect } from "react";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa"; // 화살표 아이콘
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "../../assets/css/main/MainBanner.css";
-import banner1 from "../../assets/images/banner1.jpg";
-
-const bannerImages = [
-  { banner1 },
-  "/assets/images/banner2.jpg",
-  "/assets/images/banner3.jpg",
-];
+import axios from "axios";
 
 const MainBanner = () => {
+  const [bannerImages, setBannerImages] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // 자동 슬라이드 효과
+  useEffect(() => {
+    // 백엔드에서 광고 배너 목록 가져오기
+    const fetchBanners = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:8080/admin/ad-settings"
+        );
+        setBannerImages(response.data.banners || []);
+      } catch (error) {
+        console.error("배너 불러오기 오류:", error);
+      }
+    };
+
+    fetchBanners();
+  }, []);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % bannerImages.length);
     }, 3000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [bannerImages]);
 
-  // 이전 배너로 이동
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? bannerImages.length - 1 : prevIndex - 1
     );
   };
 
-  // 다음 배너로 이동
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % bannerImages.length);
   };
 
   return (
     <section className="main-banner">
-      <img
-        src={bannerImages[currentIndex]}
-        alt={`배너 ${currentIndex + 1}`}
-        className="banner-image"
-      />
+      {bannerImages.length > 0 ? (
+        <>
+          <img
+            src={bannerImages[currentIndex]}
+            alt={`배너 ${currentIndex + 1}`}
+            className="banner-image"
+          />
 
-      {/* 좌우 화살표 */}
-      <button className="nav-button prev" onClick={prevSlide}>
-        <FaChevronLeft />
-      </button>
-      <button className="nav-button next" onClick={nextSlide}>
-        <FaChevronRight />
-      </button>
+          <button className="nav-button prev" onClick={prevSlide}>
+            <FaChevronLeft />
+          </button>
+          <button className="nav-button next" onClick={nextSlide}>
+            <FaChevronRight />
+          </button>
 
-      {/* 인디케이터 */}
-      <div className="indicators">
-        {bannerImages.map((_, index) => (
-          <span
-            key={index}
-            className={`indicator ${index === currentIndex ? "active" : ""}`}
-            onClick={() => setCurrentIndex(index)}
-          ></span>
-        ))}
-      </div>
+          <div className="indicators">
+            {bannerImages.map((_, index) => (
+              <span
+                key={index}
+                className={`indicator ${
+                  index === currentIndex ? "active" : ""
+                }`}
+                onClick={() => setCurrentIndex(index)}
+              ></span>
+            ))}
+          </div>
+        </>
+      ) : (
+        <p>배너 이미지가 없습니다.</p>
+      )}
     </section>
   );
 };
