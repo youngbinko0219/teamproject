@@ -1,6 +1,7 @@
 .today-products-section {
   padding: 20px;
   background-color: #fff;
+  text-align: center;
 }
 
 .today-products-section h2 {
@@ -15,7 +16,7 @@
   gap: 15px;
 }
 
-.product-card {
+.today-products-section .product-card {
   min-width: 200px;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -24,12 +25,12 @@
   transition: box-shadow 0.2s ease;
 }
 
-.product-card img {
+.today-products-section .product-card img {
   width: 100%;
   height: auto;
   border-radius: 5px;
 }
 
-.product-card:hover {
+.today-products-section .product-card:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }

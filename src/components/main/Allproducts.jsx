@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard"; // 상품 카드 컴포넌트
-import "../../assets/css/main/AllProduct.css"; // CSS 파일 경로
+import "../../assets/css/main/AllProduct.css"; // 컨테이너 관련 CSS
+import "../../assets/css/main/AllProductsGrid.css"; // 그리드 관련 CSS
 
 const AllProducts = () => {
   const [products, setProducts] = useState([]);
@@ -67,7 +68,7 @@ const AllProducts = () => {
   return (
     <div className="all-products-container">
       <h1>모든 상품</h1>
-      <div className="products-grid">
+      <div className="all-products-grid">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}

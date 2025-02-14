@@ -53,7 +53,7 @@ const BestProducts = () => {
   };
 
   return (
-    <div className="best-products-container">
+    <section className="best-products-section">
       <h2>베스트 상품</h2>
       <div className="slider-container">
         <ArrowButton direction="left" onClick={handlePrev} />
@@ -64,7 +64,7 @@ const BestProducts = () => {
         </div>
         <ArrowButton direction="right" onClick={handleNext} />
       </div>
-    </div>
+    </section>
   );
 };
 

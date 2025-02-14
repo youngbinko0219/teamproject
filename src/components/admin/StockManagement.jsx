@@ -82,7 +82,7 @@ export default StockManagement;
 //   useEffect(() => {
 //     const fetchProducts = async () => {
 //       try {
-//         const response = await axios.get("/admin/product");
+//         const response = await axios.get("/admin/products");
 //         setProducts(response.data);
 //       } catch (error) {
 //         console.error("Error fetching product information:", error);

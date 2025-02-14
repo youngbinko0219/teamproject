@@ -4,7 +4,7 @@ import "../../assets/css/admin/ProductForm.css";
 import axios from "axios";
 
 const ProductForm = () => {
-  const [productName, setProductName] = useState("");
+  const [product_name, setProductName] = useState("");
   const [price, setPrice] = useState("");
   const [stock, setStock] = useState("");
   const [category, setCategory] = useState("");
@@ -17,6 +17,9 @@ const ProductForm = () => {
   const [subImages, setSubImages] = useState([]);
   // 상세 설명 이미지 (1장)
   const [detailImage, setDetailImage] = useState(null);
+
+  // 로딩 상태 변수
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -56,32 +59,42 @@ const ProductForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // 로딩 시작
+
     const formData = new FormData();
 
-    formData.append("productName", productName);
-    formData.append("price", price);
-    formData.append("stock", stock);
-    formData.append("category", category);
-    formData.append("subCategory", subCategory);
-    formData.append("description", description);
+    // 백엔드에서 `@RequestPart("product")`로 받으므로 JSON 데이터를 변환
+    const productData = {
+      product_name,
+      price,
+      stock,
+      category,
+      subCategory,
+      description,
+    };
 
-    // 메인 상품 이미지 추가 (단일 파일)
+    formData.append(
+      "product",
+      new Blob([JSON.stringify(productData)], { type: "application/json" })
+    );
+
+    // 백엔드가 `@RequestPart(value = "main_img")`로 받으므로 필드명 변경
     if (mainImage) {
-      formData.append("mainImage", mainImage);
+      formData.append("main_img", mainImage);
     }
 
-    // 서브 상품 이미지 추가 (최대 3장)
+    // `sub_img`는 여러 개의 파일을 배열로 받으므로 반복문 사용
     subImages.forEach((image) => {
-      formData.append(`subImages`, image);
+      formData.append("sub_img", image);
     });
 
-    // 상세 설명 이미지 추가 (단일 파일)
+    // `desc_img`도 단일 파일이므로 필드명 맞추기
     if (detailImage) {
-      formData.append("detailImage", detailImage);
+      formData.append("desc_img", detailImage);
     }
 
     try {
-      await axios.post("/admin/products", formData, {
+      await axios.post("http://localhost:8080/admin/products", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -91,6 +104,8 @@ const ProductForm = () => {
     } catch (error) {
       console.error("Error adding product:", error);
       alert("상품 등록에 실패했습니다.");
+    } finally {
+      setLoading(false); // 로딩 종료
     }
   };
 
@@ -99,7 +114,7 @@ const ProductForm = () => {
       <input
         type="text"
         placeholder="상품명"
-        value={productName}
+        value={product_name}
         onChange={(e) => setProductName(e.target.value)}
         required
       />
@@ -181,7 +196,9 @@ const ProductForm = () => {
         required
       />
 
-      <button type="submit">상품 등록</button>
+      <button type="submit" disabled={loading}>
+        {loading ? "로딩중..." : "상품 등록"}
+      </button>
     </form>
   );
 };

@@ -2,30 +2,6 @@ import { useEffect, useState } from "react";
 import "../../assets/css/admin/UserManagement.css";
 import axios from "axios";
 
-import MockAdapter from "axios-mock-adapter";
-
-const mock = new MockAdapter(axios);
-let mockUsers = [
-  { id: 1, name: "홍길동", email: "hong@example.com", status: "활성" },
-  { id: 2, name: "김철수", email: "kim@example.com", status: "활성" },
-  { id: 3, name: "이영희", email: "lee@example.com", status: "정지" },
-];
-mock.onGet("/admin/users").reply(200, mockUsers);
-mock.onPost(/\/admin\/users\/\d+\/suspend/).reply((config) => {
-  const userId = parseInt(
-    config.url.match(/\/admin\/users\/(\d+)\/suspend/)[1]
-  );
-  mockUsers = mockUsers.map((user) =>
-    user.id === userId ? { ...user, status: "정지" } : user
-  );
-  return [200, { message: "사용자가 정지되었습니다." }];
-});
-mock.onDelete(/\/admin\/users\/\d+\/delete/).reply((config) => {
-  const userId = parseInt(config.url.match(/\/admin\/users\/(\d+)\/delete/)[1]);
-  mockUsers = mockUsers.filter((user) => user.id !== userId);
-  return [200, { message: "사용자가 삭제되었습니다." }];
-});
-
 const UserManagement = () => {
   const [users, setUsers] = useState([]);
 
@@ -33,7 +9,7 @@ const UserManagement = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get("/admin/users");
+        const response = await axios.get("http://localhost:8080/admin/users");
         setUsers(response.data);
       } catch (error) {
         console.error("Error fetching users:", error);
@@ -45,10 +21,10 @@ const UserManagement = () => {
   // 회원 정지 처리
   const handleSuspend = async (userId) => {
     try {
-      await axios.post(`/admin/users/${userId}/suspend`);
+      await axios.post(`http://localhost:8080/admin/users/${userId}/suspend`);
       alert("사용자가 정지되었습니다.");
       // 변경 후 최신 회원 목록을 다시 조회
-      const response = await axios.get("/admin/users");
+      const response = await axios.get("http://localhost:8080/admin/users");
       setUsers(response.data);
     } catch (error) {
       console.error("Error suspending user:", error);
@@ -59,10 +35,10 @@ const UserManagement = () => {
   // 회원 삭제 처리
   const handleDelete = async (userId) => {
     try {
-      await axios.delete(`/admin/users/${userId}/delete`);
+      await axios.delete(`http://localhost:8080/admin/users/${userId}/delete`);
       alert("사용자가 삭제되었습니다.");
       // 변경 후 최신 회원 목록을 다시 조회
-      const response = await axios.get("/admin/users");
+      const response = await axios.get("http://localhost:8080/admin/users");
       setUsers(response.data);
     } catch (error) {
       console.error("Error deleting user:", error);

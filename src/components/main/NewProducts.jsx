@@ -40,7 +40,7 @@ const NewProducts = () => {
   }, []);
 
   return (
-    <div className="new-products-container">
+    <div className="new-products-section">
       <ProductSlider products={newProducts} />
     </div>
   );

@@ -2,7 +2,6 @@
 .admin-dashboard {
   display: flex;
   flex-direction: column;
-  /* 헤더가 상단에 오고, 그 아래에 내용이 오도록 세로 배치 */
 }
 
 /* 사이드바와 메인 콘텐츠를 가로로 나란히 배치 */
@@ -11,15 +10,16 @@
   flex: 1;
 }
 
-/* 사이드바 스타일 (예시) */
-.admin-sidebar {
-  width: 240px; /* 사이드바 너비 */
-  /* 필요하다면 position, height 등 추가 설정 */
+/* 메인 콘텐츠와 제목을 감싸는 래퍼 */
+.main-content-wrapper {
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-/* 메인 콘텐츠 영역 */
-.main-content {
-  flex: 1; /* 남은 공간을 메인 콘텐츠가 채움 */
-  padding: 20px; /* 여백 */
-  box-sizing: border-box;
+/* 페이지 제목 스타일 */
+.page-title {
+  text-align: center; /* 중앙 정렬 */
+  white-space: nowrap; /* 줄바꿈 방지 */
+  margin-bottom: 20px; /* 폼과의 간격 */
 }

@@ -4,6 +4,7 @@
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
+  white-space: nowrap; /* 텍스트 줄바꿈 방지 */
 }
 
 .product-form input,
