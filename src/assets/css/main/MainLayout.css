@@ -4,16 +4,18 @@
   min-height: 100vh;
 }
 
-.main-content {
+/* Outlet이나 main 컨텐츠 영역 */
+.content {
   flex: 1;
   padding: 20px;
   background-color: #f9f9f9;
 }
 
+/* 헤더와 푸터에 메인 컬러 적용 */
 .header,
 .footer {
-  background-color: #333;
-  color: white;
+  background-color: #ff7f7f;
+  color: #fff;
   padding: 15px;
   text-align: center;
 }

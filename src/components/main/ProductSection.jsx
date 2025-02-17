@@ -1,10 +1,7 @@
-import ViewAllButton from "./ViewAllButton";
-
-const ProductSection = ({ title, children, buttonProps }) => (
+const ProductSection = ({ title, children }) => (
   <div className="product-section">
     <h2>{title}</h2>
     {children}
-    <ViewAllButton to={buttonProps.to} label={buttonProps.label} />
   </div>
 );
 
