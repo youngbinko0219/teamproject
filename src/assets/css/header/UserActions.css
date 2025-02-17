@@ -4,43 +4,47 @@
   align-items: center;
 }
 
-/* 로그인/회원가입 버튼 스타일 */
+/* 비로그인 상태: 로그인/회원가입 버튼 */
 .auth-link {
-  color: #333;
+  color: #ff7f7f; /* 텍스트 색상: 메인 컬러 */
   text-decoration: none;
   font-weight: 500;
   padding: 0.5rem 1rem;
   border-radius: 4px;
   transition: all 0.3s;
   white-space: nowrap;
+  background-color: transparent; /* 투명 배경 */
+  border: 2px solid #ff7f7f; /* 메인 컬러 테두리 */
 }
 
 .auth-link:hover {
-  background-color: #ffecec;
+  background-color: #ff7f7f; /* 호버 시 배경색을 메인 컬러로 */
+  color: #fff; /* 텍스트 색상은 흰색 */
 }
 
-/* 로그인 상태 아이콘 스타일 */
+/* 로그인 상태 아이콘 영역 */
 .logged-in-icons {
   display: flex;
   gap: 1.5rem;
   align-items: center;
 }
 
+/* 아이콘 링크 */
 .icon-link {
   color: #333;
   transition: color 0.3s;
   position: relative;
 }
 
+.icon-link:hover {
+  color: #ff7f7f; /* 호버 시 메인 컬러 */
+}
+
 .action-icon {
   font-size: 1.2rem;
 }
 
-.icon-link:hover {
-  color: #ff7f7f;
-}
-
-/* 아이콘 배지 (옵션) */
+/* 아이콘에 표시되는 배지 (옵션) */
 .icon-badge {
   position: absolute;
   top: -8px;
@@ -50,4 +54,22 @@
   border-radius: 50%;
   padding: 2px 6px;
   font-size: 0.7rem;
+}
+
+/* 로그아웃 버튼 */
+.logout-button {
+  background-color: transparent;
+  border: 2px solid #ff7f7f; /* 메인 컬러 테두리 */
+  color: #ff7f7f; /* 기본 텍스트 색상 */
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+}
+
+.logout-button:hover {
+  background-color: #ff7f7f; /* 호버 시 메인 컬러 */
+  color: #fff; /* 텍스트 흰색 */
 }

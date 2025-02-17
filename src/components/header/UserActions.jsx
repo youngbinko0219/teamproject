@@ -12,10 +12,14 @@ const UserActions = () => {
     setIsLoggedIn(!!token);
   }, []);
 
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    setIsLoggedIn(false);
+  };
+
   return (
     <div className="user-actions">
       {isLoggedIn ? (
-        // 로그인 상태: 아이콘 표시
         <div className="logged-in-icons">
           <Link to="/wishlist" className="icon-link">
             <FaHeart className="action-icon" />
@@ -26,22 +30,17 @@ const UserActions = () => {
           <Link to="/mypage" className="icon-link">
             <FaUser className="action-icon" />
           </Link>
-          <button
-            onClick={() => {
-              localStorage.removeItem("accessToken");
-              setIsLoggedIn(false);
-            }}
-          >
+          <button className="logout-button" onClick={handleLogout}>
             로그아웃
           </button>
         </div>
       ) : (
-        // 비로그인 상태: 로그인/회원가입 버튼
         <div className="auth-buttons">
-          <Link to="/login" className="auth-link">
+          <Link to="/login" className="auth-link login-link">
             로그인
           </Link>
-          <Link to="/signup" className="auth-link">
+          &nbsp;
+          <Link to="/signup" className="auth-link signup-link">
             회원가입
           </Link>
         </div>

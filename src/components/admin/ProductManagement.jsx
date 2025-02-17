@@ -132,11 +132,7 @@ const ProductManagement = () => {
                   <td>{product.category}</td>
                   <td>{product.description}</td>
                   <td>
-                    <img
-                      src={product.main_img}
-                      alt={product.product_name}
-                      width="50"
-                    />
+                    <img src={product.images} width="50" />
                   </td>
                   <td>
                     <button onClick={() => handleUpdate(product)}>수정</button>

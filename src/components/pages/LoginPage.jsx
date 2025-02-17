@@ -12,11 +12,11 @@ const LoginPage = () => {
         user_id: credentials.username,
         user_pw: credentials.password,
       });
-      const { status, message, accessToken } = response.data;
-      if (status === "success") {
+      const { message, accessToken } = response.data;
+      if (message === "success") {
         localStorage.setItem("accessToken", accessToken);
         window.location.href = "/";
-      } else if (status === "fail") {
+      } else if (message === "fail") {
         alert(message || "아이디와 비밀번호를 확인해 주세요.");
       }
     } catch (error) {
