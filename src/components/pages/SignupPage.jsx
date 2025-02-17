@@ -1,13 +1,14 @@
 import SignupForm from "../auth/SignupForm";
 import logo from "../../assets/logo.png";
 import axios from "axios";
+import Sidebar from "./Sidebar";
 
 const SignupPage = () => {
   // 회원가입 데이터 처리 함수
   const handleSignup = async (userData) => {
     try {
       const response = await axios.post(
-        "http://192.168.0.16:8080/api/signup",
+        "http://localhost:8080/auth/signup",
         userData
       );
       console.log("회원가입 성공:", response.data);

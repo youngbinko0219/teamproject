@@ -5,9 +5,9 @@ import HomePage from "../pages/HomePage";
 import MyPageEdit from "../pages/MyPageEdit";
 import MyPageMain from "../pages/MyPageMain";
 import RentalHistory from "../pages/RentalHistory";
-import Status from "../pages/Status";
 import WishList from "../pages/WishList";
-
+import Reverse from "../pages/Reverse";
+import React from "react";
 
 const AppRouter = () => {
   return (
@@ -19,10 +19,11 @@ const AppRouter = () => {
         <Route path="/mypageedit" element={<MyPageEdit />} /> 
         <Route path="/mypagemain" element={<MyPageMain />} /> 
         <Route path="/rental" element={<RentalHistory />} /> 
-        <Route path="/status" element={<Status />} /> 
         <Route path="/wishlist" element={<WishList />} /> 
-        <Route
-          path="*"
+        <Route path="/edit" element={<MyPageEdit />} /> 
+        <Route path="/more" element={<RentalHistory />} /> 
+        <Route path="/reverse" element={<Reverse />} />
+          <Route path="*"
           element={
             <div className="text-center mt-5">
               404 - 페이지를 찾을 수 없습니다

@@ -1,0 +1,106 @@
+/* 전체 페이지 스타일 (Sidebar 포함) */
+.reverse-page {
+  display: flex;
+  min-height: 100vh;
+  background-color: transparent; /* 배경색 제거 */
+}
+
+/* Sidebar와 Reverse 컨텐츠를 나누기 위해 flex 적용 */
+.reverse-container {
+  flex-grow: 1; /* 가용 공간을 최대한 사용 */
+  max-width: 900px; /* 기존 600px에서 확장 */
+  min-width: 600px; /* 최소 크기 보장 */
+  margin: 50px auto;
+  background-color: white;
+  padding: 2.5rem;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* 제목 스타일 */
+.reverse-container h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #23262f;
+  margin-bottom: 2rem;
+}
+
+/* 입력 필드 스타일 */
+.reverse-container input,
+.reverse-container textarea {
+  width: 100%;
+  padding: 14px;
+  font-size: 1.2rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.reverse-container input:focus,
+.reverse-container textarea:focus {
+  border-color: #fa9d9a;
+}
+
+/* 버튼 컨테이너 */
+.button-container {
+  display: flex;
+  justify-content: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+/* 신청 버튼 */
+.submit-button {
+  width: 48%;
+  background-color: #fa9d9a;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submit-button:hover {
+  background-color: #f8827d;
+}
+
+/* 초기화 버튼 */
+.clear-button {
+  width: 48%;
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.clear-button:hover {
+  color: #555;
+}
+
+/* 메시지 스타일 */
+.message {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.message.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.message.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}

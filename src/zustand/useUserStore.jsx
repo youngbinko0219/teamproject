@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-const userStore = create((set) => ({
+const useUserStore = create((set) => ({
   user_id: null,
 
   login: (username) => set(() => ({ user_id: username })),
@@ -8,4 +8,4 @@ const userStore = create((set) => ({
   logout: () => set(() => ({ user_id: null })),
 }));
 
-export default userStore;
+export default useUserStore;

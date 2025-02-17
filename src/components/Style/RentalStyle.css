@@ -1,8 +1,5 @@
 /* 반응형 대시보드 레이아웃 */
 .dashboard {
-  width: 100%;
-  max-width: 1200px;
-  min-height: 100vh;
   margin: 0 auto;
   display: flex;
   background-color: #fcfcfd;
@@ -11,7 +8,15 @@
   flex-wrap: wrap;
 }
 
-/* 사이드바 */
+/* 메인 컨텐츠 */
+.dashboard-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  flex-grow: 1;
+}
+
+/* 사이드바
 .sidebar {
   width: 16rem;
   height: auto;
@@ -20,7 +25,7 @@
   border-radius: 0.5rem;
   border: 1px solid #e5e7eb;
   padding: 1rem;
-}
+} */
 
 .sidebar-item {
   display: flex;
@@ -43,13 +48,6 @@
   font-size: 0.9rem;
 }
 
-/* 메인 컨텐츠 */
-.dashboard-content {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  flex-grow: 1;
-}
 
 /* 대여 내역 섹션 */
 .rental-history {
@@ -120,7 +118,7 @@
 /* 버튼 스타일 */
 .login-button {
   padding: 0.5rem 1rem;
-  background-color: #f87171;
+  background-color: #fa9d9a;
   color: white;
   border: none;
   border-radius: 0.5rem;
@@ -130,5 +128,87 @@
 }
 
 .login-button:hover {
-  background-color: #e63946;
+  background-color: #f8827d;
+}
+
+/* 제목 스타일 (클릭 방지) */
+.rental-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #23262F;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* 테이블 스타일 */
+.rental-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.rental-table th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+  text-align: center;
+  padding: 12px;
+}
+
+/* 테이블 데이터 */
+.rental-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+/* 숫자 정렬 (총 금액) */
+.align-right {
+  text-align: right;
+}
+
+/* 가운데 정렬 */
+.align-center {
+  text-align: center;
+}
+
+/* 테이블 행 마우스 오버 효과 */
+.rental-table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+/* 전체 페이지 레이아웃 */
+.rental-history-layout {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* 사이드바 스타일 */
+.sidebar1 {
+  width: 250px;
+  background-color: #f5f5f5;
+  padding: 20px;
+}
+
+/* 컨텐츠 영역 */
+.rental-history-container {
+  flex-grow: 1;
+  padding: 2.5rem;           /* Reverse 스타일 적용 */
+  max-width: 900px;
+  margin: 50px auto;          /* 중앙 배치 */
+  background-color: white;    /* 배경색 추가 */
+  border-radius: 10px;        /* 테두리 둥글게 */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+  text-align: center;    
+}
+
+.wishlist-content {
+  margin-left: 16rem;
+  padding: 2.5rem;
+  max-width: 900px;
+  margin: 50px auto;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }

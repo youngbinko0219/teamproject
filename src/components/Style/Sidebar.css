@@ -1,0 +1,33 @@
+/* 사이드바 스타일 */
+.sidebar1 {
+  width: 250px;
+  height: 20rem;
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-item {
+  padding: 10px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #333;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.sidebar-item:hover {
+  background-color: #e9ecef;
+}
+
+/* Sidebar.css */
+.sidebar1 a {
+  text-decoration: none; /* 링크 밑줄 제거 */
+  color: inherit; /* 부모 요소의 글자색을 상속받음 */
+}
+
+.sidebar1 a:hover {
+  text-decoration: none; /* 호버 시에도 밑줄 제거 */
+}

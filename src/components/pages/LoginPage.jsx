@@ -1,9 +1,9 @@
 import LoginForm from "../auth/LoginForm";
 import LoginButton from "../auth/LoginButton";
-import logo from "../assets/images/logo.png";
+import logo from "../../assets/logo.png";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import userStore from "../zustand/useUserStore.jsx";
+import userStore from "../../zustand/useUserStore.jsx";
 
 const LoginPage = () => {
 

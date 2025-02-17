@@ -1,125 +1,59 @@
-/* 반응형 대시보드 레이아웃 */
+/* 마이페이지 레이아웃 */
 .dashboard {
-  width: 100%; /* 기본적으로 전체 너비 사용 */
-  max-width: 1200px; /* 최대 1200px */
+ display: flex;
+  width: 100%;
+  max-width: 1200px;
   min-height: 100vh;
-  margin: 0 auto;
-  display: flex;
+  margin-left: 240px;
   background-color: #fcfcfd;
   padding: 1.5rem;
   gap: 1.5rem;
   flex-wrap: wrap;
 }
 
-/* 사이드바 */
-.sidebar {
-  width: 16rem;
-  height: 15rem;
-  background-color: white;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 0.5rem;
-  border: 1px solid #e5e7eb;
-  padding: 1rem;
-}
-
-.sidebar-item {
-  display: flex;
-  align-items: center;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  opacity: 0.7;
-  transition: opacity 0.2s;
-}
-
-.sidebar-item:hover {
-  opacity: 1;
-}
-
-.sidebar-text {
-  color: #4b5563;
-  font-weight: bold;
-  font-size: 0.875rem;
-}
-
 /* 메인 컨텐츠 */
 .dashboard-content {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
   flex-grow: 1;
+  max-width: 900px;
+  margin: 50px auto;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
-/* 프로필 섹션 */
-.profile-title {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #23262f;
-  margin-bottom: 1.5rem;
+
+/* 전체 페이지를 감싸는 컨테이너 */
+.page-container {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
 }
 
-/* 로그인 섹션 */
+
+/* 회원 정보 섹션 */
 .login-section {
   background-color: white;
   padding: 1.5rem;
   border: 1px solid #e5e7eb;
   border-radius: 0.5rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem; /* 간격 추가 */
 }
 
-.login-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #23262f;
-  margin-bottom: 1rem;
-}
-
-.login-box {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  background: #f7f7f7;
-  padding: 1rem;
-  border-radius: 16px;
-}
-
-.login-icon {
-  width: 2rem;
-  height: 2rem;
-  background-color: #d1d5db;
-  border-radius: 50%;
-  flex-shrink:0;
-}
-
-.login-text {
-  font-size: 1rem;
-  color: #4b5563;
-}
-
+/* 버튼을 오른쪽으로 밀어내기 */
 .login-button {
-  /* 버튼의 내부 여백 */
   padding: 0.5rem 1rem;
-  /* 배경색을 빨간색 계열로 지정 */
-  background-color: #f87171;
-  /* 버튼 텍스트 색상을 흰색으로 지정 */
+  background-color: #fa9d9a;
   color: white;
-  /* 버튼의 테두리를 제거 */
   border: none;
-  /* 버튼 모서리를 둥글게 지정 */
   border-radius: 0.5rem;
-  /* 텍스트를 굵게 설정 */
   font-weight: bold;
-  /* 버튼에 마우스를 올렸을 때의 시각적 피드백을 위해 커서를 포인터로 변경 */
   cursor: pointer;
-  /* 배경색이 부드럽게 전환되도록 효과 추가 */
   transition: background-color 0.2s;
+  margin-left: auto; /* 버튼을 오른쪽으로 이동 */
 }
 
-
-.login-button:hover {
-  background-color: #e63946;
-}
-
-/* 대여 내역 섹션 */
+/* 대여 내역 */
 .rental-history {
   background-color: white;
   padding: 1.5rem;
@@ -127,38 +61,155 @@
   border-radius: 0.5rem;
 }
 
-.section-title {
-  font-size: 1.5rem;
+/* 더보기 버튼*/
+.more-button {
+  background-color: #fa9d9a;
+  color: white;
+  padding: 10px 16px;
+  font-size: 16px;
   font-weight: bold;
-  color: #23262f;
-  margin-bottom: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.more-button:hover {
+  background-color: #f8827d;
+}
+
+.rental-history {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #23262F;
+  font-family: "Poppins", sans-serif;
+}
+
+.rental-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%
+max_width: 900px
 }
 
 .rental-item {
+  justify-content: space-between;
+  width: 100%;
+  max-width: 800px;
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
+  gap: 24px;
+  width: 100%;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fff;
 }
 
 .rental-thumbnail {
-  width: 4rem;
-  height: 4rem;
-  background-color: #d1d5db;
-  border-radius: 0.5rem;
+  width: 140px;
+  height: 140px;
+  background: #777E90;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.rental-details {
+.thumbnail-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.rental-text {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
 }
 
-.rental-name {
-  font-size: 1rem;
-  font-weight: bold;
+.rental-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #363940;
+}
+
+.rental-description {
+  font-size: 14px;
+  font-weight: 400;
   color: #363940;
 }
 
 .rental-date {
-  font-size: 0.875rem;
-  color: #95a1bb;
+  font-size: 14px;
+  color: #95A1BB;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.more-button {
+  background-color: #fa9d9a;
+  color: white;
+  padding: 10px 16px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease-in-out;
+  max-width: 800px;
+}
+
+.more-button:hover {
+  background-color: #f8827d;
+}
+
+/* 개별 카드 스타일 */
+.rental-card {
+  width: 250px; /* 기존보다 넓게 설정 */
+  height: 300px; /* 높이 증가 */
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px; /* 내부 여백 증가 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* 이미지 스타일 */
+.rental-card img {
+  max-width: 90%; /* 이미지가 카드 내부에 여유롭게 표시되도록 */
+  height: auto;
+  border-radius: 10px;
+}
+
+/* 아이템 제목 스타일 */
+.rental-card .item-title {
+  font-size: 1.3rem; /* 글씨 크기 증가 */
+  font-weight: bold;
+  color: #333;
+  margin-top: 12px;
+}
+
+/* 날짜 표시 */
+.rental-card .rental-date {
+  font-size: 1rem;
+  color: #777;
+  margin-top: 5px;
 }
