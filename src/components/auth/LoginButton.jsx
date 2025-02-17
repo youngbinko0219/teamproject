@@ -1,12 +1,13 @@
 import { FcGoogle } from "react-icons/fc";
 import { SiNaver } from "react-icons/si";
+import "../../assets/css/auth/LoginButton.css";
 
 const LoginButton = () => {
   return (
-    <div className="mb-3">
+    <div className="login-button-container">
       {/* Google 로그인 버튼 */}
       <button
-        className="btn btn-outline-secondary d-flex justify-content-center align-items-center gap-2 w-100 mb-3"
+        className="login-button google-button"
         onClick={() => console.log("Google 로그인")}
       >
         <FcGoogle size={20} />
@@ -15,7 +16,7 @@ const LoginButton = () => {
 
       {/* 네이버 로그인 버튼 */}
       <button
-        className="btn btn-success d-flex justify-content-center align-items-center gap-2 w-100"
+        className="login-button naver-button"
         onClick={() => console.log("네이버 로그인")}
       >
         <SiNaver size={20} />

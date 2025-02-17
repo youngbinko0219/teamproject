@@ -1,0 +1,66 @@
+/* LoginForm.css */
+.login-form {
+  width: 100%;
+}
+
+.login-form .form-group {
+  margin-bottom: 16px;
+}
+
+.login-form label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #333;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.login-form input:focus {
+  border-color: #ff7f7f;
+  outline: none;
+}
+
+.login-form .submit-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #ff7f7f;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.login-form .submit-button:hover {
+  background-color: #ff5050;
+}
+
+/* 로그인 폼 내 링크 (아이디/비밀번호 찾기 등) */
+.login-form .form-links {
+  text-align: right;
+  margin-top: 8px;
+}
+
+.login-form .form-links a {
+  color: #ff7f7f;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.form-link {
+  color: #ff7f7f;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+.form-link:hover {
+  text-decoration: underline;
+}

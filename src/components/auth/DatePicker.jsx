@@ -1,21 +1,22 @@
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import "../../assets/css/auth/DatePicker.css";
 
 const BirthDatePicker = ({ onChange }) => {
-  const [selectedDate, setSelectedDate] = useState(null); // 🔹 선택된 날짜 상태 추가
+  const [selectedDate, setSelectedDate] = useState(null);
 
   const handleDateChange = (date) => {
-    setSelectedDate(date); // 🔹 선택한 날짜를 상태에 저장
-    onChange(date); // 🔹 부모 컴포넌트로 선택한 날짜 전달
+    setSelectedDate(date);
+    onChange(date);
   };
 
   return (
     <DatePicker
-      selected={selectedDate} // 🔹 상태를 selected prop에 전달
+      selected={selectedDate}
       onChange={handleDateChange}
       dateFormat="yyyy-MM-dd"
-      className="form-control"
+      className="date-picker-input"
       placeholderText="생년월일"
     />
   );

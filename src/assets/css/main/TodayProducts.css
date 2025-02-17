@@ -1,7 +1,8 @@
 .today-products-container {
+  /* 섹션 컨테이너 스타일 */
   background-color: #fff;
   padding: 20px;
-  text-align: center;
+  text-align: center; /* 내부 텍스트 중앙 정렬 */
   border-radius: 8px;
   margin: 0 auto;
   max-width: 1200px;
@@ -9,11 +10,12 @@
 
 .today-products-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* 왼쪽: 제목, 오른쪽: 카운트다운 */
   align-items: center;
   margin-bottom: 20px;
 }
 
+/* h2 스타일 1.8rem로 유지 */
 .today-products-header h2 {
   font-size: 1.8rem;
   font-weight: bold;
@@ -30,6 +32,7 @@
   font-weight: bold;
 }
 
+/* 상품 목록 */
 .today-products-list {
   display: flex;
   gap: 20px;
@@ -37,6 +40,7 @@
   padding-bottom: 10px;
 }
 
+/* 개별 카드 */
 .today-product-card {
   position: relative;
   flex: 0 0 auto;
@@ -53,6 +57,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
+/* 할인 뱃지 */
 .discount-badge {
   position: absolute;
   top: 10px;
@@ -78,17 +83,20 @@
   color: #333;
 }
 
+/* 별점 */
 .rating {
   color: #ff7f7f;
   margin-bottom: 8px;
 }
 
+/* 가격 */
 .price {
   font-size: 1.2rem;
   color: #333;
   margin-bottom: 10px;
 }
 
+/* 장바구니 버튼 */
 .add-to-cart {
   background-color: #ff7f7f;
   color: #fff;
@@ -104,9 +112,10 @@
   background-color: #ff5050;
 }
 
+/* "오늘의 상품 보기" 버튼 우측 하단 정렬 */
 .view-all-products {
   display: block;
-  margin: 20px 0 0 auto; /* 상단 마진 20px, 우측 자동 여백 */
+  margin: 20px 0 0 auto; /* 위쪽 마진 20px, 우측 정렬 */
   background-color: transparent;
   border: 2px solid #ff7f7f;
   color: #ff7f7f;

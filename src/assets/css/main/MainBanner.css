@@ -1,61 +1,82 @@
-.main-banner {
-  position: relative;
-  width: 100%;
-  height: 800px;
-  overflow: hidden;
-}
-
-.banner-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-/* 좌우 화살표 스타일 */
-.nav-button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  border: none;
-  color: white;
-  padding: 10px;
-  cursor: pointer;
-  border-radius: 50%;
-  z-index: 1;
-}
-
-.nav-button.prev {
-  left: 20px;
-}
-
-.nav-button.next {
-  right: 20px;
-}
-
-.nav-button:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-/* 인디케이터 스타일 */
-.indicators {
-  position: absolute;
-  bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
+.category-list {
   display: flex;
-  gap: 8px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-sizing: border-box;
+  margin: 0;
+  /* 
+    기존에 있던 width: 100%; max-width: 300px; 는 제거.
+    여기서는 단순히 레이아웃(박스 정렬, 배경색)만 지정하고,
+    최종 너비는 페이지 레이아웃에서 결정하게 한다.
+  */
 }
 
-.indicator {
-  width: 12px;
-  height: 12px;
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 50%;
+.category-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+  width: 100%;
+  white-space: nowrap;
+}
+
+/* 대분류 스타일 */
+.category-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 1rem;
+  font-weight: bold;
   cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease-in-out;
+  white-space: nowrap;
+  width: 100%;
+  list-style-type: none;
+  position: relative;
 }
 
-.indicator.active {
-  background-color: rgba(255, 255, 255, 1);
+.category-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #000;
+  position: relative;
+}
+
+.category-name::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 20px;
+  background-color: #ff7f7f; /* 메인 컬러 */
+  border-radius: 2px;
+}
+
+.subcategory-list {
+  display: block;
+  padding-left: 20px;
+  margin-top: 4px;
+  list-style-type: none;
+}
+
+.subcategory-item {
+  margin-bottom: 4px;
+  list-style-type: none;
+}
+
+.subcategory-link {
+  text-decoration: none;
+  color: #000;
+  font-size: 0.9rem;
+}
+
+.subcategory-link:hover {
+  color: #ff7f7f; /* 메인 컬러 */
 }

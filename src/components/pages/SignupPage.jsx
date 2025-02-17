@@ -2,10 +2,11 @@ import SignupForm from "../auth/SignupForm";
 import logo from "../../assets/images/logo.png";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import "../../assets/css/pages/SignupPage.css";
 
 const SignupPage = () => {
   const navigate = useNavigate();
-  // 회원가입 데이터 처리 함수
+
   const handleSignup = async (userData) => {
     const token = localStorage.getItem("token");
     try {
@@ -14,17 +15,14 @@ const SignupPage = () => {
         userData,
         {
           headers: {
-            Authorization: `Bearer ${token}`, // 토큰을 헤더에 추가
+            Authorization: `Bearer ${token}`,
           },
         }
       );
-
       if (response.data.message === "success") {
-        console.log("회원가입 성공:", response.data);
         alert("회원가입이 완료되었습니다!");
-        navigate("/login"); // 성공 시 로그인 페이지로 이동
+        navigate("/login");
       } else {
-        console.error("회원가입 실패:", response.data);
         alert("회원가입 실패: " + response.data.message);
       }
     } catch (error) {
@@ -34,39 +32,19 @@ const SignupPage = () => {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center min-vh-100 bg-light w-100">
-      <div
-        className="bg-white p-4 rounded-4 shadow mx-auto"
-        style={{ maxWidth: "1920px", margin: "0 auto" }}
-      >
-        {/* 로고 영역 */}
-        <div className="d-flex justify-content-center mb-4">
+    <div className="page-container signup-page">
+      <div className="auth-card signup-card">
+        <div className="auth-logo">
           <Link to="/">
-            <img
-              src={logo}
-              alt="Babyloop Logo"
-              className="h-auto"
-              style={{
-                maxWidth: "200px",
-                height: "auto",
-                display: "block",
-              }}
-            />
+            <img src={logo} alt="Babyloop Logo" />
           </Link>
         </div>
-
-        {/* 회원가입 폼 */}
         <SignupForm onSubmit={handleSignup} />
-
-        {/* 로그인 페이지 링크 */}
-        <div className="text-center mt-3 text-sm">
+        <div style={{ textAlign: "center", marginTop: "20px" }}>
           이미 계정이 있으신가요?{" "}
-          <a
-            href="/login"
-            className="text-primary font-weight-bold text-decoration-none"
-          >
+          <Link to="/login" className="auth-link">
             로그인
-          </a>
+          </Link>
         </div>
       </div>
     </div>

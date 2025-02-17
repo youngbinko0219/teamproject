@@ -1,0 +1,15 @@
+/* RememberMeCheckbox.css */
+.remember-me-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.remember-me-checkbox input[type="checkbox"] {
+  width: auto;
+}
+
+.remember-me-checkbox label {
+  font-size: 1rem;
+  color: #333;
+}

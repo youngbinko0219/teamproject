@@ -2,30 +2,26 @@ import { useState } from "react";
 import AddressSearch from "./AddressSearch";
 import BirthDatePicker from "./DatePicker";
 import axios from "axios";
+import "../../assets/css/auth/SignupForm.css";
 
 const SignupForm = ({ onSubmit }) => {
-  // 상태 관리
   const [formData, setFormData] = useState({
     user_id: "",
     user_pw: "",
     user_name: "",
     user_email: "",
     user_phone: "",
-    user_addr1: "", // 우편번호
-    user_addr2: "", // 주소
-    user_addr3: "", // 상세주소
+    user_addr1: "",
+    user_addr2: "",
+    user_addr3: "",
     user_gender: "",
     user_birth: "",
-    verificationCode: "", // 인증번호
+    verificationCode: "",
   });
+  const [isVerificationSent, setIsVerificationSent] = useState(false);
+  const [isVerificationComplete, setIsVerificationComplete] = useState(false);
+  const [verificationMessage, setVerificationMessage] = useState("");
 
-  const [isVerificationSent, setIsVerificationSent] = useState(false); // 인증 메일 발송 상태
-  const [isVerificationComplete, setIsVerificationComplete] = useState(false); // 인증 완료 상태
-  const [verificationMessage, setVerificationMessage] = useState(""); // 인증 메시지 상태
-
-
-  
-  // 주소 검색 완료 핸들러
   const handleAddressComplete = (data) => {
     setFormData({
       ...formData,
@@ -34,7 +30,6 @@ const SignupForm = ({ onSubmit }) => {
     });
   };
 
-  // 아이디 중복 검사 핸들러
   const handleCheckDuplicateId = async () => {
     try {
       const response = await axios.get(
@@ -51,27 +46,20 @@ const SignupForm = ({ onSubmit }) => {
     }
   };
 
-  // 이메일 인증 메일 발송 핸들러
   const handleSendVerificationEmail = async () => {
     try {
-      const response = await axios.post(
-        "http://localhost:8080/auth/emailSend",
-        {
-          user_email: formData.user_email,
-        }
-      );
-
+      const response = await axios.post("http://localhost:8080/email/send", {
+        user_email: formData.user_email,
+      });
       if (response.status === 200) {
-        const data = response.data; // 응답 데이터 가져오기
-
+        const data = response.data;
         if (data.message === "success") {
           localStorage.setItem("token", data.token);
           localStorage.setItem("code", data.code);
         } else {
           alert("이메일 인증에 실패했습니다.");
         }
-
-        setIsVerificationSent(true); // 인증 메일 발송 상태 업데이트
+        setIsVerificationSent(true);
       }
     } catch (error) {
       console.error("이메일 인증 오류:", error);
@@ -79,20 +67,17 @@ const SignupForm = ({ onSubmit }) => {
     }
   };
 
-  // 인증번호 확인 핸들러
   const handleVerifyCode = () => {
-    const storedCode = localStorage.getItem("code"); // 로컬 스토리지에서 저장된 코드 가져오기
-    const enteredCode = formData.verificationCode; // 사용자가 입력한 인증 코드
-
+    const storedCode = localStorage.getItem("code");
+    const enteredCode = formData.verificationCode;
     if (storedCode === enteredCode) {
-      setVerificationMessage("인증번호가 일치합니다."); // 인증번호 일치 메시지
-      setIsVerificationComplete(true); // 인증 완료 상태 업데이트
+      setVerificationMessage("인증번호가 일치합니다.");
+      setIsVerificationComplete(true);
     } else {
-      setVerificationMessage("인증번호가 일치하지 않습니다."); // 인증번호 불일치 메시지
+      setVerificationMessage("인증번호가 일치하지 않습니다.");
     }
   };
 
-  // 폼 제출 처리
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!isVerificationComplete) {
@@ -103,14 +88,12 @@ const SignupForm = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="needs-validation" noValidate>
-      {/* 아이디 */}
-      <div className="mb-3">
-        <label className="form-label">* 아이디</label>
+    <form onSubmit={handleSubmit} className="signup-form">
+      <div className="form-group">
+        <label>* 아이디</label>
         <div className="input-group">
           <input
             type="text"
-            className="form-control"
             onChange={(e) =>
               setFormData({ ...formData, user_id: e.target.value })
             }
@@ -118,21 +101,18 @@ const SignupForm = ({ onSubmit }) => {
           />
           <button
             type="button"
-            className="btn btn-outline-secondary"
+            className="verification-btn"
             onClick={handleCheckDuplicateId}
           >
             중복 검사
           </button>
         </div>
-        <div className="invalid-feedback">아이디를 입력해주세요</div>
       </div>
 
-      {/* 비밀번호 */}
-      <div className="mb-3">
-        <label className="form-label">* 비밀번호</label>
+      <div className="form-group">
+        <label>* 비밀번호</label>
         <input
           type="password"
-          className="form-control"
           onChange={(e) =>
             setFormData({ ...formData, user_pw: e.target.value })
           }
@@ -140,12 +120,10 @@ const SignupForm = ({ onSubmit }) => {
         />
       </div>
 
-      {/* 이름 */}
-      <div className="mb-3">
-        <label className="form-label">* 이름</label>
+      <div className="form-group">
+        <label>* 이름</label>
         <input
           type="text"
-          className="form-control"
           onChange={(e) =>
             setFormData({ ...formData, user_name: e.target.value })
           }
@@ -153,13 +131,11 @@ const SignupForm = ({ onSubmit }) => {
         />
       </div>
 
-      {/* 이메일 */}
-      <div className="mb-3">
-        <label className="form-label">* 이메일</label>
+      <div className="form-group">
+        <label>* 이메일</label>
         <div className="input-group">
           <input
             type="email"
-            className="form-control"
             onChange={(e) =>
               setFormData({ ...formData, user_email: e.target.value })
             }
@@ -167,7 +143,7 @@ const SignupForm = ({ onSubmit }) => {
           />
           <button
             type="button"
-            className="btn btn-outline-secondary"
+            className="verification-btn"
             onClick={handleSendVerificationEmail}
             disabled={isVerificationSent}
           >
@@ -176,14 +152,12 @@ const SignupForm = ({ onSubmit }) => {
         </div>
       </div>
 
-      {/* 인증번호 입력 필드 (히든 상태) */}
       {isVerificationSent && !isVerificationComplete && (
-        <div className="mb-3">
-          <label className="form-label">* 인증번호</label>
+        <div className="form-group">
+          <label>* 인증번호</label>
           <div className="input-group">
             <input
               type="text"
-              className="form-control"
               placeholder="인증번호를 입력하세요"
               onChange={(e) =>
                 setFormData({ ...formData, verificationCode: e.target.value })
@@ -191,57 +165,45 @@ const SignupForm = ({ onSubmit }) => {
             />
             <button
               type="button"
-              className="btn btn-outline-secondary"
+              className="verification-btn"
               onClick={handleVerifyCode}
             >
               인증번호 확인
             </button>
           </div>
           {verificationMessage && (
-            <div className="mt-2 text-danger">{verificationMessage}</div>
+            <div className="verification-message">{verificationMessage}</div>
           )}
         </div>
       )}
 
-      {/* 전화번호 */}
-      <div className="mb-3">
-        <label className="form-label">* 전화번호</label>
+      <div className="form-group">
+        <label>* 전화번호</label>
         <input
           type="tel"
-          className="form-control"
           onChange={(e) =>
             setFormData({ ...formData, user_phone: e.target.value })
           }
         />
       </div>
 
-      {/* 주소 검색 */}
-      <div className="mb-3">
-        <label className="form-label">* 주소</label>
+      <div className="form-group">
+        <label>* 주소</label>
         <AddressSearch onComplete={handleAddressComplete} />
-
-        {/* 우편번호 입력 칸 */}
         <input
           type="text"
-          className="form-control mt-2"
           placeholder="우편번호"
-          value={formData.user_addr1} // 선택한 우편번호 표시
+          value={formData.user_addr1}
           readOnly
         />
-
-        {/* 주소 입력 칸 */}
         <input
           type="text"
-          className="form-control mt-2"
           placeholder="주소"
-          value={formData.user_addr2} // 선택한 주소 표시
+          value={formData.user_addr2}
           readOnly
         />
-
-        {/* 상세 주소 입력 칸 */}
         <input
           type="text"
-          className="form-control mt-2"
           placeholder="상세주소"
           onChange={(e) =>
             setFormData({ ...formData, user_addr3: e.target.value })
@@ -249,11 +211,9 @@ const SignupForm = ({ onSubmit }) => {
         />
       </div>
 
-      {/* 성별 */}
-      <div className="mb-3">
-        <label className="form-label">성별</label>
+      <div className="form-group">
+        <label>성별</label>
         <select
-          className="form-select"
           onChange={(e) =>
             setFormData({ ...formData, user_gender: e.target.value })
           }
@@ -264,15 +224,13 @@ const SignupForm = ({ onSubmit }) => {
         </select>
       </div>
 
-      {/* 생년월일 */}
-      <div className="mb-4">
-        <label className="form-label"></label>
+      <div className="form-group">
         <BirthDatePicker
           onChange={(date) => setFormData({ ...formData, user_birth: date })}
         />
       </div>
 
-      <button type="submit" className="btn btn-primary w-100">
+      <button type="submit" className="submit-button">
         회원가입 완료
       </button>
     </form>

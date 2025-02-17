@@ -5,8 +5,9 @@
   padding: 20px;
 }
 
+/* 상품 카드 */
 .all-products-grid .product-card {
-  border: 1px solid #e0e0e0;
+  border: 1px solid #ff7f7f; /* 메인 색상 적용 */
   border-radius: 10px;
   padding: 15px;
   text-align: center;
@@ -33,5 +34,24 @@
 
 .all-products-grid .product-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(255, 127, 127, 0.3); /* 메인 색상 계열의 그림자 효과 */
+}
+
+/* 반응형 설정 */
+@media (max-width: 1024px) {
+  .all-products-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .all-products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .all-products-grid {
+    grid-template-columns: 1fr;
+  }
 }

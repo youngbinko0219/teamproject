@@ -1,0 +1,16 @@
+/* AddressSearch.css */
+.address-search-btn {
+  padding: 10px 16px;
+  border: 2px solid #ff7f7f;
+  background-color: transparent;
+  color: #ff7f7f;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.address-search-btn:hover {
+  background-color: #ff7f7f;
+  color: #fff;
+}

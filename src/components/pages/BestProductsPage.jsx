@@ -1,19 +1,24 @@
 import BestProducts from "../main/BestProducts";
-import Header from "../header/Header"; // 헤더 컴포넌트
-import Footer from "../footer/Footer"; // 푸터 컴포넌트
+import Header from "../header/Header";
+import Footer from "../footer/Footer";
 import CategoryList from "../main/CategoryList";
+import "../../assets/css/pages/BestProductsPage.css";
 
 const BestProductsPage = () => {
   return (
     <>
-      <Header /> {/* 헤더 컴포넌트 */}
+      <Header />
       <div className="best-products-page">
-        <CategoryList /> {/* 카테고리 리스트 */}
+        {/* 좌측 카테고리 */}
+        <div className="category-list">
+          <CategoryList />
+        </div>
+        {/* 우측 베스트 상품 섹션 */}
         <div className="best-products-content">
           <BestProducts />
         </div>
       </div>
-      <Footer /> {/* 푸터 컴포넌트 */}
+      <Footer />
     </>
   );
 };

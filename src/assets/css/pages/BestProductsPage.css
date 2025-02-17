@@ -4,18 +4,23 @@
   padding: 20px;
 }
 
+.category-list {
+  width: 30%;
+}
+
 .best-products-content {
-  width: 70%; /* 콘텐츠 부분 너비 */
-  padding-left: 20px; /* 카테고리와 콘텐츠 사이 간격 */
+  width: 70%;
+  padding-left: 20px;
 }
 
 @media screen and (max-width: 768px) {
   .best-products-page {
-    flex-direction: column; /* 모바일 화면에서 세로로 배치 */
+    flex-direction: column;
   }
 
   .category-list,
   .best-products-content {
     width: 100%;
+    padding: 0;
   }
 }

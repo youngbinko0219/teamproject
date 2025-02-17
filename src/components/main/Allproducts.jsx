@@ -67,7 +67,7 @@ const AllProducts = () => {
 
   return (
     <div className="all-products-container">
-      <h1>모든 상품</h1>
+      <h2>모든 상품</h2>
       <div className="all-products-grid">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />

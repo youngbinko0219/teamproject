@@ -42,7 +42,8 @@ const AdminLoginPage = () => {
             placeholder="비밀번호를 입력하세요"
           />
         </div>
-        <button type="submit" className="login-button">
+        {/* 변경: className="login-button" → className="admin-login-button" */}
+        <button type="submit" className="admin-login-button">
           로그인
         </button>
       </form>
