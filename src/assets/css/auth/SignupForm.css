@@ -29,6 +29,18 @@
   outline: none;
 }
 
+.signup-form .input-with-error {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-form .error-message {
+  margin-left: 10px;
+  font-size: 0.9rem;
+  color: red;
+  white-space: nowrap;
+}
+
 .signup-form .verification-btn {
   padding: 10px 16px;
   border: 2px solid #ff7f7f;
@@ -58,4 +70,39 @@
 
 .signup-form .submit-button:hover {
   background-color: #ff5050;
+}
+
+/* 비밀번호 강도 표시 스타일 */
+.signup-form .password-strength {
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+/* 아이디 입력 칸과 버튼을 같은 컨테이너 내에 배치 */
+.input-group.id-input-group {
+  position: relative;
+}
+
+.input-group.id-input-group input {
+  width: 100%;
+  padding-right: 110px; /* 버튼이 들어갈 공간 확보 */
+}
+
+.input-group.id-input-group .verification-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  border: 2px solid #ff7f7f;
+  background-color: transparent;
+  color: #ff7f7f;
+  border-radius: 0 4px 4px 0;
+  padding: 0 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.input-group.id-input-group .verification-btn:hover {
+  background-color: #ff7f7f;
+  color: #fff;
 }
