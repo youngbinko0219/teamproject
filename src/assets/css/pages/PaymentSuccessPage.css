@@ -1,0 +1,39 @@
+/* src/assets/css/pages/PaymentSuccessPage.css */
+.payment-success-page {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.page-title {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.success-message {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.receipt-link {
+  margin-top: 20px;
+}
+
+.text-link {
+  color: #ff7f7f;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.text-link:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,46 @@
+/* src/assets/css/payment/PaymentConfirmation.css */
+
+.payment-confirmation {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.confirmation-title {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #333;
+  text-align: left;
+  margin: 0 0 1rem 1rem;
+}
+
+.confirmation-info {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 1rem;
+  color: #333;
+  text-align: left;
+  margin: 0 0 0.5rem 1rem;
+}
+
+.confirm-button {
+  align-self: flex-end;
+  padding: 0.75rem 1.5rem;
+  background-color: #ff7f7f;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+}
+
+.confirm-button:hover {
+  background-color: #ff5050;
+}

@@ -17,6 +17,9 @@ import StockManagementPage from "../pages/StockManagementPage ";
 import UserManagementPage from "../pages/UserManagement";
 import SalesReportPage from "../pages/SalesReportPage";
 import AdminAdPage from "../pages/AdminAdPage";
+import CheckoutPage from "../pages/CheckoutPage";
+import PaymentSuccessPage from "../pages/PaymentSuccessPage";
+import PaymentReceiptPage from "../pages/PaymentReceiptPage";
 
 const AppRouter = () => {
   return (
@@ -41,6 +44,10 @@ const AppRouter = () => {
         <Route path="/admin/users" element={<UserManagementPage />} />
         <Route path="/admin/sales" element={<SalesReportPage />} />
         <Route path="/admin/ad" element={<AdminAdPage />} />
+        {/* 결제 관련 페이지 */}
+        <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/payment/success" element={<PaymentSuccessPage />} />
+        <Route path="/payment/receipt" element={<PaymentReceiptPage />} />
         <Route
           path="*"
           element={
