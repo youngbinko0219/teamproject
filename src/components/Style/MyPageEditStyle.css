@@ -74,7 +74,7 @@ button {
   background-color: #fa9d9a;
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px !important;
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;

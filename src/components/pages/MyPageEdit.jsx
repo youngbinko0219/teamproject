@@ -17,7 +17,7 @@ function MyPageEdit() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5173/auth/update", {
+      const response = await axios.post("http://localhost:8080/auth/update", {
         username,
         userId,
         password,
@@ -51,9 +51,10 @@ function MyPageEdit() {
               <input
                 type="text"
                 id="username"
-                placeholder="이름을 입력하세요."
+                placeholder=""
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+                readOnly
               />
             </div>
 

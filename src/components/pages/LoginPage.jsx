@@ -3,14 +3,14 @@ import LoginButton from "../auth/LoginButton";
 import logo from "../../assets/logo.png";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import userStore from "../../zustand/useUserStore.jsx";
+import useUserStore from "../../zustand/useUserStore.jsx";
 
 const LoginPage = () => {
 
   const handleLogin = async (credentials) => {
     
     //store 불러오기
-    const { login } = userStore((state) => ({
+    const { login } = useUserStore((state) => ({
       user_id: state.user_id,
       login: state.login,
       logout: state.logout,

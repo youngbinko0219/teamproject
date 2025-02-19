@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import "../style/WishListStyle.css"; // CSS 중복 제거
+import "../style/WishListStyle.css";
 import Sidebar from "../pages/Sidebar";
 import userStore from "../../zustand/useUserStore.jsx";
 
@@ -27,16 +27,13 @@ const WishList = () => {
           return;
         }
 
-        // 스프링 부트 API 호출 (위시리스트 가져오기)
         const response = await axios.get(
-          "http://localhost:5173/auth/wishlist",
-          {
-            headers: { Authorization: `Bearer ${token}` }, // JWT 토큰을 헤더에 추가
-          }
+          `http://localhost:8080/wishlist/${user_id}`
         );
+        const { message, data } = response.data;
 
-        if (Array.isArray(response.data)) {
-          setWishlist(response.data); // 위시리스트 데이터 저장
+        if (message === "success" && Array.isArray(data)) {
+          setWishlist(data); // DB에서 가져온 위시리스트 데이터 저장
         } else {
           setError("위시리스트 데이터 형식이 올바르지 않습니다.");
         }
@@ -49,7 +46,7 @@ const WishList = () => {
     };
 
     fetchWishList();
-  }, [user_id]); // 문법 오류 수정
+  }, []);
 
   if (loading) return <p>로딩 중...</p>;
   if (error) return <p className="error-message">{error}</p>;
@@ -64,8 +61,10 @@ const WishList = () => {
         {wishlist.length > 0 ? (
           <ul className="wishlist-items">
             {wishlist.map((item) => (
-              <li className="wishlist-item" key={item.id}>
-                <Link to={`/product/${item.id}`}>{item.name}</Link>
+              <li className="wishlist-item" key={item.wish_id}>
+                <Link to={`/product/${item.product_id}`}>
+                  {item.product_name || "상품"}
+                </Link>
               </li>
             ))}
           </ul>

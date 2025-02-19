@@ -97,8 +97,7 @@ const RentalHistory = () => {
     const fetchOrders = async () => {
       try {
         const token = localStorage.getItem("accessToken"); // JWT 토큰 가져오기
-        const response = await axios.get("http://localhost:5173/auth/rental", {
-          headers: { Authorization: `Bearer ${token}` }, // 헤더에 토큰 추가
+        const response = await axios.get("http://localhost:5173//rental", {
         });
         console.log(response.data); // 데이터 확인
         if (Array.isArray(response.data)) {

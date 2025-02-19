@@ -3,40 +3,63 @@ import "../style/MyPageMainStyle.css";
 import { Link } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import axios from "axios";
+import useUserStore from "../../zustand/useUserStore";
 
 const LoginSection = () => {
-  const [setUserInfo] = useState(null); // 사용자 정보 상태 추가
+  const [userInfo, setUserInfo] = useState({
+    user_id: "",         
+    user_pw: "",         
+    user_name: "",       
+    user_email: "",      
+    user_phone: "",      
+    user_addr1: "",      
+    user_addr2: "",      
+    user_addr3: "",      
+    user_gender: "",     
+    user_birth: "",      
+    created_at: "",      
+    points: 0,           
+    provider: "",        
+  }); 
+  const {user_id} = useUserStore();
 
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const token = localStorage.getItem("accessToken"); // JWT 토큰 가져오기
-        const response = await axios.get("http://localhost:5173/auth/userinfo", {
-          headers: { Authorization: `Bearer ${token}` }, // 헤더에 토큰 추가
-        });
-        setUserInfo(response.data); // 사용자 정보 저장
+        const response = await axios.get(`http://localhost:8080/user/${user_id}`);
+        const {message, ...data} = response.data;
+        if (message === "success") {
+          setUserInfo(data);
+        } else {
+          console.error("회원 정보 불러오기 실패:", data.error);
+        }
       } catch (error) {
         console.error("회원 정보 불러오기 오류:", error);
       }
     };
-    fetchUserInfo();
+    if (user_id) fetchUserInfo();
   }, []);
 
   return (
-    <div className="login-section">
+<div className="login-section">
       <h2 className="login-title">회원 정보</h2>
       <div className="login-box">
-        {/* 왼쪽 정렬된 사용자 정보 */}
         <div className="login-info">
           <div className="login-icon" />
         </div>
         <div className="login-text">
-          <span>김철수</span>
-          <br />
-          <small>kim7su</small>
+          {userInfo ? (
+            <>
+              <span>이름 : {userInfo.user_name}</span><br />
+              <span>성별 : {userInfo.user_gender}</span><br />
+              <span>가입일 : {userInfo.created_at}</span><br />
+              <span>포인트 : {userInfo.points} P</span><br />
+              <span>회원 등급 : {userInfo.provider}</span>
+            </>
+          ) : (
+            <p>회원 정보를 불러오는 중...</p>
+          )}
         </div>
-
-        {/* 오른쪽 정렬된 계정 관리 버튼 */}
         <Link to="/edit">
           <button className="login-button">계정 관리</button>
         </Link>
@@ -61,7 +84,7 @@ const RentalHistory = () => {
           <div className="rental-text">
             <span className="rental-title">카시트</span>
             <span className="rental-description">카시트</span>
-            <span className="rental-date">10 Oct 24</span>
+            <span className="rental-date">2024-10-24</span>
           </div>
         </div>
         <div className="rental-item">
@@ -75,7 +98,7 @@ const RentalHistory = () => {
           <div className="rental-text">
             <span className="rental-title">유모차</span>
             <span className="rental-description">유모차</span>
-            <span className="rental-date">10 Oct 24</span>
+            <span className="rental-date">2024-10-24</span>
           </div>
         </div>
       </div>

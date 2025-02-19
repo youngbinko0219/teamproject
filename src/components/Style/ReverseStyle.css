@@ -57,7 +57,7 @@
   width: 48%;
   background-color: #fa9d9a;
   color: white;
-  font-size: 1.2rem;
+  font-size: 15px;
   font-weight: bold;
   padding: 14px;
   border: none;
@@ -76,7 +76,7 @@
   background: none;
   border: none;
   color: #888;
-  font-size: 1.1rem;
+  font-size: 15px;
   cursor: pointer;
   transition: color 0.2s;
 }

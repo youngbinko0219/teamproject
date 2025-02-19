@@ -2,30 +2,38 @@
 .dashboard {
  display: flex;
   width: 100%;
-  max-width: 1200px;
+  max-width: 900px;
   min-height: 100vh;
-  margin-left: 240px;
-  background-color: #fcfcfd;
-  padding: 1.5rem;
-  gap: 1.5rem;
-  flex-wrap: wrap;
+  margin: 50px auto ;
+  padding: 2.5rem;
+  background-color: white !important;    /* 배경색 추가 */
+  border-radius: 10px;  /* 둥근 테두리 유지 */
+  box-shadow: none;  /* 그림자 효과 */
+  text-align: center;
+  flex-direction: column;  /* 세로 방향 정렬 */
+  align-items: center;
 }
 
 /* 메인 컨텐츠 */
 .dashboard-content {
+  width: 100%;
   flex-grow: 1;
-  max-width: 900px;
-  margin: 50px auto;
-  background-color: white;
+  max-width: 800px;
+  margin: 0 auto !important;
   border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* 그림자 복원 */
   text-align: center;
+  background-color: white;    /* 배경색 추가 */
+  border-radius: 10px; 
+  padding: 2rem;  /* 내용 패딩 추가 */
 }
 
 
 /* 전체 페이지를 감싸는 컨테이너 */
 .page-container {
   display: flex;
+  justify-content: center;
+  align-items: flex-start;
   width: 100%;
   min-height: 100vh;
 }
@@ -33,24 +41,37 @@
 
 /* 회원 정보 섹션 */
 .login-section {
-  background-color: white;
-  padding: 1.5rem;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.5rem;
-  margin-bottom: 1.5rem; /* 간격 추가 */
+  background-color: transparent;
+  padding: 1rem;
+  border: none;
+  margin-bottom: 1rem;
+  font-size: 14px; /* 회원 정보 글씨 크기 줄임 */
+  border: 1px solid #e5e7eb; /* 테두리 복원 */
+  border-radius: 10px;     /* 둥근 테두리 복원 */
+}
+
+.profile-title {
+  font-size: 35px; 
+  font-weight: bold;
+}
+
+.login-title {
+  font-size: 20px; 
+  font-weight: bold;
 }
 
 /* 버튼을 오른쪽으로 밀어내기 */
 .login-button {
+  width: 80px;          /* 전체 너비 */
+  height: 35px;         /* 버튼 높이 */
   padding: 0.5rem 1rem;
   background-color: #fa9d9a;
   color: white;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 12px;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.2s;
-  margin-left: auto; /* 버튼을 오른쪽으로 이동 */
 }
 
 /* 대여 내역 */
@@ -66,12 +87,14 @@
   background-color: #fa9d9a;
   color: white;
   padding: 10px 16px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
   width: 100%;
+  max-width: 100%;
+  height: 40px;
   transition: background-color 0.3s ease-in-out;
 }
 
@@ -138,6 +161,7 @@ max_width: 900px
   flex-direction: column;
   justify-content: center;
   text-align: left;
+  line-height: 1.5;
 }
 
 .rental-title {
@@ -164,13 +188,14 @@ max_width: 900px
   background-color: #fa9d9a;
   color: white;
   padding: 10px 16px;
-  font-size: 16px;
+  font-size: 14px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   width: 100%;
   transition: background-color 0.3s ease-in-out;
-  max-width: 800px;
+  max-width: 100%;
+  height: 40px;
 }
 
 .more-button:hover {
