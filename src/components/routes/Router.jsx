@@ -21,6 +21,8 @@ import CheckoutPage from "../pages/CheckoutPage";
 import PaymentSuccessPage from "../pages/PaymentSuccessPage";
 import PaymentReceiptPage from "../pages/PaymentReceiptPage";
 import MessagesPage from "../pages/MessagePage";
+import NotFoundPage from "../pages/NotFountPage";
+import SearchPage from "../pages/SearchPage";
 
 const AppRouter = () => {
   return (
@@ -50,14 +52,9 @@ const AppRouter = () => {
         <Route path="/payment/success" element={<PaymentSuccessPage />} />
         <Route path="/payment/receipt" element={<PaymentReceiptPage />} />
         <Route path="/messages" element={<MessagesPage />} />
-        <Route
-          path="*"
-          element={
-            <div className="text-center mt-5">
-              404 - 페이지를 찾을 수 없습니다
-            </div>
-          }
-        />
+        {/* 검색 페이지 추가 */}
+        <Route path="/search" element={<SearchPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>
   );

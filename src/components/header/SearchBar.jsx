@@ -1,11 +1,16 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../../assets/css/header/SearchBar.css";
 
 const SearchBar = () => {
   const [query, setQuery] = useState("");
+  const navigate = useNavigate();
 
   const handleSearch = () => {
-    console.log("Searching for:", query);
+    // 검색어가 있을 때만 이동하도록 처리할 수 있음
+    if (query.trim()) {
+      navigate(`/search?query=${encodeURIComponent(query)}`);
+    }
   };
 
   return (
