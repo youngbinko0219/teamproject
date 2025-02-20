@@ -1,3 +1,12 @@
+.contact-info {
+  /* 전체 텍스트에 메인 컬러 적용 */
+  color: #ff7f7f;
+}
+
+.contact-info h4 {
+  margin-bottom: 1rem;
+}
+
 .contact-info p {
   margin: 0.5rem 0;
 }
