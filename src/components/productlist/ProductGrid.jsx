@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
 import SortBar from "./SortBar";
 import "../../assets/css/productlist/ProductGrid.css";
-import useProductStore from "../productlist/ProductStore"; 
+import useProductStore from "../../zustand/useProductStore";
 import axios from "axios";
 
 const itemsPerPage = 16; // 한 페이지당 상품 개수
@@ -33,11 +33,11 @@ const ProductGrid = () => {
     fetchProducts();
   }, [category]); // category 변경 시 실행
 
-  // ✅ 카테고리가 변경될 때 정렬을 최신순으로 초기화
+  // 카테고리가 변경될 때 정렬을 최신순으로 초기화
   useEffect(() => {
-    setSortType("latest");  // ✅ 정렬 기준을 최신순으로 변경
-    setCurrentPage(1); // ✅ 항상 1페이지로 이동
-  }, [category]); // ✅ 카테고리 변경 시 실행
+    setSortType("latest");  // 정렬 기준을 최신순으로 변경
+    setCurrentPage(1); // 항상 1페이지로 이동
+  }, [category]); // 카테고리 변경 시 실행
 
   // 정렬 변경 시 1페이지로 이동
   const handleSortChange = (sortOption) => {
@@ -78,10 +78,6 @@ const ProductGrid = () => {
           <div className="product-grid">
             {currentItems.length > 0 ? (
               currentItems.map((product) => {
-                console.log(
-                  `📌 ProductGrid에서 전달하는 상품: ${product.product_name}, product_id: ${product.product_id}`
-                );
-
                 return <ProductCard key={product.product_id} product={product} />;
               })
             ) : (
@@ -91,7 +87,7 @@ const ProductGrid = () => {
 
 
           {/* 페이지네이션 */}
-          <div className="pagination-container">
+          <div className="pagination-container2">
             <div className="pagination">
               <button 
                 onClick={() => setCurrentPage(prev => Math.max(prev - pageGroupSize, 1))} 

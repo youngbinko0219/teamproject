@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import "../../assets/css/main/CategoryList.css";
-import useProductStore from "../productlist/ProductStore";
+import useProductStore from "../../zustand/useProductStore";
 
 const categories = [
   { title: "아기 가구", items: ["바운서", "아기체육관", "아기침대"] },

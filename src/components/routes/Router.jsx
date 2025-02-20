@@ -75,9 +75,7 @@ const AppRouter = () => {
         <Route path="/terms-agreement" element={<TermsAgreementPage />} />
         {/* 상품 관련 페이지 */}
         <Route path="/products/:category" element={<ProductListPage />} />
-        <Route
-          path="/products/view/:product_id"
-          element={<ProductDetailPage />}
+        <Route path="/products/view/:product_id" element={<ProductDetailPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>

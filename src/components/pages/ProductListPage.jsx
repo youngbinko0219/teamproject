@@ -1,14 +1,12 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import useProductStore from "../productlist/ProductStore"; 
-
+import useProductStore from "../../zustand/useProductStore"; 
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
 import CategoryList from "../main/CategoryList";
 import FilterBar from "../productlist/FilterBar";
-import ProductGrid from "../productlist/ProductGrid";
 import RecentViewed from "../productlist/RecentViewed";
-
+import ProductGrid from "../productlist/ProductGrid";
 import "../../assets/css/pages/ProductListPage.css";
 
 const ProductListPage = () => {

@@ -15,7 +15,6 @@
   flex-direction: column;
   width: 250px; 
   gap: 40px;
-  margin: 20px;
 }
 
 /* ✅ 중앙 영역: 상품 목록 */
@@ -53,5 +52,4 @@
   width: 180px;
   position: sticky;
   top: 100px;
-  margin: 20px;
 }
