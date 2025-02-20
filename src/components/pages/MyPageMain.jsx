@@ -1,67 +1,60 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../style/MyPageMainStyle.css";
 import { Link } from "react-router-dom";
-import Sidebar from "./Sidebar";
+import Sidebar from "./Sidebar.jsx";
 import axios from "axios";
 import useUserStore from "../../zustand/useUserStore";
+import Point from "./point.jsx";
 
+console.log(Point);
+
+/* 사용자 정보 출력*/
 const LoginSection = () => {
-  const [userInfo, setUserInfo] = useState({
-    user_id: "",         
-    user_pw: "",         
-    user_name: "",       
-    user_email: "",      
-    user_phone: "",      
-    user_addr1: "",      
-    user_addr2: "",      
-    user_addr3: "",      
-    user_gender: "",     
-    user_birth: "",      
-    created_at: "",      
-    points: 0,           
-    provider: "",        
-  }); 
-  const {user_id} = useUserStore();
+  const { user_id, userInfo } = useUserStore();
+  const setUserInfo = useUserStore((state) => state.setUserInfo);
 
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/user/${user_id}`);
-        const {message, ...data} = response.data;
-        if (message === "success") {
-          setUserInfo(data);
+        const response = await axios.get(
+          `http://localhost:8080/user/${user_id}`
+        );
+        //정보 가져오고 저장
+        setUserInfo("받은 데이터:", response.data);
+        if (Array.isArray(response.data) && response.data.length > 0) {
+          setUserInfo(response.data[0]); // 첫 번째 요소를 저장
         } else {
-          console.error("회원 정보 불러오기 실패:", data.error);
+          setUserInfo(null); // 데이터가 없을 경우 null 처리
         }
+        console.log(response.data);
       } catch (error) {
         console.error("회원 정보 불러오기 오류:", error);
+        setUserInfo(null); // 오류 발생 시 null 처리
       }
     };
-    if (user_id) fetchUserInfo();
-  }, []);
+
+    if (user_id) {
+      fetchUserInfo();
+    }
+  }, [user_id]); // user_id 변경될 때마다 실행
 
   return (
-<div className="login-section">
+    <div className="member-info-container">
       <h2 className="login-title">회원 정보</h2>
-      <div className="login-box">
-        <div className="login-info">
-          <div className="login-icon" />
-        </div>
-        <div className="login-text">
-          {userInfo ? (
-            <>
-              <span>이름 : {userInfo.user_name}</span><br />
-              <span>성별 : {userInfo.user_gender}</span><br />
-              <span>가입일 : {userInfo.created_at}</span><br />
-              <span>포인트 : {userInfo.points} P</span><br />
-              <span>회원 등급 : {userInfo.provider}</span>
-            </>
-          ) : (
-            <p>회원 정보를 불러오는 중...</p>
-          )}
-        </div>
+      <div className="member-info-content">
+        {userInfo ? (
+          <>
+            <p>이름: {userInfo.user_name}</p>
+            <p>성별: {userInfo.user_gender}</p>
+            <p>가입일: {userInfo.created_at}</p>
+          </>
+        ) : (
+          <p>회원 정보를 불러오는 중...</p>
+        )}
+      </div>
+      <div className="button-container">
         <Link to="/edit">
-          <button className="login-button">계정 관리</button>
+          <button className="button">계정 관리</button>
         </Link>
       </div>
     </div>
@@ -110,19 +103,41 @@ const RentalHistory = () => {
 };
 
 const Dashboard = () => {
+  const [points, setPoints] = useState(null); // 포인트 상태 관리
+
+  useEffect(() => {
+    const fetchPoints = async () => {
+      try {
+        const response = await axios.get("http://localhost:8080/user/point");
+        setPoints(response.data); // 포인트 데이터 업데이트
+      } catch (error) {
+        console.error("포인트 불러오기 오류:", error);
+      }
+    };
+
+    fetchPoints();
+  }, []);
+
   return (
-    <>
-      <div className="page-container">
-        <Sidebar />
-        <div className="dashboard">
-          <div className="dashboard-content">
-            <h1 className="profile-title">마이페이지</h1>
+    <div className="page-container">
+      <Sidebar />
+      <div className="dashboard">
+        <div className="dashboard-content">
+          <h1 className="profile-title">마이페이지</h1>
+          <div className="info-container">
             <LoginSection />
-            <RentalHistory />
+            <div className="point-info-container">
+              {/* 포인트와 회원 등급을 전달 */}
+              {points ? (
+                <Point points={points.points} userGrade={points.userGrade} />
+              ) : (
+                <p>포인트 정보를 불러오는 중...</p>
+              )}
+            </div>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -7,6 +7,7 @@ import MyPageMain from "../pages/MyPageMain";
 import RentalHistory from "../pages/RentalHistory";
 import WishList from "../pages/WishList";
 import Reverse from "../pages/Reverse";
+import Point from "../pages/Point";
 import React from "react";
 
 const AppRouter = () => {
@@ -23,6 +24,7 @@ const AppRouter = () => {
         <Route path="/edit" element={<MyPageEdit />} /> 
         <Route path="/more" element={<RentalHistory />} /> 
         <Route path="/reverse" element={<Reverse />} />
+        <Route path="/point" element={<Point />} />
           <Route path="*"
           element={
             <div className="text-center mt-5">

@@ -81,6 +81,7 @@
 
 // export default RentalHistory;
 
+/*
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { format } from "date-fns";
@@ -92,28 +93,6 @@ const RentalHistory = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchOrders = async () => {
-      try {
-        const token = localStorage.getItem("accessToken"); // JWT 토큰 가져오기
-        const response = await axios.get("http://localhost:5173//rental", {
-        });
-        console.log(response.data); // 데이터 확인
-        if (Array.isArray(response.data)) {
-          setOrders(response.data); // 데이터 상태 업데이트
-        } else {
-          setOrders([]);
-          setError("데이터 형식이 올바르지 않습니다.");
-        }
-      } catch (err) {
-        setError("데이터를 불러오는 중 오류가 발생했습니다.");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchOrders();
-  }, []);
 
   if (loading) return <p>로딩 중...</p>;
   if (error) return <p className="error-message">{error}</p>;
@@ -171,4 +150,64 @@ const RentalHistory = () => {
     </div>
   );
 };
+export default RentalHistory;
+*/
+import "../style/RentalStyle.css";
+import { Link } from "react-router-dom";
+import Sidebar from "./Sidebar";
+
+const RentalHistory = () => {
+  // 임시 데이터 (UI 확인용)
+  const orders = [
+    {
+      productName: "유모차",
+      totalAmount: 30000,
+      status: "대여 중",
+      rentalEndDate: "2024-10-24",
+      orderDate: "2024-10-01",
+    },
+    {
+      productName: "카시트",
+      totalAmount: 20000,
+      status: "반납 완료",
+      rentalEndDate: "2024-09-15",
+      orderDate: "2024-09-01",
+    },
+  ];
+
+  return (
+    <div className="rental-history-layout">
+      <Sidebar />
+      <div className="rental-history-container">
+        <h2 className="rental-title">대여 내역 조회</h2>
+
+        <table className="rental-table">
+          <thead>
+            <tr>
+              <th className="align-center">주문 제품</th>
+              <th className="align-center">금액</th>
+              <th className="align-center">주문 상태</th>
+              <th className="align-center">대여 종료 날짜</th>
+              <th className="align-center">주문일</th>
+            </tr>
+          </thead>
+          <tbody>
+            {orders.map((order, index) => (
+              <tr key={index}>
+                <td className="align-center">{order.productName}</td>
+                <td className="align-right">
+                  {order.totalAmount.toLocaleString()} 원
+                </td>
+                <td className="align-center">{order.status}</td>
+                <td className="align-center">{order.rentalEndDate}</td>
+                <td className="align-center">{order.orderDate}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
+
 export default RentalHistory;
