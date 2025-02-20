@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
-import "../style/PointStyle.css";
-import { Link } from "react-router-dom";
-import Sidebar from "./Sidebar.jsx";
+import { useEffect, useState } from "react";
+import "../../assets/css/mypage/Point.css";
 
 const Point = () => {
   const [points, setPoints] = useState(0);

@@ -1,0 +1,70 @@
+/* Dashboard.css */
+
+/* 전체 페이지 레이아웃 (Dashboard) */
+.mypage-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.mypage-dashboard {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 900px;
+  min-height: 100vh;
+  margin: 50px auto;
+  padding: 2.5rem;
+  background-color: white;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.mypage-dashboard-content {
+  width: 100%;
+  flex-grow: 1;
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  padding: 2rem;
+}
+
+/* 회원 정보 + 포인트 섹션을 감싸는 컨테이너 */
+.mypage-info-container {
+  display: flex;
+  width: 100%;
+  max-width: 900px;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+/* 포인트 및 회원 등급 영역 */
+.mypage-point-info-container {
+  width: 45%;
+  background-color: white;
+  padding: 1.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+  .mypage-info-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .mypage-point-info-container {
+    width: 90%;
+  }
+}

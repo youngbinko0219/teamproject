@@ -1,0 +1,100 @@
+/* RentalHistory.css */
+
+/* 대여 내역 영역 (RentalHistory) */
+.mypage-rental-history {
+  background-color: white;
+  padding: 1.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.mypage-section-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #23262f;
+  font-family: "Poppins", sans-serif;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.mypage-rental-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.mypage-rental-item {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fff;
+  margin-right: 10px;
+}
+
+.mypage-rental-thumbnail {
+  width: 140px;
+  height: 140px;
+  background: #777e90;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mypage-thumbnail-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.mypage-rental-text {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  line-height: 1.5;
+}
+
+.mypage-rental-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #363940;
+}
+
+.mypage-rental-description {
+  font-size: 14px;
+  font-weight: 400;
+  color: #363940;
+}
+
+.mypage-rental-date {
+  font-size: 14px;
+  color: #95a1bb;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.mypage-more-button {
+  background-color: #fa9d9a;
+  color: white;
+  padding: 10px 16px;
+  font-size: 14px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease-in-out;
+  margin-top: 1rem;
+}
+
+.mypage-more-button:hover {
+  background-color: #f8827d;
+}

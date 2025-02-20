@@ -18,9 +18,11 @@ const MessagesPage = () => {
       // 예시: GET /api/messages
       // 백엔드에서 '신고 카운트가 5회 이상인 데이터'만 보내도록 설정
       const response = await axios.get("/admin/messages");
-      setMessages(response.data);
+      console.log("response.data:", response.data);
+      setMessages(Array.isArray(response.data) ? response.data : []);
     } catch (error) {
       console.error("Failed to fetch messages:", error);
+      setMessages([]);
     }
   };
 

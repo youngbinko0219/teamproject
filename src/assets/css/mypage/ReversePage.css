@@ -1,0 +1,6 @@
+/* src/assets/css/mypage/ReversePage.css */
+.reverse-page {
+  display: flex;
+  min-height: 100vh;
+  background-color: transparent;
+}

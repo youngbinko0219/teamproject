@@ -3,31 +3,30 @@ import LoginButton from "../auth/LoginButton";
 import logo from "../../assets/images/logo.png";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import useUserStore from "../../zustand/useUserStore.jsx";
+import useUserStore from "../../hooks/useUserStore.jsx";
 import "../../assets/css/pages/LoginPage.css";
 
 const LoginPage = () => {
+  // 훅은 컴포넌트 최상위에서 호출해야 합니다.
+  const { login } = useUserStore((state) => ({
+    login: state.login,
+  }));
 
   const handleLogin = async (credentials) => {
-    
-    //store 불러오기
-    const { login } = useUserStore((state) => ({
-      user_id: state.user_id,
-      login: state.login,
-      logout: state.logout,
-    }));
-
     try {
       const response = await axios.post("http://localhost:8080/auth/login", {
         user_id: credentials.username,
         user_pw: credentials.password,
       });
-      const { message, accessToken } = response.data;
-      if (message === "success") {
+      // 응답 데이터 구조분해, message를 responseMessage로 명명
+      const { message: responseMessage, accessToken } = response.data;
+      if (responseMessage === "success") {
         localStorage.setItem("accessToken", accessToken);
+        // 필요한 경우 store 업데이트를 위해 login() 호출 가능
+        login();
         window.location.href = "/";
-      } else if (message === "fail") {
-        alert(message || "아이디와 비밀번호를 확인해 주세요.");
+      } else {
+        alert(responseMessage || "아이디와 비밀번호를 확인해 주세요.");
       }
     } catch (error) {
       console.error("로그인 오류:", error);
