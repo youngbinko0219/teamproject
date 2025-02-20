@@ -1,6 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginPage from "../pages/LoginPage";
 import SignupPage from "../pages/SignupPage";
+import MyPageEdit from "../pages/MyPageEdit";
+import MyPageMain from "../pages/MyPageMain";
+import RentalHistory from "../pages/RentalHistory";
+import WishList from "../pages/WishList";
+import Reverse from "../pages/Reverse";
+import Point from "../pages/Point";
 import MainPage from "../pages/MainPage";
 import ForgotIdPage from "../pages/ForgotIdPage";
 import ForgotPwPage from "../pages/ForgotPwPage";
@@ -34,6 +40,14 @@ const AppRouter = () => {
         <Route path="/" element={<MainPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />{" "}
+        <Route path="/mypageedit" element={<MyPageEdit />} /> 
+        <Route path="/mypagemain" element={<MyPageMain />} /> 
+        <Route path="/rental" element={<RentalHistory />} /> 
+        <Route path="/wishlist" element={<WishList />} /> 
+        <Route path="/edit" element={<MyPageEdit />} /> 
+        <Route path="/more" element={<RentalHistory />} /> 
+        <Route path="/reverse" element={<Reverse />} />
+        <Route path="/point" element={<Point />} />
         <Route path="/forgotid" element={<ForgotIdPage />} />
         <Route path="/forgotpw" element={<ForgotPwPage />} />
         <Route path="/all-products" element={<AllProductsPage />} />
@@ -64,7 +78,6 @@ const AppRouter = () => {
         <Route
           path="/products/view/:product_id"
           element={<ProductDetailPage />}
-        />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>

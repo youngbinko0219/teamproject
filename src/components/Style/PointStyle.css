@@ -1,0 +1,128 @@
+/* 반응형 대시보드 레이아웃 */
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  border: none;
+  align-items: center;
+}
+
+/* 상단 컨테이너 */
+.top-container {
+  display: flex;
+  width: 100%;
+  max-width: 900px;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* 회원 정보 및 포인트 컨테이너 */
+.info-container {
+  display: flex;
+  width: 100%;
+  max-width: 900px;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* 회원 정보 섹션 */
+.member-info-container {
+  width: 45%;
+  background-color: white;
+  padding: 1.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.member-info-content {
+  text-align: center;
+  width: 100%;
+}
+
+/* 포인트 및 회원 등급 섹션 */
+.point-info-container {
+  width: 45%;
+  background-color: white;
+  padding: 1.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column-reverse; /* 버튼을 아래로 배치할 수 있도록 flex 방향을 column으로 설정 */
+  justify-content: flex-end; /* 버튼을 아래로 정렬 */
+  align-items: center;
+}
+
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: auto;
+}
+
+.point-info-content {
+  text-align: center;
+  width: 100%;
+}
+
+/* 대여 내역 섹션 */
+.rental-history {
+  background-color: white;
+  padding: 1.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  overflow-x: auto;
+  width: 100%;
+  max-width: 900px;
+  margin-top: 1rem;
+}
+
+/* 제목 스타일 */
+.section-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #23262f;
+  margin-bottom: 1rem;
+}
+
+/* 버튼 스타일 */
+.button {
+  background-color: #fa9d9a;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+  width: 100%;
+  max-width: 250px;
+  
+}
+
+.button:hover {
+  background-color: #e08885;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+  .info-container {
+    flex-direction: column;
+    align-items: center;
+    flex-direction: column-reverse;
+    display: flex;
+  }
+  .member-info-container
+  {
+    width: 90%;
+    flex-direction: column;
+    display: flex;
+  }
+}

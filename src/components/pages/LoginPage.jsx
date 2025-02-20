@@ -3,10 +3,20 @@ import LoginButton from "../auth/LoginButton";
 import logo from "../../assets/images/logo.png";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import useUserStore from "../../zustand/useUserStore.jsx";
 import "../../assets/css/pages/LoginPage.css";
 
 const LoginPage = () => {
+
   const handleLogin = async (credentials) => {
+    
+    //store 불러오기
+    const { login } = useUserStore((state) => ({
+      user_id: state.user_id,
+      login: state.login,
+      logout: state.logout,
+    }));
+
     try {
       const response = await axios.post("http://localhost:8080/auth/login", {
         user_id: credentials.username,

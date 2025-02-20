@@ -1,0 +1,93 @@
+/* 전체 페이지 레이아웃 */
+.mypage-edit-layout {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* 사이드바 스타일 */
+.sidebar1 {
+  width: 250px;
+  background-color: #f5f5f5;
+  padding: 20px;
+}
+
+/* 전체 페이지 레이아웃 
+.mypage-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px;
+}*/
+
+/* 계정 설정 컨텐츠 */
+.mypage-content {
+  flex-grow: 1;
+  padding: 2.5rem;           /* Reverse와 동일한 패딩 */
+  max-width: 900px;
+  margin: 50px auto;          /* 중앙 배치 */
+  background-color: white;    /* 배경색 추가 */
+  border-radius: 10px;        /* 테두리 둥글게 */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+  text-align: left;         /* 텍스트 중앙 정렬 */
+}
+
+.account-settings h1 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #23262F;
+  text-align: center;
+  margin-bottom: 20px;
+  border: none; 
+  background: none;
+  padding: 0; 
+  box-shadow: none; 
+}
+
+.account-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+/* 저장 버튼 */
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #fa9d9a;
+  color: white;
+  border: none;
+  border-radius: 12px !important;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: #f8827d;
+}
+
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  text-align: center;
+}
