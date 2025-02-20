@@ -1,0 +1,41 @@
+.product-slider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.product-list {
+  display: flex;
+  overflow: hidden;
+  gap: 10px;
+}
+
+.product-item {
+  flex: 0 0 auto;
+  width: 200px;
+  text-align: center;
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.product-name {
+  margin-top: 8px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.slider-button {
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+}

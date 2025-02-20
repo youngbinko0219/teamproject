@@ -1,0 +1,54 @@
+/* 화면 전체를 가운데 정렬 */
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f4f4f4;
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* 로그인 카드 */
+.login-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 400px; /* 원하는 너비 */
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 로고 중앙 정렬 */
+.auth-logo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.auth-logo img {
+  max-width: 200px;
+  height: auto;
+}
+
+/* 로그인 버튼과 소셜 버튼 사이 간격 */
+.login-button-container {
+  margin-top: 16px; /* 로그인 버튼과 소셜 로그인 버튼 사이 여백 */
+}
+
+/* 회원가입 링크 */
+.signup-link {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+/* 파란색 링크 문제 해결: 모든 링크에 #ff7f7f 적용 */
+.text-link {
+  color: #ff7f7f;
+  text-decoration: none;
+  font-weight: bold;
+}
+.text-link:hover {
+  text-decoration: underline;
+}

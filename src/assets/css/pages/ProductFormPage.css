@@ -1,0 +1,25 @@
+/* 레이아웃 전체 컨테이너 */
+.admin-dashboard {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 사이드바와 메인 콘텐츠를 가로로 나란히 배치 */
+.dashboard-content {
+  display: flex;
+  flex: 1;
+}
+
+/* 메인 콘텐츠와 제목을 감싸는 래퍼 */
+.main-content-wrapper {
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* 페이지 제목 스타일 */
+.page-title {
+  text-align: center; /* 중앙 정렬 */
+  white-space: nowrap; /* 줄바꿈 방지 */
+  margin-bottom: 20px; /* 폼과의 간격 */
+}

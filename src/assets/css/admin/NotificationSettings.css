@@ -1,0 +1,20 @@
+.notification-settings {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.settings {
+  margin-top: 15px;
+}
+
+.settings label {
+  display: block;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.settings input[type="checkbox"] {
+  margin-right: 10px;
+}

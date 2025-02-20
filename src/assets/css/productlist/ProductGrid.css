@@ -1,0 +1,53 @@
+/* ✅ 상품 목록 전체 컨테이너 */
+.product-grid-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  
+  /* ✅ 상품 목록 (4x4 그리드) */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    justify-content: center;
+    align-items: start;
+    width: 100%;
+  }
+  
+  /* ✅ 페이지네이션 */
+  .pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+  }
+  
+  .pagination button {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    background: #fff;
+    transition: 0.3s;
+  }
+  
+  .pagination button.active {
+    background: #ff758c;
+    color: white;
+    border: 1px solid #ff758c;
+  }
+  
+
+/* ✅ 상품이 없을 때 중앙 정렬 */
+.no-products-message {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #555;
+  padding: 50px 0; /* 🔥 위아래 간격 추가 */
+  margin-top: 20px; /* 🔥 정렬 바랑 간격 벌려주기 */
+}

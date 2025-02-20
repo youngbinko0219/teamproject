@@ -1,0 +1,28 @@
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.footer-links h4 {
+  color: #ff7f7f;
+  margin-bottom: 1rem;
+}
+
+.footer-links a {
+  display: block;
+  color: #ff7f7f;
+  text-decoration: none;
+  margin: 0.5rem 0;
+  white-space: nowrap; /* 텍스트가 한 줄로 유지되도록 설정 */
+}
+
+.footer-links a:hover {
+  color: #ff7f7f;
+}
+
+@media (max-width: 768px) {
+  .footer-links {
+    grid-template-columns: 1fr;
+  }
+}

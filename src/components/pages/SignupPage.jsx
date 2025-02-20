@@ -1,20 +1,30 @@
 import SignupForm from "../auth/SignupForm";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/images/logo.png";
 import axios from "axios";
-import Sidebar from "./Sidebar";
+import { Link, useNavigate } from "react-router-dom";
+import "../../assets/css/pages/SignupPage.css";
 
 const SignupPage = () => {
-  // 회원가입 데이터 처리 함수
+  const navigate = useNavigate();
+
   const handleSignup = async (userData) => {
+    const token = localStorage.getItem("token");
     try {
       const response = await axios.post(
         "http://localhost:8080/auth/signup",
-        userData
+        userData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
-      console.log("회원가입 성공:", response.data);
-      alert("회원가입이 완료되었습니다!");
-
-      window.location.href = "/login";
+      if (response.data.message === "success") {
+        alert("회원가입이 완료되었습니다!");
+        navigate("/login");
+      } else {
+        alert("회원가입 실패: " + response.data.message);
+      }
     } catch (error) {
       console.error("회원가입 오류:", error);
       alert("회원가입 중 오류가 발생했습니다.");
@@ -22,37 +32,19 @@ const SignupPage = () => {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center min-vh-100 bg-light w-100">
-      <div
-        className="bg-white p-4 rounded-4 shadow mx-auto"
-        style={{ maxWidth: "1920px", margin: "0 auto" }}
-      >
-        {/* 로고 영역 */}
-        <div className="d-flex justify-content-center mb-4">
-          <img
-            src={logo}
-            alt="Babyloop Logo"
-            className="h-auto"
-            style={{
-              maxWidth: "100%",
-              height: "auto",
-              display: "block",
-            }}
-          />
+    <div className="page-container signup-page">
+      <div className="auth-card signup-card">
+        <div className="auth-logo">
+          <Link to="/">
+            <img src={logo} alt="Babyloop Logo" />
+          </Link>
         </div>
-
-        {/* 회원가입 폼 */}
         <SignupForm onSubmit={handleSignup} />
-
-        {/* 로그인 페이지 링크 */}
-        <div className="text-center mt-3 text-sm">
+        <div style={{ textAlign: "center", marginTop: "20px" }}>
           이미 계정이 있으신가요?{" "}
-          <a
-            href="/login"
-            className="text-primary font-weight-bold text-decoration-none"
-          >
+          <Link to="/login" className="auth-link">
             로그인
-          </a>
+          </Link>
         </div>
       </div>
     </div>

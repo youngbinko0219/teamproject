@@ -1,0 +1,13 @@
+.social-media {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-media a {
+  color: #ecf0f1;
+  text-decoration: none;
+}
+
+.social-media a:hover {
+  color: #ff7f7f;
+}

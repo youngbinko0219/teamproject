@@ -1,0 +1,82 @@
+/* 전체 리뷰 리스트 */
+.review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 개별 리뷰 아이템 */
+.review-item {
+  padding: 20px;
+  border-bottom: 1px solid #e4e9ee;
+}
+
+.review-item:last-child {
+  border-bottom: none;
+}
+
+/* 리뷰 헤더 (유저 정보, 날짜) */
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  color: #737373;
+  margin-bottom: 8px;
+}
+
+/* 리뷰 평점 (별점) */
+.review-rating {
+  font-size: 18px;
+  color: #ffad33;
+  margin-bottom: 8px;
+}
+
+.star {
+  color: #dcdcdc;
+}
+
+.star.filled {
+  color: #ffad33;
+}
+
+/* 리뷰 텍스트 */
+.review-text {
+  font-size: 16px;
+  color: #3c3c3c;
+  margin-bottom: 12px;
+}
+
+/* 리뷰 이미지 리스트 */
+.review-images {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.review-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+/* 리뷰 버튼 (도움됨, 신고하기) */
+.review-actions {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.helpful-btn,
+.report-btn {
+  font-size: 14px;
+  color: #737373;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.helpful-btn:hover,
+.report-btn:hover {
+  color: #fa9d9a;
+}

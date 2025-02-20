@@ -1,0 +1,17 @@
+/* src/assets/css/pages/TermsAgreementPage.css */
+.terms-agreement-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f8f8f8;
+  padding: 20px;
+}
+
+.terms-card {
+  width: 600px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,36 @@
+/* SignupPage.css */
+.signup-page {
+  background-color: #f4f4f4;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.signup-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+}
+
+.auth-logo {
+  display: block;
+  margin: 0 auto 20px;
+  max-width: 200px;
+}
+
+/* 공통 섹션 타이틀 (회원가입 페이지) */
+.section-title {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #333;
+  text-align: left;
+  margin: 50px 0 20px 20px;
+}

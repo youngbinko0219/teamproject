@@ -1,0 +1,156 @@
+/* src/assets/css/payment/PaymentForm.css */
+
+/* 전체 결제 폼 */
+.payment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+/* 결제 수단 선택 그룹 */
+.payment-method-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.payment-method-label {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+}
+.payment-method-options {
+  display: flex;
+  gap: 1rem;
+}
+.payment-method-options label {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* 카드 번호 입력 그룹 */
+.card-number-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.card-number-label {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+}
+.card-number-inputs {
+  display: flex;
+  gap: 0.5rem;
+}
+.card-number-inputs input {
+  width: 4rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* 만료일 입력 그룹 */
+.expiry-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.expiry-label {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+}
+.expiry-inputs {
+  display: flex;
+  gap: 0.5rem;
+}
+.expiry-inputs input {
+  width: 3rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* CVC 입력 그룹 */
+.cvc-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.cvc-label {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+}
+.cvc-group input {
+  width: 4rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* 통장입금 입력 그룹 */
+.bank-account-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.bank-account-label {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+}
+.bank-account-group input {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* 결제 금액 입력 그룹 */
+.amount-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.amount-label {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+}
+.amount-group input {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* 제출 버튼 */
+.submit-button {
+  padding: 0.75rem;
+  font-size: 1rem;
+  background-color: #ff7f7f;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.submit-button:hover {
+  background-color: #ff5050;
+}

@@ -1,0 +1,36 @@
+.login-button-container {
+  margin-top: 16px;
+}
+
+/* 기본 스타일 */
+.login-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px 16px;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border: none;
+  color: #fff;
+}
+
+/* 구글 버튼: Google 브랜드 컬러(#4285F4) */
+.google-button {
+  background-color: #4285f4;
+}
+.google-button:hover {
+  background-color: #357ae8;
+}
+
+/* 네이버 버튼: 네이버 브랜드 컬러(#2DB400 or #03C75A) */
+.naver-button {
+  background-color: #03c75a;
+}
+.naver-button:hover {
+  background-color: #02a84a;
+}

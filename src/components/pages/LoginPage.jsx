@@ -1,9 +1,10 @@
 import LoginForm from "../auth/LoginForm";
 import LoginButton from "../auth/LoginButton";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/images/logo.png";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import useUserStore from "../../zustand/useUserStore.jsx";
+import "../../assets/css/pages/LoginPage.css";
 
 const LoginPage = () => {
 
@@ -17,77 +18,51 @@ const LoginPage = () => {
     }));
 
     try {
-      // 1. 스프링 부트 API 호출
       const response = await axios.post("http://localhost:8080/auth/login", {
         user_id: credentials.username,
         user_pw: credentials.password,
       });
-
-      // 2. 응답 처리
-      const { status, message, accessToken } = response.data; // 응답에서 message와 accessToken 추출
-
-      if (status === "success") {
-        console.log("로그인 성공");
-        
-      // Zustand Store 상태 업데이트
-      login(credentials.username); // userStore에 user_id 업데이트
-
-        // 3. JWT 토큰 저장
+      const { message, accessToken } = response.data;
+      if (message === "success") {
         localStorage.setItem("accessToken", accessToken);
-
-        // 4. 메인 페이지로 리다이렉트
         window.location.href = "/";
-      } else if (status === "fail") {
-        console.log("로그인 실패: " + message);
+      } else if (message === "fail") {
         alert(message || "아이디와 비밀번호를 확인해 주세요.");
       }
     } catch (error) {
       console.error("로그인 오류:", error);
       if (error.response) {
-        // 서버에서 에러 응답이 온 경우
         alert(`로그인 실패: ${error.response.data.message}`);
       } else {
-        // 네트워크 오류 등
         alert("로그인 실패! 서버 연결 문제가 발생했습니다.");
       }
     }
   };
 
   return (
-    <div
-      className="d-flex justify-content-center align-items-center min-vh-100 bg-light flex-direction-column"
-      style={{ width: "100%", height: "100vh" }}
-    >
-      <div
-        className="bg-white p-4 rounded-4 shadow w-100"
-        style={{ maxWidth: "500px", margin: "0 auto" }}
-      >
+    <div className="login-page">
+      <div className="login-card">
         {/* 로고 */}
-        <div className="d-flex justify-content-center mb-4">
+        <div className="auth-logo">
           <Link to="/">
-            <img
-              src={logo}
-              alt="Babyloop Logo"
-              className="h-auto"
-              style={{ maxWidth: "200px", height: "auto" }}
-            />
+            <img src={logo} alt="Babyloop Logo" />
           </Link>
         </div>
 
         {/* 로그인 폼 */}
         <LoginForm onSubmit={handleLogin} />
 
-        {/* 소셜 로그인 버튼 (Google & 네이버) */}
-        <div className="mt-3">
+        {/* 소셜 로그인 버튼 */}
+        <div className="login-button-container">
           <LoginButton />
         </div>
 
         {/* 회원가입 링크 */}
-        <div className="text-center mt-3 text-sm">
+        <div className="signup-link">
           계정이 없으신가요?{" "}
-          <a href="/signup" className="text-primary font-weight-bold">
+          <Link to="/terms-agreement" className="text-link">
             회원가입
-          </a>
+          </Link>
         </div>
       </div>
     </div>

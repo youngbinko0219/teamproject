@@ -1,0 +1,116 @@
+/* 전체 페이지 중앙 정렬 및 배경색 */
+.forgot-pw-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+}
+
+/* 로고 영역 */
+.logo-container {
+  margin-bottom: 2rem;
+}
+
+.logo-image {
+  width: 250px;
+}
+
+/* 카드 스타일링 */
+.forgot-pw-card {
+  background-color: #ffffff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  padding: 3rem;
+  width: 600px;
+  text-align: center;
+}
+
+/* 타이틀 스타일 */
+.forgot-pw-title {
+  font-size: 2rem;
+  color: #333333;
+  margin-bottom: 1.5rem;
+}
+
+/* 폼 그룹 */
+.forgot-pw-form-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+/* 라벨 스타일 */
+.forgot-pw-label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #333333;
+}
+
+/* 입력 필드 스타일 */
+.forgot-pw-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+/* 입력 필드 포커스 효과 */
+.forgot-pw-input:focus {
+  border-color: #ff9f9f;
+  outline: none;
+  box-shadow: 0 0 5px rgba(255, 159, 159, 0.5);
+}
+
+/* 버튼 스타일 */
+.forgot-pw-button {
+  background-color: #ff9f9f;
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+}
+
+/* 버튼 호버 효과 */
+.forgot-pw-button:hover {
+  background-color: #ff7f7f;
+}
+
+/* 회원가입 링크 영역 */
+.forgot-pw-signup-container {
+  margin-top: 1.5rem;
+}
+
+.forgot-pw-signup-text {
+  color: #666666;
+  margin-right: 0.5rem;
+}
+
+.forgot-pw-signup-link {
+  color: #ff9f9f;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.forgot-pw-signup-link:hover {
+  color: #ff7f7f;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+  .forgot-pw-card {
+    width: 90%;
+    padding: 2rem;
+  }
+
+  .logo-image {
+    width: 200px;
+  }
+}

@@ -10,3 +10,8 @@ export default defineConfig({
     },
   },
 });
+  server: {
+    port: 5173, // 원하는 포트 번호로 설정
+    host: 'localhost'
+  }
+})

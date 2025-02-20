@@ -1,0 +1,54 @@
+.sales-report {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.total-sales {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.category-breakdown {
+  margin-top: 20px;
+}
+
+.category-section {
+  margin-bottom: 25px;
+}
+
+.category-section h4 {
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+.subcategory-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 15px;
+}
+
+.subcategory-table th,
+.subcategory-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.subcategory-table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+}
+
+.subcategory-table tr:hover {
+  background-color: #f8f9fa;
+}
+
+.loading,
+.error {
+  padding: 20px;
+  text-align: center;
+  color: #666;
+}

@@ -1,0 +1,96 @@
+.new-arrivals-section {
+  position: relative;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 1200px;
+  margin: 0 auto;
+  /* 섹션 전체 글자 정렬(좌/우) 원하는 대로 */
+  text-align: left;
+}
+
+/* "Featured" 배지 */
+.featured-badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: #ff7f7f; /* 메인 컬러 */
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+/* 섹션 타이틀 (New Arrival) */
+.section-title {
+  font-size: 1.8rem;
+  margin: 50px 0 0 20px; /* 상단 마진 50px을 추가하여 배지와 겹치지 않도록 함 */
+  color: #333;
+  text-align: left;
+  font-weight: bold;
+}
+
+/* 2×2 그리드 */
+.new-arrivals-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2열 */
+  grid-template-rows: 1fr 1fr; /* 2행 */
+  gap: 20px;
+  margin-top: 60px; /* 위쪽 배지, 제목과의 간격 */
+}
+
+/* 각 카드 */
+.new-arrival-card {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 300px; /* 원하는 카드 높이 */
+  display: flex;
+  align-items: flex-end; /* 오버레이를 아래쪽에 배치 */
+  justify-content: flex-start;
+  padding: 20px;
+}
+
+/* 이미지 위 오버레이 */
+.overlay {
+  color: #fff;
+  /* 추가 텍스트 스타일 */
+}
+
+.overlay h3 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.overlay p {
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+}
+
+/* Shop Now 버튼 */
+.shop-now-btn {
+  background-color: transparent;
+  border: 2px solid #ff7f7f;
+  color: #ff7f7f;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+.shop-now-btn:hover {
+  background-color: #ff7f7f;
+  color: #fff;
+}
+
+/* 반응형: 모바일에서 2×2 대신 1열씩 쌓기 */
+@media (max-width: 768px) {
+  .new-arrivals-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 1fr); /* 4행 */
+  }
+}

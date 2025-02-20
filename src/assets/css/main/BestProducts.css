@@ -1,0 +1,163 @@
+.best-products-section {
+  /* 섹션 컨테이너 스타일 (오늘의 상품과 동일) */
+  background-color: #fff;
+  padding: 20px;
+  margin: 0 auto;
+  border-radius: 8px;
+  max-width: 1200px;
+  position: relative;
+  text-align: center; /* 내부 콘텐츠 중앙 정렬 */
+}
+
+/* 상단 헤더 영역 */
+.best-products-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* 가운데 정렬 (제목 중심) */
+  margin-bottom: 20px;
+  position: relative;
+}
+
+/* "This Month" 배지 */
+.badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #ff7f7f;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  transform: translateY(-100%);
+}
+
+/* 타이틀: 오늘의 상품 h2와 통일 (1.8rem) */
+.best-products-header h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0;
+}
+
+/* 슬라이더 컨테이너 */
+.slider-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* ArrowButton 위치 */
+.slider-container > button {
+  z-index: 1;
+}
+
+/* 슬라이드 영역 */
+.product-slide {
+  width: 300px;
+  transition: transform 0.3s ease-in-out;
+  margin: 0 10px;
+}
+
+/* 상품 카드 */
+.best-product-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px;
+  background-color: #fafafa;
+  text-align: center;
+  transition: box-shadow 0.2s ease;
+}
+
+.best-product-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.best-product-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.product-name {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.product-price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.new-price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.discount {
+  color: #ff7f7f;
+  font-weight: bold;
+}
+
+/* 별점 + 리뷰 */
+.rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.reviews {
+  color: #333;
+  font-size: 0.9rem;
+}
+
+/* "베스트 상품 보기" 버튼: 우측 하단 정렬 */
+.view-all-btn {
+  display: block;
+  margin: 20px 0 0 auto; /* 위쪽 마진 20px, 우측 정렬 */
+  background-color: transparent;
+  border: 2px solid #ff7f7f;
+  color: #ff7f7f;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.view-all-btn:hover {
+  background-color: #ff7f7f;
+  color: #fff;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .best-products-header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .badge {
+    position: static;
+    transform: none;
+    margin-bottom: 8px;
+  }
+
+  .product-slide {
+    width: 90%;
+    margin: 0 auto;
+  }
+}

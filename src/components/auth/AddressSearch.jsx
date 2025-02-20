@@ -1,8 +1,8 @@
 import { useEffect } from "react";
+import "../../assets/css/auth/AddressSearch.css"; // 경로는 프로젝트에 맞게 조정
 
 const AddressSearch = ({ onComplete }) => {
   useEffect(() => {
-    // 스크립트 중복 로드 방지
     if (!window.daum || !window.daum.Postcode) {
       const script = document.createElement("script");
       script.src =
@@ -24,11 +24,7 @@ const AddressSearch = ({ onComplete }) => {
   };
 
   return (
-    <button
-      type="button"
-      className="btn btn-outline-secondary"
-      onClick={handleSearch}
-    >
+    <button type="button" className="address-search-btn" onClick={handleSearch}>
       주소 검색
     </button>
   );

@@ -1,0 +1,32 @@
+/* src/assets/css/pages/CheckoutPage.css */
+
+.checkout-page {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.page-title {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #333;
+  text-align: left;
+  margin-bottom: 20px;
+  padding-left: 20px;
+}
+
+.checkout-content {
+  margin: 0 auto;
+}
+
+.confirmation-message {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 1.2rem;
+  color: #28a745;
+  text-align: center;
+  margin-top: 20px;
+}

@@ -1,0 +1,57 @@
+/* ✅ 전체 페이지 레이아웃 */
+.product-list-container {
+  display: flex;
+  justify-content: center; 
+  align-items: flex-start;
+  margin: 0;
+  padding: 65px 0 92px;
+  min-height: 100vh;
+  gap: 50px;
+}
+
+/* ✅ 왼쪽 영역: 카테고리 & 필터 */
+.left-section {
+  display: flex;
+  flex-direction: column;
+  width: 250px; 
+  gap: 40px;
+  margin: 20px;
+}
+
+/* ✅ 중앙 영역: 상품 목록 */
+.center-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1; 
+  max-width: 900px; 
+  gap: 40px;
+}
+
+/* ✅ 카테고리 제목 스타일 */
+.category-title-detail {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #000;
+}
+
+/* ✅ 상품 정렬 옵션 */
+.product-sort-type {
+  width: 100%;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 8px;
+  background: #fff;
+}
+
+/* ✅ 오른쪽 영역: 최근 본 상품 */
+.right-section {
+  width: 180px;
+  position: sticky;
+  top: 100px;
+  margin: 20px;
+}

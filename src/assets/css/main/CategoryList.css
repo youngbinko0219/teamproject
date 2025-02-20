@@ -1,0 +1,90 @@
+/* 카테고리 전체 스타일 */
+.category-list {
+  width: 100%;
+  min-width: 250px;
+  font-family: "Pretendard", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0;
+  border-radius: 10px;
+  border: 1px solid #fff;
+}
+
+/* 카테고리 제목 */
+.category-title {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  color: #333;
+  text-align: center;
+}
+
+/* 카테고리 그룹 (큰 제목) */
+.category-group {
+  margin-bottom: 15px;
+  list-style: none;
+}
+
+/* 카테고리 큰 제목 디자인 */
+.category-header {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #333;
+  padding-left: 12px;
+  border-left: 15px solid #fa9d9a;
+  transition: all 0.2s ease-in-out;
+  margin-bottom: 5px;
+}
+
+/* 하위 카테고리 리스트 */
+.subcategory-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* 기본 카테고리 스타일 */
+.category-item {
+  font-size: 1.1rem;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border-radius: 6px;
+  padding: 6px 12px;
+  text-align: left;
+}
+
+/* 링크 기본 스타일 제거 */
+.category-item a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  width: 100%;
+  padding: 2px 0;
+}
+
+/* 마우스 올렸을 때 (hover) */
+.category-item:hover {
+  background-color: rgba(250, 157, 154, 0.15);
+  color: #fa9d9a;
+  font-weight: bold;
+  transform: translateX(2px);
+}
+
+/* 클릭한 카테고리 (고정 색상) */
+.category-item.active {
+  font-weight: bold;
+  color: #fff;
+  background-color: #fa9d9a;
+  border-radius: 6px;
+}
+
+/* 리스트 기본 스타일 최적화 */
+.category-list ul {
+  padding: 0 !important;
+  margin: 0;
+  width: 100%;
+}
