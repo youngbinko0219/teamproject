@@ -20,6 +20,7 @@ import AdminAdPage from "../pages/AdminAdPage";
 import CheckoutPage from "../pages/CheckoutPage";
 import PaymentSuccessPage from "../pages/PaymentSuccessPage";
 import PaymentReceiptPage from "../pages/PaymentReceiptPage";
+import MessagesPage from "../pages/MessagePage";
 
 const AppRouter = () => {
   return (
@@ -48,6 +49,7 @@ const AppRouter = () => {
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/payment/success" element={<PaymentSuccessPage />} />
         <Route path="/payment/receipt" element={<PaymentReceiptPage />} />
+        <Route path="/messages" element={<MessagesPage />} />
         <Route
           path="*"
           element={
