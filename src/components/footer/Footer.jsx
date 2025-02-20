@@ -2,7 +2,6 @@ import FooterLinks from "./FooterLinks";
 import SocialMedia from "./SocialMedia";
 import Newsletter from "./Newsletter";
 import ContactInfo from "./ContactInfo";
-import AppDownload from "./AppDownload";
 import "../../assets/css/footer/Footer.css";
 
 const Footer = () => {
@@ -12,7 +11,6 @@ const Footer = () => {
       <SocialMedia />
       <Newsletter />
       <ContactInfo />
-      <AppDownload />
     </footer>
   );
 };

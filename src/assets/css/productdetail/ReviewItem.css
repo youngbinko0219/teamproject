@@ -1,0 +1,147 @@
+/* ✅ 전역 스타일 (outline 제거) */
+* {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* 🔹 리뷰 컨테이너 */
+.review-item {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: #fff;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.05);
+  
+}
+
+/* 🔹 리뷰 헤더 (유저명 & 날짜) */
+.review-header {
+  width: 100%;
+  display: flex;
+  align-items:  flex-start !important;
+  justify-content: flex-start;  /* 👉 왼쪽 정렬 */
+  font-weight: bold;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+
+.review-user {
+  
+  color: #333;
+  font-size: 14px;
+}
+
+.review-date {
+  color: #777;
+  font-size: 12px;
+}
+
+/* 🔹 리뷰 내용 */
+.review-text {
+  font-size: 14px;
+  color: #444;
+  line-height: 1.5;
+}
+
+.review-photo {
+  width: 100%;
+  max-width: 150px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+/* 🔹 좋아요 & 신고 버튼 */
+.review-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+
+/* ✅ 좋아요 버튼 (아이콘 제거하고 이모티콘으로 변경) */
+.like-button {
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 8px 12px;
+  font-size: 14px;
+  width: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 34.86px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  align-items: center; /* 세로 중앙 정렬 */
+  justify-content: center; /* 가로 중앙 정렬 */
+  gap: 6px; /* 이모지랑 숫자 간격 */
+}
+
+
+
+/* ✅ 좋아요 버튼 클릭 효과 */
+.like-button:hover {
+  background-color: #e0e0e0;
+}
+
+.like-button.liked {
+  background-color: #FA9D9A;
+  color: white !important;
+}
+
+/* 🚨 신고하기 버튼 */
+.report-button {
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 8px 12px;
+  font-size: 14px;
+  width: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 34.86px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  align-items: center; /* 세로 중앙 정렬 */
+  justify-content: center; /* 가로 중앙 정렬 */
+  gap: 6px; /* 이모지랑 숫자 간격 */
+}
+
+.report-button:hover {
+  background-color: #ee5454;
+}
+
+/* 🚨 신고 모달 스타일 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  width: 320px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h2 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #d32f2f;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: center;
+}

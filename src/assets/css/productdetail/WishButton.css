@@ -1,0 +1,46 @@
+.wishlist-button {
+  width: 52px;
+  height: 52px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+  outline: none;
+  border: 1px solid #ccc;
+}
+
+/* ✅ 하트 아이콘 크기 조정 */
+.wishlist-button span {
+  font-size: 30px; /* ✅ 크기 조정 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+}
+
+/* ✅ 하트 기본 색상 */
+.not-wished {
+  color: #bbb; /* 기본 회색 */
+  outline: none;
+}
+
+/* ✅ 클릭 시 핑크로 변경 */
+.wished {
+  color: #FA9D9A !important;
+  outline: none;
+}
+
+/* ✅ 호버 시 색깔 살짝 바뀌게 */
+.wishlist-button:hover .not-liked {
+  color: #f5a3a0;
+  outline: none;
+}
+
+/* ✅ 클릭 시 애니메이션 효과 */
+.wishlist-button:active {
+  transform: scale(0.9);
+  outline: none;
+}

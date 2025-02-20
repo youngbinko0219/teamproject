@@ -1,76 +1,90 @@
+/* 카테고리 전체 스타일 */
 .category-list {
+  width: 100%;
+  min-width: 250px;
+  font-family: "Pretendard", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 16px;
-  padding: 16px;
-  background-color: transparent;
-  border-radius: 8px;
-  box-sizing: border-box;
   margin: 0;
+  border-radius: 10px;
+  border: 1px solid #fff;
 }
 
+/* 카테고리 제목 */
 .category-title {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: bold;
-  margin-bottom: 8px;
-  width: 100%;
-  white-space: nowrap;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  color: #333;
+  text-align: center;
 }
 
-.category-item {
+/* 카테고리 그룹 (큰 제목) */
+.category-group {
+  margin-bottom: 15px;
+  list-style: none;
+}
+
+/* 카테고리 큰 제목 디자인 */
+.category-header {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #333;
+  padding-left: 12px;
+  border-left: 15px solid #fa9d9a;
+  transition: all 0.2s ease-in-out;
+  margin-bottom: 5px;
+}
+
+/* 하위 카테고리 리스트 */
+.subcategory-list {
+  list-style: none;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  padding: 8px 12px;
-  border-radius: 4px;
-  transition: background-color 0.2s ease-in-out;
-  white-space: nowrap;
-  width: 100%;
-  list-style-type: none;
-  position: relative;
-}
-
-.category-name {
-  display: flex;
-  align-items: center;
   gap: 8px;
-  font-size: 1rem;
-  font-weight: bold;
-  color: #000;
-  position: relative;
 }
 
-.category-name::before {
-  content: "";
-  display: inline-block;
-  width: 8px;
-  height: 20px;
-  background-color: #ff7f7f; /* 메인 컬러 */
-  border-radius: 2px;
+/* 기본 카테고리 스타일 */
+.category-item {
+  font-size: 1.1rem;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border-radius: 6px;
+  padding: 6px 12px;
+  text-align: left;
 }
 
-.subcategory-list {
-  display: block;
-  padding-left: 20px;
-  margin-top: 4px;
-  list-style-type: none;
-}
-
-.subcategory-item {
-  margin-bottom: 4px;
-  list-style-type: none;
-}
-
-.subcategory-link {
+/* 링크 기본 스타일 제거 */
+.category-item a {
   text-decoration: none;
-  color: #000;
-  font-size: 0.9rem;
+  color: inherit;
+  display: block;
+  width: 100%;
+  padding: 2px 0;
 }
 
-.subcategory-link:hover {
-  color: #ff7f7f; /* 메인 컬러 */
+/* 마우스 올렸을 때 (hover) */
+.category-item:hover {
+  background-color: rgba(250, 157, 154, 0.15);
+  color: #fa9d9a;
+  font-weight: bold;
+  transform: translateX(2px);
+}
+
+/* 클릭한 카테고리 (고정 색상) */
+.category-item.active {
+  font-weight: bold;
+  color: #fff;
+  background-color: #fa9d9a;
+  border-radius: 6px;
+}
+
+/* 리스트 기본 스타일 최적화 */
+.category-list ul {
+  padding: 0 !important;
+  margin: 0;
+  width: 100%;
 }

@@ -40,7 +40,7 @@ const UserActions = () => {
             로그인
           </Link>
           &nbsp;
-          <Link to="/signup" className="auth-link signup-link">
+          <Link to="/terms-agreement" className="auth-link signup-link">
             회원가입
           </Link>
         </div>

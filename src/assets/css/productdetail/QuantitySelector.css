@@ -1,0 +1,45 @@
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #e0e0e0; /* ✅ 기존보다 연한 테두리 */
+  border-radius: 6px;
+  overflow: hidden;
+  width: 110px; /* ✅ 기존보다 약간 작게 */
+  height: 52px;
+  background: white;
+}
+
+/* ✅ 버튼 스타일 */
+.quantity-selector button {
+  width: 20px;
+  height: 52px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  background: #f8f8f8; /* ✅ 회색톤 배경 */
+  color: #333; /* ✅ 텍스트 컬러 변경 */
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+}
+
+/* ✅ 버튼 호버 & 클릭 */
+.quantity-selector button:hover {
+  background: #e0e0e0; /* ✅ 연한 회색으로 변경 */
+}
+
+.quantity-selector button:active {
+  transform: scale(0.95);
+}
+
+/* ✅ 숫자 스타일 */
+.quantity-selector span {
+  width: 38px;
+  text-align: center;
+  font-size: 18px;
+  color: black;
+}

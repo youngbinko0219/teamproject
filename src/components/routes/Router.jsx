@@ -23,16 +23,19 @@ import PaymentReceiptPage from "../pages/PaymentReceiptPage";
 import MessagesPage from "../pages/MessagePage";
 import NotFoundPage from "../pages/NotFountPage";
 import SearchPage from "../pages/SearchPage";
+import TermsAgreementPage from "../pages/TermsAgreementPage";
+import ProductListPage from "../pages/ProductListPage";
+import ProductDetailPage from "../pages/ProductDetailPage";
 
 const AppRouter = () => {
   return (
     <Router>
       <Routes>
+        <Route path="/" element={<MainPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />{" "}
         <Route path="/forgotid" element={<ForgotIdPage />} />
         <Route path="/forgotpw" element={<ForgotPwPage />} />
-        <Route path="/" element={<MainPage />} />
         <Route path="/all-products" element={<AllProductsPage />} />
         <Route path="/new-products" element={<NewProductsPage />} />
         <Route path="/today-products" element={<TodayProductsPage />} />
@@ -54,6 +57,14 @@ const AppRouter = () => {
         <Route path="/messages" element={<MessagesPage />} />
         {/* 검색 페이지 추가 */}
         <Route path="/search" element={<SearchPage />} />
+        {/* 약관 동의 페이지 */}
+        <Route path="/terms-agreement" element={<TermsAgreementPage />} />
+        {/* 상품 관련 페이지 */}
+        <Route path="/products/:category" element={<ProductListPage />} />
+        <Route
+          path="/products/view/:product_id"
+          element={<ProductDetailPage />}
+        />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>

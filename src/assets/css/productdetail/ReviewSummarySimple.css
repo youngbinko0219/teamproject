@@ -1,0 +1,31 @@
+.review-summary-simple {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.stars {
+  font-size: 18px;
+  color: #ddd; /* 기본적으로 회색 */
+  line-height: 1;
+}
+
+.filled-star {
+  color: #ffc107; /* 노란색 (평균 평점만큼 칠해짐) */
+}
+
+.half-star {
+  color: #ffc107;
+  position: relative;
+}
+
+.half-star::after {
+  content: "★";
+  color: #ddd;
+  position: absolute;
+  left: 50%;
+  width: 50%;
+  overflow: hidden;
+}
+
+    

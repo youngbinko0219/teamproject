@@ -1,0 +1,80 @@
+/* 전체 컨테이너 */
+.review-summary {
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  width: 100%;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 1200px; 
+  gap: 20px;
+}
+
+/* 별점 부분 */
+.review-score-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.star-icon {
+  font-size: 40px;
+  color: #ff7070; 
+}
+
+.review-summary p {
+  font-size: 14px;
+  color: #333;
+  margin: 5px 0;
+  text-align: center;
+}
+
+/* 별점 그래프 */
+.rating-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 65%;
+}
+
+/* 개별 그래프 항목 */
+.rating-bar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.label {
+  width: 120px;
+  font-size: 14px;
+  color: #333;
+}
+
+/* 막대 그래프 */
+.bar {
+  flex-grow: 1;
+  height: 8px; 
+  background: #e4e9ee;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 그래프 채워지는 부분*/
+.fill {
+  height: 100%;
+  background: #FA9D9A;
+  border-radius: 5px;
+  transition: width 0.3s ease-in-out;
+}
+
+/* 숫자와 간격 조정 */
+.count {
+  margin-left: 10px; 
+  font-size: 14px;
+  color: #333;
+}

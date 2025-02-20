@@ -1,0 +1,49 @@
+/* src/assets/css/components/TermsAgreementForm.css */
+.terms-form h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.terms-item {
+  margin-bottom: 20px;
+}
+
+.terms-item h2 {
+  margin-bottom: 10px;
+  color: #ff7f7f;
+}
+
+.terms-item p {
+  max-height: 150px;
+  overflow-y: auto;
+  background-color: #f4f4f4;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.agree-all {
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.next-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #ff7f7f;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.next-button:hover {
+  background-color: #ff5f5f;
+}

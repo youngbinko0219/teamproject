@@ -1,0 +1,154 @@
+/* 🔹 문의 섹션 컨테이너 */
+.inquiry-container {
+  width: 100%;
+  text-align: center;
+}
+
+/* 🔹 문의 테이블 */
+.inquiry-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed; /* ✅ 컬럼 너비 고정 */
+}
+
+/* 🔹 테이블 헤더 */
+.inquiry-table th {
+  background-color: #FA9D9A;
+  color: white;
+  padding: 12px;
+  font-size: 18px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* 🔹 각 컬럼 너비 고정 */
+.inquiry-table th:nth-child(1),
+.inquiry-table td:nth-child(1) {
+  width: 10%;  /* No. 컬럼 */
+}
+
+.inquiry-table th:nth-child(2),
+.inquiry-table td:nth-child(2) {
+  width: 40%;  /* 문의사항 컬럼 */
+}
+.inquiry-table th:nth-child(2) { text-align: center; }
+.inquiry-table td:nth-child(2) { text-align: left; }
+
+.inquiry-table th:nth-child(3),
+.inquiry-table td:nth-child(3) {
+  width: 20%;  /* 아이디 컬럼 */
+}
+
+.inquiry-table th:nth-child(4),
+.inquiry-table td:nth-child(4) {
+  width: 15%;  /* 작성일 컬럼 */
+}
+
+.inquiry-table th:nth-child(5),
+.inquiry-table td:nth-child(5) {
+  width: 15%;  /* 답변상태 컬럼 */
+}
+
+/* 🔹 테이블 셀 스타일 */
+.inquiry-table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 🔹 문의 리스트 클릭 가능하도록 스타일 추가 */
+.inquiry-row {
+  cursor: pointer;
+}
+
+.inquiry-row:hover {
+  background: #fdf2f2;
+}
+
+/* 🔹 문의 내용 확장 부분 */
+.inquiry-detail td {
+  background: white;
+  text-align: left;
+  padding: 16px;
+}
+
+.inquiry-content {
+  padding: 15px;
+  border-radius: 10px;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  line-height: 1.6;
+}
+
+.inquiry-content .no-answer {
+  color: #999;
+  font-style: italic;
+}
+
+/* 🔹 답변 상태 스타일 */
+.answer-status.completed {
+  color: #d86662;
+  font-weight: bold;
+}
+
+.answer-status.pending {
+  color: #999;
+  font-weight: bold;
+}
+
+
+/* 문의 작성 버튼 컨테이너 (오른쪽 정렬) */
+.inquiry-button-container {
+  text-align: right; /* 내부 요소를 오른쪽 정렬 */
+}
+
+
+/* 🔹 문의 작성 버튼 */
+.write-inquiry {
+  padding: 10px 18px;
+  border: none;
+  background: #FA9D9A;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.3s;
+  text-align: right;
+  align-items: right !important;
+  margin-top: 20px;
+}
+
+.write-inquiry:hover {
+  background: #f07b7b;
+}
+
+/* 🔹 문의 제목 스타일 */
+.inquiry-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* 🔹 문의 내용 스타일 */
+.inquiry-text {
+  font-size: 16px;
+  line-height: 1.5;
+  white-space: pre-line; /* ✅ 줄바꿈 적용 */
+}
+
+/* 🔹 운영자 답변 제목 */
+.answer-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+/* 🔹 운영자 답변 스타일 */
+.admin-answer {
+  font-size: 16px;
+  line-height: 1.5;
+  white-space: pre-line; /* ✅ 줄바꿈 적용 */
+}

@@ -1,0 +1,84 @@
+/* 상품 정보 섹션 전체 */
+.product-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* 제목 스타일 */
+.section-title {
+  font-size: 1.125rem;
+  font-weight: bold;
+  padding-bottom: 0.5rem;
+}
+
+/* 상품 이름 */
+.product-name {
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 0.5rem;
+}
+
+/* 상품 가격 */
+.product-price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #e74c3c;
+  margin: 0.5rem 0;
+}
+
+/* 평균별점 및 총 리뷰 수 */
+.product-review {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* 대여 가능 여부 */
+.product-availability.available {
+  color: #129025 !important;
+  font-weight: bold;
+}
+.product-availability.unavailable {
+  color: #e74c3c !important;
+  font-weight: bold;
+}
+
+/* 상품 설명 */
+.product-description {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: black;
+}
+
+/* 버튼 스타일 */
+.purchase-buttons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.purchase-buttons .add-to-cart,
+.purchase-buttons .buy-now {
+  flex: 1;
+  min-height: 3rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: #fa9d9a;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.purchase-buttons .add-to-cart:hover,
+.purchase-buttons .buy-now:hover {
+  background: #f07b7b;
+}

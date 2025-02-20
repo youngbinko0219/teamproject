@@ -50,7 +50,7 @@ const LoginPage = () => {
         {/* 회원가입 링크 */}
         <div className="signup-link">
           계정이 없으신가요?{" "}
-          <Link to="/signup" className="text-link">
+          <Link to="/terms-agreement" className="text-link">
             회원가입
           </Link>
         </div>
