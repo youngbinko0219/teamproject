@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import ReviewSummary from "./ReviewSummary";
 import ReviewItem from "./ReviewItem";
 import ReviewFormModal from "../../modals/productsdetail/ReviewFormModal";
-import { fetchReviews, postReview } from "../../api/reviewApi";
 import "../../assets/css/productdetail/ReviewSection.css";
+import { fetchReviews, postReview } from "./api";
 
 const ReviewSection = ({ product }) => {
   const [reviews, setReviews] = useState([]);

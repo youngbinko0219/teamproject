@@ -41,3 +41,16 @@ export const fetchReviews = async (productId) => {
     throw error;
   }
 };
+
+export const postReview = async (productId, reviewData) => {
+  try {
+    const response = await axios.post(
+      `/products/${productId}/reviews`,
+      reviewData
+    );
+    return response.data;
+  } catch (error) {
+    console.error("API 에러:", error);
+    throw error;
+  }
+};
