@@ -30,3 +30,14 @@ export const postNewInquiry = async (newInquiry) => {
     throw error;
   }
 };
+
+// 📌 리뷰 데이터를 가져오는 API 요청
+export const fetchReviews = async (productId) => {
+  try {
+    const response = await axios.get(`/products/${productId}/reviews`);
+    return response.data;
+  } catch (error) {
+    console.error("API 에러:", error);
+    throw error;
+  }
+};

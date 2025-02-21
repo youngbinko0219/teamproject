@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import ReviewSummary from "./ReviewSummary";
 import ReviewItem from "./ReviewItem";
 import ReviewFormModal from "../../modals/productsdetail/ReviewFormModal";
-import { fetchMockReviews } from "./mockData";
+import { fetchReviews, postReview } from "../../api/reviewApi";
 import "../../assets/css/productdetail/ReviewSection.css";
 
-const ReviewSection = () => {
+const ReviewSection = ({ product }) => {
   const [reviews, setReviews] = useState([]);
   const [filters, setFilters] = useState({
     sortType: "helpful",
@@ -19,17 +19,31 @@ const ReviewSection = () => {
 
   useEffect(() => {
     const loadReviews = async () => {
-      const fetchedReviews = await fetchMockReviews();
-      setReviews(fetchedReviews);
+      try {
+        // product.id를 이용해 해당 상품의 리뷰 데이터를 가져옵니다.
+        const fetchedReviews = await fetchReviews(product.id);
+        setReviews(fetchedReviews);
+      } catch (error) {
+        console.error("리뷰 데이터를 불러오는데 실패했습니다.", error);
+      }
     };
-    loadReviews();
-  }, []);
+    if (product && product.id) {
+      loadReviews();
+    }
+  }, [product]);
 
-  /* ✅ 리뷰 추가 */
-  const addReview = (newReview) => {
-    setReviews((prevReviews) => [newReview, ...prevReviews]);
-    setFilters({ sortType: "latest", photoOnly: false, currentPage: 1 });
-    setIsModalOpen(false);
+  /* ✅ 리뷰 추가 (API 호출) */
+  const addReview = async (reviewData) => {
+    try {
+      // postReview를 통해 리뷰를 등록하고, 새 리뷰 객체를 반환받습니다.
+      const newReview = await postReview(product.id, reviewData);
+      setReviews((prevReviews) => [newReview, ...prevReviews]);
+      setFilters({ sortType: "latest", photoOnly: false, currentPage: 1 });
+      setIsModalOpen(false);
+    } catch (error) {
+      console.error("리뷰 등록 실패:", error);
+      // 에러 처리(예: 사용자에게 알림) 필요 시 추가
+    }
   };
 
   /* ✅ 필터링 및 정렬 */
@@ -54,6 +68,13 @@ const ReviewSection = () => {
   const startPage = (currentGroup - 1) * groupSize + 1;
   const endPage = Math.min(startPage + groupSize - 1, totalPages);
 
+  // 현재 페이지가 totalPages를 초과하면 마지막 페이지로 조정
+  useEffect(() => {
+    if (filters.currentPage > totalPages) {
+      setFilters((prev) => ({ ...prev, currentPage: totalPages }));
+    }
+  }, [totalPages, filters.currentPage]);
+
   return (
     <div className="review-container">
       {/* 리뷰 통계 */}
@@ -72,7 +93,6 @@ const ReviewSection = () => {
           >
             도움순
           </button>
-
           <button
             className={filters.sortType === "latest" ? "active" : ""}
             onClick={() =>
@@ -81,7 +101,6 @@ const ReviewSection = () => {
           >
             최신순
           </button>
-
           <label>
             <input
               type="checkbox"
@@ -115,13 +134,13 @@ const ReviewSection = () => {
             <ReviewItem key={review.id} review={review} />
           ))
         ) : (
-          <p>포토리뷰가 없습니다.</p>
+          <p>리뷰가 없습니다.</p>
         )}
       </div>
 
-      {/* ✅ 5개 단위 페이지네이션 이동 */}
+      {/* 페이지네이션 */}
       <div className="pagination">
-        {/* 🔹 "이전" 버튼: 이전 그룹으로 이동 */}
+        {/* "이전" 버튼 */}
         <button
           onClick={() =>
             setFilters({
@@ -152,7 +171,7 @@ const ReviewSection = () => {
           return null;
         })}
 
-        {/* 🔹 "다음" 버튼: 다음 그룹으로 이동 */}
+        {/* "다음" 버튼 */}
         <button
           onClick={() =>
             setFilters({
