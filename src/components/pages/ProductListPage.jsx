@@ -20,7 +20,7 @@ const ProductListPage = () => {
       console.log("✅ useParams()로 가져온 category:", category);
       setCategory(category); // Zustand 상태 업데이트
     }
-  }, [category]);
+  }, [category, setCategory]);
 
   return (
     <>
