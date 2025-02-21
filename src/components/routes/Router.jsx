@@ -32,10 +32,12 @@ import MyPageEdit from "../mypage/MyPageEdit";
 import WishList from "../mypage/WishList";
 import Reverse from "../mypage/Reverse";
 import UserManagementPage from "../pages/UserManagementPage";
+import AuthHandler from "../auth/AuthHandler";
 
 const AppRouter = () => {
   return (
     <Router>
+      <AuthHandler />
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/login" element={<LoginPage />} />

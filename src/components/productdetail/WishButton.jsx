@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { FaHeart, FaRegHeart } from "react-icons/fa"; 
+import { useState } from "react";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 import "../../assets/css/productdetail/WishButton.css";
 
 const WishButton = () => {

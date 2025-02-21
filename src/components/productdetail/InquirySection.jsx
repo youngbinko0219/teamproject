@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { fetchInquiries, postNewInquiry } from "./api";
-import InquiryModal from "./InquiryModal";
+import InquiryModal from "../../modals/productsdetail/InquiryModal";
 import "../../assets/css/productdetail/InquirySection.css";
 
 const InquirySection = ({ product }) => {

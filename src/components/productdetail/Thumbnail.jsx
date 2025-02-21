@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 import "../../assets/css/productdetail/Thumbnail.css";
 
@@ -23,18 +23,19 @@ const Thumbnail = ({ mainImage, subImages = [] }) => {
 
       {/* 서브 이미지 리스트 (없을 경우 기본 제공) */}
       <div className="sub-images">
-        {(subImages.length > 0 ? subImages : [DEFAULT_IMAGE, DEFAULT_IMAGE, DEFAULT_IMAGE]).map(
-          (src, index) => (
-            <div
-              key={index}
-              className="sub-image"
-              onMouseEnter={() => setHoverImage(src)} // 마우스 오버 시 대표 이미지 변경
-              onMouseLeave={() => setHoverImage(mainImage || DEFAULT_IMAGE)} // 원래 이미지로 복귀
-            >
-              <img src={src} alt={`서브 이미지 ${index + 1}`} />
-            </div>
-          )
-        )}
+        {(subImages.length > 0
+          ? subImages
+          : [DEFAULT_IMAGE, DEFAULT_IMAGE, DEFAULT_IMAGE]
+        ).map((src, index) => (
+          <div
+            key={index}
+            className="sub-image"
+            onMouseEnter={() => setHoverImage(src)} // 마우스 오버 시 대표 이미지 변경
+            onMouseLeave={() => setHoverImage(mainImage || DEFAULT_IMAGE)} // 원래 이미지로 복귀
+          >
+            <img src={src} alt={`서브 이미지 ${index + 1}`} />
+          </div>
+        ))}
       </div>
     </div>
   );
