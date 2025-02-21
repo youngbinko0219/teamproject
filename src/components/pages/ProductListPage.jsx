@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import useProductStore from "../productlist/ProductStore"; 
+import useProductStore from "../../hooks/useProductStore";
 
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
@@ -20,7 +20,7 @@ const ProductListPage = () => {
       console.log("✅ useParams()로 가져온 category:", category);
       setCategory(category); // Zustand 상태 업데이트
     }
-  }, [category]); 
+  }, [category]);
 
   return (
     <>

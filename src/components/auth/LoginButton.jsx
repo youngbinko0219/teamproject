@@ -31,7 +31,7 @@ const LoginButton = () => {
         if (token) {
           // 로컬스토리지에 토큰 저장 (토큰 앞의 "Bearer " 제외)
           const cleanToken = token.replace("Bearer ", "");
-          localStorage.setItem("token", cleanToken);
+          localStorage.setItem("accessToken", cleanToken);
 
           // Axios의 기본 헤더에 토큰 설정
           setAxiosToken(cleanToken);

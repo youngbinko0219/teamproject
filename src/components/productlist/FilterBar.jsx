@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
-import "../../assets/css/productlist/FilterBar.css"; 
+import "../../assets/css/productlist/FilterBar.css";
 
 const FilterBar = ({ filters, setFilters }) => {
   const [price, setPrice] = useState([0, 100000]);
@@ -72,8 +72,18 @@ const FilterBar = ({ filters, setFilters }) => {
           onChange={handleSliderChange}
           trackStyle={[{ backgroundColor: "#fa9d9a", height: 6 }]}
           handleStyle={[
-            { backgroundColor: "#fa9d9a", borderColor: "#fa9d9a", width: 14, height: 14 },
-            { backgroundColor: "#fa9d9a", borderColor: "#fa9d9a", width: 14, height: 14 },
+            {
+              backgroundColor: "#fa9d9a",
+              borderColor: "#fa9d9a",
+              width: 14,
+              height: 14,
+            },
+            {
+              backgroundColor: "#fa9d9a",
+              borderColor: "#fa9d9a",
+              width: 14,
+              height: 14,
+            },
           ]}
         />
         <div className="price-range">
