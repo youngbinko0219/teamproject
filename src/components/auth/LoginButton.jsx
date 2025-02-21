@@ -1,73 +1,70 @@
-import { useNavigate } from "react-router-dom";
-import LoginForm from "../auth/LoginForm";
-import LoginButton from "../auth/LoginButton";
-import logo from "../../assets/images/logo.png";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import "../../assets/css/pages/LoginPage.css";
-import useUserStore from "../../hooks/useUserStore";
+import { useEffect } from "react";
+import { FcGoogle } from "react-icons/fc";
+import { SiNaver } from "react-icons/si";
+import axios from "axios"; // axios import
+import "../../assets/css/auth/LoginButton.css";
 
-const LoginPage = () => {
-  // store에서 login 관련 함수를 불러옵니다.
-  const { login } = useUserStore((state) => ({
-    login: state.login,
-  }));
+// Axios의 기본 헤더에 Authorization 토큰 설정
+const setAxiosToken = (token) => {
+  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+};
 
-  const navigate = useNavigate();
-
-  const handleLogin = async (credentials) => {
-    try {
-      const response = await axios.post("http://localhost:8080/auth/login", {
-        user_id: credentials.username,
-        user_pw: credentials.password,
-      });
-      // 응답 데이터 구조분해, message를 responseMessage로 명명
-      const { message: responseMessage, accessToken } = response.data;
-      if (responseMessage === "success") {
-        localStorage.setItem("accessToken", accessToken);
-        login(credentials.username); // 로그인 상태 업데이트
-        navigate("/"); // react-router-dom을 이용하여 페이지 이동
-      } else {
-        alert(responseMessage || "아이디와 비밀번호를 확인해 주세요.");
-      }
-    } catch (error) {
-      console.error("로그인 오류:", error);
-      if (error.response) {
-        alert(`로그인 실패: ${error.response.data.message}`);
-      } else {
-        alert("로그인 실패! 서버 연결 문제가 발생했습니다.");
-      }
-    }
+const LoginButton = () => {
+  const handleGoogleLogin = () => {
+    window.location.href = "http://localhost:8080/oauth2/authorization/google";
   };
 
+  const handleNaverLogin = () => {
+    window.location.href = "http://localhost:8080/oauth2/authorization/naver";
+  };
+
+  useEffect(() => {
+    // 로그인 성공 후 서버에서 토큰을 헤더에 포함해서 반환했다고 가정
+    axios
+      .get("http://localhost:8080/oauth2/user", {
+        withCredentials: true, // 쿠키와 함께 전송될 수 있도록 설정
+      })
+      .then((response) => {
+        // 응답 헤더에서 Authorization 토큰을 추출
+        const token = response.headers["authorization"]; // "Bearer <token>" 형태로 응답
+
+        if (token) {
+          // 로컬스토리지에 토큰 저장 (토큰 앞의 "Bearer " 제외)
+          const cleanToken = token.replace("Bearer ", "");
+          localStorage.setItem("token", cleanToken);
+
+          // Axios의 기본 헤더에 토큰 설정
+          setAxiosToken(cleanToken);
+
+          console.log(
+            "토큰이 로컬 스토리지와 Axios 헤더에 저장되었습니다:",
+            cleanToken
+          );
+        } else {
+          console.error("토큰을 받지 못했습니다.");
+        }
+      })
+      .catch((error) => {
+        console.error("로그인 처리 중 오류가 발생했습니다:", error);
+      });
+  }, []);
+
   return (
-    <div className="login-page">
-      <div className="login-card">
-        {/* 로고 */}
-        <div className="auth-logo">
-          <Link to="/">
-            <img src={logo} alt="Babyloop Logo" />
-          </Link>
-        </div>
+    <div className="login-button-container">
+      <button
+        className="login-button google-button"
+        onClick={handleGoogleLogin}
+      >
+        <FcGoogle size={20} />
+        Sign in with Google
+      </button>
 
-        {/* 로그인 폼 */}
-        <LoginForm onSubmit={handleLogin} />
-
-        {/* 소셜 로그인 버튼 */}
-        <div className="login-button-container">
-          <LoginButton />
-        </div>
-
-        {/* 회원가입 링크 */}
-        <div className="signup-link">
-          계정이 없으신가요?{" "}
-          <Link to="/terms-agreement" className="text-link">
-            회원가입
-          </Link>
-        </div>
-      </div>
+      <button className="login-button naver-button" onClick={handleNaverLogin}>
+        <SiNaver size={20} />
+        네이버 아이디로 로그인
+      </button>
     </div>
   );
 };
 
-export default LoginPage;
+export default LoginButton;
