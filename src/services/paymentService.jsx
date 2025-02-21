@@ -1,16 +1,43 @@
-// src/services/paymentService.jsx
 import axios from "axios";
 
-const API_BASE = "http://localhost:8080"; // 백엔드 서버 주소
-
-export const processPayment = async (paymentData) => {
-  const response = await axios.post(`${API_BASE}/payment/process`, paymentData);
-  return response.data;
+// 📌 상품 데이터를 가져오는 API 요청
+export const fetchProduct = async (productId) => {
+  try {
+    const response = await axios.get(`/products/${productId}`);
+    return response.data;
+  } catch (error) {
+    console.error("API 에러:", error);
+    throw error;
+  }
 };
 
-export const getPaymentHistory = async (userId) => {
-  const response = await axios.get(
-    `${API_BASE}/payment/history?userId=${userId}`
-  );
-  return response.data;
+export const fetchInquiries = async () => {
+  try {
+    const response = await axios.get(`/inquiries`);
+    return response.data;
+  } catch (error) {
+    console.error("API 에러:", error);
+    throw error;
+  }
+};
+
+export const postNewInquiry = async (newInquiry) => {
+  try {
+    const response = await axios.post(`/inquiries`, newInquiry);
+    return response.data;
+  } catch (error) {
+    console.error("API 에러:", error);
+    throw error;
+  }
+};
+
+// 📌 리뷰 데이터를 가져오는 API 요청
+export const fetchReviews = async (productId) => {
+  try {
+    const response = await axios.get(`/products/${productId}/reviews`);
+    return response.data;
+  } catch (error) {
+    console.error("API 에러:", error);
+    throw error;
+  }
 };
