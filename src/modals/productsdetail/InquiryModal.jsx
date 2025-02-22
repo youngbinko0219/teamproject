@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "../../assets/css/productdetail/InquiryModal.css";
 
 const InquiryModal = ({ isOpen, onClose, onSubmit, productName }) => {
@@ -52,7 +52,11 @@ const InquiryModal = ({ isOpen, onClose, onSubmit, productName }) => {
           <input type="text" value="testUser123" disabled />
 
           <label>작성일:</label>
-          <input type="text" value={new Date().toISOString().split("T")[0]} disabled />
+          <input
+            type="text"
+            value={new Date().toISOString().split("T")[0]}
+            disabled
+          />
 
           <label>문의 제목:</label>
           <input
@@ -75,8 +79,10 @@ const InquiryModal = ({ isOpen, onClose, onSubmit, productName }) => {
             className={error.content ? "error-input" : ""}
             placeholder="문의 내용을 입력하세요"
           ></textarea>
-          {error.content && <p className="error-message">문의 내용을 입력해주세요.</p>}
-          
+          {error.content && (
+            <p className="error-message">문의 내용을 입력해주세요.</p>
+          )}
+
           <div className="modal-buttons">
             <button onClick={onClose}>취소</button>
             <button onClick={handleSubmit}>등록</button>

@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
-import useProductStore from "../../zustand/useProductStore";
-import useUserStore from "../../zustand/useUserStore";
+import useProductStore from "../../hooks/useProductStore";
+import useUserStore from "../../hooks/useUserStore";
 import "../../assets/css/productlist/ProductCard.css";
-import ReviewSummarySimple from "../productdetail/ReviewSummarySimple"; // 리뷰 컴포넌트 추가
+import ReviewSummarySimple from "../productdetail/ReviewSummarySimple"; 
 
 const ProductCard = ({ product }) => {
 
@@ -15,10 +15,6 @@ const ProductCard = ({ product }) => {
   const { product_id, product_name, price, images, rating, reviews } = product;
 
   const handleProductClick = () => {
-    if (!user_id) {
-      alert("로그인이 필요합니다."); // 로그인 확인
-      return;
-    }
     
     setProductId(product_id); // 상품 클릭 시 zustand에 product_id 저장
     setMainImage(images); // 상품 메인 이미지 저장

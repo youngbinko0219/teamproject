@@ -1,0 +1,24 @@
+.category-filter {
+  margin-bottom: 20px;
+}
+
+.category-filter label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+  color: #333;
+}
+
+.category-filter select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.category-filter select:focus {
+  outline: none;
+  border-color: #ff7f7f;
+}

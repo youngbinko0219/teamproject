@@ -12,7 +12,10 @@ const FooterLinks = () => {
       <div>
         <h4>Account</h4>
         <Link to="/my-account">My Account</Link>
-        <Link to="/login-register">Login / Register</Link>
+        <span>
+          <Link to="/login">Login</Link> /{" "}
+          <Link to="/terms-agreement">signup</Link>
+        </span>
       </div>
       <div>
         <h4>Quick Link</h4>

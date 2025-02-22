@@ -1,0 +1,71 @@
+/* src/assets/css/mypage/MyPageEditForm.css */
+
+/* 계정 설정 컨텐츠 영역 */
+.mypage-edit-account-settings {
+  flex-grow: 1;
+  padding: 2.5rem;
+  max-width: 900px;
+  margin: 50px auto;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.mypage-edit-account-settings h1 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #23262f;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* 폼 레이아웃 */
+.mypage-edit-account-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* 네임스페이싱 적용한 폼 그룹 */
+.mypage-edit__form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.mypage-edit__form-group label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.mypage-edit__form-group input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+/* 저장 버튼 */
+.mypage-edit__button {
+  width: 100%;
+  padding: 12px;
+  background-color: #fa9d9a;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.mypage-edit__button:hover {
+  background-color: #f8827d;
+}
+
+/* 에러 메시지 */
+.mypage-edit__error-message {
+  color: red;
+  font-size: 14px;
+  text-align: center;
+}

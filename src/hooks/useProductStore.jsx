@@ -5,8 +5,8 @@ const useProductStore = create((set) => ({
   category: null,
   setCategory: (data) => set({ category: data }),
 
-  // 상품 아이디 
-  product_id: null,   
+  // 상품 아이디
+  product_id: null,
   setProductId: (id) => set({ product_id: id }),
 
   // 상품 메인 이미지
@@ -44,7 +44,6 @@ const useProductStore = create((set) => ({
       quantity: useProductStore.getState().quantity,
     });
   },
-
 }));
 
 export default useProductStore;

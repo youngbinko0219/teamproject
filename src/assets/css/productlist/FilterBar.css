@@ -1,85 +1,17 @@
 .filter-bar {
   width: 100%;
-  background: #fff;
-  border-radius: 12px;
-}
-
-.filter-title {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #333;
-  text-align: center;
-  border-bottom: 3px solid #fa9d9a;
-  padding-bottom: 8px;
+  max-width: auto; /* 부모 폭에 맞춤 */
+  padding: 20px;
+  box-sizing: border-box; /* 패딩 포함해서 계산 */
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
   margin-bottom: 20px;
 }
 
-.filter-section {
+.filter-title {
+  font-size: 1.5rem;
+  color: #333;
   margin-bottom: 15px;
-}
-
-.filter-section label {
-  font-size: 1rem;
-  font-weight: bold;
-  display: block;
-  margin-bottom: 5px;
-}
-
-.filter-section select,
-.filter-section input {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-size: 1rem;
-}
-
-/* 가격 슬라이더 스타일 */
-.price-range {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.price-range input {
-  width: 40%;
-  padding: 6px;
-  font-size: 14px;
   text-align: center;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-}
-
-/* 검색창 스타일 */
-.search-container {
-  margin-top: 10px;
-}
-
-.search-bar {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.search-bar input {
-  flex: 1;
-  padding: 8px;
-  border-radius: 6px;
-  border: 1px solid #ddd;
-}
-
-.search-bar button {
-  padding: 8px 12px;
-  background: #fa9d9a;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  color: white;
-  font-size: 1rem;
-}
-
-.search-bar button:hover {
-  background: #fa9d9a;
 }

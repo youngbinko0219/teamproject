@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import "../../assets/css/productdetail/RentalPeriodSelector.css";
 
 const RentalPeriodSelector = ({ selectedPeriod, onSelect }) => {

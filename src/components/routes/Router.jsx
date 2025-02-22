@@ -1,12 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginPage from "../pages/LoginPage";
 import SignupPage from "../pages/SignupPage";
-import MyPageEdit from "../pages/MyPageEdit";
-import MyPageMain from "../pages/MyPageMain";
-import RentalHistory from "../pages/RentalHistory";
-import WishList from "../pages/WishList";
-import Reverse from "../pages/Reverse";
-import Point from "../pages/Point";
 import MainPage from "../pages/MainPage";
 import ForgotIdPage from "../pages/ForgotIdPage";
 import ForgotPwPage from "../pages/ForgotPwPage";
@@ -20,7 +14,6 @@ import AdminLoginPage from "../pages/AdminLoginPage";
 import ProductManagementPage from "../pages/ProductManagementPage";
 import ProductFormPage from "../pages/ProductFormPage";
 import StockManagementPage from "../pages/StockManagementPage ";
-import UserManagementPage from "../pages/UserManagement";
 import SalesReportPage from "../pages/SalesReportPage";
 import AdminAdPage from "../pages/AdminAdPage";
 import CheckoutPage from "../pages/CheckoutPage";
@@ -32,22 +25,30 @@ import SearchPage from "../pages/SearchPage";
 import TermsAgreementPage from "../pages/TermsAgreementPage";
 import ProductListPage from "../pages/ProductListPage";
 import ProductDetailPage from "../pages/ProductDetailPage";
+import Point from "../mypage/Point";
+import MyPageMain from "../mypage/MyPageMain";
+import RentalHistory from "../mypage/RentalHistory1";
+import MyPageEdit from "../mypage/MyPageEdit";
+import WishList from "../mypage/WishList";
+import Reverse from "../mypage/Reverse";
+import UserManagementPage from "../pages/UserManagementPage";
+import AuthHandler from "../auth/AuthHandler";
 
 const AppRouter = () => {
   return (
     <Router>
+      <AuthHandler />
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignupPage />} />{" "}
-        <Route path="/mypageedit" element={<MyPageEdit />} /> 
-        <Route path="/mypagemain" element={<MyPageMain />} /> 
-        <Route path="/rental" element={<RentalHistory />} /> 
-        <Route path="/wishlist" element={<WishList />} /> 
-        <Route path="/edit" element={<MyPageEdit />} /> 
-        <Route path="/more" element={<RentalHistory />} /> 
-        <Route path="/reverse" element={<Reverse />} />
-        <Route path="/point" element={<Point />} />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/mypage/edit" element={<MyPageEdit />} />
+        <Route path="/mypage/main" element={<MyPageMain />} />
+        <Route path="/mypage/rental" element={<RentalHistory />} />
+        <Route path="/mypage/wishlist" element={<WishList />} />
+        <Route path="/mypage/more" element={<RentalHistory />} />
+        <Route path="/mypage/reverse" element={<Reverse />} />
+        <Route path="/mypage/point" element={<Point />} />
         <Route path="/forgotid" element={<ForgotIdPage />} />
         <Route path="/forgotpw" element={<ForgotPwPage />} />
         <Route path="/all-products" element={<AllProductsPage />} />
@@ -55,8 +56,8 @@ const AppRouter = () => {
         <Route path="/today-products" element={<TodayProductsPage />} />
         <Route path="/best-products" element={<BestProductsPage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="/admin" element={<AdminLoginPage />} />{" "}
         {/* 어드민 로그인 페이지 */}
+        <Route path="/admin" element={<AdminLoginPage />} />
         <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
         <Route path="/admin/products/regist" element={<ProductFormPage />} />
         <Route path="/admin/products" element={<ProductManagementPage />} />

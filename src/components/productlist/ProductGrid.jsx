@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
 import SortBar from "./SortBar";
 import "../../assets/css/productlist/ProductGrid.css";
-import useProductStore from "../../zustand/useProductStore";
+import useProductStore from "../../hooks/useProductStore";
 import axios from "axios";
 
 const itemsPerPage = 16; // 한 페이지당 상품 개수

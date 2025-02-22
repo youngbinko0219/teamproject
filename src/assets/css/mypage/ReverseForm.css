@@ -1,15 +1,8 @@
-/* 전체 페이지 스타일 (Sidebar 포함) */
-.reverse-page {
-  display: flex;
-  min-height: 100vh;
-  background-color: transparent; /* 배경색 제거 */
-}
-
-/* Sidebar와 Reverse 컨텐츠를 나누기 위해 flex 적용 */
-.reverse-container {
-  flex-grow: 1; /* 가용 공간을 최대한 사용 */
-  max-width: 900px; /* 기존 600px에서 확장 */
-  min-width: 600px; /* 최소 크기 보장 */
+/* src/assets/css/mypage/ReverseForm.css */
+.reverse-form-container {
+  flex-grow: 1;
+  max-width: 900px;
+  min-width: 600px;
   margin: 50px auto;
   background-color: white;
   padding: 2.5rem;
@@ -18,17 +11,15 @@
   text-align: center;
 }
 
-/* 제목 스타일 */
-.reverse-container h2 {
+.reverse-form-title {
   font-size: 1.5rem;
   font-weight: bold;
   color: #23262f;
   margin-bottom: 2rem;
 }
 
-/* 입력 필드 스타일 */
-.reverse-container input,
-.reverse-container textarea {
+.reverse-form input,
+.reverse-form textarea {
   width: 100%;
   padding: 14px;
   font-size: 1.2rem;
@@ -39,21 +30,18 @@
   transition: border-color 0.2s;
 }
 
-.reverse-container input:focus,
-.reverse-container textarea:focus {
+.reverse-form input:focus,
+.reverse-form textarea:focus {
   border-color: #fa9d9a;
 }
 
-/* 버튼 컨테이너 */
-.button-container {
+.reverse-button-container {
   display: flex;
-  justify-content: center;
   justify-content: space-between;
   margin-top: 20px;
 }
 
-/* 신청 버튼 */
-.submit-button {
+.reverse-submit-button {
   width: 48%;
   background-color: #fa9d9a;
   color: white;
@@ -66,12 +54,11 @@
   transition: background-color 0.2s;
 }
 
-.submit-button:hover {
+.reverse-submit-button:hover {
   background-color: #f8827d;
 }
 
-/* 초기화 버튼 */
-.clear-button {
+.reverse-clear-button {
   width: 48%;
   background: none;
   border: none;
@@ -81,25 +68,24 @@
   transition: color 0.2s;
 }
 
-.clear-button:hover {
+.reverse-clear-button:hover {
   color: #555;
 }
 
-/* 메시지 스타일 */
-.message {
+.reverse-message {
   font-size: 1.1rem;
   margin-bottom: 20px;
   padding: 12px;
   border-radius: 8px;
 }
 
-.message.success {
+.reverse-message.success {
   background-color: #d4edda;
   color: #155724;
   border: 1px solid #c3e6cb;
 }
 
-.message.error {
+.reverse-message.error {
   background-color: #f8d7da;
   color: #721c24;
   border: 1px solid #f5c6cb;

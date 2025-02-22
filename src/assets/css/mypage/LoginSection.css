@@ -1,0 +1,46 @@
+/* LoginSection.css */
+
+/* 회원 정보 영역 (LoginSection) */
+.mypage-login-section {
+  background-color: transparent;
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  font-size: 14px;
+}
+
+.mypage-login-title {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.mypage-login-content {
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.mypage-login-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.mypage-edit-button {
+  padding: 0.5rem 1rem;
+  background-color: #fa9d9a;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+}
+
+.mypage-edit-button:hover {
+  background-color: #f8827d;
+}

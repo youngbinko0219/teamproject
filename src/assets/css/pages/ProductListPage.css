@@ -1,7 +1,7 @@
 /* ✅ 전체 페이지 레이아웃 */
 .product-list-container {
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   align-items: flex-start;
   margin: 0;
   padding: 65px 0 92px;
@@ -13,7 +13,7 @@
 .left-section {
   display: flex;
   flex-direction: column;
-  width: 250px; 
+  width: 300px;
   gap: 40px;
 }
 
@@ -22,8 +22,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex-grow: 1; 
-  max-width: 900px; 
+  flex-grow: 1;
+  max-width: 1300px;
   gap: 40px;
 }
 

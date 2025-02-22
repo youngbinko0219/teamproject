@@ -1,9 +1,10 @@
-import axios from "axios";
-import { Link } from "react-router-dom";
+// src/components/mypage/WishList.jsx
 import { useEffect, useState } from "react";
-import "../style/WishListStyle.css";
-import Sidebar from "../pages/Sidebar";
-import userStore from "../../zustand/useUserStore.jsx";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import userStore from "../../hooks/useUserStore";
+import MyPageLayout from "./MyPageLayout";
+import "../../assets/css/mypage/WishList.css";
 
 const WishList = () => {
   const user_id = userStore((state) => state.user_id);
@@ -19,7 +20,6 @@ const WishList = () => {
       }
 
       try {
-        // 로컬 스토리지에서 JWT 토큰 가져오기
         const token = localStorage.getItem("accessToken");
         if (!token) {
           setError("로그인이 필요합니다.");
@@ -28,12 +28,16 @@ const WishList = () => {
         }
 
         const response = await axios.get(
-          `http://localhost:8080/wishlist/${user_id}`
+          `http://localhost:8080/wishlist/${user_id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
         const { message, data } = response.data;
-
         if (message === "success" && Array.isArray(data)) {
-          setWishlist(data); // DB에서 가져온 위시리스트 데이터 저장
+          setWishlist(data);
         } else {
           setError("위시리스트 데이터 형식이 올바르지 않습니다.");
         }
@@ -44,24 +48,33 @@ const WishList = () => {
         setLoading(false);
       }
     };
-
     fetchWishList();
-  }, []);
+  }, [user_id]);
 
-  if (loading) return <p>로딩 중...</p>;
-  if (error) return <p className="error-message">{error}</p>;
+  if (loading)
+    return (
+      <MyPageLayout>
+        <p>로딩 중...</p>
+      </MyPageLayout>
+    );
+  if (error) {
+    return (
+      <MyPageLayout>
+        <p className="wish-error-message">{error}</p>
+      </MyPageLayout>
+    );
+  }
 
   return (
-    <>
-      <Sidebar />
-      <div className="wishlist-content">
-        <h1 className="wishlist-title">
+    <MyPageLayout>
+      <div className="wish-content">
+        <h1 className="wish-title">
           {user_id ? `${user_id}의 위시리스트` : "위시리스트"}
         </h1>
         {wishlist.length > 0 ? (
-          <ul className="wishlist-items">
+          <ul className="wish-items">
             {wishlist.map((item) => (
-              <li className="wishlist-item" key={item.wish_id}>
+              <li className="wish-item" key={item.wish_id}>
                 <Link to={`/product/${item.product_id}`}>
                   {item.product_name || "상품"}
                 </Link>
@@ -72,7 +85,7 @@ const WishList = () => {
           <p>위시리스트가 비어 있습니다.</p>
         )}
       </div>
-    </>
+    </MyPageLayout>
   );
 };
 

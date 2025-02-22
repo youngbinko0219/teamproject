@@ -1,7 +1,6 @@
 /* 카테고리 전체 스타일 */
 .category-list {
-  width: 100%;
-  min-width: 250px;
+  width: 100% !important;
   font-family: "Pretendard", sans-serif;
   display: flex;
   flex-direction: column;
@@ -10,6 +9,12 @@
   border-radius: 10px;
   border: 1px solid #fff;
 }
+
+.category-list ul {
+  width: 100%;
+  display: block;
+}
+
 
 /* 카테고리 제목 */
 .category-title {

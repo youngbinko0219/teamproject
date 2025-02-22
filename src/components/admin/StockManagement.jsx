@@ -11,7 +11,7 @@ const StockManagement = () => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get("/admin/products");
-        setProducts(response.data);
+        setProducts(Array.isArray(response.data) ? response.data : []);
       } catch (error) {
         console.error("Error fetching product information:", error);
       }

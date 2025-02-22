@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "../../assets/css/productdetail/Dropdown.css";
 
 const Dropdown = ({ options, selected, onSelect }) => {
@@ -11,7 +11,13 @@ const Dropdown = ({ options, selected, onSelect }) => {
       </button>
       <ul className="dropdown-menu">
         {options.map((option) => (
-          <li key={option} onClick={() => { onSelect(option); setIsOpen(false); }}>
+          <li
+            key={option}
+            onClick={() => {
+              onSelect(option);
+              setIsOpen(false);
+            }}
+          >
             {option}
           </li>
         ))}

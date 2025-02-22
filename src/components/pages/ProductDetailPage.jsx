@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import useProductStore from "../../zustand/useProductStore";
+import useProductStore from "../../hooks/useProductStore";
 import Header from "../header/Header";  
 import Footer from "../footer/Footer";
 import CategoryList from "../main/CategoryList";

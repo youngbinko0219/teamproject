@@ -1,4 +1,3 @@
-import React from "react";
 import AppRouter from "./components/routes/Router";
 import "bootstrap/dist/css/bootstrap.min.css";
 

@@ -1,0 +1,6 @@
+/* src/assets/css/mypage/MyPageEditLayout.css */
+.mypage-edit-layout {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
