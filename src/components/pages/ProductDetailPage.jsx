@@ -8,22 +8,22 @@ import FilterBar from "../productlist/FilterBar";
 import RecentViewed from "../productlist/RecentViewed";
 import Thumbnail from "../productdetail/Thumbnail";
 import ProductInfo from "../productdetail/ProductInfo";
-// import ProductTabs from "../productdetail/ProductTabs";
+import ProductTabs from "../productdetail/ProductTabs";
 // import Content from "../productdetail/Content";
 // import ReviewSection from "../productdetail/ReviewSection";
 // import InquirySection from "../productdetail/InquirySection";
 // import bannerTop from "../../assets/images/banner1.jpg";
-// import exchangeGuideImage from "../../assets/images/banner1.jpg";
-// import bannerReview from "../../assets/images/banner1.jpg";
+import exchangeGuideImage from "../../assets/images/productdetail/exchangeGuideImage.jpg";
+import bannerReview from "../../assets/images/productdetail/bannerReview.jpg"
 import "../../assets/css/pages/ProductDetailPage.css";
 
 /* 공통 섹션 컴포넌트 (탭 + 내용) */
-// const ProductSection = ({ id, children }) => (
-//   <section className="product-section-detail" id={id}>
-//     <ProductTabs currentSection={id} />
-//     {children}
-//   </section>
-// );
+const ProductSection = ({ id, children }) => (
+  <section className="product-section-detail" id={id}>
+    <ProductTabs currentSection={id} />
+    {children}
+  </section>
+);
 
 const ProductDetailPage = () => {
   const { product_id } = useParams();  
@@ -56,35 +56,35 @@ const ProductDetailPage = () => {
           {/* 구분선 */}
           <div className="divider2"></div>
 
-          {/* 상단 배너 
+          {/* 상단 배너 */}
           <div className="product-banner banner-top">
-            <img src={bannerTop} alt="상품 상세 페이지 상단 배너" />
-          </div> */}
+            {/* <img src={bannerTop} alt="상품 상세 페이지 상단 배너" /> */}
+          </div>
 
-          {/* 상세 정보 섹션 
+          {/* 상세 정보 섹션 */}
           <ProductSection id="detail">
-            <Content />
+          {/* <Content /> */}
           </ProductSection>
 
-          교환 및 반납/연장 안내 섹션 
+          {/* 교환 및 반납/연장 안내 섹션 */}
           <ProductSection id="exchange">
             <div className="exchange-guide">
               <img src={exchangeGuideImage} alt="교환 및 반납/연장 안내" />
             </div>
           </ProductSection>
 
-          상품 후기 섹션
+          {/* 상품 후기 섹션 */}
           <ProductSection id="review">
             <div className="product-banner banner-review">
               <img src={bannerReview} alt="상품 후기 배너" />
             </div>
-            <ReviewSection />
+            {/* <ReviewSection /> */}
           </ProductSection>
 
-          상품 문의 섹션
+          {/* 상품 문의 섹션 */}
           <ProductSection id="inquiry">
-            <InquirySection />
-          </ProductSection> */}
+            {/* <InquirySection /> */}
+          </ProductSection> 
         </main>
 
 
