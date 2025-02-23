@@ -10,9 +10,9 @@ import Thumbnail from "../productdetail/Thumbnail";
 import ProductInfo from "../productdetail/ProductInfo";
 import ProductTabs from "../productdetail/ProductTabs";
 // import Content from "../productdetail/Content";
-// import ReviewSection from "../productdetail/ReviewSection";
+import ReviewSection from "../productdetail/ReviewSection";
 // import InquirySection from "../productdetail/InquirySection";
-// import bannerTop from "../../assets/images/banner1.jpg";
+import bannerTop from "../../assets/images/productdetail/bannerTop.jpg";
 import exchangeGuideImage from "../../assets/images/productdetail/exchangeGuideImage.jpg";
 import bannerReview from "../../assets/images/productdetail/bannerReview.jpg"
 import "../../assets/css/pages/ProductDetailPage.css";
@@ -58,7 +58,7 @@ const ProductDetailPage = () => {
 
           {/* 상단 배너 */}
           <div className="product-banner banner-top">
-            {/* <img src={bannerTop} alt="상품 상세 페이지 상단 배너" /> */}
+            <img src={bannerTop} alt="상품 상세 페이지 상단 배너" />
           </div>
 
           {/* 상세 정보 섹션 */}
@@ -78,7 +78,7 @@ const ProductDetailPage = () => {
             <div className="product-banner banner-review">
               <img src={bannerReview} alt="상품 후기 배너" />
             </div>
-            {/* <ReviewSection /> */}
+            <ReviewSection /> 
           </ProductSection>
 
           {/* 상품 문의 섹션 */}
