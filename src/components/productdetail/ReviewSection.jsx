@@ -1,12 +1,16 @@
 import { useState, useEffect } from "react";
+import useProductStore from "../../hooks/useProductStore";
+import useReviewStore from "../../hooks/useReviewStore";
+import axios from "axios";
 import ReviewSummary from "./ReviewSummary";
 import ReviewItem from "./ReviewItem";
 import ReviewFormModal from "../../modals/productsdetail/ReviewFormModal";
 import "../../assets/css/productdetail/ReviewSection.css";
-import { fetchReviews, postReview } from "./api";
 
-const ReviewSection = ({ product }) => {
-  const [reviews, setReviews] = useState([]);
+const ReviewSection = () => {
+  const { product_id } = useProductStore();
+  const { reviews, setReviews } = useReviewStore();
+
   const [filters, setFilters] = useState({
     sortType: "helpful",
     photoOnly: false,
@@ -20,50 +24,46 @@ const ReviewSection = ({ product }) => {
   useEffect(() => {
     const loadReviews = async () => {
       try {
-        // product.id를 이용해 해당 상품의 리뷰 데이터를 가져옵니다.
-        const fetchedReviews = await fetchReviews(product.id);
-        setReviews(fetchedReviews);
+        const response = await axios.get(`http://localhost:8080/reviews/${product_id}/list`);
+        setReviews(Array.isArray(response.data) ? response.data : []);
       } catch (error) {
-        console.error("리뷰 데이터를 불러오는데 실패했습니다.", error);
+        console.error("❌ 리뷰 데이터 불러오기 실패:", error);
       }
     };
-    if (product && product.id) {
-      loadReviews();
-    }
-  }, [product]);
 
-  /* ✅ 리뷰 추가 (API 호출) */
+    if (product_id) loadReviews();
+  }, [product_id, setReviews]);  // product_id가 변경될 때마다 실행
+
+  // 리뷰 추가 (API 호출)
   const addReview = async (reviewData) => {
     try {
-      // postReview를 통해 리뷰를 등록하고, 새 리뷰 객체를 반환받습니다.
-      const newReview = await postReview(product.id, reviewData);
-      setReviews((prevReviews) => [newReview, ...prevReviews]);
+      const newReview = await axios.post(`/products/${product_id}/reviews`, reviewData);
+      setReviews((prevReviews) => [newReview.data, ...prevReviews]);
       setFilters({ sortType: "latest", photoOnly: false, currentPage: 1 });
       setIsModalOpen(false);
     } catch (error) {
       console.error("리뷰 등록 실패:", error);
-      // 에러 처리(예: 사용자에게 알림) 필요 시 추가
     }
   };
 
-  /* ✅ 필터링 및 정렬 */
+  /* 필터링 및 정렬 */
   const filteredReviews = reviews.filter(
-    (review) => !filters.photoOnly || review.photo !== null
+    (review) => parseInt(review.product_id) === parseInt(product_id)
   );
+
   const sortedReviews = [...filteredReviews].sort((a, b) => {
     return filters.sortType === "helpful"
       ? b.likes - a.likes
-      : new Date(b.date) - new Date(a.date);
+      : new Date(b.created_at) - new Date(a.created_at);
   });
 
-  /* ✅ 페이지네이션 계산 */
+  /* 페이지네이션 계산 */
   const totalPages = Math.ceil(sortedReviews.length / reviewsPerPage) || 1;
   const startIndex = (filters.currentPage - 1) * reviewsPerPage;
   const paginatedReviews = sortedReviews.slice(
     startIndex,
     startIndex + reviewsPerPage
   );
-
   const currentGroup = Math.ceil(filters.currentPage / groupSize);
   const startPage = (currentGroup - 1) * groupSize + 1;
   const endPage = Math.min(startPage + groupSize - 1, totalPages);
@@ -131,7 +131,7 @@ const ReviewSection = ({ product }) => {
       <div className="review-list">
         {paginatedReviews.length > 0 ? (
           paginatedReviews.map((review) => (
-            <ReviewItem key={review.id} review={review} />
+            <ReviewItem key={review.review_id} review={review} />
           ))
         ) : (
           <p>리뷰가 없습니다.</p>

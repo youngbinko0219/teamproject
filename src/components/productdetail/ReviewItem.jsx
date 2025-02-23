@@ -3,6 +3,8 @@ import ReportModal from "../../modals/productsdetail/ReportModal";
 import "../../assets/css/productdetail/ReviewItem.css";
 
 const ReviewItem = ({ review }) => {
+  const { review_id, rating, created_at, review_text } = review;  // 이미 review에서 가져오므로 user_id는 필요없음
+
   const [likes, setLikes] = useState(review.likes || 0);
   const [liked, setLiked] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,33 +21,14 @@ const ReviewItem = ({ review }) => {
     setIsModalOpen(true);
   };
 
-  // 모달 닫기 핸들러
-  const handleCloseModal = (event) => {
-    event.stopPropagation();
-    setIsModalOpen(false);
-  };
-
   return (
     <div className="review-item">
       <div className="review-header">
-        <span className="review-user">{review.user}</span>
-        <span className="review-date">{review.date}</span>
+        <span className="review-user">{review.user_id}</span> {/* 이미 review 객체 안에 있음 */}
+        <span className="review-date">{created_at}</span> {/* 바로 사용 */}
       </div>
 
-      <p className="review-text">{review.comment}</p>
-
-      {review.photos && review.photos.length > 0 && (
-        <div className="review-photos">
-          {review.photos.slice(0, 5).map((photo, index) => (
-            <img
-              key={index}
-              src={photo}
-              alt={`리뷰 사진 ${index + 1}`}
-              className="review-photo"
-            />
-          ))}
-        </div>
-      )}
+      <p className="review-text">{review_text}</p>
 
       <div className="review-actions">
         <button
@@ -62,7 +45,7 @@ const ReviewItem = ({ review }) => {
       {isModalOpen && (
         <ReportModal
           isOpen={isModalOpen}
-          onClose={handleCloseModal}
+          onClose={() => setIsModalOpen(false)}  // 모달 닫는 핸들러
           review={review}
         />
       )}
