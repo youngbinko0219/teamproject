@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import useProductStore from "../../hooks/useProductStore";
 import "../../assets/css/productdetail/QuantitySelector.css";
 
 const QuantitySelector = () => {
-  const [quantity, setQuantity] = useState(1);
+  const { quantity, setQuantity } = useProductStore();
 
   const decreaseQuantity = () => setQuantity((prev) => Math.max(1, prev - 1));
   const increaseQuantity = () => setQuantity((prev) => prev + 1);

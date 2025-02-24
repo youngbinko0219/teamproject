@@ -1,4 +1,3 @@
-import React from "react";
 import "../../assets/css/productdetail/ProductTabs.css";
 
 const ProductTabs = ({ currentSection }) => {

@@ -1,0 +1,26 @@
+/* src/assets/css/rental/RentalPageLayout.css */
+
+/* 전체 렌탈 페이지 레이아웃 컨테이너 */
+.rental-layout {
+  display: flex; /* 사이드바와 콘텐츠를 좌우로 배치 */
+  width: 100%;
+  min-height: calc(
+    100vh - 120px
+  ); /* 헤더와 푸터의 높이를 고려하여 조정 (필요에 따라 값 변경) */
+  margin: 0 auto;
+}
+
+/* 사이드바 영역 */
+.rental-layout__sidebar {
+  width: 250px; /* 사이드바 고정 너비 */
+  background-color: #f5f5f5;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* 메인 콘텐츠 영역 */
+.rental-layout__content {
+  flex-grow: 1; /* 남은 공간을 모두 사용 */
+  padding: 2rem;
+  box-sizing: border-box;
+}

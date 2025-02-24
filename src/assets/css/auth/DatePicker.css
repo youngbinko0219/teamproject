@@ -1,17 +1,51 @@
-/* DatePicker.css */
-.react-datepicker-wrapper {
-  width: 100%;
+/* src/assets/css/auth/DatePicker.css */
+
+/* 드롭다운 스타일 (연도, 월) */
+.custom-datepicker-header {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8px;
 }
 
-.react-datepicker__input-container input {
-  width: 100%;
-  padding: 8px 12px;
-  border: 1px solid #ccc;
+.custom-datepicker-year,
+.custom-datepicker-month {
+  padding: 4px 8px;
+  font-size: 14px;
+  border: 1px solid #ddd;
   border-radius: 4px;
-  font-size: 1rem;
 }
 
-.react-datepicker__input-container input:focus {
-  border-color: #ff7f7f;
+/* 날짜 셀 스타일 */
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected {
+  background-color: #ff7f7f !important;
+  color: #fff !important;
+}
+
+/* hover 시 효과 (선택 전) */
+.react-datepicker__day:hover {
+  background-color: #ffb2b2 !important;
+  color: #fff !important;
+}
+
+/* 선택된 날짜가 아닌 인접월 날짜(전/다음 달 날짜) 비활성화 */
+.react-datepicker__day--outside-month {
+  color: #ccc !important;
+}
+
+/* 입력 필드 스타일 */
+.date-picker-input {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
   outline: none;
+}
+
+/* 달력 상단 바 (화살표 등)를 숨기고 싶다면, 아래를 추가로 적용 */
+.react-datepicker__navigation {
+  display: none !important;
 }

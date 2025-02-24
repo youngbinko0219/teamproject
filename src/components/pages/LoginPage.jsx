@@ -2,15 +2,15 @@ import LoginForm from "../auth/LoginForm";
 import LoginButton from "../auth/LoginButton";
 import logo from "../../assets/images/logo.png";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useUserStore from "../../hooks/useUserStore.jsx";
 import "../../assets/css/pages/LoginPage.css";
 
 const LoginPage = () => {
   // 훅은 컴포넌트 최상위에서 호출해야 합니다.
-  const { login } = useUserStore((state) => ({
-    login: state.login,
-  }));
+  const login = useUserStore((state) => state.login);
+
+  const navigate = useNavigate();
 
   const handleLogin = async (credentials) => {
     try {
@@ -19,14 +19,14 @@ const LoginPage = () => {
         user_pw: credentials.password,
       });
       // 응답 데이터 구조분해, message를 responseMessage로 명명
-      const { message: responseMessage, accessToken } = response.data;
-      if (responseMessage === "success") {
-        localStorage.setItem("accessToken", accessToken);
+      const { message, token } = response.data;
+      if (message === "success") {
+        localStorage.setItem("accessToken", token);
         // 필요한 경우 store 업데이트를 위해 login() 호출 가능
-        login();
-        window.location.href = "/";
+        login(credentials.username);
+        navigate("/");
       } else {
-        alert(responseMessage || "아이디와 비밀번호를 확인해 주세요.");
+        alert(message || "아이디와 비밀번호를 확인해 주세요.");
       }
     } catch (error) {
       console.error("로그인 오류:", error);

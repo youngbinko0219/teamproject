@@ -1,4 +1,3 @@
-import React from "react";
 import "../../assets/css/productdetail/ReviewSummarySimple.css";
 
 const ReviewSummarySimple = ({ averageRating, totalReviews }) => {
@@ -8,7 +7,10 @@ const ReviewSummarySimple = ({ averageRating, totalReviews }) => {
     <div className="review-summary-simple">
       <div className="stars">
         {[...Array(5)].map((_, index) => (
-          <span key={index} className={index < roundedRating ? "filled-star" : "empty-star"}>
+          <span
+            key={index}
+            className={index < roundedRating ? "filled-star" : "empty-star"}
+          >
             ★
           </span>
         ))}

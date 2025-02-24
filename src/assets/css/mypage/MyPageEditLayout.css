@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* src/assets/css/mypage/MyPageEditForm.css */
 
 
@@ -12,6 +13,27 @@
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   text-align: left;
+=======
+/* src/assets/css/mypage/MyPageEditLayout.css */
+.my-page-edit-layout {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+}
+
+.my-page-edit-layout__sidebar {
+  width: 250px;
+  background-color: #fff;
+  border-right: 1px solid #ddd;
+  padding: 20px;
+}
+
+.my-page-edit-layout__content {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #fff;
+>>>>>>> 5aa5e94b0462cc97334b495313cd51b955cd01b9
 }
 
 .mypage-edit-account-settings h1 {

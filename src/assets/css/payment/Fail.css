@@ -1,0 +1,94 @@
+/* Fail 전용 클래스 (접두어: fail-) */
+.fail-w-100 {
+  width: 100%;
+}
+
+.fail-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+  overflow: auto;
+}
+
+.fail-max-w-540 {
+  max-width: 540px;
+}
+
+.fail-flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.fail-align-center {
+  align-items: center;
+}
+
+.fail-flex {
+  display: flex;
+}
+
+.fail-justify-between {
+  justify-content: space-between;
+}
+
+.fail-btn {
+  padding: 11px 22px;
+  border: none;
+  border-radius: 8px;
+  background-color: #f2f4f6;
+  color: #4e5968;
+  font-weight: 600;
+  font-size: 17px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+}
+
+.fail-btn:hover {
+  opacity: 0.9;
+}
+
+.fail-link {
+  text-decoration: none;
+  text-align: center;
+}
+
+.fail-button-group {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+}
+
+.fail-title {
+  margin-top: 32px;
+  margin-bottom: 0;
+  color: #191f28;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.fail-response-section {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 20px;
+}
+
+.fail-response-section .fail-response-label {
+  font-weight: 600;
+  color: #333d48;
+  font-size: 17px;
+}
+
+.fail-response-section .fail-response-text {
+  font-weight: 500;
+  color: #4e5968;
+  font-size: 17px;
+  padding-left: 16px;
+  word-break: break-word;
+  text-align: right;
+}

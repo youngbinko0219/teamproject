@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import ReportModal from "./ReportModal";
+import { useState } from "react";
+import ReportModal from "../../modals/productsdetail/ReportModal";
 import "../../assets/css/productdetail/ReviewItem.css";
 
 const ReviewItem = ({ review }) => {
@@ -37,13 +37,21 @@ const ReviewItem = ({ review }) => {
       {review.photos && review.photos.length > 0 && (
         <div className="review-photos">
           {review.photos.slice(0, 5).map((photo, index) => (
-            <img key={index} src={photo} alt={`리뷰 사진 ${index + 1}`} className="review-photo" />
+            <img
+              key={index}
+              src={photo}
+              alt={`리뷰 사진 ${index + 1}`}
+              className="review-photo"
+            />
           ))}
         </div>
       )}
 
       <div className="review-actions">
-        <button className={`like-button ${liked ? "liked" : ""}`} onClick={handleLike}>
+        <button
+          className={`like-button ${liked ? "liked" : ""}`}
+          onClick={handleLike}
+        >
           👍 {likes}
         </button>
         <button className="report-button" onClick={handleReportClick}>
@@ -52,7 +60,11 @@ const ReviewItem = ({ review }) => {
       </div>
 
       {isModalOpen && (
-        <ReportModal isOpen={isModalOpen} onClose={handleCloseModal} review={review} />
+        <ReportModal
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          review={review}
+        />
       )}
     </div>
   );

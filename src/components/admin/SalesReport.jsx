@@ -3,19 +3,16 @@ import axios from "axios";
 import "../../assets/css/admin/SalesReport.css";
 
 // 카테고리 구조 정의
-const CATEGORIES = {
-  아기가구: ["바운서", "아기 체육관", "아기 침대", "범퍼 침대"],
-  놀이용품: [
-    "쏘서/점퍼루",
-    "보행기/러닝홈",
-    "트램폴린/미끄럼틀",
-    "승용완구",
-    "장난감/백일상",
-  ],
-  이동용품: ["유모차/웨건", "카시트", "아기띠"],
-  유아식사: ["식탁의자", "유축기/소독기"],
-  "위생&건강": ["기저귀 갈이대", "유아욕조", "스팀청소기"],
-};
+const categories = [
+  { title: "아기 가구", items: ["바운서", "아기체육관", "아기침대"] },
+  {
+    title: "놀이 용품",
+    items: ["쏘서&점퍼루", "보행기&러닝홈", "대형완구", "장난감"],
+  },
+  { title: "이동 용품", items: ["유모차&웨건", "카시트"] },
+  { title: "이유식", items: ["식탁의자", "유축기&소독기"] },
+  { title: "위생 & 건강", items: ["기저귀 갈이대", "유아 욕조"] },
+];
 
 const SalesReport = () => {
   const [reportData, setReportData] = useState({
@@ -40,8 +37,8 @@ const SalesReport = () => {
           total += product.price * product.quantity;
 
           // 카테고리별 통계
-          const mainCategory = Object.keys(CATEGORIES).find((key) =>
-            CATEGORIES[key].includes(product.subCategory)
+          const mainCategory = Object.keys(categories).find((key) =>
+            categories[key].includes(product.subCategory)
           );
 
           if (mainCategory) {

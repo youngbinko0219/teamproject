@@ -1,5 +1,4 @@
 import BarChart from "./Charts/BarChart";
-import LineChart from "./Charts/LineChart";
 import PieChart from "./Charts/PieChart";
 import "../../assets/css/admin/DashboardOverview.css";
 
@@ -11,10 +10,6 @@ const DashboardOverview = () => {
         <div className="chart">
           <h3>인기 상품</h3>
           <BarChart />
-        </div>
-        <div className="chart">
-          <h3>판매 추이</h3>
-          <LineChart />
         </div>
         <div className="chart">
           <h3>재고 현황</h3>

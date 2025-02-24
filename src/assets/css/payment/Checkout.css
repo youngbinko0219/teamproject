@@ -1,0 +1,36 @@
+/* Checkout 전용 클래스 (접두어: checkout-) */
+.checkout-w-100 {
+  width: 100%;
+}
+
+.checkout-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+  overflow: auto;
+}
+
+.checkout-max-w-540 {
+  max-width: 540px;
+}
+
+.checkout-btn-wrapper {
+  padding: 0 24px;
+}
+
+.checkout-btn {
+  padding: 11px 22px;
+  border: none;
+  border-radius: 8px;
+  background-color: #f2f4f6;
+  color: #4e5968;
+  font-weight: 600;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.checkout-btn.checkout-primary {
+  background-color: #3282f6;
+  color: #f9fcff;
+}

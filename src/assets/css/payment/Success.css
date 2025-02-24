@@ -1,0 +1,129 @@
+/* Success 전용 클래스(접두어: success-) */
+
+.success-w-100 {
+  width: 100%;
+}
+
+.success-h-100 {
+  height: 100%;
+}
+
+.success-link {
+  text-decoration: none;
+  text-align: center;
+}
+
+.success-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+  overflow: auto;
+}
+
+.success-max-w-540 {
+  max-width: 540px;
+}
+
+.success-btn-wrapper {
+  padding: 0 24px;
+}
+
+.success-btn {
+  padding: 11px 22px;
+  border: none;
+  border-radius: 8px;
+  background-color: #f2f4f6;
+  color: #4e5968;
+  font-weight: 600;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.success-btn.success-primary {
+  background-color: #3282f6;
+  color: #f9fcff;
+}
+
+.success-text-center {
+  text-align: center;
+}
+
+.success-flex {
+  display: flex;
+}
+
+.success-flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.success-justify-between {
+  justify-content: space-between;
+}
+
+.success-align-center {
+  align-items: center;
+}
+
+.success-confirm-loading {
+  margin-top: 72px;
+  height: 400px;
+  justify-content: space-between;
+}
+
+/* 실제로는 display: none; 이지만 SuccessPage.jsx에서 style로 override */
+.success-confirm-success {
+  display: none;
+  margin-top: 72px;
+}
+
+.success-button-group {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+}
+
+.success-title {
+  margin-top: 32px;
+  margin-bottom: 0;
+  color: #191f28;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.success-description {
+  margin-top: 8px;
+  color: #4e5968;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.success-response-section {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 20px;
+}
+
+.success-response-section .success-response-label {
+  font-weight: 600;
+  color: #333d48;
+  font-size: 17px;
+}
+
+.success-response-section .success-response-text {
+  font-weight: 500;
+  color: #4e5968;
+  font-size: 17px;
+  padding-left: 16px;
+  word-break: break-word;
+  text-align: right;
+}
+
+.success-color-grey {
+  color: #b0b8c1;
+}
