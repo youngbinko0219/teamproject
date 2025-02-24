@@ -1,15 +1,18 @@
 // src/components/cart/CartView.jsx
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // useNavigate 추가
 import {
   getCartItems,
   addCartItem,
   updateCartItem,
   deleteCartItem,
+  clearCart,
 } from "../../services/CartService";
-import "../../assets/css/cart/CartView.css";
+import "../../assets/css/mypage/CartView.css";
 
 const CartView = () => {
   const [cartItems, setCartItems] = useState([]);
+  const navigate = useNavigate(); // useNavigate 훅 사용
 
   // 컴포넌트가 마운트될 때 장바구니 아이템 불러오기
   useEffect(() => {
@@ -27,11 +30,9 @@ const CartView = () => {
   };
 
   const handleAddItem = () => {
-    // 예시 데이터, 실제 데이터 구조에 맞게 수정
     const newItem = {
       productId: 1,
       rentalPeriod: "30일",
-      selectedOption: "옵션1",
       rentalDate: "2025-03-01",
       quantity: 1,
     };
@@ -45,7 +46,6 @@ const CartView = () => {
       });
   };
 
-  // 수량 증가
   const handleIncreaseQuantity = (item) => {
     const newQuantity = item.quantity + 1;
     updateCartItem(item.id, { quantity: newQuantity })
@@ -61,7 +61,6 @@ const CartView = () => {
       });
   };
 
-  // 수량 감소 (최소 1 이상)
   const handleDecreaseQuantity = (item) => {
     if (item.quantity > 1) {
       const newQuantity = item.quantity - 1;
@@ -79,7 +78,6 @@ const CartView = () => {
     }
   };
 
-  // 아이템 삭제
   const handleDeleteItem = (itemId) => {
     deleteCartItem(itemId)
       .then(() => {
@@ -90,6 +88,22 @@ const CartView = () => {
       });
   };
 
+  const handleClearCart = () => {
+    clearCart()
+      .then(() => {
+        setCartItems([]); // 장바구니 비우기
+        console.log("장바구니가 비워졌습니다.");
+      })
+      .catch((error) => {
+        console.error("장바구니 비우기 중 오류 발생:", error);
+      });
+  };
+
+  // 결제 페이지로 이동하는 함수
+  const goToCheckout = () => {
+    navigate("/checkout"); // 결제 페이지로 이동
+  };
+
   return (
     <div className="cart-view">
       <h1>장바구니</h1>
@@ -98,7 +112,6 @@ const CartView = () => {
           <div key={item.id} className="cart-item">
             <p>상품 ID: {item.productId}</p>
             <p>대여 기간: {item.rentalPeriod}</p>
-            <p>옵션: {item.selectedOption}</p>
             <p>대여 시작일: {item.rentalDate}</p>
             <p className="item-quantity">
               수량: {item.quantity}{" "}
@@ -116,8 +129,13 @@ const CartView = () => {
       ) : (
         <p>장바구니에 담긴 상품이 없습니다.</p>
       )}
-      <button className="add-item-button" onClick={handleAddItem}>
-        아이템 추가
+      <button className="clear-cart-button" onClick={handleClearCart}>
+        장바구니 비우기
+      </button>
+      &nbsp;
+      {/* 결제 페이지로 이동하는 버튼 추가 */}
+      <button className="checkout-button" onClick={goToCheckout}>
+        결제하기
       </button>
     </div>
   );

@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import userStore from "../../hooks/useUserStore";
-import MyPageLayout from "./MyPageLayout";
 import "../../assets/css/mypage/WishList.css";
 
 const WishList = () => {
@@ -18,7 +17,6 @@ const WishList = () => {
         setLoading(false);
         return;
       }
-
       try {
         const token = localStorage.getItem("accessToken");
         if (!token) {
@@ -26,7 +24,6 @@ const WishList = () => {
           setLoading(false);
           return;
         }
-
         const response = await axios.get(
           `http://localhost:8080/wishlist/${user_id}`,
           {
@@ -51,41 +48,32 @@ const WishList = () => {
     fetchWishList();
   }, [user_id]);
 
-  if (loading)
-    return (
-      <MyPageLayout>
-        <p>로딩 중...</p>
-      </MyPageLayout>
-    );
+  if (loading) {
+    return <p className="wishlist-loading">로딩 중...</p>;
+  }
   if (error) {
-    return (
-      <MyPageLayout>
-        <p className="wish-error-message">{error}</p>
-      </MyPageLayout>
-    );
+    return <p className="wishlist-error">{error}</p>;
   }
 
   return (
-    <MyPageLayout>
-      <div className="wish-content">
-        <h1 className="wish-title">
-          {user_id ? `${user_id}의 위시리스트` : "위시리스트"}
-        </h1>
-        {wishlist.length > 0 ? (
-          <ul className="wish-items">
-            {wishlist.map((item) => (
-              <li className="wish-item" key={item.wish_id}>
-                <Link to={`/product/${item.product_id}`}>
-                  {item.product_name || "상품"}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>위시리스트가 비어 있습니다.</p>
-        )}
-      </div>
-    </MyPageLayout>
+    <div className="wishlist-component">
+      <h1 className="wishlist-title">
+        {user_id ? `${user_id}의 위시리스트` : "위시리스트"}
+      </h1>
+      {wishlist.length > 0 ? (
+        <ul className="wishlist-items">
+          {wishlist.map((item) => (
+            <li className="wishlist-item" key={item.wish_id}>
+              <Link to={`/product/${item.product_id}`}>
+                {item.product_name || "상품"}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className="wishlist-empty">위시리스트가 비어 있습니다.</p>
+      )}
+    </div>
   );
 };
 

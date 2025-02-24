@@ -22,3 +22,8 @@ export const updateCartItem = (itemId, updateData) => {
 export const deleteCartItem = (itemId) => {
   return axios.delete(`${API_URL}/${itemId}`);
 };
+
+// 장바구니 모든 아이템 삭제하기
+export const clearCart = () => {
+  return axios.delete(API_URL); // 모든 아이템 삭제를 위한 API 호출
+};

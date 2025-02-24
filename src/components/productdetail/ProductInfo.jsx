@@ -5,7 +5,6 @@ import axios from "axios";
 import "../../assets/css/productdetail/ProductInfo.css";
 import ReviewSummarySimple from "./ReviewSummarySimple";
 import RentalPeriodSelector from "./RentalPeriodSelector";
-import Dropdown from "./Dropdown";
 import QuantitySelector from "./QuantitySelector";
 import RentalDatePicker from "./RentalDatePicker";
 import WishButton from "./WishButton";
@@ -17,14 +16,10 @@ const ProductInfo = () => {
   const {
     product_id,
     rentalPeriod,
-    selectedOption,
     rentalDate,
     quantity,
     setRentalPeriod,
-    setSelectedOption,
     setRentalDate,
-    // setQuantity, // QuantitySelector는 전역 상태 사용 시 필요하면 여기서 활용
-    // addToCart, // 전역 상태의 addToCart 대신 API 호출을 사용
     proceedToCheckout,
   } = useProductStore();
 
@@ -69,12 +64,11 @@ const ProductInfo = () => {
   const updatedPrice = product?.price ? product.price * (rentalDays / 30) : 0;
   const isAvailable = (product?.stock ?? 0) > 0;
 
-  // 장바구니에 아이템 추가하는 함수
+  // 장바구니에 아이템 추가하는 함수 (옵션 항목 제거)
   const handleAddToCart = () => {
     const itemData = {
       productId: product_id,
       rentalPeriod,
-      selectedOption,
       rentalDate,
       quantity,
     };
@@ -123,15 +117,6 @@ const ProductInfo = () => {
         />
       </div>
 
-      <div className="option-section">
-        <h3 className="section-title">옵션 선택</h3>
-        <Dropdown
-          options={product?.options || []}
-          selected={selectedOption}
-          onSelect={setSelectedOption}
-        />
-      </div>
-
       <div className="rental-date-section">
         <h3 className="section-title">대여 시작</h3>
         <RentalDatePicker selectedDate={rentalDate} onSelect={setRentalDate} />
@@ -151,7 +136,10 @@ const ProductInfo = () => {
         >
           바로 대여
         </button>
-        <WishButton />
+        <WishButton
+          productId={product_id}
+          productName={product?.product_name || "상품"}
+        />
       </div>
     </div>
   );

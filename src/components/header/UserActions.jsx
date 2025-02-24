@@ -27,7 +27,7 @@ const UserActions = () => {
           <Link to="/cart" className="icon-link">
             <FaShoppingCart className="action-icon" />
           </Link>
-          <Link to="/mypage" className="icon-link">
+          <Link to="/mypage/main" className="icon-link">
             <FaUser className="action-icon" />
           </Link>
           <button className="logout-button" onClick={handleLogout}>

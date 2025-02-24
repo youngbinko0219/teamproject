@@ -24,7 +24,6 @@ import ProductDetailPage from "../pages/ProductDetailPage";
 import Point from "../mypage/Point";
 import MyPageMain from "../mypage/MyPageMain";
 import MyPageEdit from "../mypage/MyPageEdit";
-import WishList from "../mypage/WishList";
 import Reverse from "../mypage/Reverse";
 import UserManagementPage from "../pages/UserManagementPage";
 import AuthHandler from "../auth/AuthHandler";
@@ -35,6 +34,7 @@ import MessagePage from "../pages/MessagePage";
 import RentalHistory from "../mypage/RentalHistory";
 import RentalPage from "../mypage/RentalPage";
 import CartPage from "../pages/CartPage";
+import WishListPage from "../../assets/css/pages/WishListPage";
 
 const AppRouter = () => {
   return (
@@ -56,7 +56,7 @@ const AppRouter = () => {
         <Route path="/mypage/edit" element={<MyPageEdit />} />
         <Route path="/mypage/main" element={<MyPageMain />} />
         <Route path="/mypage/rental" element={<RentalPage />} />
-        <Route path="/mypage/wishlist" element={<WishList />} />
+        <Route path="/mypage/wishlist" element={<WishListPage />} />
         <Route path="/mypage/more" element={<RentalHistory />} />
         <Route path="/mypage/reverse" element={<Reverse />} />
         <Route path="/mypage/point" element={<Point />} />
