@@ -98,13 +98,23 @@ const SignupForm = ({ onSubmit }) => {
   };
 
   const handleCheckDuplicateId = async () => {
+    // 필수값 검사: user_id가 비어 있으면 안됨
+    if (!formData.user_id || formData.user_id.trim() === "") {
+      toast.error("아이디를 입력해 주세요.");
+      idRef.current.focus();
+      return;
+    }
     if (idError) {
       toast.error(idError);
       idRef.current.focus();
       return;
     }
+
     try {
-      const response = await axios.get(`http://localhost:8080/auth/checkid`);
+      const response = await axios.get("http://localhost:8080/auth/checkid", {
+        params: { user_id: formData.user_id },
+      });
+
       if (response.data.message === "error") {
         toast.error("이미 사용 중인 아이디입니다.");
       } else if (response.data.message === "success") {
@@ -117,6 +127,17 @@ const SignupForm = ({ onSubmit }) => {
   };
 
   const handleSendVerificationEmail = async () => {
+    // 필수값 검사: user_email이 비어 있으면 안됨
+    if (!formData.user_email || formData.user_email.trim() === "") {
+      toast.error("이메일을 입력해 주세요.");
+      emailRef.current.focus();
+      return;
+    }
+    if (!validateEmail(formData.user_email)) {
+      toast.error("유효한 이메일을 입력해 주세요.");
+      emailRef.current.focus();
+      return;
+    }
     try {
       const response = await axios.post("http://localhost:8080/email/send", {
         user_email: formData.user_email,
@@ -140,6 +161,10 @@ const SignupForm = ({ onSubmit }) => {
   const handleVerifyCode = () => {
     const storedCode = localStorage.getItem("code");
     const enteredCode = formData.verificationCode;
+    if (!enteredCode || enteredCode.trim() === "") {
+      setVerificationMessage("인증번호를 입력해 주세요.");
+      return;
+    }
     if (storedCode === enteredCode) {
       setVerificationMessage("인증번호가 일치합니다.");
       setIsVerificationComplete(true);
@@ -155,7 +180,8 @@ const SignupForm = ({ onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.user_id) {
+    // * 표시가 된 필수 데이터들이 null 혹은 빈 값이 아닌지 확인
+    if (!formData.user_id || formData.user_id.trim() === "") {
       toast.error("아이디를 입력해 주세요.");
       idRef.current.focus();
       return;
@@ -165,7 +191,7 @@ const SignupForm = ({ onSubmit }) => {
       idRef.current.focus();
       return;
     }
-    if (!formData.user_pw) {
+    if (!formData.user_pw || formData.user_pw.trim() === "") {
       toast.error("비밀번호를 입력해 주세요.");
       pwRef.current.focus();
       return;
@@ -175,22 +201,22 @@ const SignupForm = ({ onSubmit }) => {
       pwRef.current.focus();
       return;
     }
-    if (!formData.user_name) {
+    if (!formData.user_name || formData.user_name.trim() === "") {
       toast.error("이름을 입력해 주세요.");
       nameRef.current.focus();
       return;
     }
-    if (!formData.user_email) {
+    if (!formData.user_email || formData.user_email.trim() === "") {
       toast.error("이메일을 입력해 주세요.");
       emailRef.current.focus();
       return;
     }
     if (!validateEmail(formData.user_email)) {
-      toast.error("이메일 오류");
+      toast.error("이메일 형식이 올바르지 않습니다.");
       emailRef.current.focus();
       return;
     }
-    if (!formData.user_phone) {
+    if (!formData.user_phone || formData.user_phone.trim() === "") {
       toast.error("전화번호를 입력해 주세요.");
       phoneRef.current.focus();
       return;
