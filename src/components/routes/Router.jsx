@@ -16,10 +16,6 @@ import ProductFormPage from "../pages/ProductFormPage";
 import StockManagementPage from "../pages/StockManagementPage ";
 import SalesReportPage from "../pages/SalesReportPage";
 import AdminAdPage from "../pages/AdminAdPage";
-import CheckoutPage from "../pages/CheckoutPage";
-import PaymentSuccessPage from "../pages/PaymentSuccessPage";
-import PaymentReceiptPage from "../pages/PaymentReceiptPage";
-import MessagesPage from "../pages/MessagePage";
 import NotFoundPage from "../pages/NotFountPage";
 import SearchPage from "../pages/SearchPage";
 import TermsAgreementPage from "../pages/TermsAgreementPage";
@@ -33,6 +29,10 @@ import WishList from "../mypage/WishList";
 import Reverse from "../mypage/Reverse";
 import UserManagementPage from "../pages/UserManagementPage";
 import AuthHandler from "../auth/AuthHandler";
+import { SuccessPage } from "../payment/Success";
+import { FailPage } from "../payment/Fail";
+import { CheckoutPage } from "../payment/Checkout";
+import MessagesPage from "../admin/Message";
 
 const AppRouter = () => {
   return (
@@ -65,10 +65,6 @@ const AppRouter = () => {
         <Route path="/admin/users" element={<UserManagementPage />} />
         <Route path="/admin/sales" element={<SalesReportPage />} />
         <Route path="/admin/ad" element={<AdminAdPage />} />
-        {/* 결제 관련 페이지 */}
-        <Route path="/checkout" element={<CheckoutPage />} />
-        <Route path="/payment/success" element={<PaymentSuccessPage />} />
-        <Route path="/payment/receipt" element={<PaymentReceiptPage />} />
         <Route path="/messages" element={<MessagesPage />} />
         {/* 검색 페이지 추가 */}
         <Route path="/search" element={<SearchPage />} />
@@ -80,6 +76,10 @@ const AppRouter = () => {
           path="/products/view/:product_id"
           element={<ProductDetailPage />}
         />
+        {/* 토스 샘플 경로 */}
+        <Route path="/sandbox" element={<CheckoutPage />} />
+        <Route path="/sandbox/success" element={<SuccessPage />} />
+        <Route path="/sandbox/fail" element={<FailPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>
