@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.png"; // 로고 이미지 경로
+import axios from "axios";
 import "../../assets/css/pages/ForgotIdPage.css";
 
 const ForgotIdPage = () => {
@@ -11,21 +12,21 @@ const ForgotIdPage = () => {
     e.preventDefault(); // 기본 폼 제출 동작 방지
 
     try {
-      const response = await fetch("http://localhost:8080/auth/search-id", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }), // 이메일 데이터를 JSON 형태로 전송
+      const response = await axios.get("http://localhost:8080/auth/search-id", {
+        params: { email },
       });
 
-      if (response.ok) {
-        const data = await response.json();
-        console.log("서버 응답 데이터:", data);
-        // API에서 받은 응답에 따른 처리
-        setResponseMessage("이메일 전송이 성공적으로 완료되었습니다.");
+      if (response.status === 200 && response.data.message === "success") {
+        console.log("서버 응답 데이터:", response.data);
+        // 이메일에 해당하는 아이디가 있는 경우
+        setResponseMessage(
+          `입력하신 이메일로 가입된 아이디는 ${response.data.user_id} 입니다.`
+        );
       } else {
-        setResponseMessage("이메일 전송에 실패하였습니다.");
+        console.error("아이디 확인 실패", response);
+        setResponseMessage(
+          "입력하신 이메일로 가입된 아이디가 존재하지 않습니다."
+        );
       }
     } catch (error) {
       console.error("Error:", error);
@@ -74,7 +75,7 @@ const ForgotIdPage = () => {
         {/* 회원가입 유도 문구 */}
         <div className="signup-link-container">
           <span className="signup-text">계정이 없으신가요? </span>
-          <Link to="/signup" className="signup-link">
+          <Link to="/terms-agreement" className="signup-link">
             회원가입
           </Link>
         </div>
