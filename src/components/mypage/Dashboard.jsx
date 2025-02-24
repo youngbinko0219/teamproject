@@ -6,6 +6,11 @@ import Point from "./Point";
 import "../../assets/css/mypage/Dashboard.css";
 import MyPageLayout from "./MyPageLayout";
 import RentalHistory from "./RentalHistory";
+<<<<<<< HEAD
+import Footer from "../footer/Footer";
+import Header from "../header/Header";
+=======
+>>>>>>> 5aa5e94b0462cc97334b495313cd51b955cd01b9
 
 const Dashboard = () => {
   const [points, setPoints] = useState(null);
