@@ -34,7 +34,7 @@ import MessagePage from "../pages/MessagePage";
 import RentalHistory from "../mypage/RentalHistory";
 import RentalPage from "../mypage/RentalPage";
 import CartPage from "../pages/CartPage";
-import WishListPage from "../../assets/css/pages/WishListPage";
+import WishListPage from "../pages/WishListPage";
 
 const AppRouter = () => {
   return (
@@ -81,9 +81,9 @@ const AppRouter = () => {
           element={<ProductDetailPage />}
         />
         {/* 토스 샘플 경로 */}
-        <Route path="/sandbox" element={<CheckoutPage />} />
-        <Route path="/sandbox/success" element={<SuccessPage />} />
-        <Route path="/sandbox/fail" element={<FailPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/checkout/success" element={<SuccessPage />} />
+        <Route path="/checkout/fail" element={<FailPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>

@@ -1,9 +1,7 @@
-// src/pages/mypage/WishListPage.jsx
-
-import Footer from "../../../components/footer/Footer";
-import Header from "../../../components/header/Header";
-import Sidebar from "../../../components/mypage/Sidebar";
-import WishList from "../../../components/mypage/WishList";
+import Footer from "../footer/Footer";
+import Header from "../header/Header";
+import Sidebar from "../mypage/Sidebar";
+import WishList from "../mypage/WishList";
 import "../../assets/css/mypage/WishListPage.css";
 
 const WishListPage = () => {

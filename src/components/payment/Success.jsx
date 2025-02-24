@@ -1,17 +1,26 @@
 import axios from "axios";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import useUserStore from "../../hooks/useUserStore";
 import "../../assets/css/payment/Success.css"; // 고유 스타일 파일
 
 export function SuccessPage() {
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [searchParams] = useSearchParams();
+  const user_id = useUserStore((state) => state.user_id); // zustand store에서 user_id 가져오기
 
   const paymentKey = searchParams.get("paymentKey");
   const orderId = searchParams.get("orderId");
   const amount = searchParams.get("amount");
 
-  // 결제 승인 요청 (fetch -> axios 변경)
+  // 현재 날짜를 결제 날짜로 사용 (한국 형식: yyyy. MM. dd)
+  const paymentDate = new Date().toLocaleDateString("ko-KR", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+
+  // 결제 승인 요청 (axios 사용)
   const confirmPayment = async () => {
     try {
       const response = await axios.post(
@@ -20,10 +29,11 @@ export function SuccessPage() {
           paymentKey,
           orderId,
           amount,
+          user_id, // user_id 추가
         }
       );
 
-      if (response.status === 200) {
+      if (response.status === 200 && response.data.message === "success") {
         setIsConfirmed(true);
       } else {
         console.error("결제 승인 실패", response);
@@ -38,8 +48,9 @@ export function SuccessPage() {
       {isConfirmed ? (
         <div
           className="success-flex-column success-align-center success-confirm-success success-w-100 success-max-w-540"
-          style={{ display: "flex" }}
-          /* CSS에서는 display: none; 이지만, 여기서 override */
+          style={{
+            display: "flex",
+          }} /* 기본 CSS에서 display: none; 이지만 여기서 override */
         >
           <img
             src="https://static.toss.im/illusts/check-blue-spot-ending-frame.png"
@@ -59,19 +70,13 @@ export function SuccessPage() {
               <span className="success-response-text">{orderId}</span>
             </div>
             <div className="success-flex success-justify-between">
-              <span className="success-response-label">paymentKey</span>
-              <span className="success-response-text">{paymentKey}</span>
+              <span className="success-response-label">결제 날짜</span>
+              <span className="success-response-text">{paymentDate}</span>
             </div>
           </div>
 
           <div className="success-w-100 success-button-group">
             <div className="success-flex" style={{ gap: "16px" }}>
-              <a
-                className="success-link success-btn success-w-100"
-                href="https://developers.tosspayments.com/sandbox"
-              >
-                다시 테스트하기
-              </a>
               <a
                 className="success-link success-btn success-w-100"
                 href="https://docs.tosspayments.com/guides/v2/payment-widget/integration"

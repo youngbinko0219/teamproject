@@ -72,11 +72,7 @@
   justify-content: space-between;
 }
 
-/* 
-    아래 클래스는 
-    - 실제로는 display: none; 이지만
-    - Success.jsx에서 style={{ display: "flex" }}로 override
-  */
+/* 실제로는 display: none; 이지만 SuccessPage.jsx에서 style로 override */
 .success-confirm-success {
   display: none;
   margin-top: 72px;
