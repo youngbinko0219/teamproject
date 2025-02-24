@@ -1,5 +1,4 @@
-// src/components/mypage/RentalHistory.jsx
-import MyPageLayout from "./MyPageLayout";
+// import MyPageLayout from "./MyPageLayout";
 import "../../assets/css/mypage/RentalHistory.css";
 
 const RentalHistory = () => {
@@ -22,12 +21,7 @@ const RentalHistory = () => {
   ];
 
   return (
-    // RentalHistory가 독립 페이지로 동작한다면:
     // <MyPageLayout>
-    //   <div className="mypage-rental-history"> ... </div>
-    // </MyPageLayout>
-
-    // 대시보드 안에 들어가는 부분이라면 MyPageLayout 생략 후 그대로 렌더링
     <div className="mypage-rental-history">
       <h2 className="mypage-section-title">대여 내역 조회</h2>
       <div className="mypage-rental-list">
@@ -43,6 +37,7 @@ const RentalHistory = () => {
         ))}
       </div>
     </div>
+    // </MyPageLayout>
   );
 };
 

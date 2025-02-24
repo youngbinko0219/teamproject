@@ -15,7 +15,7 @@ export function SuccessPage() {
   const confirmPayment = async () => {
     try {
       const response = await axios.post(
-        "/sandbox-dev/api/v1/payments/confirm",
+        "http://localhost:8080/payments/rentals",
         {
           paymentKey,
           orderId,

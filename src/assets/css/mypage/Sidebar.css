@@ -1,9 +1,42 @@
+/* 사이드바 컨테이너 */
+.mypage-sidebar {
+  /* 예시: 사이드바를 카드 형태로 만들고 싶다면 추가 */
+  width: 220px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 불릿(동그라미) 제거, 여백 초기화 */
+.mypage-sidebar-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* 각 메뉴 항목 간격 */
 .mypage-sidebar-item {
   margin-bottom: 15px;
 }
 
-.mypage-sidebar-text {
+/* 링크 스타일 (아이콘 + 텍스트 한 줄 정렬) */
+.mypage-sidebar-link {
+  display: flex; /* 아이콘과 텍스트를 한 줄에 배치 */
+  align-items: center; /* 수직 정렬 */
+  gap: 8px; /* 아이콘과 텍스트 사이 간격 */
   font-size: 16px;
   color: #23262f;
   text-decoration: none;
+}
+
+/* 아이콘 크기, 색상 (필요시 조절) */
+.mypage-sidebar-icon {
+  font-size: 18px;
+  color: #23262f;
+}
+
+/* 호버 시 색상 변화 (선택사항) */
+.mypage-sidebar-link:hover {
+  color: #555;
 }
