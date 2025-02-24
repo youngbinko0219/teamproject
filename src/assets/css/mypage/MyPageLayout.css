@@ -1,14 +1,14 @@
 /* MyPageLayout.css 또는 Sidebar.css에서 적용 (중복되지 않도록 위치 확인) */
 
+
+
 .mypage-layout {
   display: flex;
-  /* 기존 코드 유지 */
   min-height: 100vh;
   background-color: #ffffff; /* 페이지 전체의 은은한 배경 */
 }
 
 .mypage-layout__sidebar {
-  /* 사이드바가 박스 형태로 떠 있게 */
   width: 250px; /* 사이드바 너비 */
   margin: 2rem; /* 페이지와의 여백 */
   background-color: #ffffff; /* 흰 배경 */
@@ -16,8 +16,6 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 그림자 */
   padding: 1rem; /* 내부 여백 */
   height: fit-content; /* 내용에 맞춰 높이 조절 */
-
-  /* 스크롤 시 화면에 고정하고 싶다면 (sticky) */
   position: sticky;
   top: 2rem; /* 헤더가 있다면 헤더 아래로 약간 띄움 */
 }
@@ -26,4 +24,14 @@
   flex-grow: 1;
   padding: 2rem;
   /* 필요 시 다른 스타일 추가 */
+}
+
+/* MyPageLayout 전용 호버 효과 */
+.mypage-layout__hover-effect {
+  transition: background-color 0.2s ease-in-out, font-weight 0.2s ease-in-out;
+}
+
+.mypage-layout__hover-effect:hover {
+  background-color: rgba(250, 157, 154, 0.15);
+  font-weight: bold;
 }

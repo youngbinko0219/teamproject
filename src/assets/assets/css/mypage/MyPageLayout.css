@@ -21,3 +21,21 @@
   padding: 2rem;
   /* 필요한 스타일 */
 }
+
+/* 텍스트 링크에 적용되는 스타일 */
+.mypage-link {
+  display: inline-block;
+  padding: 10px;
+  border: 2px solid #000; /* 테두리 추가 */
+  border-radius: 5px; /* 둥근 모서리 */
+  text-decoration: none; /* 파란 밑줄 제거 */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+  transition: all 0.3s ease; /* 부드러운 효과 */
+}
+
+/* 호버 시 효과 */
+.mypage-link:hover {
+  background-color: #f0f0f0; /* 호버 시 배경색 변경 */
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); /* 그림자 강조 */
+  transform: translateY(-2px); /* 살짝 위로 이동 */
+}

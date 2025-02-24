@@ -1,9 +1,52 @@
-.mypage-sidebar-item {
-  margin-bottom: 15px;
+/* 사이드바 컨테이너 */
+.mypage-sidebar {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  height: fit-content;
 }
 
-.mypage-sidebar-text {
-  font-size: 16px;
-  color: #23262f;
+/* 사이드바 항목 기본 스타일 */
+.mypage-sidebar-item {
+  margin-bottom: 20px;        /* 항목 사이 간격 */
+  font-size: 18px;           /* 글자 크기 */
+  font-weight: bold;         /* 기본부터 볼드체 */
+  color: #555;               /* 기본 텍스트 색상 (회색) */
+  transition: all 0.2s ease-in-out;
+  border-radius: 6px;
+  padding: 6px 12px;
+  text-align: left;
+}
+
+/* 호버 시 효과 */
+.mypage-sidebar-item:hover {
+  background-color: rgba(250, 157, 154, 0.15); /* 연한 분홍 배경 */
+  color: #fa9d9a;                              /* (중요) 항목 자체 텍스트 색상도 핑크로 변경 */
+  transform: translateX(2px);
+}
+
+/* 호버 시, 내부 텍스트(.mypage-sidebar-text)도 핑크색으로 변경 */
+.mypage-sidebar-item:hover .mypage-sidebar-text {
+  color: #fa9d9a;
+}
+
+/* 클릭(활성) 상태 */
+.mypage-sidebar-item.active {
+  font-weight: bold;
+  color: #fff;
+  background-color: #fa9d9a; /* 활성화된 항목 색상 */
+  border-radius: 6px;
+}
+
+/* 링크 스타일 */
+.mypage-link {
   text-decoration: none;
+  color: inherit;
+}
+
+/* 사이드바 텍스트 스타일 */
+.mypage-sidebar-text {
+  font-size: 18px; /* 글자 크기 */
+  color: #555;     /* 기본 텍스트 색상 */
 }

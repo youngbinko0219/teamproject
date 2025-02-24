@@ -5,7 +5,9 @@ import LoginSection from "./LoginSection";
 import Point from "./Point";
 import "../../assets/css/mypage/Dashboard.css";
 import MyPageLayout from "./MyPageLayout";
-import RentalHistory from "./RentalHistory1";
+import RentalHistory from "./RentalHistory";
+import Footer from "../footer/Footer";
+import Header from "../header/Header";
 
 const Dashboard = () => {
   const [points, setPoints] = useState(null);
