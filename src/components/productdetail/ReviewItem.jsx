@@ -29,25 +29,23 @@ const getCookie = (name) => {
   return {}; // 쿠키가 없으면 빈 객체 반환
 };
 
+// 문자열 마스킹
+const hideUserId = (user_id) => {
+  const visiblePart = user_id.substring(0, 4);  // 앞 4자리만 보이게
+  const hiddenPart = "***";  // 나머지 부분은 ***으로 가림
+  return `${visiblePart}${hiddenPart}`;
+};
+
 const ReviewItem = ({ review }) => {
-  const { review_id, user_id, created_at, review_text } = review;
+  const { review_id, user_id, created_at, review_text, rating } = review;
 
   // 쿠키에서 좋아요 & 신고 상태 확인
   const cookieData = getCookie("reviewActions");
   const [liked, setLiked] = useState(cookieData[`liked_${review_id}`] || false);
   const [reported, setReported] = useState(cookieData[`reported_${review_id}`] || false);
 
-  // `useEffect`에서 쿠키를 다시 확인하여 업데이트
-  useEffect(() => {
-    const cookieData = getCookie("reviewActions");
-    setLiked(cookieData[`liked_${review_id}`] || false);
-    setReported(cookieData[`reported_${review_id}`] || false);
-  }, [review_id]);
-
   // 좋아요 버튼 클릭 핸들러
   const handleLikeClick = async () => {
-    event.stopPropagation();
-    
     if (liked) return; 
 
     try {
@@ -80,11 +78,28 @@ const ReviewItem = ({ review }) => {
     }
   };
 
+  // 별점 표시 함수
+  const renderStars = (rating) => {
+    return (
+      <div className="stars">
+        {[...Array(5)].map((_, index) => (
+          <span
+            key={index}
+            className={index < rating ? "filled-star" : "empty-star"}
+          >
+            ★
+          </span>
+        ))}
+      </div>
+    );
+  };
+
   return (
     <div className="review-item">
       <div className="review-header">
-        <span className="review-user">{user_id}</span>
+        <span className="review-user">{hideUserId(user_id)}</span>
         <span className="review-date">{created_at}</span>
+        {renderStars(rating)}
       </div>
 
       <p className="review-text">{review_text}</p>
