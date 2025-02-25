@@ -19,7 +19,7 @@ const ProductSection = ({ id, children }) => (
   </section>
 );
 
-const ProductDetailPage = ({ productId = "24" }) => {
+const ProductDetailPage = ({ productId = "1" }) => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -28,8 +28,9 @@ const ProductDetailPage = ({ productId = "24" }) => {
   useEffect(() => {
     const loadProduct = async () => {
       try {
+        // 새로운 API 엔드포인트 사용: /products/view/{productId}
         const response = await axios.get(
-          `http://localhost:8080/product/list/유모차?product_id=${productId}`
+          `http://localhost:8080/products/view/${productId}`
         );
         setProduct(response.data);
       } catch (err) {

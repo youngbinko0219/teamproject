@@ -21,7 +21,7 @@ const UserActions = () => {
     <div className="user-actions">
       {isLoggedIn ? (
         <div className="logged-in-icons">
-          <Link to="/wishlist" className="icon-link">
+          <Link to="/mypage/wishlist" className="icon-link">
             <FaHeart className="action-icon" />
           </Link>
           <Link to="/cart" className="icon-link">

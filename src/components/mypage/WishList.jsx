@@ -63,9 +63,9 @@ const WishList = () => {
       {wishlist.length > 0 ? (
         <ul className="wishlist-items">
           {wishlist.map((item) => (
-            <li className="wishlist-item" key={item.wish_id}>
-              <Link to={`/product/${item.product_id}`}>
-                {item.product_name || "상품"}
+            <li className="wishlist-item" key={item.wishId}>
+              <Link to={`/product/${item.productId}`}>
+                {item.productName || "상품"}
               </Link>
             </li>
           ))}
