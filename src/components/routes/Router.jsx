@@ -17,7 +17,6 @@ import StockManagementPage from "../pages/StockManagementPage ";
 import SalesReportPage from "../pages/SalesReportPage";
 import AdminAdPage from "../pages/AdminAdPage";
 import NotFoundPage from "../pages/NotFountPage";
-import SearchPage from "../pages/SearchPage";
 import TermsAgreementPage from "../pages/TermsAgreementPage";
 import ProductListPage from "../pages/ProductListPage";
 import ProductDetailPage from "../pages/ProductDetailPage";
@@ -37,6 +36,7 @@ import CartPage from "../pages/CartPage";
 import WishListPage from "../pages/WishListPage";
 import TermsOfUse from "../footer/TermsOfUse";
 import Contact from "../footer/Contact";
+import SearchPage from "../pages/SearchPage";
 
 const AppRouter = () => {
   return (

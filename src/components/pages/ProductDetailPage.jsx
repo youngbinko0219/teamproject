@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import Thumbnail from "../productdetail/Thumbnail";
 import ProductInfo from "../productdetail/ProductInfo";
@@ -19,7 +20,8 @@ const ProductSection = ({ id, children }) => (
   </section>
 );
 
-const ProductDetailPage = ({ productId = "1" }) => {
+const ProductDetailPage = () => {
+  const { product_id } = useParams(); // URL의 product_id 파라미터를 읽어옴
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -28,9 +30,9 @@ const ProductDetailPage = ({ productId = "1" }) => {
   useEffect(() => {
     const loadProduct = async () => {
       try {
-        // 새로운 API 엔드포인트 사용: /products/view/{productId}
+        // API 엔드포인트: /products/view/{product_id}
         const response = await axios.get(
-          `http://localhost:8080/products/view/${productId}`
+          `http://localhost:8080/products/view/${product_id}`
         );
         setProduct(response.data);
       } catch (err) {
@@ -42,7 +44,7 @@ const ProductDetailPage = ({ productId = "1" }) => {
     };
 
     loadProduct();
-  }, [productId]);
+  }, [product_id]);
 
   // 로딩 상태 처리
   if (loading)
