@@ -1,5 +1,5 @@
 // src/components/mypage/MyPageEditForm.jsx
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import "../../assets/css/mypage/MyPageEditForm.css";
 
@@ -13,11 +13,30 @@ function MyPageEditForm() {
   const [address, setAddress] = useState("");
   const [detailAddress, setDetailAddress] = useState("");
   const [error, setError] = useState(null);
+  
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/user/user1") 
+      .then((res) => {
+        console.log(res.data);
+        const data = res.data;
+        setUsername(data.username || "");
+        setUserId(data.userId || "");
+        setPhone(data.phone || "");
+        setPostalCode(data.postalCode || "");
+        setAddress(data.address || "");
+        setDetailAddress(data.detailAddress || "");
+      })
+      .catch((err) => {
+        console.error("회원 정보 불러오기 오류:", err);
+        setError("회원 정보를 불러오는데 실패했습니다.");
+      });
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8080/auth/update", {
+      const response = await axios.put("http://localhost:8080/user/user1", {
         username,
         userId,
         password,

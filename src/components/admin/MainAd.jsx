@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 // import "../../assets/css/admin/MainAd.css";
 
 const MainAd = () => {
@@ -38,9 +39,17 @@ const MainAd = () => {
           headers: { "Content-Type": "multipart/form-data" },
         }
       );
-      setBannerUrls([...bannerUrls, response.data]);
+      // 예를 들어 백엔드가 { message: "success", data: { url: "..." } } 형태로 응답할 경우
+      if (response.data.message === "success") {
+        const newUrl = response.data.data.url || response.data.url;
+        setBannerUrls([...bannerUrls, newUrl]);
+        toast.success("업로드 성공!");
+      } else {
+        toast.error("업로드 실패!");
+      }
     } catch (error) {
       console.error("배너 업로드 오류:", error);
+      toast.error("배너 업로드 중 오류 발생!");
     }
     setLoading(false);
   };
@@ -54,8 +63,10 @@ const MainAd = () => {
         )}`
       );
       setBannerUrls(bannerUrls.filter((banner) => banner !== url));
+      toast.success("배너 삭제 성공!");
     } catch (error) {
       console.error("배너 삭제 오류:", error);
+      toast.error("배너 삭제 중 오류 발생!");
     }
   };
 

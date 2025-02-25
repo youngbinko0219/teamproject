@@ -16,23 +16,27 @@ import ProductFormPage from "../pages/ProductFormPage";
 import StockManagementPage from "../pages/StockManagementPage ";
 import SalesReportPage from "../pages/SalesReportPage";
 import AdminAdPage from "../pages/AdminAdPage";
-import CheckoutPage from "../pages/CheckoutPage";
-import PaymentSuccessPage from "../pages/PaymentSuccessPage";
-import PaymentReceiptPage from "../pages/PaymentReceiptPage";
-import MessagesPage from "../pages/MessagePage";
 import NotFoundPage from "../pages/NotFountPage";
-import SearchPage from "../pages/SearchPage";
 import TermsAgreementPage from "../pages/TermsAgreementPage";
 import ProductListPage from "../pages/ProductListPage";
 import ProductDetailPage from "../pages/ProductDetailPage";
 import Point from "../mypage/Point";
 import MyPageMain from "../mypage/MyPageMain";
-import RentalHistory from "../mypage/RentalHistory1";
 import MyPageEdit from "../mypage/MyPageEdit";
-import WishList from "../mypage/WishList";
 import Reverse from "../mypage/Reverse";
 import UserManagementPage from "../pages/UserManagementPage";
 import AuthHandler from "../auth/AuthHandler";
+import { SuccessPage } from "../payment/Success";
+import { FailPage } from "../payment/Fail";
+import { CheckoutPage } from "../payment/Checkout";
+import MessagePage from "../pages/MessagePage";
+import RentalHistory from "../mypage/RentalHistory";
+import RentalPage from "../mypage/RentalPage";
+import CartPage from "../pages/CartPage";
+import WishListPage from "../pages/WishListPage";
+import TermsOfUse from "../footer/TermsOfUse";
+import Contact from "../footer/Contact";
+import SearchPage from "../pages/SearchPage";
 
 const AppRouter = () => {
   return (
@@ -42,20 +46,25 @@ const AppRouter = () => {
         <Route path="/" element={<MainPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
-        <Route path="/mypage/edit" element={<MyPageEdit />} />
-        <Route path="/mypage/main" element={<MyPageMain />} />
-        <Route path="/mypage/rental" element={<RentalHistory />} />
-        <Route path="/mypage/wishlist" element={<WishList />} />
-        <Route path="/mypage/more" element={<RentalHistory />} />
-        <Route path="/mypage/reverse" element={<Reverse />} />
-        <Route path="/mypage/point" element={<Point />} />
         <Route path="/forgotid" element={<ForgotIdPage />} />
         <Route path="/forgotpw" element={<ForgotPwPage />} />
         <Route path="/all-products" element={<AllProductsPage />} />
         <Route path="/new-products" element={<NewProductsPage />} />
         <Route path="/today-products" element={<TodayProductsPage />} />
         <Route path="/best-products" element={<BestProductsPage />} />
+        <Route path="/cart" element={<CartPage />} />
+        {/* 푸터 관련 페이지 */}
+        <Route path="/contact" element={<Contact />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-of-use" element={<TermsOfUse />} />
+        {/* 마이 페이지 */}
+        <Route path="/mypage/edit" element={<MyPageEdit />} />
+        <Route path="/mypage/main" element={<MyPageMain />} />
+        <Route path="/mypage/rental" element={<RentalPage />} />
+        <Route path="/mypage/wishlist" element={<WishListPage />} />
+        <Route path="/mypage/more" element={<RentalHistory />} />
+        <Route path="/mypage/reverse" element={<Reverse />} />
+        <Route path="/mypage/point" element={<Point />} />
         {/* 어드민 로그인 페이지 */}
         <Route path="/admin" element={<AdminLoginPage />} />
         <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
@@ -65,18 +74,21 @@ const AppRouter = () => {
         <Route path="/admin/users" element={<UserManagementPage />} />
         <Route path="/admin/sales" element={<SalesReportPage />} />
         <Route path="/admin/ad" element={<AdminAdPage />} />
-        {/* 결제 관련 페이지 */}
-        <Route path="/checkout" element={<CheckoutPage />} />
-        <Route path="/payment/success" element={<PaymentSuccessPage />} />
-        <Route path="/payment/receipt" element={<PaymentReceiptPage />} />
-        <Route path="/messages" element={<MessagesPage />} />
+        <Route path="/messages" element={<MessagePage />} />
         {/* 검색 페이지 추가 */}
         <Route path="/search" element={<SearchPage />} />
         {/* 약관 동의 페이지 */}
         <Route path="/terms-agreement" element={<TermsAgreementPage />} />
         {/* 상품 관련 페이지 */}
         <Route path="/products/:category" element={<ProductListPage />} />
-        <Route path="/products/view/:product_id" element={<ProductDetailPage />} />
+        <Route
+          path="/products/view/:product_id"
+          element={<ProductDetailPage />}
+        />
+        {/* 토스 샘플 경로 */}
+        <Route path="/checkout" element={<CheckoutPage />} />
+        <Route path="/checkout/success" element={<SuccessPage />} />
+        <Route path="/checkout/fail" element={<FailPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>

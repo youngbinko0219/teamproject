@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import useProductStore from "../../hooks/useProductStore";
 import Header from "../header/Header";  
@@ -6,6 +5,8 @@ import Footer from "../footer/Footer";
 import CategoryList from "../main/CategoryList";
 import FilterBar from "../productlist/FilterBar";
 import RecentViewed from "../productlist/RecentViewed";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import Thumbnail from "../productdetail/Thumbnail";
 import ProductInfo from "../productdetail/ProductInfo";
 import ProductTabs from "../productdetail/ProductTabs";
@@ -26,8 +27,11 @@ const ProductSection = ({ id, children }) => (
 );
 
 const ProductDetailPage = () => {
-  const { product_id } = useParams();  
   const { setProductId } = useProductStore();  
+  const { product_id } = useParams(); // URL의 product_id 파라미터를 읽어옴
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   /* 페이지가 열릴 때 product_id를 zustand에 저장 */
   useEffect(() => {

@@ -9,7 +9,7 @@ const itemsPerPage = 16; // 한 페이지당 상품 개수
 const pageGroupSize = 5; // 페이지 그룹 크기 
 
 const ProductGrid = () => {
-  const { category } = useProductStore();  // 선택한 카테고리 가져오기
+  const { category } = useProductStore(); // 선택한 카테고리 가져오기
   const [list, setList] = useState([]); // 전체 상품 목록 상태
   const [products, setProducts] = useState([]); // 필터링된 상품 목록 상태(정렬을 위해 필요)
   const [loading, setLoading] = useState(true); // 로딩 상태

@@ -21,13 +21,13 @@ const UserActions = () => {
     <div className="user-actions">
       {isLoggedIn ? (
         <div className="logged-in-icons">
-          <Link to="/wishlist" className="icon-link">
+          <Link to="/mypage/wishlist" className="icon-link">
             <FaHeart className="action-icon" />
           </Link>
           <Link to="/cart" className="icon-link">
             <FaShoppingCart className="action-icon" />
           </Link>
-          <Link to="/mypage" className="icon-link">
+          <Link to="/mypage/main" className="icon-link">
             <FaUser className="action-icon" />
           </Link>
           <button className="logout-button" onClick={handleLogout}>
@@ -40,7 +40,7 @@ const UserActions = () => {
             로그인
           </Link>
           &nbsp;
-          <Link to="/terms-agreement" className="auth-link signup-link">
+          <Link to="/terms-agreement" className="auth-link login-link">
             회원가입
           </Link>
         </div>

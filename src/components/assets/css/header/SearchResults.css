@@ -1,0 +1,58 @@
+/* 검색 결과 전체 컨테이너 */
+.search-results-container {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.search-results-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* 아이템 목록을 담는 래퍼 */
+.search-items-wrapper {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 한 줄에 5개 */
+  gap: 20px;
+}
+
+/* 개별 아이템 카드 */
+.search-product-item {
+  width: 200px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  text-align: center;
+  padding: 10px;
+}
+
+/* 페이징 컨테이너 */
+.pagination-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* 페이지 번호 버튼 스타일 */
+.pagination-container button {
+  border: 1px solid #ddd;
+  background-color: #fff;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.pagination-container button.active {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+/* 드롭다운(페이지당 개수) */
+.pagination-container select {
+  padding: 5px;
+}
