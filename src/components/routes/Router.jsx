@@ -35,6 +35,8 @@ import RentalHistory from "../mypage/RentalHistory";
 import RentalPage from "../mypage/RentalPage";
 import CartPage from "../pages/CartPage";
 import WishListPage from "../pages/WishListPage";
+import TermsOfUse from "../footer/TermsOfUse";
+import Contact from "../footer/Contact";
 
 const AppRouter = () => {
   return (
@@ -50,8 +52,11 @@ const AppRouter = () => {
         <Route path="/new-products" element={<NewProductsPage />} />
         <Route path="/today-products" element={<TodayProductsPage />} />
         <Route path="/best-products" element={<BestProductsPage />} />
-        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/cart" element={<CartPage />} />
+        {/* 푸터 관련 페이지 */}
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-of-use" element={<TermsOfUse />} />
         {/* 마이 페이지 */}
         <Route path="/mypage/edit" element={<MyPageEdit />} />
         <Route path="/mypage/main" element={<MyPageMain />} />
