@@ -13,7 +13,7 @@ const ForgotIdPage = () => {
 
     try {
       const response = await axios.get("http://localhost:8080/auth/search-id", {
-        params: { email },
+        params: { user_email: email },
       });
 
       if (response.status === 200 && response.data.message === "success") {
