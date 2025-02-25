@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { fetchProducts } from "../../services/ProductService";
 import { usePagination } from "../../hooks/usePagination";
 import Pagination from "../pagination/Pagination";
-import "../assets/css/header/SearchResults.css";
+import "../../assets/css/header/SearchResults.css";
 
 const SearchResults = () => {
   const [results, setResults] = useState([]);
