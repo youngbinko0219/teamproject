@@ -1,5 +1,7 @@
+// src/components/productdetail/RentalDatePicker.jsx
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import CustomDateInput from "./CustomDateInput";
 import "../../assets/css/productdetail/RentalDatePicker.css";
 
 const RentalDatePicker = ({ selectedDate, onSelect }) => {
@@ -8,8 +10,7 @@ const RentalDatePicker = ({ selectedDate, onSelect }) => {
       selected={selectedDate}
       onChange={onSelect}
       dateFormat="yyyy-MM-dd"
-      className="rental-datepicker-input"
-      placeholderText="대여 시작일 선택"
+      customInput={<CustomDateInput />}
     />
   );
 };

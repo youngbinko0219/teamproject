@@ -5,12 +5,19 @@
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  position: relative;
 }
 
-/* 제목 스타일 - 메인 색상 적용 */
-.cart-view h1 {
-  font-size: 24px;
+/* 장바구니 헤더 영역 - 제목과 비우기 버튼 */
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 20px;
+}
+
+.cart-header h1 {
+  font-size: 24px;
   color: #ff7f7f;
 }
 
@@ -49,4 +56,30 @@
 .clear-cart-button:hover,
 .checkout-button:hover {
   background-color: #ff5f5f;
+}
+
+/* clear-cart-button는 이제 cart-header 내에서 배치됨 */
+
+/* 포인트 사용 섹션 스타일 */
+.cart-points-section {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  margin-bottom: 20px;
+}
+
+.cart-points-section p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.cart-points-input {
+  margin-top: 10px;
+}
+
+.cart-points-input input {
+  width: 100px;
+  padding: 5px;
+  margin-left: 10px;
 }
