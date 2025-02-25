@@ -1,199 +1,198 @@
 import { useState, useEffect } from "react";
+import useProductStore from "../../hooks/useProductStore";
+import useReviewStore from "../../hooks/useReviewStore";
+import useUserStore from "../../hooks/useUserStore";
+import axios from "axios";
 import ReviewSummary from "./ReviewSummary";
 import ReviewItem from "./ReviewItem";
 import ReviewFormModal from "../../modals/productsdetail/ReviewFormModal";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../../assets/css/productdetail/ReviewSection.css";
-import { fetchReviews, postReview } from "./api";
 
-const ReviewSection = ({ product }) => {
-  const [reviews, setReviews] = useState([]);
+const ReviewSection = () => {
+  const { product_id, product_name, mainImage } = useProductStore(); 
+  const { user_id } = useUserStore();
+  const { reviews, setReviews, setReviewForm } = useReviewStore(); 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [filters, setFilters] = useState({
     sortType: "helpful",
     photoOnly: false,
     currentPage: 1,
   });
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const reviewsPerPage = 5;
-  const groupSize = 5;
+  const pageGroupSize = 5;
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    const loadReviews = async () => {
-      try {
-        // product.id를 이용해 해당 상품의 리뷰 데이터를 가져옵니다.
-        const fetchedReviews = await fetchReviews(product.id);
-        setReviews(fetchedReviews);
-      } catch (error) {
-        console.error("리뷰 데이터를 불러오는데 실패했습니다.", error);
-      }
-    };
-    if (product && product.id) {
-      loadReviews();
+    if (product_id) {
+      setReviewForm({
+        productId: product_id,
+        productName: product_name,
+      });
     }
-  }, [product]);
+  }, [product_id, product_name, setReviewForm]);
 
-  /* ✅ 리뷰 추가 (API 호출) */
-  const addReview = async (reviewData) => {
+  const loadReviews = async () => {
+    if (!product_id) return;
     try {
-      // postReview를 통해 리뷰를 등록하고, 새 리뷰 객체를 반환받습니다.
-      const newReview = await postReview(product.id, reviewData);
-      setReviews((prevReviews) => [newReview, ...prevReviews]);
-      setFilters({ sortType: "latest", photoOnly: false, currentPage: 1 });
-      setIsModalOpen(false);
+      setIsLoading(true);
+      const response = await axios.get(`http://localhost:8080/reviews/${product_id}/list`);
+      setReviews(Array.isArray(response.data) ? response.data : []);
     } catch (error) {
-      console.error("리뷰 등록 실패:", error);
-      // 에러 처리(예: 사용자에게 알림) 필요 시 추가
+      console.error("리뷰 데이터 불러오기 실패:", error);
+      toast.error("리뷰 데이터를 불러오는데 실패했습니다.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  /* ✅ 필터링 및 정렬 */
-  const filteredReviews = reviews.filter(
-    (review) => !filters.photoOnly || review.photo !== null
-  );
-  const sortedReviews = [...filteredReviews].sort((a, b) => {
-    return filters.sortType === "helpful"
-      ? b.likes - a.likes
-      : new Date(b.date) - new Date(a.date);
-  });
-
-  /* ✅ 페이지네이션 계산 */
-  const totalPages = Math.ceil(sortedReviews.length / reviewsPerPage) || 1;
-  const startIndex = (filters.currentPage - 1) * reviewsPerPage;
-  const paginatedReviews = sortedReviews.slice(
-    startIndex,
-    startIndex + reviewsPerPage
-  );
-
-  const currentGroup = Math.ceil(filters.currentPage / groupSize);
-  const startPage = (currentGroup - 1) * groupSize + 1;
-  const endPage = Math.min(startPage + groupSize - 1, totalPages);
-
-  // 현재 페이지가 totalPages를 초과하면 마지막 페이지로 조정
   useEffect(() => {
-    if (filters.currentPage > totalPages) {
-      setFilters((prev) => ({ ...prev, currentPage: totalPages }));
+    if (!product_id) return;
+    
+    const fetchData = async () => {
+        try {
+            setIsLoading(true);
+            await loadReviews();
+        } catch (error) {
+            console.error("🚨 리뷰 데이터를 불러오는 중 오류 발생:", error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    fetchData();
+  }, [product_id, setReviews]);
+
+  const openReviewModal = () => {
+    if (!product_id) {
+      toast.error("상품 정보가 올바르게 로드되지 않았습니다.");
+      return;
     }
-  }, [totalPages, filters.currentPage]);
+  
+    if (!user_id) {
+      toast.warn("로그인이 필요합니다.");
+      return;
+    }
+  
+    setIsModalOpen(true);
+  };
+  
+  const handleReviewSubmit = (newReview) => {
+    console.log("📌 새 리뷰 데이터:", newReview);
+    loadReviews(); 
+  };
+
+  const updateReviewLikes = (reviewId) => {
+    // 좋아요 클릭 시 해당 리뷰의 좋아요 수 증가 후, 상태 업데이트
+    setReviews((prevReviews) => {
+      return prevReviews.map((review) => 
+        review.review_id === reviewId
+          ? { ...review, review_like: review.review_like + 1 } // 좋아요 수 증가
+          : review
+      );
+    });
+  };
+
+
+  const totalPages = Math.ceil(reviews.length / reviewsPerPage);
+  const totalGroups = Math.ceil(totalPages / pageGroupSize);
+  const currentGroup = Math.ceil(currentPage / pageGroupSize);
+  const startPage = (currentGroup - 1) * pageGroupSize + 1;
+  const endPage = Math.min(startPage + pageGroupSize - 1, totalPages);
+
+  const indexOfLastReview = currentPage * reviewsPerPage;
+  const indexOfFirstReview = indexOfLastReview - reviewsPerPage;
+  const currentReviews = Array.isArray(reviews) ? reviews.slice(indexOfFirstReview, indexOfLastReview) : [];
 
   return (
     <div className="review-container">
-      {/* 리뷰 통계 */}
+      <ToastContainer
+        position="top-center"
+        autoClose={1000} 
+        hideProgressBar={true} 
+        closeOnClick 
+        pauseOnHover={false} 
+        draggable={false} 
+        theme="colored" 
+      />
       <div className="review-summary-container">
         <ReviewSummary reviews={reviews} />
       </div>
 
-      {/* 정렬 버튼 + 리뷰 작성 버튼 */}
       <div className="review-controls">
         <div className="review-controls-left">
           <button
             className={filters.sortType === "helpful" ? "active" : ""}
-            onClick={() =>
-              setFilters({ ...filters, sortType: "helpful", currentPage: 1 })
-            }
+            onClick={() => setFilters({ ...filters, sortType: "helpful" })}
           >
             도움순
           </button>
           <button
             className={filters.sortType === "latest" ? "active" : ""}
-            onClick={() =>
-              setFilters({ ...filters, sortType: "latest", currentPage: 1 })
-            }
+            onClick={() => setFilters({ ...filters, sortType: "latest" })}
           >
             최신순
           </button>
-          <label>
-            <input
-              type="checkbox"
-              checked={filters.photoOnly}
-              onChange={() =>
-                setFilters({
-                  ...filters,
-                  photoOnly: !filters.photoOnly,
-                  currentPage: 1,
-                })
-              }
-            />
-            포토리뷰
-          </label>
         </div>
-
         <div className="review-controls-right">
-          <button
-            className="write-review-button"
-            onClick={() => setIsModalOpen(true)}
-          >
+          <button className="write-review-button" onClick={openReviewModal}>
             리뷰 작성하기
           </button>
         </div>
       </div>
 
-      {/* 리뷰 목록 */}
       <div className="review-list">
-        {paginatedReviews.length > 0 ? (
-          paginatedReviews.map((review) => (
-            <ReviewItem key={review.id} review={review} />
-          ))
+        {currentReviews.length > 0 ? (
+          currentReviews.map((review) => <ReviewItem key={review.review_id} review={review} updateReviewLikes={updateReviewLikes}  />)
         ) : (
           <p>리뷰가 없습니다.</p>
         )}
       </div>
 
-      {/* 페이지네이션 */}
-      <div className="pagination">
-        {/* "이전" 버튼 */}
-        <button
-          onClick={() =>
-            setFilters({
-              ...filters,
-              currentPage: Math.max(filters.currentPage - groupSize, 1),
-            })
-          }
-          disabled={filters.currentPage === 1}
-        >
-          이전
-        </button>
-
-        {[...Array(totalPages)].map((_, index) => {
-          const pageNumber = index + 1;
-          if (pageNumber >= startPage && pageNumber <= endPage) {
-            return (
-              <button
-                key={pageNumber}
-                className={filters.currentPage === pageNumber ? "active" : ""}
-                onClick={() =>
-                  setFilters({ ...filters, currentPage: pageNumber })
-                }
-              >
-                {pageNumber}
-              </button>
-            );
-          }
-          return null;
-        })}
-
-        {/* "다음" 버튼 */}
-        <button
-          onClick={() =>
-            setFilters({
-              ...filters,
-              currentPage: Math.min(
-                filters.currentPage + groupSize,
-                totalPages
-              ),
-            })
-          }
-          disabled={filters.currentPage >= totalPages}
-        >
-          다음
-        </button>
+      <div className="pagination-container2">
+        <div className="pagination">
+          <button 
+            onClick={() => setCurrentPage(prev => Math.max(prev - pageGroupSize, 1))} 
+            disabled={currentGroup === 1}
+          >
+            이전
+          </button>
+          {[...Array(totalPages)].map((_, index) => {
+            const pageNumber = index + 1;
+            if (pageNumber >= startPage && pageNumber <= endPage) {
+              return (
+                <button 
+                  key={pageNumber} 
+                  className={currentPage === pageNumber ? "active" : ""}
+                  onClick={() => setCurrentPage(pageNumber)}
+                >
+                  {pageNumber}
+                </button>
+              );
+            }
+            return null;
+          })}
+          <button 
+            onClick={() => setCurrentPage(prev => Math.min(prev + pageGroupSize, totalPages))} 
+            disabled={currentGroup === totalGroups}
+          >
+            다음
+          </button>
+        </div>
       </div>
 
-      {/* 리뷰 작성 모달 */}
       {isModalOpen && (
-        <ReviewFormModal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          addReview={addReview}
+        <ReviewFormModal 
+          isOpen={isModalOpen} 
+          onClose={() => setIsModalOpen(false)} 
+          product_id={product_id} 
+          product_name={product_name} 
+          mainImage={mainImage} 
+          user_id={user_id}
+          onReviewSubmit={handleReviewSubmit}
         />
       )}
     </div>

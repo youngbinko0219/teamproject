@@ -9,6 +9,7 @@ import QuantitySelector from "./QuantitySelector";
 import RentalDatePicker from "./RentalDatePicker";
 import WishButton from "./WishButton";
 import useProductStore from "../../hooks/useProductStore";
+import useUserStore from "../../hooks/useUserStore";
 import { addCartItem } from "../../services/CartService"; // API 서비스 임포트
 
 const ProductInfo = () => {
@@ -20,8 +21,11 @@ const ProductInfo = () => {
     quantity,
     setRentalPeriod,
     setRentalDate,
+    setQuantity,
     proceedToCheckout,
   } = useProductStore();
+  const { user_id } = useUserStore(); 
+    
 
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -38,13 +42,9 @@ const ProductInfo = () => {
 
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:8080/products/view/${product_id}`
-        );
-        console.log("📦 상품 데이터 응답:", response.data);
+        const response = await axios.get(`http://localhost:8080/products/view/${product_id}`);
         setProduct(response.data);
       } catch (err) {
-        console.error("상품 데이터를 불러오는 중 오류 발생:", err);
         setError("상품 데이터를 불러오는 중 오류가 발생했습니다.");
       } finally {
         setLoading(false);
@@ -54,14 +54,16 @@ const ProductInfo = () => {
     fetchProduct();
   }, [product_id]);
 
-  if (loading)
-    return <div className="product-info">상품 정보를 불러오는 중...</div>;
+  // 로딩 상태 표시
+  if (loading) return <div className="product-info">상품 정보를 불러오는 중...</div>;
   if (error) return <div className="product-info error-message">{error}</div>;
-  if (!product)
-    return <div className="product-info">상품 정보를 찾을 수 없습니다.</div>;
+  if (!product) return <div className="product-info">상품 정보를 찾을 수 없습니다.</div>;
 
+  // 가격 계산 (대여 기간 문자열 → 숫자로 변환 후 계산)
   const rentalDays = parseInt(rentalPeriod.replace("일", ""), 10) || 30;
   const updatedPrice = product?.price ? product.price * (rentalDays / 30) : 0;
+
+  // 재고 확인 (undefined 방지)
   const isAvailable = (product?.stock ?? 0) > 0;
 
   // 장바구니에 아이템 추가하는 함수 (옵션 항목 제거)
@@ -103,6 +105,7 @@ const ProductInfo = () => {
         </p>
       </div>
 
+
       <p className="product-description">
         {product?.description || "상품 설명 없음"}
       </p>
@@ -111,6 +114,7 @@ const ProductInfo = () => {
 
       <div className="rental-section">
         <h3 className="section-title">대여 기간</h3>
+
         <RentalPeriodSelector
           selectedPeriod={rentalPeriod}
           onSelect={setRentalPeriod}
@@ -124,6 +128,7 @@ const ProductInfo = () => {
 
       <div className="purchase-buttons">
         <QuantitySelector />
+
         <button className="add-to-cart" onClick={handleAddToCart}>
           장바구니
         </button>

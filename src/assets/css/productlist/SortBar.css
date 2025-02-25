@@ -1,4 +1,4 @@
-/* 🔥 네모 박스 스타일 */
+/* 네모 박스 스타일 */
 .sort-container {
     display: flex;
     flex-direction: column;
@@ -9,7 +9,7 @@
     margin-bottom: 20px; /* 상품 목록과 간격 */
   }
   
-  /* 🔥 정렬 기준 제목 스타일 */
+  /* 정렬 기준 제목 스타일 */
   .sort-title {
     font-size: 16px;
     font-weight: bold;
@@ -17,29 +17,33 @@
     color: #333;
   }
   
-  /* 🔥 정렬 버튼을 감싸는 메뉴 */
+  /* 정렬 버튼을 감싸는 메뉴 */
   .sort-menu {
     display: flex;
   }
   
-  /* 🔥 버튼 기본 스타일 */
-  .sort-tab {
-    width: 150px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s, color 0.3s;
-    border-radius: 0%;
-    border: none; /* ✅ 기존 테두리 제거 */
-    outline: none; /* ✅ 포커스 시 파란 테두리 제거 */
-  }
-  
-  /* 🔥 마우스 올렸을 때 효과 */
-  .sort-tab:hover {
-    background: #ffdddd;
-  }
-  
-  /* 🔥 선택된 버튼 (활성화된 상태) */
-  .sort-tab.active {
-    background: #fa9d9a;
-  }
+/* 정렬 버튼 기본 스타일 */
+.sort-tab {
+  width: 150px;
+  font-weight: bold;
+  font-size: 1em;
+  cursor: pointer;
+  padding: 12px;
+  border: none;
+  border-radius: 0 !important;
+  background-color: #f8f8f8; 
+  color: black;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* 마우스 올렸을 때 */
+.sort-tab:hover {
+  background: #d6d6d6; /* ✅ 조금 더 진한 회색 */
+}
+
+/* 활성화된 버튼 (선택된 상태) */
+.sort-tab.active {
+  background: #fa9d9a; /* ✅ 핑크 */
+  color: black;
+}
   

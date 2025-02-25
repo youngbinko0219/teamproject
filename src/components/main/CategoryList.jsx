@@ -10,7 +10,7 @@ const categories = [
   },
   { title: "이동 용품", items: ["유모차&웨건", "카시트"] },
   { title: "이유식", items: ["식탁의자", "유축기&소독기"] },
-  { title: "위생 & 건강", items: ["기저귀 갈이대", "유아 욕조"] },
+  { title: "위생 & 건강", items: ["기저귀 갈이대", "유아욕조"] },
 ];
 
 const CategoryList = () => {
