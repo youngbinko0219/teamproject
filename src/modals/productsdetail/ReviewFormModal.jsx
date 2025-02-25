@@ -1,65 +1,146 @@
-import React, { useState } from "react";
-import "../../assets/css/productdetail/ReviewFormModal.css"; // ✅ CSS 연결
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "../../assets/css/productdetail/ReviewFormModal.css";
 
-const ReviewFormModal = ({ isOpen, onClose, addReview }) => {
+const ReviewFormModal = ({ isOpen, onClose, product_id, product_name, mainImage, user_id, onReviewSubmit }) => {
   const [rating, setRating] = useState(5);
   const [comment, setComment] = useState("");
+  const [reviewImages, setReviewImages] = useState([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const productName = "아기용 프리미엄 유모차"; // ✅ 나중에 API 연동 예정
-  const userName = "사용자123"; // ✅ 로그인 정보 연동 예정
-  const purchaseDate = new Date().toISOString().split("T")[0];
-  const [selectedOption, setSelectedOption] = useState("블랙 / L사이즈");
+  if (!isOpen) return null;
 
-  if (!isOpen) return null; // ✅ 모달이 닫혀있으면 렌더링 X
-
-  const handleSubmit = () => {
-    if (!comment.trim()) {
-      alert("리뷰 내용을 작성해주세요! ✍️");
+  const handleImageChange = (e) => {
+    const files = Array.from(e.target.files);
+    if (files.length + reviewImages.length > 5) {
+      toast.error("이미지는 최대 5장까지 업로드 가능합니다.");
       return;
     }
-
-    const newReview = {
-      id: Date.now(),
-      user: userName,
-      date: purchaseDate,
-      rating,
-      comment,
-      product: productName,
-      option: selectedOption,
-      likes: 0,
-      photo: null, 
-    };
-
-    addReview(newReview);
-    onClose(); // ✅ 모달 닫기
+    setReviewImages([...reviewImages, ...files]);
   };
 
+  useEffect(() => {
+    return () => {
+      reviewImages.forEach((img) => URL.revokeObjectURL(img));
+    };
+  }, [reviewImages]);
+
+  const handleSubmit = async () => {
+    if (!comment.trim()) {
+      toast.dismiss(); // 기존 토스트 제거
+      toast.warn("리뷰 내용을 작성해주세요.", { toastId: "reviewWarning" });
+      return;
+    }
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+  
+    try {
+      const formData = new FormData();
+      const reviewData = new Blob([
+        JSON.stringify({ user_id, rating, review_text: comment })
+      ], { type: "application/json" });
+      formData.append("reviews", reviewData);
+      reviewImages.forEach((image) => {
+        formData.append("review_img", image);
+      });
+  
+      const response = await axios.post(
+        `http://localhost:8080/products/${product_id}/reviews`,
+        formData,
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
+  
+      if (response.data.message && response.data.message.toLowerCase() === "success") {
+        const points = reviewImages.length > 0 ? 500 : 300;
+        const toastId = toast.success(`🎉 리뷰가 등록되었습니다! (+${points} 포인트 지급)`, {
+        });
+
+        onReviewSubmit(response.data.newReview);
+  
+        setTimeout(() => {
+          toast.dismiss(toastId); // 토스트 강제 닫기
+          setRating(5);
+          setComment("");
+          setReviewImages([]);
+          setIsSubmitting(false);
+          onClose();
+        }, 1500);
+      } else if (response.data.message === "noWrite") {
+        toast.info("이미 작성한 상품입니다.");
+      } else if (response.data.message === "noPay") {
+        toast.error("구매 후 작성 가능합니다.");
+      } else {
+        toast.error("리뷰 등록 중 오류가 발생했습니다.");
+      }
+    } catch (error) {
+      console.error("리뷰 등록 실패:", error);
+      toast.error("서버 오류로 인해 등록할 수 없습니다.");
+    }
+    setIsSubmitting(false);
+  };
+  
+
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <h2>📝 리뷰 작성</h2>
-        <p><strong>상품명:</strong> {productName}</p>
-        <p><strong>구매 옵션:</strong> {selectedOption}</p>
-        <p><strong>작성자:</strong> {userName}</p>
-        <p><strong>작성일:</strong> {purchaseDate}</p>
-
-        <label>별점:</label>
-        <select value={rating} onChange={(e) => setRating(Number(e.target.value))}>
-          <option value="5">⭐⭐⭐⭐⭐</option>
-          <option value="4">⭐⭐⭐⭐</option>
-          <option value="3">⭐⭐⭐</option>
-          <option value="2">⭐⭐</option>
-          <option value="1">⭐</option>
-        </select>
-
-        <textarea 
-          placeholder="리뷰를 작성해주세요!" 
-          value={comment} 
-          onChange={(e) => setComment(e.target.value)} 
+    <div className="review-form-modal-overlay">
+      <div className="review-form-modal-content">
+        <h2>📝 
+          리뷰 작성</h2>
+        <ToastContainer
+          position="top-center"  // 중앙 배치
+          autoClose={1000}  // 1초 후 자동 닫힘
+          hideProgressBar={true}  // 진행 바 없애기
+          closeOnClick  // 클릭하면 닫히도록
+          pauseOnHover={false}  // 마우스 올려도 멈추지 않도록
+          draggable={false}  // 드래그 기능 비활성화
+          theme="colored"  // 색상 테마 적용
         />
 
-        <button onClick={handleSubmit}>제출</button>
-        <button onClick={onClose}>취소</button>
+        <div className="review-form-product-info">
+          <p><strong>상품명:</strong> {product_name || "상품 정보 없음"}</p>
+          {mainImage ? (
+            <img src={mainImage} alt="상품 이미지" className="review-form-product-image" />
+          ) : (
+            <p>이미지가 없습니다.</p>
+          )}
+        </div>
+
+        <div className="review-form-rating-section">
+          <label>⭐ 별점 선택:</label>
+          <select value={rating} onChange={(e) => setRating(Number(e.target.value))}>
+            <option value="5">⭐⭐⭐⭐⭐ (5점)</option>
+            <option value="4">⭐⭐⭐⭐ (4점)</option>
+            <option value="3">⭐⭐⭐ (3점)</option>
+            <option value="2">⭐⭐ (2점)</option>
+            <option value="1">⭐ (1점)</option>
+          </select>
+        </div>
+
+        <textarea
+          className="review-form-textarea"
+          placeholder="리뷰를 작성해주세요!"
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+        />
+
+        <div className="review-form-image-upload">
+          <label>📸 이미지 업로드 (최대 5장):</label>
+          <input type="file" accept="image/*" multiple onChange={handleImageChange} />
+        </div>
+
+        <div className="review-form-image-preview">
+          {reviewImages.map((img, index) => (
+            <img key={index} src={URL.createObjectURL(img)} alt={`업로드 이미지 ${index + 1}`} />
+          ))}
+        </div>
+
+        <div className="review-form-button-group">
+          <button className="review-form-submit-button" onClick={handleSubmit} disabled={isSubmitting}>
+            🚀 {isSubmitting ? "제출 중..." : "제출"}
+          </button>
+          <button className="review-form-cancel-button" onClick={onClose}>❌ 취소</button>
+        </div>
       </div>
     </div>
   );

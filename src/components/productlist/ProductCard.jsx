@@ -1,23 +1,20 @@
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import useProductStore from "../../hooks/useProductStore";
-import useUserStore from "../../hooks/useUserStore";
 import "../../assets/css/productlist/ProductCard.css";
 import ReviewSummarySimple from "../productdetail/ReviewSummarySimple"; 
 
 const ProductCard = ({ product }) => {
-
-
+  
   const navigate = useNavigate(); // 페이지 이동 함수
-  const { setProductId, setMainImage } = useProductStore();
-  const { user_id} = useUserStore();
+  const { setMainImage, setProductName } = useProductStore();
 
   const { product_id, product_name, price, images, rating, reviews } = product;
 
   const handleProductClick = () => {
     
-    setProductId(product_id); // 상품 클릭 시 zustand에 product_id 저장
     setMainImage(images); // 상품 메인 이미지 저장
+    setProductName(product_name);
     console.log("이미지",images);
 
     // 최근 본 상품 가져오기 (로컬스토리지)

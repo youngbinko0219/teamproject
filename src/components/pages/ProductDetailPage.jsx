@@ -9,7 +9,7 @@ import RecentViewed from "../productlist/RecentViewed";
 import Thumbnail from "../productdetail/Thumbnail";
 import ProductInfo from "../productdetail/ProductInfo";
 import ProductTabs from "../productdetail/ProductTabs";
-// import Content from "../productdetail/Content";
+import Content from "../productdetail/Content";
 import ReviewSection from "../productdetail/ReviewSection";
 // import InquirySection from "../productdetail/InquirySection";
 import bannerTop from "../../assets/images/productdetail/bannerTop.jpg";
@@ -63,7 +63,7 @@ const ProductDetailPage = () => {
 
           {/* 상세 정보 섹션 */}
           <ProductSection id="detail">
-          {/* <Content /> */}
+          <Content />
           </ProductSection>
 
           {/* 교환 및 반납/연장 안내 섹션 */}

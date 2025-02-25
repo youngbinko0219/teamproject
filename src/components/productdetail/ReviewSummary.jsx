@@ -2,6 +2,9 @@ import "../../assets/css/productdetail/ReviewSummary.css";
 
 const ReviewSummary = ({ reviews = [] }) => {
   const totalReviews = reviews.length;
+  
+
+  // 평균 별점 계산
   const averageRating =
     totalReviews > 0
       ? (
@@ -14,6 +17,7 @@ const ReviewSummary = ({ reviews = [] }) => {
     (score) => reviews.filter((review) => review.rating === score).length
   );
 
+  // 별점 분포에서 최대값 구하기 (빈 값이 있을 수 있기 때문에 안전한 처리 필요)
   const maxCount = Math.max(...ratingDistribution) || 1; // 0일 경우 대비
 
   return (
@@ -24,11 +28,13 @@ const ReviewSummary = ({ reviews = [] }) => {
         <h2>{averageRating}</h2>
       </div>
       <p className="review-text">
-        {(
-          (ratingDistribution.slice(0, 3).reduce((a, b) => a + b, 0) /
-            totalReviews) *
-            100 || 0
-        ).toFixed(1)}
+        {totalReviews > 0
+          ? (
+              (ratingDistribution.slice(0, 3).reduce((a, b) => a + b, 0) /
+                totalReviews) *
+                100
+            ).toFixed(1)
+          : 0}
         %의 구매자들이
         <br />이 상품에 만족하고 있어요!
       </p>

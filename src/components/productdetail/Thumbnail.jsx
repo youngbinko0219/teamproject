@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import useProductStore from "../../hooks/useProductStore";
-import useUserStore from "../../hooks/useUserStore";
 import "../../assets/css/productdetail/Thumbnail.css";
 
 const Thumbnail = () => {
   const { product_id, mainImage: storedMainImage } = useProductStore();
-  const { user_id } = useUserStore();
   const [mainImage, setMainImage] = useState(storedMainImage);
   const [subImages, setSubImages] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -18,10 +16,7 @@ const Thumbnail = () => {
 
     const fetchImages = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/products/view/${product_id}`, {
-          params: user_id ? { user_id } : {}, // user_id가 있으면 포함, 없으면 빈 객체
-        });
-
+        const response = await axios.get(`http://localhost:8080/products/view/${product_id}`);
         const sub = response.data.images || [];
 
         if (sub.length > 0) {
@@ -35,7 +30,7 @@ const Thumbnail = () => {
     };
 
     fetchImages();
-  }, [product_id, user_id]);
+  }, [product_id]);
 
   return (
     <div className="thumbnail-container">
