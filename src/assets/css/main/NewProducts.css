@@ -40,6 +40,11 @@
   padding: 20px;
 }
 
+.new-product-card:hover {
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
+}
+
 /* 카드 위 오버레이 */
 .new-product-overlay {
   color: #fff;

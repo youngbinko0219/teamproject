@@ -8,26 +8,74 @@
   margin-top: 40px;
 }
 
+/* 검색 결과 제목에 메인 색상 적용 */
 .search-results-title {
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 10px;
+  color: #ff7f7f;
 }
 
-/* 아이템 목록을 담는 래퍼 */
+/* 전체 카드 레이아웃 */
 .search-items-wrapper {
   display: grid;
   grid-template-columns: repeat(5, 1fr); /* 한 줄에 5개 */
   gap: 20px;
 }
 
-/* 개별 아이템 카드 */
+/* 바깥 네모(큰 카드) */
 .search-product-item {
   width: 200px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
+  border: 2px solid #ff7f7f; /* 메인 색상 테두리 */
+  border-radius: 8px;
   text-align: center;
   padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* 호버 시 카드 효과 (선택사항) */
+.search-product-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 안쪽 네모(이미지 영역) - 테두리 제거 */
+.image-container {
+  border: none; /* 테두리 제거 */
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+/* 상품 정보 박스 */
+.product-info {
+  border: none;
+}
+
+/* 링크 기본 스타일 */
+.product-info a,
+.image-container a {
+  text-decoration: none;
+  color: #333;
+}
+
+.product-info a:hover,
+.image-container a:hover {
+  color: #ff7f7f; /* 메인 컬러 */
+}
+
+/* 상품명, 가격 텍스트 */
+.product-info h3 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.product-info p {
+  font-size: 0.9rem;
+  margin: 5px 0 0;
 }
 
 /* 페이징 컨테이너 */
@@ -38,18 +86,34 @@
   gap: 8px;
 }
 
-/* 페이지 번호 버튼 스타일 */
+/* 기본 페이지 번호 버튼 스타일 */
 .pagination-container button {
   border: 1px solid #ddd;
   background-color: #fff;
   padding: 6px 10px;
   cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
+/* 활성 페이지 번호에 메인 색상 적용 */
 .pagination-container button.active {
-  background-color: #007bff;
+  background-color: #ff7f7f;
   color: #fff;
-  border-color: #007bff;
+  border-color: #ff7f7f;
+}
+
+/* 이전 그룹 버튼과 다음 그룹 버튼에 메인 색상 적용 */
+.pagination-container button.prev-group,
+.pagination-container button.next-group {
+  border: 1px solid #ff7f7f;
+  background-color: #fff;
+  color: #ff7f7f;
+}
+
+.pagination-container button.prev-group:hover,
+.pagination-container button.next-group:hover {
+  background-color: #ff7f7f;
+  color: #fff;
 }
 
 /* 드롭다운(페이지당 개수) */

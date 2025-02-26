@@ -14,7 +14,9 @@ const MainBanner = () => {
         const response = await axios.get(
           "http://localhost:8080/admin/ad-settings"
         );
-        setBannerImages(response.data.banners || []);
+        if (response.data.message === "success") {
+          setBannerImages(response.data.data.banners || []);
+        }
       } catch (error) {
         console.error("배너 불러오기 오류:", error);
       }
@@ -24,6 +26,7 @@ const MainBanner = () => {
   }, []);
 
   useEffect(() => {
+    if (bannerImages.length === 0) return;
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % bannerImages.length);
     }, 3000);

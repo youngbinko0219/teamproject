@@ -1,6 +1,8 @@
-.best-products-page-container {
+/* 전체 페이지 컨테이너 */
+.all-products-page-container {
   width: 100%;
   min-height: 100vh;
+  box-sizing: border-box;
 }
 
 /* 상단 레이아웃 (3단 구성) */
@@ -10,41 +12,42 @@
   justify-content: space-between;
   gap: 20px;
   padding: 20px;
+  box-sizing: border-box;
 }
 
-/* 왼쪽 섹션: 카테고리 */
+/* 좌측 섹션: 카테고리 리스트 */
 .left-section {
-  width: 200px; /* 예시: 고정 너비 */
+  width: 200px; /* 고정 너비 */
   border-radius: 8px;
   padding: 15px;
+  box-sizing: border-box;
 }
 
-/* 중앙 섹션: 베스트 상품 */
+/* 중앙 섹션: 모든 상품 */
 .center-section {
-  flex: 1; /* 남은 공간을 모두 차지 */
+  flex: 1; /* 남은 공간 모두 차지 */
   border-radius: 8px;
   padding: 15px;
+  box-sizing: border-box;
 }
 
 /* 우측 섹션: 최근 본 상품 */
 .right-section {
-  width: 250px; /* 예시: 고정 너비 */
+  width: 250px; /* 고정 너비 */
   border: 1px solid #ddd;
   border-radius: 8px;
   background-color: #fff;
   padding: 15px;
-
-  /* 스크롤 시 따라오게 하려면 사용(선택사항) */
+  box-sizing: border-box;
   position: sticky;
-  top: 80px;
+  top: 80px; /* 헤더 높이에 맞춰 조정 */
 }
 
-/* 반응형 디자인 */
+/* 반응형: 화면 너비 768px 이하 */
 @media (max-width: 768px) {
   .top-layout {
     flex-direction: column;
   }
-
   .left-section,
   .center-section,
   .right-section {

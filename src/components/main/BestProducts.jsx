@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { FaStar } from "react-icons/fa"; // 별 아이콘
-import ArrowButton from "./ArrowButton"; // 좌우 화살표 버튼
+import axios from "axios";
+import ArrowButton from "./ArrowButton"; // 좌우 화살표 버튼 컴포넌트
 import "../../assets/css/main/BestProducts.css";
 
 const BestProducts = () => {
@@ -8,50 +8,19 @@ const BestProducts = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    // 더미 데이터
-    const dummyBestProducts = [
-      {
-        id: 1,
-        name: "The north coat",
-        discount: 20,
-        oldPrice: 260,
-        newPrice: 240,
-        image: "/assets/images/coat.jpg",
-        rating: 4.5,
-        reviews: 65,
-      },
-      {
-        id: 2,
-        name: "Gucci duffle bag",
-        discount: 15,
-        oldPrice: 960,
-        newPrice: 816,
-        image: "/assets/images/gucci.jpg",
-        rating: 4.0,
-        reviews: 45,
-      },
-      {
-        id: 3,
-        name: "RGB liquid CPU cooler",
-        discount: 30,
-        oldPrice: 300,
-        newPrice: 210,
-        image: "/assets/images/cooler.jpg",
-        rating: 4.8,
-        reviews: 85,
-      },
-      {
-        id: 4,
-        name: "Small BookShelf",
-        discount: 5,
-        oldPrice: 380,
-        newPrice: 361,
-        image: "/assets/images/bookshelf.jpg",
-        rating: 4.7,
-        reviews: 30,
-      },
-    ];
-    setBestProducts(dummyBestProducts);
+    const fetchBestProducts = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:8080/products/best-products"
+        );
+        // API 응답이 배열 형태라고 가정
+        const data = Array.isArray(response.data) ? response.data : [];
+        setBestProducts(data);
+      } catch (error) {
+        console.error("베스트 상품 불러오기 실패:", error);
+      }
+    };
+    fetchBestProducts();
   }, []);
 
   const handlePrev = () => {
@@ -80,21 +49,12 @@ const BestProducts = () => {
         <div className="product-slide">
           {product && (
             <div className="best-product-card">
-              <img src={product.image} alt={product.name} />
-              <h3 className="product-name">{product.name}</h3>
+              <img src={product.images} alt={product.product_name} />
+              <h3 className="product-name">{product.product_name}</h3>
               <div className="product-price">
-                <span className="old-price">${product.oldPrice}</span>
-                <span className="new-price">${product.newPrice}</span>
-                <span className="discount">-{product.discount}%</span>
-              </div>
-              <div className="rating">
-                {Array.from({ length: 5 }, (_, i) => (
-                  <FaStar
-                    key={i}
-                    color={i < Math.round(product.rating) ? "#ff7f7f" : "#ccc"}
-                  />
-                ))}
-                <span className="reviews">({product.reviews})</span>
+                <span className="price">
+                  {product.price.toLocaleString()}원
+                </span>
               </div>
             </div>
           )}

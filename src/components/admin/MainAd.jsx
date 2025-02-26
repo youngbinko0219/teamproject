@@ -14,7 +14,10 @@ const MainAd = () => {
         const response = await axios.get(
           "http://localhost:8080/admin/ad-settings"
         );
-        setBannerUrls(response.data);
+        if (response.data.message === "success") {
+          // response.data.data.banners 배열로 받아옴
+          setBannerUrls(response.data.data.banners || []);
+        }
       } catch (error) {
         console.error("배너 불러오기 오류:", error);
       }
@@ -39,10 +42,13 @@ const MainAd = () => {
           headers: { "Content-Type": "multipart/form-data" },
         }
       );
-      // 예를 들어 백엔드가 { message: "success", data: { url: "..." } } 형태로 응답할 경우
-      if (response.data.message === "success") {
-        const newUrl = response.data.data.url || response.data.url;
-        setBannerUrls([...bannerUrls, newUrl]);
+      // 응답: { message: "success", data: [ { url: "..." } ] }
+      if (
+        response.data.message === "success" &&
+        response.data.data.length > 0
+      ) {
+        const newUrl = response.data.data[0].url;
+        setBannerUrls((prev) => [...prev, newUrl]);
         toast.success("업로드 성공!");
       } else {
         toast.error("업로드 실패!");
@@ -57,13 +63,17 @@ const MainAd = () => {
   // 배너 삭제 요청
   const removeBanner = async (url) => {
     try {
-      await axios.delete(
+      const response = await axios.delete(
         `http://localhost:8080/admin/ad-settings/delete?url=${encodeURIComponent(
           url
         )}`
       );
-      setBannerUrls(bannerUrls.filter((banner) => banner !== url));
-      toast.success("배너 삭제 성공!");
+      if (response.data.message === "success" && response.data.data.removed) {
+        setBannerUrls((prev) => prev.filter((banner) => banner !== url));
+        toast.success("배너 삭제 성공!");
+      } else {
+        toast.error("배너 삭제 실패!");
+      }
     } catch (error) {
       console.error("배너 삭제 오류:", error);
       toast.error("배너 삭제 중 오류 발생!");

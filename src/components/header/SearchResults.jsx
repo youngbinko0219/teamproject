@@ -1,4 +1,3 @@
-// components/SearchResults.jsx
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { fetchProducts } from "../../services/ProductService";
@@ -62,20 +61,29 @@ const SearchResults = () => {
         <>
           <div className="search-items-wrapper">
             {currentItems.map((product) => (
-              <Link
-                key={product.product_id}
-                to={`/products/view/${product.product_id}`}
-                className="search-product-item"
-              >
-                <img
-                  src={product.images}
-                  alt={product.product_name}
-                  style={{ width: "100%", height: "150px", objectFit: "cover" }}
-                />
-                <h3>{product.product_name}</h3>
-                <p>{product.category}</p>
-                <p>{product.price}원</p>
-              </Link>
+              <div key={product.product_id} className="search-product-item">
+                {/* 안쪽 네모 (이미지 영역) */}
+                <div className="image-container">
+                  <Link to={`/products/view/${product.product_id}`}>
+                    <img
+                      src={product.images}
+                      style={{
+                        width: "100%",
+                        height: "150px",
+                        objectFit: "cover",
+                      }}
+                    />
+                  </Link>
+                </div>
+
+                {/* 바깥 네모 하단 (상품 정보 영역) */}
+                <div className="product-info">
+                  <Link to={`/products/view/${product.product_id}`}>
+                    <h3>{product.product_name}</h3>
+                    <p>{product.price}원</p>
+                  </Link>
+                </div>
+              </div>
             ))}
           </div>
 
