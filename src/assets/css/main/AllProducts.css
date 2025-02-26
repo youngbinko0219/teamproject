@@ -1,0 +1,17 @@
+/* AllProductsPage.css */
+
+.all-products-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+}
+
+/* "새로운 상품" 섹션과 동일한 제목 스타일 적용 */
+.all-products-page__title {
+  font-size: 1.8rem;
+  margin: 50px 0 0 20px;
+  color: #333;
+  text-align: left;
+  font-weight: bold;
+}

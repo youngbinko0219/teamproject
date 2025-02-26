@@ -1,33 +1,29 @@
-/* ✅ 전역 스타일 (outline 제거) */
 * {
   outline: none !important;
   box-shadow: none !important;
 }
 
-/* 🔹 리뷰 컨테이너 */
+/* 리뷰 컨테이너 */
 .review-item {
   border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 15px;
-  margin-bottom: 15px;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
   background-color: #fff;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.05);
-  
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
 }
 
-/* 🔹 리뷰 헤더 (유저명 & 날짜) */
+/* 리뷰 헤더 (유저명 & 날짜) */
 .review-header {
-  width: 100%;
   display: flex;
-  align-items:  flex-start !important;
-  justify-content: flex-start;  /* 👉 왼쪽 정렬 */
+  align-items: center;
+  justify-content: flex-start;
   font-weight: bold;
-  margin-bottom: 10px;
-  gap: 10px;
+  margin-bottom: 12px;
+  gap: 15px;
 }
 
 .review-user {
-  
   color: #333;
   font-size: 14px;
 }
@@ -37,13 +33,32 @@
   font-size: 12px;
 }
 
-/* 🔹 리뷰 내용 */
+.stars-container {
+  display: flex;
+  align-items: center; 
+  font-size: 13px; /* 폰트 크기 조정 */
+  font-weight: 500; /* 가독성 개선 */
+  gap: 12px; 
+  font-weight: 500; /* 가독성 개선 */
+}
+
+/* 별점 스타일 */
+.stars {
+  color: #ffcc00;
+  font-size: 16px;
+  display: flex;
+  gap: 2px;
+}
+
+/* 리뷰 내용 */
 .review-text {
   font-size: 14px;
   color: #444;
-  line-height: 1.5;
+  line-height: 1.6;
+  margin-top: 8px;
 }
 
+/* 리뷰 이미지 */
 .review-photo {
   width: 100%;
   max-width: 150px;
@@ -51,7 +66,7 @@
   margin-top: 10px;
 }
 
-/* 🔹 좋아요 & 신고 버튼 */
+/* 좋아요 & 신고 버튼 */
 .review-actions {
   display: flex;
   justify-content: space-between;
@@ -59,30 +74,24 @@
   margin-top: 12px;
 }
 
-/* ✅ 좋아요 버튼 (아이콘 제거하고 이모티콘으로 변경) */
-.like-button {
-  background-color: #f1f1f1;
+/* 좋아요 버튼 스타일 */
+.like-button, .report-button {
+  border: 1px solid #ccc;
   border-radius: 5px;
+  background: white;
   padding: 8px 12px;
   font-size: 14px;
-  width: 70px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  height: 34.86px;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-  align-items: center; /* 세로 중앙 정렬 */
-  justify-content: center; /* 가로 중앙 정렬 */
-  gap: 6px; /* 이모지랑 숫자 간격 */
+  gap: 6px; 
+  min-width: 110px;
 }
 
-
-
-/* ✅ 좋아요 버튼 클릭 효과 */
 .like-button:hover {
-  background-color: #e0e0e0;
+  background-color: #f5f5f5;
 }
 
 .like-button.liked {
@@ -90,30 +99,12 @@
   color: white !important;
 }
 
-/* 🚨 신고하기 버튼 */
-.report-button {
-  background-color: #f1f1f1;
-  border-radius: 5px;
-  padding: 8px 12px;
-  font-size: 14px;
-  width: 110px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  height: 34.86px;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-  align-items: center; /* 세로 중앙 정렬 */
-  justify-content: center; /* 가로 중앙 정렬 */
-  gap: 6px; /* 이모지랑 숫자 간격 */
-}
-
 .report-button:hover {
   background-color: #ee5454;
+  color: white;
 }
 
-/* 🚨 신고 모달 스타일 */
+/* 신고 모달 스타일 */
 .modal-overlay {
   position: fixed;
   top: 0;

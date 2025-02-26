@@ -15,9 +15,6 @@ const AdminSidebar = () => {
           <Link to="/admin/products/regist">상품 등록</Link>
         </li>
         <li>
-          <Link to="/admin/stock">재고 관리</Link>
-        </li>
-        <li>
           <Link to="/admin/users">회원 관리</Link>
         </li>
         <li>

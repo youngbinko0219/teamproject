@@ -14,7 +14,9 @@ const MainBanner = () => {
         const response = await axios.get(
           "http://localhost:8080/admin/ad-settings"
         );
-        setBannerImages(response.data.banners || []);
+        if (response.data.message === "success") {
+          setBannerImages(response.data.data.banners || []);
+        }
       } catch (error) {
         console.error("배너 불러오기 오류:", error);
       }
@@ -23,7 +25,9 @@ const MainBanner = () => {
     fetchBanners();
   }, []);
 
+  // 3초마다 자동 슬라이드
   useEffect(() => {
+    if (bannerImages.length === 0) return;
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % bannerImages.length);
     }, 3000);
@@ -31,38 +35,51 @@ const MainBanner = () => {
     return () => clearInterval(interval);
   }, [bannerImages]);
 
+  // 이전 배너
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? bannerImages.length - 1 : prevIndex - 1
     );
   };
 
+  // 다음 배너
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % bannerImages.length);
   };
 
   return (
-    <section className="main-banner">
+    <section className="main-banner-container">
       {bannerImages.length > 0 ? (
         <>
+          {/* 현재 인덱스의 이미지를 표시 */}
           <img
             src={bannerImages[currentIndex]}
             alt={`배너 ${currentIndex + 1}`}
-            className="banner-image"
+            className="main-banner-image"
           />
 
-          <button className="nav-button prev" onClick={prevSlide}>
+          {/* 왼쪽 화살표 버튼 */}
+          <button
+            className="main-banner-button main-banner-button-prev"
+            onClick={prevSlide}
+          >
             <FaChevronLeft />
           </button>
-          <button className="nav-button next" onClick={nextSlide}>
+
+          {/* 오른쪽 화살표 버튼 */}
+          <button
+            className="main-banner-button main-banner-button-next"
+            onClick={nextSlide}
+          >
             <FaChevronRight />
           </button>
 
-          <div className="indicators">
+          {/* 인디케이터 (슬라이드 점) */}
+          <div className="main-banner-indicators">
             {bannerImages.map((_, index) => (
               <span
                 key={index}
-                className={`indicator ${
+                className={`main-banner-indicator ${
                   index === currentIndex ? "active" : ""
                 }`}
                 onClick={() => setCurrentIndex(index)}

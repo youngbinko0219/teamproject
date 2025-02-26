@@ -1,6 +1,5 @@
-// src/components/cart/CartView.jsx
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // useNavigate 추가
+import { useNavigate } from "react-router-dom";
 import {
   getCartItems,
   addCartItem,
@@ -8,13 +7,18 @@ import {
   deleteCartItem,
   clearCart,
 } from "../../services/CartService";
+import useUserStore from "../../hooks/useUserStore";
 import "../../assets/css/mypage/CartView.css";
 
 const CartView = () => {
   const [cartItems, setCartItems] = useState([]);
-  const navigate = useNavigate(); // useNavigate 훅 사용
+  const [usePoints, setUsePoints] = useState(false);
+  const [pointsToUse, setPointsToUse] = useState(0);
+  const navigate = useNavigate();
 
-  // 컴포넌트가 마운트될 때 장바구니 아이템 불러오기
+  // zustand 스토어에서 사용자 정보를 가져옴 (userInfo에 포인트가 포함되어 있다고 가정)
+  const userInfo = useUserStore((state) => state.userInfo);
+
   useEffect(() => {
     fetchCartItems();
   }, []);
@@ -91,7 +95,7 @@ const CartView = () => {
   const handleClearCart = () => {
     clearCart()
       .then(() => {
-        setCartItems([]); // 장바구니 비우기
+        setCartItems([]);
         console.log("장바구니가 비워졌습니다.");
       })
       .catch((error) => {
@@ -101,12 +105,28 @@ const CartView = () => {
 
   // 결제 페이지로 이동하는 함수
   const goToCheckout = () => {
-    navigate("/checkout"); // 결제 페이지로 이동
+    navigate("/checkout");
   };
+
+  // 각 장바구니 아이템에 price 프로퍼티가 있다고 가정합니다.
+  // 만약 없다면 기본 가격(예: 10000원)을 사용하도록 처리함.
+  const totalPrice = cartItems.reduce(
+    (sum, item) => sum + (item.price || 10000) * item.quantity,
+    0
+  );
+  const finalPrice = usePoints
+    ? Math.max(totalPrice - pointsToUse, 0)
+    : totalPrice;
 
   return (
     <div className="cart-view">
-      <h1>장바구니</h1>
+      <div className="cart-header">
+        <h1>장바구니</h1>
+        <button className="clear-cart-button" onClick={handleClearCart}>
+          장바구니 비우기
+        </button>
+      </div>
+
       {cartItems.length > 0 ? (
         cartItems.map((item) => (
           <div key={item.id} className="cart-item">
@@ -118,6 +138,7 @@ const CartView = () => {
               <button onClick={() => handleDecreaseQuantity(item)}>-</button>
               <button onClick={() => handleIncreaseQuantity(item)}>+</button>
             </p>
+            <p>가격: {(item.price || 10000) * item.quantity}원</p>
             <button
               className="delete-button"
               onClick={() => handleDeleteItem(item.id)}
@@ -129,11 +150,36 @@ const CartView = () => {
       ) : (
         <p>장바구니에 담긴 상품이 없습니다.</p>
       )}
-      <button className="clear-cart-button" onClick={handleClearCart}>
-        장바구니 비우기
-      </button>
-      &nbsp;
-      {/* 결제 페이지로 이동하는 버튼 추가 */}
+
+      {/* 포인트 사용 섹션 */}
+      <div className="cart-points-section">
+        <p>현재 보유 포인트: {userInfo ? userInfo.points : 0}원</p>
+        <label>
+          <input
+            type="checkbox"
+            checked={usePoints}
+            onChange={(e) => setUsePoints(e.target.checked)}
+          />
+          포인트 사용
+        </label>
+        {usePoints && (
+          <div className="cart-points-input">
+            <label>
+              사용 포인트:
+              <input
+                type="number"
+                value={pointsToUse}
+                onChange={(e) => setPointsToUse(Number(e.target.value))}
+                min="0"
+                max={userInfo ? userInfo.points : 0}
+              />
+            </label>
+          </div>
+        )}
+        <p>총 상품 금액: {totalPrice}원</p>
+        {usePoints && <p>할인 후 금액: {finalPrice}원</p>}
+      </div>
+      {/* 결제하기 버튼 */}
       <button className="checkout-button" onClick={goToCheckout}>
         결제하기
       </button>

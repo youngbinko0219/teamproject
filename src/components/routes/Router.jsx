@@ -5,10 +5,6 @@ import MainPage from "../pages/MainPage";
 import ForgotIdPage from "../pages/ForgotIdPage";
 import ForgotPwPage from "../pages/ForgotPwPage";
 import PrivacyPolicy from "../footer/PrivacyPolicy";
-import TodayProductsPage from "../pages/TodayProductsPage";
-import NewProductsPage from "../pages/NewProductsPage";
-import BestProductsPage from "../pages/BestProductsPage";
-import AllProductsPage from "../pages/AllProductsPage";
 import AdminDashboardPage from "../pages/AdminDashboardPage";
 import AdminLoginPage from "../pages/AdminLoginPage";
 import ProductManagementPage from "../pages/ProductManagementPage";
@@ -17,7 +13,6 @@ import StockManagementPage from "../pages/StockManagementPage ";
 import SalesReportPage from "../pages/SalesReportPage";
 import AdminAdPage from "../pages/AdminAdPage";
 import NotFoundPage from "../pages/NotFountPage";
-import SearchPage from "../pages/SearchPage";
 import TermsAgreementPage from "../pages/TermsAgreementPage";
 import ProductListPage from "../pages/ProductListPage";
 import ProductDetailPage from "../pages/ProductDetailPage";
@@ -35,6 +30,9 @@ import RentalPage from "../mypage/RentalPage";
 import CartPage from "../pages/CartPage";
 import WishListPage from "../pages/WishListPage";
 import GradePage from "../mypage/GradePage";
+import TermsOfUse from "../footer/TermsOfUse";
+import Contact from "../footer/Contact";
+import SearchPage from "../pages/SearchPage";
 
 const AppRouter = () => {
   return (
@@ -46,12 +44,11 @@ const AppRouter = () => {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/forgotid" element={<ForgotIdPage />} />
         <Route path="/forgotpw" element={<ForgotPwPage />} />
-        <Route path="/all-products" element={<AllProductsPage />} />
-        <Route path="/new-products" element={<NewProductsPage />} />
-        <Route path="/today-products" element={<TodayProductsPage />} />
-        <Route path="/best-products" element={<BestProductsPage />} />
-        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/cart" element={<CartPage />} />
+        {/* 푸터 관련 페이지 */}
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-of-use" element={<TermsOfUse />} />
         {/* 마이 페이지 */}
         <Route path="/mypage/edit" element={<MyPageEdit />} />
         <Route path="/mypage/main" element={<MyPageMain />} />

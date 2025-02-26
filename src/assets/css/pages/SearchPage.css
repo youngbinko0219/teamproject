@@ -1,23 +1,10 @@
 .search-page-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 100vh; /* 필요 시 전체 화면 높이를 채우기 위해 사용 */
 }
 
-.search-main {
-  flex: 1;
-  padding: 40px 20px;
-  text-align: center;
-}
-
-.search-main h1 {
-  font-size: 2.5rem;
-  color: #333;
-  margin-bottom: 20px;
-}
-
-.search-main p {
-  font-size: 1.2rem;
-  color: #666;
-  margin-bottom: 30px;
+.search-page-content {
+  flex: 1; /* 컨텐츠가 남은 공간을 채우도록 */
+  margin-bottom: 40px; /* 푸터와 간격을 주기 위해 아래쪽 마진 추가 */
 }

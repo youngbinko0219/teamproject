@@ -1,69 +1,179 @@
-/* ✅ 모달 전체 배경 (어두운 배경) */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4); /* 배경 반투명 */
-    display: flex; /* 숨김 → flex로 표시 */
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+/* ✅ 모달 배경 */
+.review-form-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* 배경을 좀 더 어둡게 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* ✅ 모달 컨테이너 */
+.review-form-modal-content {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  width: 450px;
+  text-align: center;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+  position: relative;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* ✅ 애니메이션 효과 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
   }
-  
-  /* ✅ 모달 내부 컨텐츠 박스 */
-  .modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    width: 400px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1001;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* 화면 정중앙 배치 */
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
-  
-  /* ✅ 닫기 버튼 */
-  .modal-close {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 20px;
-    cursor: pointer;
-  }
-  
-  /* ✅ 리뷰 폼 입력창 스타일 */
-  .review-form label {
-    font-weight: bold;
-    display: block;
-    margin: 10px 0 5px;
-  }
-  
-  .review-form input,
-  .review-form textarea {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .review-form button {
-    width: 100%;
-    padding: 10px;
-    background: #ff758c;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 10px;
-  }
-  
-  .review-form button:hover {
-    background: #ff5c72;
-  }
-  
+}
+
+/* ✅ 헤더 스타일 */
+.review-form-header {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ✅ 상품 정보 */
+.review-form-product-info {
+  background: #f8f9fa;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  text-align: center;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* ✅ 상품 이미지 */
+.review-form-product-image {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  border-radius: 10px;
+  margin-top: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ✅ 별점 선택 */
+.review-form-rating-section {
+  margin: 12px 0;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.review-form-rating-section select {
+  font-size: 16px;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  margin-left: 6px;
+}
+
+/* ✅ 입력 창 */
+.review-form-textarea {
+  width: 100%;
+  height: 90px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  resize: none;
+  margin-top: 10px;
+}
+
+/* ✅ 파일 업로드 스타일 */
+.review-form-image-upload {
+  margin-top: 12px;
+  font-size: 14px;
+  text-align: left; /* 왼쪽 정렬 */
+}
+
+.review-form-image-upload label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* ✅ 파일 입력 필드 */
+.review-form-image-upload input {
+  display: block;
+  margin-top: 5px;
+}
+
+/* ✅ 업로드한 이미지 미리보기 */
+.review-form-image-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.review-form-image-preview img {
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+  object-fit: cover;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* ✅ 버튼 그룹 */
+.review-form-button-group {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ✅ 제출 버튼 */
+.review-form-submit-button {
+  background: #6c757d; /* 회색 */
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.review-form-submit-button:hover {
+  background: #5a6268;
+}
+
+/* ✅ 취소 버튼 */
+.review-form-cancel-button {
+  background: #e83e8c; /* 분홍색 */
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.review-form-cancel-button:hover {
+  background: #d63384;
+}
+
+/* ✅ 상태 메시지 */
+.review-form-status-message {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #ff0000;
+}

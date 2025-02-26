@@ -1,14 +1,19 @@
 /* 카테고리 전체 스타일 */
 .category-list {
-  width: 100%;
-  min-width: 250px;
+  width: 100% !important;
   font-family: "Pretendard", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   margin: 0;
   border-radius: 10px;
-  border: 1px solid #fff;
+  white-space: nowrap; /* 전체 카테고리 리스트에 no-wrap 적용 */
+}
+
+.category-list ul {
+  width: 100%;
+  display: block;
+  white-space: nowrap; /* ul에도 적용 */
 }
 
 /* 카테고리 제목 */
@@ -19,6 +24,7 @@
   margin-bottom: 15px;
   color: #333;
   text-align: center;
+  white-space: nowrap;
 }
 
 /* 카테고리 그룹 (큰 제목) */
@@ -36,6 +42,7 @@
   border-left: 15px solid #fa9d9a;
   transition: all 0.2s ease-in-out;
   margin-bottom: 5px;
+  white-space: nowrap;
 }
 
 /* 하위 카테고리 리스트 */
@@ -44,6 +51,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  white-space: nowrap;
 }
 
 /* 기본 카테고리 스타일 */
@@ -55,6 +63,7 @@
   border-radius: 6px;
   padding: 6px 12px;
   text-align: left;
+  white-space: nowrap; /* 항목 내용이 줄바꿈되지 않도록 */
 }
 
 /* 링크 기본 스타일 제거 */
@@ -64,6 +73,7 @@
   display: block;
   width: 100%;
   padding: 2px 0;
+  white-space: nowrap;
 }
 
 /* 마우스 올렸을 때 (hover) */
@@ -87,4 +97,5 @@
   padding: 0 !important;
   margin: 0;
   width: 100%;
+  white-space: nowrap;
 }

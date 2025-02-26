@@ -6,11 +6,11 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import useUserStore from "../../hooks/useUserStore.jsx";
 import "../../assets/css/pages/LoginPage.css";
+import { toast } from "react-toastify";
 
 const LoginPage = () => {
-  // 훅은 컴포넌트 최상위에서 호출해야 합니다.
   const login = useUserStore((state) => state.login);
-
+  const setUserInfo = useUserStore((state) => state.setUserInfo);
   const navigate = useNavigate();
 
   const handleLogin = async (credentials) => {
@@ -19,22 +19,28 @@ const LoginPage = () => {
         user_id: credentials.username,
         user_pw: credentials.password,
       });
-      // 응답 데이터 구조분해, message를 responseMessage로 명명
       const { message, token } = response.data;
       if (message === "success") {
         localStorage.setItem("accessToken", token);
-        // 필요한 경우 store 업데이트를 위해 login() 호출 가능
         login(credentials.username);
+
+        // 로그인 성공 후 /user/{user_id} API 호출
+        const userResponse = await axios.get(
+          `http://localhost:8080/user/${credentials.username}`
+        );
+        const userData = userResponse.data;
+        setUserInfo(userData); // 받은 사용자 정보를 zustand에 저장
+
         navigate("/");
       } else {
-        alert(message || "아이디와 비밀번호를 확인해 주세요.");
+        toast.error(message || "아이디와 비밀번호를 확인해 주세요.");
       }
     } catch (error) {
       console.error("로그인 오류:", error);
       if (error.response) {
-        alert(`로그인 실패: ${error.response.data.message}`);
+        toast.error(`로그인 실패: ${error.response.data.message}`);
       } else {
-        alert("로그인 실패! 서버 연결 문제가 발생했습니다.");
+        toast.error("로그인 실패! 서버 연결 문제가 발생했습니다.");
       }
     }
   };

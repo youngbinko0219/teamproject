@@ -1,14 +1,12 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import useProductStore from "../../hooks/useProductStore";
-
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
 import CategoryList from "../main/CategoryList";
 import FilterBar from "../productlist/FilterBar";
-import ProductGrid from "../productlist/ProductGrid";
 import RecentViewed from "../productlist/RecentViewed";
-
+import ProductGrid from "../productlist/ProductGrid";
 import "../../assets/css/pages/ProductListPage.css";
 
 const ProductListPage = () => {
@@ -17,7 +15,7 @@ const ProductListPage = () => {
 
   useEffect(() => {
     if (category) {
-      console.log("✅ useParams()로 가져온 category:", category);
+      console.log("useParams()로 가져온 category:", category);
       setCategory(category); // Zustand 상태 업데이트
     }
   }, [category, setCategory]);
@@ -40,7 +38,7 @@ const ProductListPage = () => {
           </div>
         </main>
 
-        {/* ✅ 오른쪽 영역 (최근 본 상품) */}
+        {/* 오른쪽 영역 (최근 본 상품) */}
         <aside className="right-section">
           <RecentViewed />
         </aside>

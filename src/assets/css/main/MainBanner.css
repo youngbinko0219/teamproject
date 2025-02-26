@@ -1,82 +1,65 @@
-.category-list {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 16px;
-  padding: 16px;
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  box-sizing: border-box;
-  margin: 0;
-  /* 
-    기존에 있던 width: 100%; max-width: 300px; 는 제거.
-    여기서는 단순히 레이아웃(박스 정렬, 배경색)만 지정하고,
-    최종 너비는 페이지 레이아웃에서 결정하게 한다.
-  */
-}
-
-.category-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 8px;
+/* 메인 배너 컨테이너 */
+.main-banner-container {
+  position: relative; /* 자식의 absolute 배치 허용 */
   width: 100%;
-  white-space: nowrap;
+  height: auto;
+  overflow: hidden;
 }
 
-/* 대분류 스타일 */
-.category-item {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  padding: 8px 12px;
-  border-radius: 4px;
-  transition: background-color 0.2s ease-in-out;
-  white-space: nowrap;
+/* 배너 이미지 */
+.main-banner-image {
   width: 100%;
-  list-style-type: none;
-  position: relative;
-}
-
-.category-name {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 1rem;
-  font-weight: bold;
-  color: #000;
-  position: relative;
-}
-
-.category-name::before {
-  content: "";
-  display: inline-block;
-  width: 8px;
-  height: 20px;
-  background-color: #ff7f7f; /* 메인 컬러 */
-  border-radius: 2px;
-}
-
-.subcategory-list {
+  height: auto;
   display: block;
-  padding-left: 20px;
-  margin-top: 4px;
-  list-style-type: none;
 }
 
-.subcategory-item {
-  margin-bottom: 4px;
-  list-style-type: none;
+/* 화살표 버튼 공통 스타일 */
+.main-banner-button {
+  position: absolute;
+  bottom: 20px; /* 하단으로 20px 떨어뜨림 */
+  z-index: 10; /* 이미지 위에 표시되도록 */
+  background: none; /* 버튼 배경 제거 */
+  border: none; /* 테두리 제거 */
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #333;
+  padding: 8px;
+  transition: color 0.2s ease-in-out;
 }
 
-.subcategory-link {
-  text-decoration: none;
-  color: #000;
-  font-size: 0.9rem;
+.main-banner-button:hover {
+  color: #ff7f7f; /* 호버 시 색상 변경 */
 }
 
-.subcategory-link:hover {
-  color: #ff7f7f; /* 메인 컬러 */
+/* 왼쪽 버튼 */
+.main-banner-button-prev {
+  left: 20px; /* 왼쪽 20px */
+}
+
+/* 오른쪽 버튼 */
+.main-banner-button-next {
+  right: 20px; /* 오른쪽 20px */
+}
+
+/* 인디케이터 컨테이너 (슬라이드 점 모음) */
+.main-banner-indicators {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%); /* 수평 중앙 정렬 */
+  display: flex;
+  gap: 6px;
+}
+
+/* 인디케이터(슬라이드 점) */
+.main-banner-indicator {
+  width: 8px;
+  height: 8px;
+  background-color: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.main-banner-indicator.active {
+  background-color: #ff7f7f; /* 현재 슬라이드일 때 */
 }

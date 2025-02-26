@@ -3,17 +3,16 @@
   align-items: center;
   justify-content: space-between;
   border: 1px solid #e0e0e0; /* ✅ 기존보다 연한 테두리 */
-  border-radius: 6px;
   overflow: hidden;
-  width: 110px; /* ✅ 기존보다 약간 작게 */
-  height: 52px;
+  width: 90px; /* ✅ 기존보다 약간 작게 */
+  height: 48px;
   background: white;
 }
 
 /* ✅ 버튼 스타일 */
 .quantity-selector button {
-  width: 20px;
-  height: 52px;
+  width: 25px;
+  height: 48px;
   font-size: 18px;
   font-weight: bold;
   border: none;
@@ -25,6 +24,7 @@
   align-items: center;
   justify-content: center;
   outline: none;
+  border-radius: 0 !important;
 }
 
 /* ✅ 버튼 호버 & 클릭 */
