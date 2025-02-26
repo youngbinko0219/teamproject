@@ -13,7 +13,7 @@
   text-align: center;
 }
 
-/* ✅ 날짜 선택창 스타일 */
+/* 날짜 선택창 스타일 */
 .react-datepicker-popper {
   z-index: 9999;
   position: absolute !important;
@@ -21,26 +21,26 @@
 }
 
 .rental-datepicker-input::placeholder {
-  color: black !important; /* ✅ 원하는 색상으로 변경 */
+  color: black !important; 
   text-align: center;
 }
 
-/* ✅ 선택된 날짜 배경 & 글자색 변경 */
+/* 선택된 날짜 배경 & 글자색 변경 */
 .react-datepicker__day--selected {
-  background-color: #fa9d9a !important; /* ✅ 핑크색으로 변경 */
-  color: white !important; /* ✅ 글자색 흰색으로 변경 */
-  border-radius: 6px; /* ✅ 모서리 둥글게 */
+  background-color: #fa9d9a !important;
+  color: white !important; 
+  border-radius: 6px;
   text-align: center;
 }
 
-/* ✅ 마우스 올렸을 때 효과 */
+/* 마우스 올렸을 때 효과 */
 .react-datepicker__day--selected:hover {
-  background-color: #f07b7b !important; /* ✅ 더 진한 핑크 */
+  background-color: #f07b7b !important; 
 }
 
-/* ✅ 오늘 날짜 스타일 변경 */
+/* 오늘 날짜 스타일 변경 */
 .react-datepicker__day--today {
-  background-color: #ffecec !important; /* ✅ 연한 핑크 */
+  background-color: #ffecec !important; 
   color: black !important;
   font-weight: bold;
 }

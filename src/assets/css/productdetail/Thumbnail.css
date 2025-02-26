@@ -31,17 +31,17 @@
 /* 서브 이미지 리스트 */
 .sub-images {
   display: flex;
-  justify-content: space-between; /* ✅ 양옆에 여백 없이 꽉 차게 */
+  justify-content: space-between; 
   width: 100%;
   max-width: 680px;
-  flex-wrap: nowrap; /* ✅ 이미지가 넘치지 않도록 */
-  gap: 5px; /* ✅ 이미지 간격 최소화 */
+  flex-wrap: nowrap;
+  gap: 5px; 
 }
 
 /* 서브 이미지 개별 스타일 */
 .sub-image {
-  flex: 1; /* ✅ 모든 이미지가 동일한 비율로 차지 */
-  max-width: none; /* ✅ 개별 max-width 제한 해제 */
+  flex: 1; 
+  max-width: none; 
   height: auto;
   aspect-ratio: 4 / 3;
   border-radius: 5px;

@@ -36,10 +36,10 @@
 .stars-container {
   display: flex;
   align-items: center; 
-  font-size: 13px; /* 폰트 크기 조정 */
-  font-weight: 500; /* 가독성 개선 */
+  font-size: 13px; 
+  font-weight: 500;
   gap: 12px; 
-  font-weight: 500; /* 가독성 개선 */
+  font-weight: 500;
 }
 
 /* 별점 스타일 */
@@ -102,37 +102,4 @@
 .report-button:hover {
   background-color: #ee5454;
   color: white;
-}
-
-/* 신고 모달 스타일 */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  width: 320px;
-  text-align: center;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-}
-
-.modal-content h2 {
-  font-size: 18px;
-  margin-bottom: 15px;
-  color: #d32f2f;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  justify-content: center;
 }

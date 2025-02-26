@@ -1,7 +1,6 @@
 /* 카테고리 전체 스타일 */
 .category-list {
   width: 100% !important;
-  font-family: "Pretendard", sans-serif;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

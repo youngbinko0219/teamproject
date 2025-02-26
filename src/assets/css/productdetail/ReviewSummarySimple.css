@@ -6,12 +6,12 @@
 
 .stars {
   font-size: 18px;
-  color: #ddd; /* 기본적으로 회색 */
+  color: #ddd; 
   line-height: 1;
 }
 
 .filled-star {
-  color: #ffc107; /* 노란색 (평균 평점만큼 칠해짐) */
+  color: #ffc107; 
 }
 
 .half-star {

@@ -1,17 +1,142 @@
-.filter-bar {
+/* 전체 Product Filter 스타일 */
+.product-filter-bar {
   width: 100%;
-  max-width: auto; /* 부모 폭에 맞춤 */
   padding: 20px;
-  box-sizing: border-box; /* 패딩 포함해서 계산 */
-  background-color: #fff;
-  border: 1px solid #ddd;
+  box-sizing: border-box;
+  background-color: #f8f9fa;
   border-radius: 8px;
   margin-bottom: 20px;
+  font-family: "Pretendard", sans-serif; /* 카테고리와 동일한 폰트 */
 }
 
-.filter-title {
-  font-size: 1.5rem;
+/* 필터 제목 */
+.product-filter-title {
+  font-size: 1.6rem;
+  font-weight: bold;
   color: #333;
   margin-bottom: 15px;
   text-align: center;
+}
+
+/* 공통 필터 섹션 */
+.product-filter-section {
+  margin-bottom: 20px;
+}
+
+.product-filter-section label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+  color: #333;
+  font-size: 1.2rem;
+}
+
+/* 카테고리 셀렉트 박스 */
+.product-filter-section select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #f8f9fa;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  font-family: "Pretendard", sans-serif;
+}
+
+.product-filter-section select:focus {
+  outline: none;
+  border-color: #fa7f7f;
+}
+
+/* 슬라이더 전체 간격 조정 */
+.product-filter-section .rc-slider {
+  margin: 12px 0;
+}
+
+/* 슬라이더 레일(기본 바) 색상 */
+.rc-slider-rail {
+  background-color: #ddd;
+  height: 6px;
+}
+
+/* 슬라이더 트랙(선택 구간) 색상 */
+.rc-slider-track {
+  background-color: #fa9d9a; 
+  height: 6px;
+}
+
+/* 슬라이더 핸들 */
+.rc-slider-handle {
+  border: solid 2px #fa9d9a;
+  height: 18px;
+  width: 18px;
+  margin-top: -6px;
+  cursor: pointer;
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+.rc-slider-handle:hover,
+.rc-slider-handle:focus,
+.rc-slider-handle:active {
+  border-color: #fa7f7f;
+  box-shadow: 0 0 0 5px rgba(250, 157, 154, 0.2);
+}
+
+/* 가격 범위 입력 */
+.product-filter-price-range {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.product-filter-price-range input {
+  width: 90px;
+  padding: 8px;
+  border: 1px solid #f8f9fa;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: "Pretendard", sans-serif;
+  text-align: center;
+}
+
+.product-filter-price-range span {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* 검색 바 크기 조정 */
+.product-filter-search-bar {
+  display: flex;
+  align-items: center;
+  width: 100%; 
+  max-width: 100%; 
+  box-sizing: border-box;
+}
+
+/* 검색창 (input) 크기 조정 */
+.product-filter-search-bar input {
+  flex: 1;
+  padding: 8px 10px;
+  border: 1px solid #f8f9fa;
+  border-radius: 6px 0 0 6px;
+  font-size: 1rem;
+  outline: none;
+  min-width: 140px; 
+}
+
+/* 검색 버튼 크기 조정 */
+.product-filter-search-bar button {
+  padding: 8px;
+  min-width: 40px; 
+  background-color: #fa9d9a;
+  color: #fff;
+  border: 1px solid #fa9d9a;
+  border-radius: 0 6px 6px 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.product-filter-search-bar button:hover {
+  background-color: #fa7f7f;
 }
