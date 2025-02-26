@@ -1,6 +1,25 @@
 /* src/assets/css/mypage/ReversePage.css */
+
+/* 전체 레이아웃 */
 .reverse-page {
   display: flex;
   min-height: 100vh;
   background-color: transparent;
+  border: none !important; /* 부모 컨테이너의 경계선 제거 */
+  box-shadow: none; /* 부모 컨테이너의 그림자 제거 */
+}
+
+/* 사이드바 영역 */
+.reverse-page__sidebar {
+  width: 250px; /* 사이드바 고정 너비 */
+  background-color: #f5f5f5 !important;
+  padding: 20px;
+  box-sizing: border-box;
+  border-right: none; /* 오른쪽 경계선 제거 */
+  box-shadow: none; /* 그림자 제거 */
+  background-color: #f2f2f2;          /* 사이드바 배경색 */
+  border-radius: 10px;               /* 모든 모서리를 둥글게 */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-right: 20px;
+  
 }

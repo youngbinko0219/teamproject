@@ -1,3 +1,4 @@
+//src/components/pages/LoginPage.jsx
 import LoginForm from "../auth/LoginForm";
 import LoginButton from "../auth/LoginButton";
 import logo from "../../assets/images/logo.png";

@@ -10,6 +10,7 @@
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   text-align: left;
+  border: 1px solid #ddd;  /* 폼 테두리 추가 */
 }
 
 .mypage-edit-account-settings h1 {
@@ -68,4 +69,9 @@
   color: red;
   font-size: 14px;
   text-align: center;
+}
+
+/* 마이페이지에서 이름, 성별, 가입일 등을 숨기기 */
+.mypage-info-item {
+  display: none;
 }

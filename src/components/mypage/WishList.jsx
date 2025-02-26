@@ -13,7 +13,9 @@ const WishList = () => {
 
   useEffect(() => {
     const fetchWishList = async () => {
+      console.log("user_id:", user_id);  // 로그 추가
       if (!user_id) {
+        console.log("user_id 없음, 종료"); // 로그 추가
         setLoading(false);
         return;
       }
@@ -24,6 +26,7 @@ const WishList = () => {
           setLoading(false);
           return;
         }
+        console.log("토큰:", token); // 로그 추가
         const response = await axios.get(
           `http://localhost:8080/wishlist/${user_id}`,
           {
@@ -32,6 +35,7 @@ const WishList = () => {
             },
           }
         );
+        console.log("API 응답:", response.data); // 로그 추가
         const { message, data } = response.data;
         if (message === "success" && Array.isArray(data)) {
           setWishlist(data);

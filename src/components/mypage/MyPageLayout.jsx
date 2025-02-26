@@ -1,3 +1,4 @@
+// src/components/mypage/MyPageLayout.jsx
 import "../../assets/css/mypage/MyPageLayout.css";
 import Sidebar from "./Sidebar";
 

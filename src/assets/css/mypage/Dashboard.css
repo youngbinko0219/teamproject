@@ -1,4 +1,4 @@
-/* Dashboard.css */
+/* src/assets/css/mypage/Dashboard.css */
 
 /* 전체 페이지 레이아웃 (Dashboard) */
 .mypage-page-container {
@@ -8,19 +8,25 @@
   width: 100%;
   min-height: 100vh;
   padding: 1rem;
+  gap: 20px; /* 각 섹션 간의 간격 */
+  justify-content: space-between; /* 섹션 간 균등하게 배치 */
+  
 }
 
 .mypage-dashboard {
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 900px;
+  max-width: 1000px;
   min-height: 100vh;
   margin: 50px auto;
   padding: 2.5rem;
   background-color: white;
   border-radius: 10px;
   text-align: center;
+  margin-bottom: 0;
+  border: none;
+  
 }
 
 .mypage-dashboard-content {
@@ -32,6 +38,7 @@
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   background-color: white;
   padding: 2rem;
+  
 }
 
 /* 회원 정보 + 포인트 섹션을 감싸는 컨테이너 */
@@ -42,6 +49,7 @@
   gap: 1rem;
   justify-content: center;
   margin-bottom: 2rem;
+  
 }
 
 /* 포인트 및 회원 등급 영역 */
@@ -56,6 +64,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  font-size: 15px; /* 적립금 및 회원 등급 텍스트 크기 */
+  margin-bottom: 10px; /* 섹션 아래 여백 */
+  padding: 1rem; /* 여백 추가 */
+  
+
 }
 
 /* 반응형 스타일 */
@@ -66,5 +79,21 @@
   }
   .mypage-point-info-container {
     width: 90%;
+    
   }
+}
+
+.mypage-login-section,
+.mypage-point-info-container {
+  flex: 1;
+  max-width: 48%; /* 최대 너비를 50%로 설정하여 크기 균형 맞추기 */
+  box-sizing: border-box;
+  
+}
+
+/* 제목에만 적용 */
+.mypage-point-title {
+  font-size: 18px; /* 제목 텍스트 크기 줄이기 */
+  font-weight: bold; /* 제목 텍스트 볼드체 */
+  margin-bottom: 1rem; /* 제목과 다른 내용 간 여백 추가 */
 }

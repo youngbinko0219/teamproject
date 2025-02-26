@@ -1,0 +1,51 @@
+/* src/assets/css/mypage/MyPageMain.css */
+.mypage-info-container {
+  margin: 20px;
+}
+
+
+.mypage-info-item {
+  margin-bottom: 15px;
+}
+
+.mypage-info-item label {
+  font-weight: bold;
+}
+
+.view-detail-button {
+  margin-top: 20px;
+  padding: 8px 16px;
+  background-color: #ff6b6b;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.view-detail-button:hover {
+  background-color: #ff4747;
+}
+
+
+.loading-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 16px;
+  color: gray;
+  width: 100%;
+  visibility: hidden; /* 로딩 중이 아니면 숨김 */
+  opacity: 0; /* 로딩 중이 아니면 투명하게 */
+  transition: opacity 0.3s ease, visibility 0.3s ease; /* 부드럽게 전환 */
+}
+
+.mypage-info-box {
+  position: relative; /* 로딩 메시지가 중앙에 올 수 있도록 */
+}
+
+.loading-message.show {
+  visibility: visible; /* 로딩 중일 때만 보이도록 */
+  opacity: 1;
+}
