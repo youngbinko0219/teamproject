@@ -5,10 +5,6 @@ import MainPage from "../pages/MainPage";
 import ForgotIdPage from "../pages/ForgotIdPage";
 import ForgotPwPage from "../pages/ForgotPwPage";
 import PrivacyPolicy from "../footer/PrivacyPolicy";
-import TodayProductsPage from "../pages/TodayProductsPage";
-import NewProductsPage from "../pages/NewProductsPage";
-import BestProductsPage from "../pages/BestProductsPage";
-import AllProductsPage from "../pages/AllProductsPage";
 import AdminDashboardPage from "../pages/AdminDashboardPage";
 import AdminLoginPage from "../pages/AdminLoginPage";
 import ProductManagementPage from "../pages/ProductManagementPage";
@@ -48,10 +44,6 @@ const AppRouter = () => {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/forgotid" element={<ForgotIdPage />} />
         <Route path="/forgotpw" element={<ForgotPwPage />} />
-        <Route path="/all-products" element={<AllProductsPage />} />
-        <Route path="/new-products" element={<NewProductsPage />} />
-        <Route path="/today-products" element={<TodayProductsPage />} />
-        <Route path="/best-products" element={<BestProductsPage />} />
         <Route path="/cart" element={<CartPage />} />
         {/* 푸터 관련 페이지 */}
         <Route path="/contact" element={<Contact />} />
