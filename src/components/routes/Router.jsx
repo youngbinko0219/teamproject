@@ -20,6 +20,10 @@ import NotFoundPage from "../pages/NotFountPage";
 import TermsAgreementPage from "../pages/TermsAgreementPage";
 import ProductListPage from "../pages/ProductListPage";
 import ProductDetailPage from "../pages/ProductDetailPage";
+import ProductListFilterPage from "../pages/ProductListFilterPage";
+import ProductPopularPage from "../pages/ProductPopularPage";
+import ProductNewPage from "../pages/ProductNewPage";
+import ProductAllPage from "../pages/ProductAllPage";
 import Point from "../mypage/Point";
 import MyPageMain from "../mypage/MyPageMain";
 import MyPageEdit from "../mypage/MyPageEdit";
@@ -81,10 +85,12 @@ const AppRouter = () => {
         <Route path="/terms-agreement" element={<TermsAgreementPage />} />
         {/* 상품 관련 페이지 */}
         <Route path="/products/:category" element={<ProductListPage />} />
-        <Route
-          path="/products/view/:product_id"
-          element={<ProductDetailPage />}
-        />
+        <Route path="/products/view/:product_id" element={<ProductDetailPage />} />
+        <Route path="/products/filter/search" element={<ProductListFilterPage />} />
+        <Route path="/products/popular" element={<ProductPopularPage />} />
+        <Route path="/products/new" element={<ProductNewPage />} />
+        <Route path="/products/all" element={<ProductAllPage />} />
+        <Route path="/today-products" element={<TodayProductsPage />} />
         {/* 토스 샘플 경로 */}
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/checkout/success" element={<SuccessPage />} />

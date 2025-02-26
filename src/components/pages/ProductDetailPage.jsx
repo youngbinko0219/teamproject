@@ -33,14 +33,25 @@ const ProductDetailPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // 페이지가 열릴 때 product_id를 zustand에 저장
   useEffect(() => {
     if (product_id) {
       setProductId(product_id);
-      console.log("저장된 product_id:", product_id);
+      setLoading(true);
+      setError(null);
+  
+      axios.get(`http://localhost:8080/products/view/${product_id}`)
+        .then(response => {
+          setProduct(response.data);
+        })
+        .catch(error => {
+          console.error("상품 정보를 불러오는 중 오류 발생:", error);
+          setError(error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
     }
   }, [product_id, setProductId]);
-  console.log(product_id);
 
   return (
     <>
@@ -55,8 +66,8 @@ const ProductDetailPage = () => {
         <main className="center-section">
           {/* 상품 상단 정보 (이미지 & 기본 정보) */}
             <div className="product-detail-top">
-              <Thumbnail />   {/* 이미지 컴포넌트 */}
-              <ProductInfo />  {/* 상품 정보 컴포넌트 */}
+              <Thumbnail product={product} /> 
+              <ProductInfo product={product} />  
             </div>
 
           {/* 구분선 */}
@@ -86,11 +97,6 @@ const ProductDetailPage = () => {
             </div>
             <ReviewSection /> 
           </ProductSection>
-
-          {/* 상품 문의 섹션 */}
-          <ProductSection id="inquiry">
-            {/* <InquirySection /> */}
-          </ProductSection> 
         </main>
 
 

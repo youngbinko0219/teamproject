@@ -36,7 +36,7 @@ const MainPage = () => {
       {/* 베스트 상품 섹션 */}
       <section className="best-products-section">
         <ProductSection
-          buttonProps={{ to: "/best-products", label: "베스트 상품 보기" }}
+          buttonProps={{ to: "/products/popular", label: "베스트 상품 보기" }}
         >
           <BestProducts />
         </ProductSection>
@@ -45,7 +45,7 @@ const MainPage = () => {
       {/* 신상품 섹션 */}
       <section className="new-products-section">
         <ProductSection
-          buttonProps={{ to: "/new-products", label: "새로운 상품 보기" }}
+          buttonProps={{ to: "/products/new", label: "새로운 상품 보기" }}
         >
           <NewProducts />
         </ProductSection>
@@ -54,7 +54,7 @@ const MainPage = () => {
       {/* 모든 상품 섹션 */}
       <section className="all-products-section">
         <ProductSection
-          buttonProps={{ to: "/all-products", label: "모든 상품 보기" }}
+          buttonProps={{ to: "/products/all", label: "모든 상품 보기" }}
         >
           <AllProducts />
         </ProductSection>
