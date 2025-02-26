@@ -32,7 +32,7 @@ const MainAd = () => {
 
     setLoading(true);
     const formData = new FormData();
-    formData.append("file", file);
+    formData.append("files", file);
 
     try {
       const response = await axios.post(
