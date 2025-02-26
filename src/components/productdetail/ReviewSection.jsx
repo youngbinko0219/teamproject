@@ -40,7 +40,16 @@ const ReviewSection = () => {
     try {
       setIsLoading(true);
       const response = await axios.get(`http://localhost:8080/reviews/${Number(product_id)}/list`);
-      setReviews(Array.isArray(response.data) ? response.data : []);
+      let sortedReviews = Array.isArray(response.data) ? response.data : [];
+  
+      // 필터에 따른 정렬
+      if (filters.sortType === "helpful") {
+        sortedReviews = sortedReviews.sort((a, b) => b.review_like - a.review_like); // 도움순
+      } else if (filters.sortType === "latest") {
+        sortedReviews = sortedReviews.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)); // 최신순
+      }
+  
+      setReviews(sortedReviews);
     } catch (error) {
       console.error("리뷰 데이터 불러오기 실패:", error);
       toast.error("리뷰 데이터를 불러오는데 실패했습니다.");
@@ -48,6 +57,16 @@ const ReviewSection = () => {
       setIsLoading(false);
     }
   };
+  
+  useEffect(() => {
+    if (product_id) {
+      // 정렬할 때마다 페이지를 1로 설정
+      setCurrentPage(1);
+      loadReviews();
+    }
+  }, [filters.sortType, product_id]);
+  
+  
 
   useEffect(() => {
     if (!product_id) return;

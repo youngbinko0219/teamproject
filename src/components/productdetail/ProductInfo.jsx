@@ -10,7 +10,7 @@ import RentalDatePicker from "./RentalDatePicker";
 import WishButton from "./WishButton";
 import useProductStore from "../../hooks/useProductStore";
 import useUserStore from "../../hooks/useUserStore";
-import { addCartItem } from "../../services/CartService"; // API 서비스 임포트
+import { addCartItem } from "../../services/CartService"; 
 
 const ProductInfo = () => {
   const navigate = useNavigate();
