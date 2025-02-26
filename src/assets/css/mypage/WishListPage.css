@@ -8,7 +8,7 @@
 .wishlist-page-layout__sidebar {
   width: 250px;
   background-color: #fff;
-  border-right: 1px solid #ddd;
+  /* border-right: 1px solid #ddd; */
   padding: 20px;
 }
 

@@ -1,0 +1,83 @@
+/* src/assets/css/mypage/Grade.css */
+
+/* 전체 포인트 페이지 영역 */
+.grade-point-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background-color: #f9f9f9; /* 배경색은 필요에 따라 조정 */
+  
+}
+
+/* 포인트 컨테이너 */
+.grade-point-container {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+/* 제목 스타일 */
+.grade-point-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #23262f;
+  margin-bottom: 1rem;
+  
+}
+
+/* 포인트 및 회원 등급 내용 영역 */
+.grade-point-content {
+  font-size: 1.2rem;
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+.grade-point-content p {
+  margin: 0.5rem 0;
+}
+
+/* 페이징 버튼 스타일 */
+.grade-pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.grade-pagination button {
+  background-color: #f1f5f9;
+  border: 1px solid #d1d5db;
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 5px;
+}
+
+.grade-pagination button:disabled {
+  background-color: #e5e7eb;
+  cursor: not-allowed;
+}
+
+/* "자세히 보기" 버튼 스타일 */
+.grade-detail-link {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1.5rem;
+  background-color: #ff6161;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 5px;
+  text-decoration: none; /* 링크의 기본 밑줄 제거 */
+  transition: background-color 0.3s;
+}
+
+.grade-detail-link:hover {
+  background-color: #e55d5d; /* 호버시 색상 변경 */
+}

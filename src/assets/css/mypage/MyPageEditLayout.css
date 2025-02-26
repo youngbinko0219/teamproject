@@ -1,25 +1,10 @@
-<<<<<<< HEAD
-/* src/assets/css/mypage/MyPageEditForm.css */
-
-
-
-/* 계정 설정 컨텐츠 영역 */
-.mypage-edit-account-settings {
-  flex-grow: 1;
-  padding: 2.5rem;
-  max-width: 900px;
-  margin: 50px auto;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  text-align: left;
-=======
 /* src/assets/css/mypage/MyPageEditLayout.css */
 .my-page-edit-layout {
   display: flex;
   width: 100%;
   min-height: 100vh;
   background-color: #f9f9f9;
+  justify-content: space-between;
 }
 
 .my-page-edit-layout__sidebar {
@@ -33,7 +18,6 @@
   flex-grow: 1;
   padding: 20px;
   background-color: #fff;
->>>>>>> 5aa5e94b0462cc97334b495313cd51b955cd01b9
 }
 
 .mypage-edit-account-settings h1 {
@@ -92,4 +76,10 @@
   color: red;
   font-size: 14px;
   text-align: center;
+}
+
+/* 마이페이지의 상단 박스들을 반반으로 배치 */
+.my-page-top-box {
+  display: flex;
+  justify-content: space-between; /* 박스 간 간격을 고르게 설정 */
 }

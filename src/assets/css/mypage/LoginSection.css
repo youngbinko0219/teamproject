@@ -1,4 +1,4 @@
-/* LoginSection.css */
+/* src/assets/css/mypage/LoginSection.css */
 
 /* 회원 정보 영역 (LoginSection) */
 .mypage-login-section {
@@ -8,6 +8,8 @@
   border-radius: 10px;
   margin-bottom: 1rem;
   font-size: 14px;
+  flex: 1;
+  box-sizing: border-box;
 }
 
 .mypage-login-title {
@@ -27,6 +29,7 @@
   justify-content: center;
   align-items: center;
   margin-top: 1rem;
+  gap: 20px;
 }
 
 .mypage-edit-button {

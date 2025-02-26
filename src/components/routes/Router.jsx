@@ -16,7 +16,6 @@ import NotFoundPage from "../pages/NotFountPage";
 import TermsAgreementPage from "../pages/TermsAgreementPage";
 import ProductListPage from "../pages/ProductListPage";
 import ProductDetailPage from "../pages/ProductDetailPage";
-import Point from "../mypage/Point";
 import MyPageMain from "../mypage/MyPageMain";
 import MyPageEdit from "../mypage/MyPageEdit";
 import Reverse from "../mypage/Reverse";
@@ -30,6 +29,7 @@ import RentalHistory from "../mypage/RentalHistory";
 import RentalPage from "../mypage/RentalPage";
 import CartPage from "../pages/CartPage";
 import WishListPage from "../pages/WishListPage";
+import GradePage from "../mypage/GradePage";
 import TermsOfUse from "../footer/TermsOfUse";
 import Contact from "../footer/Contact";
 import SearchPage from "../pages/SearchPage";
@@ -56,7 +56,7 @@ const AppRouter = () => {
         <Route path="/mypage/wishlist" element={<WishListPage />} />
         <Route path="/mypage/more" element={<RentalHistory />} />
         <Route path="/mypage/reverse" element={<Reverse />} />
-        <Route path="/mypage/point" element={<Point />} />
+        <Route path="/mypage/grade" element={<GradePage />} />
         {/* 어드민 로그인 페이지 */}
         <Route path="/admin" element={<AdminLoginPage />} />
         <Route path="/admin/dashboard" element={<AdminDashboardPage />} />

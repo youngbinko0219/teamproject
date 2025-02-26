@@ -11,7 +11,7 @@ function MyPageEdit() {
     <>
       <Header />
       <div className="my-page-edit-layout">
-        <div className="my-page-edit-layout__sidebar">
+      <div className="my-page-edit-layout__sidebar-wrapper">
           <Sidebar />
         </div>
         <div className="my-page-edit-layout__content">
