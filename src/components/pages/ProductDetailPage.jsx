@@ -27,18 +27,20 @@ const ProductSection = ({ id, children }) => (
 );
 
 const ProductDetailPage = () => {
-  const { setProductId } = useProductStore();  
   const { product_id } = useParams(); // URL의 product_id 파라미터를 읽어옴
+  const { setProductId } = useProductStore();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  /* 페이지가 열릴 때 product_id를 zustand에 저장 */
+  // 페이지가 열릴 때 product_id를 zustand에 저장
   useEffect(() => {
     if (product_id) {
       setProductId(product_id);
+      console.log("저장된 product_id:", product_id);
     }
   }, [product_id, setProductId]);
+  console.log(product_id);
 
   return (
     <>
@@ -67,7 +69,7 @@ const ProductDetailPage = () => {
 
           {/* 상세 정보 섹션 */}
           <ProductSection id="detail">
-          <Content />
+          {/* <Content /> */}
           </ProductSection>
 
           {/* 교환 및 반납/연장 안내 섹션 */}

@@ -1,6 +1,6 @@
 // components/Pagination.jsx
 import React from "react";
-import "../assets/css/header/SearchResults.css"; // 필요한 CSS를 임포트하거나, 별도 파일로 관리
+import "../../assets/css/header/SearchResults.css"; // 필요한 CSS를 임포트하거나, 별도 파일로 관리
 
 const Pagination = ({
   currentPage,

@@ -7,15 +7,14 @@ import ReviewSummarySimple from "../productdetail/ReviewSummarySimple";
 const ProductCard = ({ product }) => {
   
   const navigate = useNavigate(); // 페이지 이동 함수
-  const { setMainImage, setProductName } = useProductStore();
-
+  const { setMainImage, setProductName, setProductId } = useProductStore();
   const { product_id, product_name, price, images, rating, reviews } = product;
 
   const handleProductClick = () => {
     
     setMainImage(images); // 상품 메인 이미지 저장
     setProductName(product_name);
-    console.log("이미지",images);
+    setProductId(product_id);
 
     // 최근 본 상품 가져오기 (로컬스토리지)
     const recentViewed = JSON.parse(localStorage.getItem("recentViewed")) || [];

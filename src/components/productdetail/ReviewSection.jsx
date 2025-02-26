@@ -39,7 +39,7 @@ const ReviewSection = () => {
     if (!product_id) return;
     try {
       setIsLoading(true);
-      const response = await axios.get(`http://localhost:8080/reviews/${product_id}/list`);
+      const response = await axios.get(`http://localhost:8080/reviews/${Number(product_id)}/list`);
       setReviews(Array.isArray(response.data) ? response.data : []);
     } catch (error) {
       console.error("리뷰 데이터 불러오기 실패:", error);
@@ -80,22 +80,18 @@ const ReviewSection = () => {
     setIsModalOpen(true);
   };
   
-  const handleReviewSubmit = (newReview) => {
-    console.log("📌 새 리뷰 데이터:", newReview);
+  const handleReviewSubmit = () => {
     loadReviews(); 
   };
 
-  const updateReviewLikes = (reviewId) => {
-    // 좋아요 클릭 시 해당 리뷰의 좋아요 수 증가 후, 상태 업데이트
-    setReviews((prevReviews) => {
-      return prevReviews.map((review) => 
-        review.review_id === reviewId
-          ? { ...review, review_like: review.review_like + 1 } // 좋아요 수 증가
-          : review
-      );
-    });
+  // ✅ 좋아요 업데이트 함수 추가
+  const updateReviewLikes = (reviewId, newLikeCount) => {
+    setReviews((prevReviews) =>
+      prevReviews.map((review) =>
+        review.review_id === reviewId ? { ...review, review_like: newLikeCount } : review
+      )
+    );
   };
-
 
   const totalPages = Math.ceil(reviews.length / reviewsPerPage);
   const totalGroups = Math.ceil(totalPages / pageGroupSize);
@@ -146,7 +142,7 @@ const ReviewSection = () => {
 
       <div className="review-list">
         {currentReviews.length > 0 ? (
-          currentReviews.map((review) => <ReviewItem key={review.review_id} review={review} updateReviewLikes={updateReviewLikes}  />)
+          currentReviews.map((review) => <ReviewItem key={review.review_id} review={review} product_id={product_id} updateReviewLikes={updateReviewLikes}  />)
         ) : (
           <p>리뷰가 없습니다.</p>
         )}

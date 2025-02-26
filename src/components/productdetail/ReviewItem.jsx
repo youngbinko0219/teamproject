@@ -34,7 +34,7 @@ const hideUserId = (user_id) => {
   return `${visiblePart}${hiddenPart}`;
 };
 
-const ReviewItem = ({ review, product_id, updateReviewLikes }) => {
+const ReviewItem = ({ review, product_id }) => {
   const { review_id, user_id, created_at, review_text, rating, review_like, review_images } = review;
   const cookieData = getCookie("reviewActions");
   const [liked, setLiked] = useState(cookieData[`liked_${review_id}`] || false);
@@ -48,27 +48,21 @@ const ReviewItem = ({ review, product_id, updateReviewLikes }) => {
   }, [review_id]);
 
   const handleLikeClick = async () => {
-    if (liked) return; // 이미 좋아요를 눌렀으면 아무 일도 하지 않음
-
+    if (liked) return;
     try {
-      // UI에서 먼저 좋아요 수를 1 증가시킴
-      updateReviewLikes(review_id, review_like + 1);
-
       const response = await axios.put(`http://localhost:8080/reviews/${review_id}/like`);
-      
       if (response.data.message === "success") {
         setLiked(true);
         setCookie("reviewActions", { [`liked_${review_id}`]: true }, 7);
-      } else {
-        // 좋아요 업데이트 실패 시 UI에서 변경된 값 롤백
-        updateReviewLikes(review_id, review_like);
-        toast.error("좋아요 업데이트에 실패했습니다.");
-      }
+  
+      // 좋아요 요청 성공 후 페이지 새로고침
+      window.location.reload();
+    }
     } catch (error) {
       console.error("❌ 좋아요 오류:", error);
-      updateReviewLikes(review_id, review_like); // 오류 발생 시 원래 값으로 롤백
     }
   };
+  
 
   const handleReportClick = async (event) => {
     event.stopPropagation(); // 클릭 이벤트 전파 방지
