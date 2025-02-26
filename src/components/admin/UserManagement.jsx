@@ -67,7 +67,7 @@ const UserManagement = () => {
       }
     } catch (error) {
       console.error("Error suspending user:", error);
-      alert("사용자 정지에 실패했습니다.");
+      alert("정지 대상이 아닙니다.");
     }
   };
 
