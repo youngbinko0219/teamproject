@@ -3,8 +3,8 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 1300px; /* 피그마 기준 최대 너비 조정 */
-  margin: 0 auto; /* 중앙 정렬 */
+  max-width: 1300px; 
+  margin: 0 auto; 
   background: #ffffff;
   padding: 12px 0;
   border-bottom: 2px solid #e5e5e5;
@@ -12,8 +12,8 @@
 
 /* 탭 버튼 스타일 */
 .tab-button {
-  flex: 1; /* 균등한 크기 */
-  font-size: 18px; /* 피그마 폰트 크기 적용 */
+  flex: 1; 
+  font-size: 18px; 
   font-weight: 500;
   text-align: center;
   padding: 12px 20px;
@@ -32,8 +32,8 @@
 
 /* 클릭 시 검은색 테두리 제거 */
 .tab-button:focus {
-  outline: none; /* ✅ 포커스 상태에서도 외곽선 제거 */
-  box-shadow: none; /* ✅ 추가로 생길 수 있는 그림자도 제거 */
+  outline: none; 
+  box-shadow: none; 
 }
 
 /* 활성화된 탭 (현재 위치의 탭) */

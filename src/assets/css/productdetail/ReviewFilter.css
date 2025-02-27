@@ -1,4 +1,4 @@
-/* 🔹 리뷰 필터 전체 */
+/* 리뷰 필터 전체 */
 .review-filter {
   display: flex;
   justify-content: flex-start;
@@ -7,7 +7,7 @@
   border-bottom: 2px solid #fa9d9a;
 }
 
-/* 🔹 필터 버튼 */
+/* 필터 버튼 */
 .filter-btn {
   font-size: 16px;
   font-weight: 500;
@@ -29,7 +29,7 @@
   border-bottom: 2px solid #fa9d9a;
 }
 
-/* 🔹 리뷰 작성 버튼 */
+/* 리뷰 작성 버튼 */
 .write-review-btn {
   margin-left: auto;
   background: #fa9d9a;

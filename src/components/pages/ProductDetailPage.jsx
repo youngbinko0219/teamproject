@@ -12,7 +12,6 @@ import ProductInfo from "../productdetail/ProductInfo";
 import ProductTabs from "../productdetail/ProductTabs";
 import Content from "../productdetail/Content";
 import ReviewSection from "../productdetail/ReviewSection";
-// import InquirySection from "../productdetail/InquirySection";
 import bannerTop from "../../assets/images/productdetail/bannerTop.jpg";
 import exchangeGuideImage from "../../assets/images/productdetail/exchangeGuideImage.jpg";
 import bannerReview from "../../assets/images/productdetail/bannerReview.jpg"
@@ -27,16 +26,29 @@ const ProductSection = ({ id, children }) => (
 );
 
 const ProductDetailPage = () => {
-  const { setProductId } = useProductStore();  
   const { product_id } = useParams(); // URL의 product_id 파라미터를 읽어옴
+  const { setProductId } = useProductStore();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  /* 페이지가 열릴 때 product_id를 zustand에 저장 */
   useEffect(() => {
     if (product_id) {
       setProductId(product_id);
+      setLoading(true);
+      setError(null);
+  
+      axios.get(`http://localhost:8080/products/view/${product_id}`)
+        .then(response => {
+          setProduct(response.data);
+        })
+        .catch(error => {
+          console.error("상품 정보를 불러오는 중 오류 발생:", error);
+          setError(error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
     }
   }, [product_id, setProductId]);
 
@@ -53,8 +65,8 @@ const ProductDetailPage = () => {
         <main className="center-section">
           {/* 상품 상단 정보 (이미지 & 기본 정보) */}
             <div className="product-detail-top">
-              <Thumbnail />   {/* 이미지 컴포넌트 */}
-              <ProductInfo />  {/* 상품 정보 컴포넌트 */}
+              <Thumbnail product={product} /> 
+              <ProductInfo product={product} />  
             </div>
 
           {/* 구분선 */}
@@ -84,11 +96,6 @@ const ProductDetailPage = () => {
             </div>
             <ReviewSection /> 
           </ProductSection>
-
-          {/* 상품 문의 섹션 */}
-          <ProductSection id="inquiry">
-            {/* <InquirySection /> */}
-          </ProductSection> 
         </main>
 
 

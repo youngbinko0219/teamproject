@@ -1,40 +1,45 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
-import useProductStore from "../../hooks/useProductStore";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
 import CategoryList from "../main/CategoryList";
 import FilterBar from "../productlist/FilterBar";
 import RecentViewed from "../productlist/RecentViewed";
 import ProductGrid from "../productlist/ProductGrid";
+import allp from "../../assets/images/productlist/allp.jpg"
 import "../../assets/css/pages/ProductListPage.css";
 
-const ProductListPage = () => {
-  const { category } = useParams(); // URL 파라미터에서 카테고리 가져오기
-  const { setCategory } = useProductStore(); // zustand 상태 업데이트 함수
-  const [products, setProducts] = useState([]); // 실제 렌더링할 상품 목록
-  const [loading, setLoading] = useState(true); // 로딩 상태
+const ProductAllPage = () => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (category) {
-      console.log("useParams()로 가져온 category:", category);
-      setCategory(category);
-      fetchProducts(category);
-    }
-  }, [category, setCategory]);
-
-  // 카테고리에 맞는 상품 목록을 API로 불러옴
-  const fetchProducts = async (cat) => {
-    setLoading(true);
-    try {
-      const response = await axios.get(`http://localhost:8080/products/${category}`);
-      setProducts(response.data);
-    } catch (error) {
-      console.error("상품 목록 불러오기 오류:", error);
-    }
-    setLoading(false);
-  };
+    const fetchAllProducts = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get("http://localhost:8080/products/all");
+        const formattedProducts = response.data.data.map((product) => ({
+          product_id: product.productId,
+          product_name: product.productName,
+          category: product.category,
+          stock: product.stock,
+          price: product.price,
+          likeCount: product.likeCount,
+          createdAt: product.createdAt,
+          images: product.mainImage,
+        }));
+        setProducts(formattedProducts);
+      } catch (error) {
+        console.error("상품 목록 불러오기 오류:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    fetchAllProducts();
+  }, []);
+  
 
   return (
     <>
@@ -48,7 +53,7 @@ const ProductListPage = () => {
 
         {/* 중앙 영역 (상품 목록 + 정렬 옵션) */}
         <main className="center-section">
-          <h1 className="category-title-detail">{category}</h1>
+          <img className="category-title-detail" src={allp}/>
           <div className="product-sort-type">
             {loading ? (
               <p>상품을 불러오는 중...</p>
@@ -68,4 +73,4 @@ const ProductListPage = () => {
   );
 };
 
-export default ProductListPage;
+export default ProductAllPage;

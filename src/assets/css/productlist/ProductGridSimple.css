@@ -1,0 +1,71 @@
+/* 상품 목록 전체 컨테이너 */
+.product-grid-simple-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  
+  /* 상품 목록 (4x4 그리드) */
+  .product-grid-simple {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    justify-content: center;
+    align-items: start;
+    width: 100%;
+  }
+  
+  /* 페이지네이션 컨테이너 */
+  .pagination-container2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  
+  /* 페이지네이션 전체 정렬 */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  /* 공통 버튼 스타일 */
+  .pagination button {
+    height: 40px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    transition: background 0.3s, color 0.3s;
+    white-space: nowrap;
+  }
+  
+  /* 이전/다음 버튼 크기 키우기 */
+  .pagination button.prev-next {
+    min-width: 70px;
+    padding: 10px 15px;
+  }
+  
+  /* 숫자 버튼 크기 작게 */
+  .pagination button.page-number {
+    min-width: 40px;
+    padding: 8px 10px;
+  }
+  
+  /* 현재 페이지 버튼 (선택된 상태) */
+  .pagination button.active {
+    background: #fa9d9a;
+    color: black;
+    border: 1px solid #fa9d9a;
+  }
+  

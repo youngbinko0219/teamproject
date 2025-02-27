@@ -1,4 +1,3 @@
-/* ✅ 기존: 입력 필드를 사용하는 DatePicker 스타일 */
 .rental-datepicker-input {
   width: 100%;
   height: 52px !important;
@@ -14,58 +13,34 @@
   text-align: center;
 }
 
-/* ✅ 달력 팝업의 z-index와 위치 조정 */
+/* 날짜 선택창 스타일 */
 .react-datepicker-popper {
   z-index: 9999;
   position: absolute !important;
   transform: translateY(5px);
 }
 
-/* ✅ placeholder 색상 */
 .rental-datepicker-input::placeholder {
-  color: black !important;
+  color: black !important; 
   text-align: center;
 }
 
-/* ✅ 달력에서 선택된 날짜 */
+/* 선택된 날짜 배경 & 글자색 변경 */
 .react-datepicker__day--selected {
   background-color: #fa9d9a !important;
-  color: white !important;
+  color: white !important; 
   border-radius: 6px;
   text-align: center;
 }
+
+/* 마우스 올렸을 때 효과 */
 .react-datepicker__day--selected:hover {
-  background-color: #f07b7b !important;
+  background-color: #f07b7b !important; 
 }
 
-/* ✅ 오늘 날짜 스타일 */
+/* 오늘 날짜 스타일 변경 */
 .react-datepicker__day--today {
-  background-color: #ffecec !important;
+  background-color: #ffecec !important; 
   color: black !important;
   font-weight: bold;
-}
-
-/* ------------------------------------------------------------------ */
-/* ✅ 추가: 아이콘 기반 커스텀 입력(텍스트 없이 달력 아이콘만 표시) */
-/* CustomDateInput.jsx에서 사용 */
-.custom-date-input {
-  /* 
-    기존 .rental-datepicker-input 대신
-    아이콘만 클릭해 달력을 여는 경우 
-  */
-  display: inline-flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-.custom-date-input .calendar-icon {
-  font-size: 20px;
-  color: #ff7f7f;
-}
-
-/* ProductInfo.jsx에서
-   <span className="calendar-icon-wrapper">로 감쌀 경우 */
-.calendar-icon-wrapper {
-  margin-left: 8px;
-  display: inline-block;
 }
