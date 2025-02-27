@@ -1,6 +1,7 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware"; 
 
-const useProductStore = create((set) => ({
+const useProductStore = create(persist((set) => ({
   // 카테고리 상태
   category: null,
   setCategory: (data) => set({ category: data }),
@@ -39,8 +40,14 @@ const useProductStore = create((set) => ({
       selectedOption: useProductStore.getState().selectedOption,
       rentalDate: useProductStore.getState().rentalDate,
       quantity: useProductStore.getState().quantity,
-    });
-  },
-}));
+      });
+      },
+    }),
+    {
+      name: "product-storage", 
+      getStorage: () => localStorage, 
+    }
+  )
+);
 
 export default useProductStore;

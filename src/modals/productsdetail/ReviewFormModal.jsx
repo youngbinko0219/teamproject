@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
+import useUserStore from "../../hooks/useUserStore";
 import "react-toastify/dist/ReactToastify.css";
 import "../../assets/css/productdetail/ReviewFormModal.css";
+import useProductStore from "../../hooks/useProductStore";
 
-const ReviewFormModal = ({ isOpen, onClose, product_id, product_name, mainImage, user_id, onReviewSubmit }) => {
+const ReviewFormModal = ({ isOpen, onClose, onReviewSubmit }) => {
+  const { user_id } = useUserStore();
+  const { mainImage, product_id, product_name} = useProductStore();
   const [rating, setRating] = useState(5);
   const [comment, setComment] = useState("");
   const [reviewImages, setReviewImages] = useState([]);
@@ -29,7 +33,7 @@ const ReviewFormModal = ({ isOpen, onClose, product_id, product_name, mainImage,
 
   const handleSubmit = async () => {
     if (!comment.trim()) {
-      toast.dismiss(); // 기존 토스트 제거
+      toast.dismiss();
       toast.warn("리뷰 내용을 작성해주세요.", { toastId: "reviewWarning" });
       return;
     }
@@ -38,13 +42,19 @@ const ReviewFormModal = ({ isOpen, onClose, product_id, product_name, mainImage,
   
     try {
       const formData = new FormData();
-      const reviewData = new Blob([
-        JSON.stringify({ user_id, rating, review_text: comment })
-      ], { type: "application/json" });
+      // reviews 부분: JSON blob으로 만들어서 전송 (user_id, rating, review_text)
+      const reviewData = new Blob(
+        [JSON.stringify({ product_id, user_id, rating, review_text: comment })],
+        { type: "application/json" }
+      );
       formData.append("reviews", reviewData);
-      reviewImages.forEach((image) => {
-        formData.append("review_img", image);
-      });
+  
+      // review_img 부분: 이미지가 있으면 파일들을, 없으면 빈 문자열을 전송
+      if (reviewImages.length > 0) {
+        reviewImages.forEach((image) => {
+          formData.append("review_img", image);
+        });
+      }
   
       const response = await axios.post(
         `http://localhost:8080/products/${product_id}/reviews`,
@@ -52,20 +62,24 @@ const ReviewFormModal = ({ isOpen, onClose, product_id, product_name, mainImage,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
   
-      if (response.data.message && response.data.message.toLowerCase() === "success") {
+      if (
+        response.data.message &&
+        response.data.message.toLowerCase() === "success"
+      ) {
         const points = reviewImages.length > 0 ? 500 : 300;
-        const toastId = toast.success(`🎉 리뷰가 등록되었습니다! (+${points} 포인트 지급)`, {
-        });
-
-        onReviewSubmit(response.data.newReview);
+        const toastId = toast.success(
+          `🎉 리뷰가 등록되었습니다! (+${points} 포인트 지급)`,
+          { autoClose: 1500 }
+        );
   
         setTimeout(() => {
-          toast.dismiss(toastId); // 토스트 강제 닫기
+          toast.dismiss(toastId);
           setRating(5);
           setComment("");
           setReviewImages([]);
           setIsSubmitting(false);
           onClose();
+          onReviewSubmit();
         }, 1500);
       } else if (response.data.message === "noWrite") {
         toast.info("이미 작성한 상품입니다.");

@@ -3,10 +3,10 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    background: #f8f8f8; /* 연한 배경 */
+    background: #f8f8f8;
     width: 100%;
     border: 1px solid #ddd;
-    margin-bottom: 20px; /* 상품 목록과 간격 */
+    margin-bottom: 20px; 
   }
   
   /* 정렬 기준 제목 스타일 */
@@ -38,12 +38,12 @@
 
 /* 마우스 올렸을 때 */
 .sort-tab:hover {
-  background: #d6d6d6; /* ✅ 조금 더 진한 회색 */
+  background: #d6d6d6; 
 }
 
 /* 활성화된 버튼 (선택된 상태) */
 .sort-tab.active {
-  background: #fa9d9a; /* ✅ 핑크 */
+  background: #fa9d9a; 
   color: black;
 }
   

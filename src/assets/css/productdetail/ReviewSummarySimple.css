@@ -6,26 +6,31 @@
 
 .stars {
   font-size: 18px;
-  color: #ddd; /* 기본적으로 회색 */
+  color: #ddd; 
   line-height: 1;
 }
 
 .filled-star {
-  color: #ffc107; /* 노란색 (평균 평점만큼 칠해짐) */
+  color: gold; /* ⭐ 가득 찬 별 (노랑) */
 }
 
 .half-star {
-  color: #ffc107;
+  color: gold;
   position: relative;
 }
 
 .half-star::after {
   content: "★";
-  color: #ddd;
   position: absolute;
-  left: 50%;
+  left: 0;
   width: 50%;
   overflow: hidden;
+  color: lightgray; /* ⚪ 반쪽만 회색 */
 }
+
+.empty-star {
+  color: lightgray; /* ⚪ 빈 별 (회색) */
+}
+
 
     

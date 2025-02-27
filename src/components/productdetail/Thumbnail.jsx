@@ -1,42 +1,27 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
 import useProductStore from "../../hooks/useProductStore";
 import "../../assets/css/productdetail/Thumbnail.css";
 
-const Thumbnail = () => {
-  const { product_id, mainImage: storedMainImage } = useProductStore();
-  const [mainImage, setMainImage] = useState(storedMainImage);
-  const [subImages, setSubImages] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+const Thumbnail = ({ product }) => {
+  const { mainImage, setMainImage } = useProductStore(); 
+  const [originalMainImage, setOriginalMainImage] = useState(mainImage);
+  const subImages = product?.images || []; 
 
-  // API 요청해서 서브 이미지 가져오기
   useEffect(() => {
-    if (!product_id) return; // user_id 없이도 API 요청 가능하도록 수정
+    const storedImage = localStorage.getItem("mainImage");
 
-    const fetchImages = async () => {
-      try {
-        const response = await axios.get(`http://localhost:8080/products/view/${product_id}`);
-        const sub = response.data.images || [];
-
-        if (sub.length > 0) {
-          setSubImages(sub); // 서브 이미지 배열 설정
-        }
-      } catch (err) {
-        setError("이미지를 불러오는 중 오류가 발생했습니다.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchImages();
-  }, [product_id]);
+    // mainImage가 없으면 localStorage에서 가져와서 설정
+    if (!mainImage && storedImage) {
+      setMainImage(storedImage);
+      setOriginalMainImage(storedImage); // 원래 대표 이미지 저장
+    }
+  }, [mainImage, setMainImage]);
 
   return (
     <div className="thumbnail-container">
       {/* 대표 이미지 (zustand에서 가져온 값 유지) */}
       <div className="main-image">
-        <img src={mainImage} alt="상품 대표 이미지" />
+        <img src={mainImage || "https://via.placeholder.com/300"} alt="상품 대표 이미지" />
       </div>
 
       {/* 서브 이미지 리스트 */}
@@ -46,8 +31,8 @@ const Thumbnail = () => {
             <div
               key={index}
               className="sub-image"
-              onMouseEnter={() => setMainImage(src)}
-              onMouseLeave={() => setMainImage(storedMainImage)} // 원래 이미지로 돌아오도록 수정
+              onMouseEnter={() => setMainImage(src)} // 
+              onMouseLeave={() => setMainImage(originalMainImage)}
             >
               <img src={src} alt={`서브 이미지 ${index + 1}`} />
             </div>

@@ -4,10 +4,8 @@ import "../../assets/css/productlist/SortBar.css";
 const SortBar = ({ onSortChange, activeSort }) => { 
   const sortOptions = [
     { value: "latest", label: "최신순" },
-    { value: "review", label: "리뷰순" },
     { value: "price-low", label: "낮은 가격순" },
     { value: "price-high", label: "높은 가격순" },
-    { value: "wishlist", label: "찜 많은 순" } 
   ];
 
   return (

@@ -1,4 +1,9 @@
-/* ✅ 상품 정보 전체 컨테이너 */
+/* 전역 폰트 설정 */
+* {
+  font-family: "Pretendard", sans-serif; 
+}
+
+/* 상품 정보 전체 컨테이너 */
 .product-info {
   width: 100%;
   display: flex;
@@ -10,7 +15,7 @@
   border: 1px solid #ddd;
 }
 
-/* ✅ 제목 스타일 */
+/* 제목 스타일 */
 .section-title {
   font-size: 1.125rem;
   font-weight: bold;
@@ -19,14 +24,14 @@
   color: #333;
 }
 
-/* ✅ 상품 이름 */
+/* 상품 이름 */
 .product-name-detail {
   font-size: 1.8rem;
   font-weight: bold;
   color: #222;
 }
 
-/* ✅ 상품 가격 */
+/* 상품 가격 */
 .product-price-detail {
   text-align: left;
   font-size: 1.6rem;
@@ -34,7 +39,7 @@
   color: #e74c3c;
 }
 
-/* ✅ 평균별점 및 총 리뷰 수 */
+/* 평균별점 및 총 리뷰 수 */
 .product-review {
   display: flex;
   align-items: center;
@@ -42,11 +47,11 @@
   margin-bottom: 1rem;
 }
 
-/* ✅ 대여 가능 여부 */
+/* 대여 가능 여부 */
 .product-availability {
   display: flex;
   align-items: center;
-  height: 100%;
+  height: 100%; 
 }
 .product-availability.available {
   color: #129025 !important;
@@ -59,7 +64,7 @@
   font-weight: bold;
 }
 
-/* ✅ 상품 설명 */
+/* 상품 설명 */
 .product-description {
   font-size: 1rem;
   line-height: 1.6;
@@ -67,7 +72,7 @@
   margin-bottom: 1rem;
 }
 
-/* ✅ 버튼 컨테이너 */
+/* 버튼 컨테이너 */
 .purchase-buttons {
   display: flex;
   align-items: center;
@@ -76,7 +81,7 @@
   margin-top: 1.5rem;
 }
 
-/* ✅ 버튼 기본 스타일 */
+/* 버튼 기본 스타일 */
 .purchase-buttons .add-to-cart,
 .purchase-buttons .buy-now {
   flex: 1;
@@ -93,20 +98,20 @@
   transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
 }
 
-/* ✅ 버튼 호버 효과 */
+/* 버튼 호버 효과 */
 .purchase-buttons .add-to-cart:hover,
 .purchase-buttons .buy-now:hover {
   background: #f07b7b;
   transform: scale(1.05);
 }
 
-/* ✅ 버튼 클릭 시 약간 작아지는 효과 */
+/* 버튼 클릭 시 약간 작아지는 효과 */
 .purchase-buttons .add-to-cart:active,
 .purchase-buttons .buy-now:active {
   transform: scale(0.95);
 }
 
-/* ✅ 장바구니, 즉시 구매 버튼 개별 스타일 */
+/* 장바구니, 즉시 구매 버튼 개별 스타일 */
 .add-to-cart {
   background: #ffcc80;
 }
@@ -121,8 +126,14 @@
   background: #ff5252;
 }
 
-/* ✅ 대여 기간 선택 버튼 */
+/* 대여 기간 선택 버튼 */
 .rental-section {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.rental-date-section {
   display: flex;
   flex-direction: column;
   margin-top: 1rem;
@@ -157,22 +168,7 @@
   color: white;
 }
 
-/* ✅ 옵션 선택 */
-.option-section select {
-  width: 100%;
-  padding: 0.75rem;
-  font-size: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  outline: none;
-  transition: border-color 0.3s ease-in-out;
-}
-
-.option-section select:focus {
-  border-color: #fa9d9a;
-}
-
-/* ✅ 대여 시작일 선택 */
+/* 대여 시작일 선택 */
 .rental-date-section input {
   width: 100%;
   padding: 0.75rem;
@@ -185,18 +181,4 @@
 
 .rental-date-section input:focus {
   border-color: #fa9d9a;
-}
-
-.rental-summary {
-  margin-top: 10px;
-  padding: 10px;
-  border: 1px solid #eee;
-  border-radius: 6px;
-  background-color: #fafafa;
-}
-
-.rental-summary p {
-  margin: 4px 0;
-  font-size: 14px;
-  color: #555;
 }

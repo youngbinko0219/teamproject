@@ -1,6 +1,6 @@
 /* 전체 폰트 스타일 적용 */
 .product-card {
-  font-family: "Noto Sans KR", sans-serif; /* 폰트 적용 */
+  font-family: "Noto Sans KR", sans-serif;
   padding: 15px;
   text-align: center;
   transition: transform 0.2s, box-shadow 0.2s;

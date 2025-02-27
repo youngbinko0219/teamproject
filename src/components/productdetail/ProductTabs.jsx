@@ -5,7 +5,6 @@ const ProductTabs = ({ currentSection }) => {
     { id: "detail", label: "상품상세정보" },
     { id: "exchange", label: "교환 및 반납/연장 안내" },
     { id: "review", label: "상품후기" },
-    { id: "inquiry", label: "상품문의" },
   ];
 
   const handleScroll = (id) => {

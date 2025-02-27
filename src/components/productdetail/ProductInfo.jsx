@@ -1,5 +1,6 @@
+// src/components/productdetail/ProductInfo.jsx
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../../assets/css/productdetail/ProductInfo.css";
 import ReviewSummarySimple from "./ReviewSummarySimple";
@@ -9,50 +10,30 @@ import RentalDatePicker from "./RentalDatePicker";
 import WishButton from "./WishButton";
 import useProductStore from "../../hooks/useProductStore";
 import useUserStore from "../../hooks/useUserStore";
-import { addCartItem } from "../../services/CartService";
-
-// 날짜 포맷팅 함수 (예: YYYY-MM-DD)
-const formatDate = (date) => {
-  if (!date) return "";
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`;
-};
+import { addCartItem } from "../../services/CartService"; 
 
 const ProductInfo = () => {
   const navigate = useNavigate();
-  const { product_id: paramProductId } = useParams();
   const {
     product_id,
-    setProductId,
     rentalPeriod,
     rentalDate,
+    quantity,
     setRentalPeriod,
     setRentalDate,
-    quantity,
     setQuantity,
     proceedToCheckout,
   } = useProductStore();
-  const { user_id } = useUserStore();
+  const { user_id } = useUserStore(); 
+    
 
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // 1) URL 파라미터로 전달된 product_id를 스토어에 저장
+  /* 상품 데이터를 API에서 가져옴 */
   useEffect(() => {
-    if (paramProductId) {
-      setProductId(paramProductId);
-    }
-  }, [paramProductId, setProductId]);
-
-  // 2) API 호출용 ID 결정
-  const effectiveProductId = paramProductId || product_id;
-
-  // 3) 상품 정보 불러오기
-  useEffect(() => {
-    if (!effectiveProductId) {
+    if (!product_id) {
       console.error("🚨 product_id가 없습니다! API 요청을 중단합니다.");
       setError("상품 ID가 없습니다.");
       setLoading(false);
@@ -61,9 +42,7 @@ const ProductInfo = () => {
 
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:8080/products/view/${effectiveProductId}`
-        );
+        const response = await axios.get(`http://localhost:8080/products/view/${product_id}`);
         setProduct(response.data);
       } catch (err) {
         setError("상품 데이터를 불러오는 중 오류가 발생했습니다.");
@@ -73,35 +52,24 @@ const ProductInfo = () => {
     };
 
     fetchProduct();
-  }, [effectiveProductId]);
+  }, [product_id]);
 
-  // 4) 로딩 및 에러 처리
-  if (loading) {
-    return <div className="product-info">상품 정보를 불러오는 중...</div>;
-  }
-  if (error) {
-    return <div className="product-info error-message">{error}</div>;
-  }
-  if (!product) {
-    return <div className="product-info">상품 정보를 찾을 수 없습니다.</div>;
-  }
+  // 로딩 상태 표시
+  if (loading) return <div className="product-info">상품 정보를 불러오는 중...</div>;
+  if (error) return <div className="product-info error-message">{error}</div>;
+  if (!product) return <div className="product-info">상품 정보를 찾을 수 없습니다.</div>;
 
-  // 5) 가격 계산
+  // 가격 계산 (대여 기간 문자열 → 숫자로 변환 후 계산)
   const rentalDays = parseInt(rentalPeriod.replace("일", ""), 10) || 30;
   const updatedPrice = product?.price ? product.price * (rentalDays / 30) : 0;
+
+  // 재고 확인 (undefined 방지)
   const isAvailable = (product?.stock ?? 0) > 0;
 
-  // 6) 만료일 계산 (대여 시작일 + 대여 기간)
-  let endDate = null;
-  if (rentalDate) {
-    endDate = new Date(rentalDate);
-    endDate.setDate(endDate.getDate() + rentalDays);
-  }
-
-  // 7) 장바구니 담기
+  // 장바구니에 아이템 추가하는 함수 (옵션 항목 제거)
   const handleAddToCart = () => {
     const itemData = {
-      productId: effectiveProductId,
+      productId: product_id,
       rentalPeriod,
       rentalDate,
       quantity,
@@ -127,7 +95,7 @@ const ProductInfo = () => {
       </p>
 
       <div className="product-review">
-        <ReviewSummarySimple averageRating={0} totalReviews={0} />
+        <ReviewSummarySimple product_id={product_id} />
         <p
           className={`product-availability ${
             isAvailable ? "available" : "unavailable"
@@ -137,43 +105,27 @@ const ProductInfo = () => {
         </p>
       </div>
 
+
       <p className="product-description">
         {product?.description || "상품 설명 없음"}
       </p>
 
       <hr className="divider" />
 
-      {/* 대여 기간 */}
       <div className="rental-section">
         <h3 className="section-title">대여 기간</h3>
+
         <RentalPeriodSelector
           selectedPeriod={rentalPeriod}
           onSelect={setRentalPeriod}
         />
       </div>
 
-      {/* 대여 시작 (달력 아이콘 클릭 시 날짜 선택) */}
       <div className="rental-date-section">
-        <h3 className="section-title">
-          대여 시작일
-          <span className="calendar-icon-wrapper">
-            <RentalDatePicker
-              selectedDate={rentalDate}
-              onSelect={setRentalDate}
-            />
-          </span>
-        </h3>
-
-        {/* 날짜를 선택한 경우만, 숨겨진 칸(rental-summary)을 보여줌 */}
-        {rentalDate && (
-          <div className="rental-summary">
-            <p>대여 시작일: {formatDate(rentalDate)}</p>
-            <p>만료일자: {endDate ? formatDate(endDate) : ""}</p>
-          </div>
-        )}
+        <h3 className="section-title">대여 시작</h3>
+        <RentalDatePicker selectedDate={rentalDate} onSelect={setRentalDate} />
       </div>
 
-      {/* 구매/장바구니 버튼 */}
       <div className="purchase-buttons">
         <QuantitySelector />
 
@@ -190,7 +142,7 @@ const ProductInfo = () => {
           바로 대여
         </button>
         <WishButton
-          productId={effectiveProductId}
+          productId={product_id}
           productName={product?.product_name || "상품"}
         />
       </div>

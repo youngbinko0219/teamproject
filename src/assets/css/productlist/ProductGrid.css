@@ -32,7 +32,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;  /* 버튼 간격 */
+  gap: 8px; 
 }
 
 /* 공통 버튼 스타일 */
@@ -47,18 +47,18 @@
   color: black;
   border-radius: 10px;
   transition: background 0.3s, color 0.3s;
-  white-space: nowrap;  /* 글자 한 줄 유지 */
+  white-space: nowrap; 
 }
 
 /* 이전/다음 버튼 크기 키우기 */
 .pagination button.prev-next {
-  min-width: 70px; /* ✅ 이전/다음 버튼은 더 크게 */
+  min-width: 70px;
   padding: 10px 15px;
 }
 
 /* 숫자 버튼 크기 작게 */
 .pagination button.page-number {
-  min-width: 40px; /* ✅ 숫자 버튼은 작게 */
+  min-width: 40px; 
   padding: 8px 10px;
 }
 
