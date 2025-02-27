@@ -84,7 +84,7 @@ const AppRouter = () => {
         <Route path="/products/best" element={<ProductPopularPage />} />
         <Route path="/products/today" element={<ProductTodayPage />} />
         <Route path="/products/new" element={<ProductNewPage />} />
-        />
+        
         {/* 토스 샘플 경로 */}
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/checkout/success" element={<SuccessPage />} />
