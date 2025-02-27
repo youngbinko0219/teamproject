@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.babyloop.popularity.PopularityMapper">
+
+<select id="selectPopularity" parameterType="map" resultType="com.babyloop.popularity.PopularityDTO">
+        SELECT 
+        	p.product_Id AS productId,
+            p.product_name AS productName,
+			r.like_count AS likeCount,
+			r.rental_count AS rentalCount,
+			r.view_count AS viewCount,
+			r.rating_avg AS ratingAvg,
+			i.images AS mainImage
+        FROM recommendation r
+        JOIN products p ON r.product_id = p.product_id
+        LEFT JOIN images i ON p.product_id = i.product_id AND i.flag = 'main';
+    </select>
+</mapper>

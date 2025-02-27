@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.babyloop.cartorder.CartOrderMapper">
+    
+    <!-- 장바구니 항목 조회 -->
+    <select id="findCartItemsByUserId" resultType="com.babyloop.cartorder.CartItemDTO">
+		SELECT 
+		    p.product_id AS productId,
+		    p.product_name AS productName,
+		    p.price,
+		    c.quantity,
+		    p.stock AS orderStock,
+		    c.rental_start AS rentalStart,
+		    i.images AS productImage
+		FROM cart c
+		JOIN products p ON c.product_id = p.product_id
+		LEFT JOIN images i ON p.product_id = i.product_id AND i.flag = 'main'
+		WHERE c.user_id = #{userId}
+
+    </select>
+    
+    <!-- 유저 정보 조회 -->
+    <select id="findUserInfoByUserId" resultType="com.babyloop.cartorder.CartUserDTO">
+        SELECT 
+            m.user_id AS userId,
+            m.user_name AS userName,
+            m.user_phone AS userPhone,
+            m.user_addr1 AS userAddr1,
+            m.user_addr2 AS userAddr2,
+            m.user_addr3 AS userAddr3,
+            m.user_email AS userEmail
+        FROM 
+            member m
+        WHERE 
+            m.user_id = #{userId}
+    </select>
+    
+    <!-- 상품의 재고 조회 -->
+    <select id="getStock" parameterType="int" resultType="int">
+        SELECT stock
+        FROM products
+        WHERE product_id = #{productId}
+    </select>
+    
+    <!-- 사용자의 적립 퍼센트 조회 (등급) -->
+    <select id="getPointRate" parameterType="String" resultType="float">
+        SELECT point_rate
+        FROM grades
+        WHERE user_id = #{userId}
+    </select>
+
+    <!-- 사용자의 보유 포인트 조회 -->
+    <select id="getUserPoints" parameterType="String" resultType="int">
+        SELECT points
+        FROM member
+        WHERE user_id = #{userId}
+    </select>
+</mapper>

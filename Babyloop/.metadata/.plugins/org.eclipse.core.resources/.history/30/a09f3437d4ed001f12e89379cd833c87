@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.babyloop.product.repository.IReviewMapper">
+
+	<!-- 상품 리뷰 등록 -->
+	<insert id="insertReview"
+		parameterType="com.babyloop.product.repository.ReviewDTO">
+		
+		INSERT INTO review(product_id, user_id, rating,
+			review_text)
+		VALUES (product_id=#{productId}, user_id=#{review.user_id}, rating=#{review.rating},
+			review_text=#{review.review_text})
+		
+	
+	</insert>
+
+
+</mapper>

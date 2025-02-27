@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>babyloop 결제 영수증</title>
+  <style>
+    /* 기본 CSS 스타일링 */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 20px;
+      color: #333;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .header h1 {
+      font-size: 28px;
+      margin: 0;
+    }
+    .header p {
+      font-size: 16px;
+      margin: 5px 0 0 0;
+    }
+    .content p {
+      font-size: 14px;
+      margin: 5px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+      font-size: 14px;
+    }
+    .qr-code {
+      margin-top: 30px;
+      text-align: center;
+    }
+    .qr-code p {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 헤더 영역: 프로젝트명과 제목 -->
+  <div class="header">
+    <h1>babyloop 결제 영수증</h1>
+    <p>유아용품 대여시스템</p>
+  </div>
+
+  <!-- 결제 내역 상세 정보 -->
+  <div class="content">
+    <p><strong>결제번호:</strong> <span th:text="${payinfo.paymentId}"></span></p>
+    <p><strong>회원 ID:</strong> <span th:text="${payinfo.userId}"></span></p>
+    <p><strong>대여 번호:</strong> <span th:text="${payinfo.rentalId}"></span></p>
+    <p><strong>상품명:</strong> <span th:text="${payinfo.paymentName}"></span></p>
+    <p><strong>사용 포인트:</strong> <span th:text="${payinfo.userDepotints}"></span></p>
+    <p><strong>추가 포인트:</strong> <span th:text="${payinfo.userAddpoints}"></span></p>
+    <p><strong>결제 방법:</strong> <span th:text="${payinfo.paymentMethod}"></span></p>
+    <p><strong>결제 날짜:</strong> <span th:text="${payinfo.createAt}"></span></p>
+
+    <!-- 표 형식으로 정리한 결제 내역 (선택사항) -->
+    <table>
+      <thead>
+        <tr>
+          <th>항목</th>
+          <th>내용</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>결제번호</td>
+          <td th:text="${payinfo.paymentId}"></td>
+        </tr>
+        <tr>
+          <td>회원 ID</td>
+          <td th:text="${payinfo.userId}"></td>
+        </tr>
+        <tr>
+          <td>대여 번호</td>
+          <td th:text="${payinfo.rentalId}"></td>
+        </tr>
+        <tr>
+          <td>상품명</td>
+          <td th:text="${payinfo.paymentName}"></td>
+        </tr>
+        <tr>
+          <td>사용 포인트</td>
+          <td th:text="${payinfo.userDepotints}"></td>
+        </tr>
+        <tr>
+          <td>추가 포인트</td>
+          <td th:text="${payinfo.userAddpoints}"></td>
+        </tr>
+        <tr>
+          <td>결제 방법</td>
+          <td th:text="${payinfo.paymentMethod}"></td>
+        </tr>
+        <tr>
+          <td>결제 날짜</td>
+          <td th:text="${payinfo.createAt}"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- QR 코드 영역 -->
+  <div class="qr-code">
+    <p>QR 코드로 결제 내역 확인</p>
+    <!-- QR 코드는 base64 문자열을 img 태그의 src에 삽입 -->
+    <img th:src="@{'data:image/png;base64,' + ${qrCodeImage}}" alt="QR Code" />
+  </div>
+</body>
+</html>

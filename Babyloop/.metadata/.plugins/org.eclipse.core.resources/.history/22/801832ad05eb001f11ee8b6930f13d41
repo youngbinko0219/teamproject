@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>임시 비밀번호 안내</title>
+    <!-- 분리한 CSS 파일을 링크 (Spring Boot에서는 /css/ 경로로 제공됨) -->
+    <link rel="stylesheet" th:href="@{/css/email.css}" />
+</head>
+<body>
+    <div class="container">
+        <h2 class="title">임시 비밀번호 안내</h2>
+        <p class="greeting">안녕하세요,</p>
+        <p class="message">임시 비밀번호가 생성되었습니다.</p>
+        <p class="instruction">아래 임시 비밀번호를 입력하여 로그인을 완료해주세요:</p>
+        <div class="code-box">
+            <strong class="code-label">임시 비밀번호: <span th:text="${code}">000000</span></strong>
+        </div>
+        <p class="support">임시 비밀번호가 보이지 않거나 문제가 발생하면, 고객센터에 문의해 주세요.</p>
+        <p class="thanks">감사합니다.</p>
+        <p class="footer">이 메일은 자동 발송된 메일입니다. 회신 불가입니다.</p>
+    </div>
+</body>
+</html>

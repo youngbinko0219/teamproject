@@ -1,0 +1,85 @@
+package com.babyloop.config;
+
+import java.util.Arrays;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
+import com.babyloop.jwt.JwtFilter;
+
+import javax.servlet.*;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+@Configuration
+@EnableWebSecurity
+public class WebSecurityConfig {
+    
+    private final JwtFilter jwtFilter;
+    
+    public WebSecurityConfig(JwtFilter jwtFilter) {
+        this.jwtFilter = jwtFilter;
+    }
+    
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        
+        http
+            .cors((cors) -> cors.disable())
+            .csrf((csrf) -> csrf.disable())
+            .headers(headers -> headers
+                .contentTypeOptions().and() // X-Content-Type-Options: nosniff 활성화
+                .frameOptions().sameOrigin() // iframe에서 동일 출처만 허용
+            )
+            .authorizeHttpRequests((auth) -> auth
+                .requestMatchers("/").permitAll()
+                /* auth에 대한 권한 */
+                .requestMatchers("/auth/login", "/auth/signup",
+                        "/auth/logout", "/auth/emailSend").permitAll()
+                .requestMatchers("/auth/search-id").permitAll()
+//              .requestMatchers("/auth/**").authenticated()
+                .requestMatchers("/admin/**").permitAll()
+                /* product에 대한 권한 */
+                .requestMatchers("/product/list/**").permitAll()
+                .anyRequest().authenticated()
+            )
+            .formLogin((form) -> form.disable())
+            .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+                
+        return http.build();
+    }
+
+    // CORS 설정 추가
+    @Bean
+    public CorsFilter corsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true); // 자격증명 허용
+        config.setAllowedOrigins(Arrays.asList("http://localhost:5173",
+                "http://19.168.0.102:5173"));
+        config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        config.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type",
+                "X-Requested-With"));
+        source.registerCorsConfiguration("/**", config);
+        return new CorsFilter(source);
+    }
+
+    // 보안 헤더 추가 (X-Content-Type-Options)
+    @Bean
+    public Filter securityHeadersFilter() {
+        return new Filter() {
+            @Override
+            public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+                    throws IOException, ServletException {
+                HttpServletResponse httpServletResponse = (HttpServletResponse) response;
+                httpServletResponse.setHeader("X-Content-Type-Options", "nosniff"); // 헤더 추가
+                chain.doFilter(request, response);
+            }
+        };
+    }
+}

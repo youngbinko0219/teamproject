@@ -1,0 +1,12 @@
+package com.babyloop.product.repository;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+@Mapper
+public interface IReviewMapper {
+
+	public int insertReview(ReviewDTO  reviewDTO,
+						@Param("productId") String productId,
+						@Param("userId") String userId);
+}

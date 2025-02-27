@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.babyloop.product.repository.IReviewMapper">
+
+
+	<!-- 상품 리뷰 등록 -->
+	<insert id="insertReview"
+		parameterType="com.babyloop.product.repository.ReviewDTO">
+		
+		<selectKey keyProperty="review_id" resultType="int" order="AFTER">
+        	SELECT LAST_INSERT_ID()
+    	</selectKey>
+		
+		INSERT INTO review(product_id, user_id, rating,
+			review_text)
+		VALUES (#{review.product_id}, #{review.user_id}, #{review.rating},
+			#{review.review_text})
+		
+	</insert>
+	
+	
+	<!-- 리뷰작성 체크 -->
+	<select id="noReview">
+	
+    SELECT review_id
+    FROM review
+    WHERE user_id=#{userId} AND
+    	product_id=#{productId}
+	
+	</select>
+	
+	
+	<!-- 구매 여부 체크 -->
+	<select id="okPay">
+	
+		SELECT COUNT(*)
+		FROM rentals
+		WHERE user_id=#{userId} AND
+			product_id=#{productId};
+	
+	</select>
+	
+	
+	<!-- 신고 중복 체크 -->
+	<select id="durationCheck">
+	
+		SELECT user_id
+		FROM messages
+		WHERE user_id=#{userId}
+	
+	</select>
+	
+	
+	<!-- 신고 업데이트 -->
+	<update id="updateDuration">
+	
+		UPDATE messages
+		SET report_count = report_count + 1,
+			read_status = 0
+		WHERE user_id=#{userId}
+	
+	</update>
+	
+	
+	<!-- 리뷰 신고 -->
+	<insert id="durationUser">
+	
+		INSERT INTO messages(user_id)
+		VALUES(#{userId})
+	
+	</insert>
+	
+	
+	<!-- 리뷰 목록 -->
+	<select id="reviewList">
+
+		SELECT *
+		FROM review
+		WHERE product_id=#{productId}
+		ORDER BY review_id DESC
+	
+	</select>
+	
+	
+	<!-- 좋아요 증감 -->
+	<update id="likeUp">
+	
+		UPDATE review
+		SET review_like = review_like + 1
+		WHERE review_id=#{reviewId}
+		
+	
+	</update>
+	
+	<!-- review_id가져오기 -->
+	<select id="beforId">
+		
+		SELECT max(review_id)
+		FROM review
+	
+	</select>
+	
+</mapper>

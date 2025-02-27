@@ -1,0 +1,22 @@
+package com.babyloop.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.babyloop.product.repository.IProductsMapper;
+
+@Service
+public class HistoryViewService {
+	
+	@Autowired
+	IProductsMapper productsDAO;
+	
+	
+	@Transactional
+	public void userViewHistory() {
+		
+		productsDAO.
+	}
+	
+}

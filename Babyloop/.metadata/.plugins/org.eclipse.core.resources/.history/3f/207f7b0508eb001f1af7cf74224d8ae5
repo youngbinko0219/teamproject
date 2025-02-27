@@ -1,0 +1,70 @@
+package com.babyloop.oauth2;
+
+import java.time.LocalDateTime;
+import java.util.Map;
+import java.util.Optional;
+import java.util.UUID;
+
+import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
+import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
+import org.springframework.security.oauth2.core.user.OAuth2User;
+import org.springframework.stereotype.Service;
+
+import com.babyloop.auth.member.MemberDAO;
+import com.babyloop.auth.repository.MemberDTO;
+import com.babyloop.jwt.JwtUtil;
+
+@Service
+public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
+
+    private final JwtUtil jwtUtil;
+    private final MemberDTO memberDTO;
+
+    // Constructor 주입
+    public CustomOAuth2UserService(JwtUtil jwtUtil, MemberDTO memberDTO) {
+        this.jwtUtil = jwtUtil;
+        this.memberDTO = memberDTO;
+    }
+
+    @Override
+    public OAuth2User loadUser(OAuth2UserRequest userRequest) {
+        // OAuth2UserService를 통해 기본 사용자 정보를 받아옵니다.
+        OAuth2UserService<OAuth2UserRequest, OAuth2User> delegate = new org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService();
+        OAuth2User oAuth2User = delegate.loadUser(userRequest);
+
+        // 로그인 제공자와 속성 정보를 받아옵니다.
+        String provider = userRequest.getClientRegistration().getClientName();
+        Map<String, Object> attributes = oAuth2User.getAttributes();
+
+        // OAuthAttributes.of를 통해 해당 제공자에 맞는 속성 정보를 반환
+        OAuthAttributes oAuthAttributes = OAuthAttributes.of(provider, attributes);
+
+        // 제공자 정보가 유효하지 않으면 예외 처리
+        if (oAuthAttributes == null) {
+            throw new IllegalArgumentException("Unknown provider: " + provider);
+        }
+
+        // 소셜 로그인 제공자 ID와 이메일을 기반으로 사용자 정보를 처리
+        String providerId = oAuthAttributes.getProviderId();
+        String userEmail = oAuthAttributes.getUserEmail();
+        String userName = oAuthAttributes.getUserName();  // 사용자 이름을 가져옵니다.
+        
+        // 이미 회원이 존재하는지 확인
+        Optional<MemberDTO> existingMember = memberDAO.findByProviderId(providerId);
+
+        // 존재하지 않으면 새로운 user_id 생성
+        String userId = existingMember.map(MemberDTO::getUser_id)
+                .orElse(UUID.randomUUID().toString().replace("-", "").substring(0, 20));
+        
+        // 토큰 생성
+        String token = jwtUtil.generateLoginToken(userId); 
+        
+        // 존재하지 않으면 새 회원을 DB에 저장
+        if (existingMember.isEmpty()) {
+            memberDAO.save(new MemberDTO(userId, "", userName, userEmail, "", "", "", "",
+                    "", "", LocalDateTime.now(), 3000, provider, providerId));  // DB 저장 부분
+        }
+
+        return new CustomOAuth2User(userId, userName, userEmail, provider, providerId, token);  // CustomOAuth2User 반환
+    }
+}

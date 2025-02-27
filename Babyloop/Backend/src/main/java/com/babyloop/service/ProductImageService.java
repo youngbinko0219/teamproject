@@ -1,0 +1,130 @@
+package com.babyloop.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.babyloop.product.repository.ImgDTO;
+import com.babyloop.product.repository.IImgMapper;
+import com.babyloop.utils.ImgFunctions;
+
+@Service
+public class ProductImageService {
+
+    @Autowired
+    private FirebaseStorageService firebaseStorage;
+
+    @Autowired
+    private IImgMapper imgDAO;
+
+    /**
+     * 이미지 파일 배열을 받아 Firebase Storage에 업로드한 후 DB에 이미지 정보를 저장합니다.
+     *
+     * files : 업로드할 파일 배열 (null일 수 있음)
+     * productId : 제품 ID
+     * imageType : 이미지 유형 ("main", "sub", "desc")
+     */
+    
+    public void processImageFiles(MultipartFile[] files, int productId, String imageType) {
+
+            for (MultipartFile file : files) {
+                /*UUID 기반 고유 파일명 생성*/
+                String fileName = ImgFunctions.getUuid() + "_" + file.getOriginalFilename();
+                /*Firebase Storage에 파일 업로드 (파일과 고유 파일명을 함께 전달)*/
+                String imageUrl = firebaseStorage.uploadFile(file, fileName);
+
+                /*ImgDTO 객체 생성 후 값 설정*/
+                ImgDTO imgDTO = new ImgDTO();
+                imgDTO.setProduct_id(productId);
+                
+                /*이미지 경로와 flag지정*/
+                imgDTO.setImages(imageUrl);
+                imgDTO.setFlag(imageType);
+                
+
+                /*DB에 이미지 정보 저장*/
+                imgDAO.product(imgDTO);
+            }
+        }
+    
+    
+    /**
+     * 리뷰 이미지
+     * @param files
+     * @param reviewId
+     * @param productId
+     * @param imageType
+     */
+    public void processImageFilesReview(MultipartFile[] files, int reviewId, int productId, String imageType) {
+
+        for (MultipartFile file : files) {
+            /*UUID 기반 고유 파일명 생성*/
+            String fileName = ImgFunctions.getUuid() + "_" + file.getOriginalFilename();
+            /*Firebase Storage에 파일 업로드 (파일과 고유 파일명을 함께 전달)*/
+            String imageUrl = firebaseStorage.uploadFile(file, fileName);
+
+            /*ImgDTO 객체 생성 후 값 설정*/
+            ImgDTO imgDTO = new ImgDTO();
+            imgDTO.setProduct_id(productId);
+            
+            /*이미지 경로와 flag지정*/
+            imgDTO.setImages(imageUrl);
+            imgDTO.setFlag(imageType);
+            
+
+            /*DB에 이미지 정보 저장*/
+            imgDAO.insertImgs(imgDTO,reviewId);
+        }
+    }
+    
+    
+    /**
+     * 광고 이미지 등록
+     * @param files : 이미지 파일
+     * @param imageType : 이미지 flag
+     * @return
+     */
+    public List<String> processAdImageFile(MultipartFile[] files, String imageType) {
+        List<String> imageUrls = new ArrayList<>();
+
+        for (MultipartFile file : files) {
+            if (!file.isEmpty()) {
+                String fileName = ImgFunctions.getUuid() + "_" + file.getOriginalFilename();
+                String imageUrl = firebaseStorage.uploadFile(file, fileName);
+
+                ImgDTO imgDTO = new ImgDTO();
+                imgDTO.setImages(imageUrl);
+                imgDTO.setFlag(imageType);
+
+                imgDAO.insertAdImgs(imgDTO);
+                imageUrls.add(imageUrl);
+            }
+        }
+
+        return imageUrls;
+    }
+    
+    
+    /**
+     * 이미지 삭제
+     */
+    public boolean deleteImage(String url) {
+
+    	boolean result = imgDAO.deleteImageByUrl(url);
+    	
+    	return result;
+
+    }
+
+    
+    /**
+     * 광고 배너 이미지 조회
+     */
+    public List<String> getAdBanners() {
+        return imgDAO.getAdBanners();
+    }
+    
+}

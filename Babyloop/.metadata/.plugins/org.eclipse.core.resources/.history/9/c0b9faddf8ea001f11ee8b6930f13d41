@@ -1,0 +1,90 @@
+body {
+      font-family: 'Roboto', sans-serif;
+      background: #f0f2f5;
+      margin: 0;
+      padding: 0;
+    }
+.receipt-container {
+  max-width: 800px;
+  margin: 30px auto;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+/* 헤더 영역 */
+.header {
+  background: linear-gradient(135deg, #4e73df, #224abe);
+  color: #fff;
+  text-align: center;
+  padding: 25px 20px;
+}
+.header h1 {
+  font-size: 36px;
+  margin-bottom: 8px;
+}
+.header p {
+  font-size: 18px;
+  margin: 0;
+  opacity: 0.9;
+}
+/* 결제 내역 그리드 */
+.content {
+  padding: 30px 20px;
+  color: #34495e;
+}
+.details {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 30px;
+}
+.details-item {
+  background: #f9f9f9;
+  border: 1px solid #eaeaea;
+  border-radius: 6px;
+  padding: 15px;
+  text-align: center;
+}
+.details-item strong {
+  display: block;
+  font-size: 14px;
+  color: #4e73df;
+  margin-bottom: 5px;
+}
+.details-item span {
+  font-size: 16px;
+  font-weight: 500;
+}
+/* 테이블 영역 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+thead th {
+  background: linear-gradient(45deg, #3498db, #2980b9);
+  color: #fff;
+  padding: 12px 15px;
+  text-align: left;
+  font-size: 16px;
+  border: none;
+}
+tbody td, tfoot td, tfoot th {
+  padding: 12px 15px;
+  border: 1px solid #ecf0f1;
+  font-size: 14px;
+}
+tfoot {
+  background: #f9f9f9;
+  font-weight: 500;
+}
+/* 푸터 영역 */
+.footer {
+  background: #f1f1f1;
+  text-align: center;
+  padding: 15px;
+  font-size: 14px;
+  color: #95a5a6;
+  border-top: 1px solid #ecf0f1;
+}

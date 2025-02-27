@@ -1,0 +1,81 @@
+plugins {
+	id 'java'
+	id 'war'
+	id 'org.springframework.boot' version '3.4.2'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.babyloop'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	
+	//JDBC 의존성
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	
+	//OAuth 2.0 의존성 이걸로 카카오/네이버/구글 로그인 구현
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+	
+	//보안관련 의존성
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	testImplementation 'org.springframework.security:spring-security-test'
+	
+	//REST를 지원하고 Spring의 기본 의존성
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	
+	//MyBatis에대한 의존성
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.4'
+	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.4'
+	
+	//Lombok에대한 의존성
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	
+	//MariaDB 연결 의존성
+	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+	
+	//email전송 의존성
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	
+   	//Jwt
+	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+	implementation 'io.jsonwebtoken:jjwt-impl:0.11.5'
+	implementation 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+    //추가 의존성 (JJWT 내부에서 사용됨)
+    implementation 'org.bouncycastle:bcprov-jdk15on:1.70'  // JWT 서명 관련
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2' // JSON 파싱 관련
+    implementation 'commons-codec:commons-codec:1.15' // Base64 인코딩 관련
+
+	//Firebase 의존성
+	implementation 'com.google.firebase:firebase-admin:9.1.1' // 최신 버전 확인 후 사용
+
+	//thymeleaf 의존성
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+	//pdf 전환 flying Saucer 의존성
+	implementation 'org.xhtmlrenderer:flying-saucer-pdf:9.1.22'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

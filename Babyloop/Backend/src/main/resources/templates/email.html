@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>이메일 인증</title>
+    <!-- 분리한 CSS 파일을 링크 (Spring Boot에서는 /css/ 경로로 제공됨) -->
+    <style type="text/css">
+
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.title {
+    color: #4CAF50;
+    text-align: center;
+}
+
+.greeting,
+.message,
+.instruction,
+.support,
+.thanks,
+.footer {
+    font-size: 16px;
+    text-align: center;
+}
+
+.code-box {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    padding: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 4px;
+    margin: 15px 0;
+}
+
+.code-label {
+    color: #333;
+}
+
+.code-label span {
+    color: #4CAF50;
+}
+
+.footer {
+    font-size: 14px;
+    color: #999;
+}
+    
+    
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="title">이메일 인증</h2>
+        <p class="greeting">안녕하세요,</p>
+        <p class="message">회원가입을 위한 인증번호를 요청하셨습니다.</p>
+        <p class="instruction">아래 인증 코드를 입력하여 이메일 인증을 완료해주세요:</p>
+        <div class="code-box">
+            <strong class="code-label">인증 코드: <span th:text="${code}"></span></strong>
+        </div>
+        <p class="support">인증 코드가 보이지 않거나 문제가 발생하면, 고객센터에 문의해 주세요.</p>
+        <p class="thanks">감사합니다.</p>
+        <p class="footer">이 메일은 자동 발송된 메일입니다. 회신 불가입니다.</p>
+    </div>
+</body>
+</html>

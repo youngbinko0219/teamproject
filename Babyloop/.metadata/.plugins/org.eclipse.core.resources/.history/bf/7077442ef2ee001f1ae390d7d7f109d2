@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.babyloop.product.repository.IProductsMapper">
+	
+	<!-- 상품 등록 -->
+	<insert id="insertProduct"
+		parameterType="com.babyloop.product.repository.ProductsDTO"
+		useGeneratedKeys="true" keyProperty="product_id" keyColumn="product_id">
+	
+		INSERT INTO products(category, product_name,
+			description, stock, price)
+		VALUES (#{category}, #{product_name},
+			#{description}, #{stock}, #{price})
+	
+	</insert>
+	
+	
+	<!-- 상품 목록 -->
+	<select id="selectProduct"
+		resultType="map">
+	
+		SELECT product_name, price, P.product_id,
+			category, stock, images
+		FROM PRODUCTS P 
+		JOIN IMAGES I 
+		ON P.PRODUCT_ID=I.PRODUCT_ID
+		WHERE flag='main'
+		<if test=" category != null and category !='' ">
+			
+			AND category=#{category}
+			
+		</if>
+		ORDER BY P.product_id DESC
+		
+	</select>
+	
+	
+	<!-- 상품 상세 정보 -->
+	<select id="productView"
+		parameterType="com.babyloop.product.repository.ProductsDTO">
+	
+		SELECT stock, price, product_name,
+			description, product_id
+		FROM PRODUCTS
+		WHERE PRODUCT_ID=#{productId}
+		
+	</select>
+
+	
+	<!-- 관리지 상품목록 (페이징)-->
+	<select id="adminProduct"
+		resultType="map">
+	
+		SELECT product_name, price, P.product_id,
+			category, stock, description, images
+		FROM PRODUCTS P
+		JOIN IMAGES I
+		ON P.PRODUCT_ID=I.PRODUCT_ID
+		WHERE flag='main'
+		ORDER BY P.product_id DESC
+		LIMIT #{limit} OFFSET #{offset}
+	
+	</select>
+	<!-- 전체 상품 조회 -->
+	<select id="countProduct">
+	
+		SELECT COUNT(*)
+		FROM products
+		
+	</select>
+	
+	
+	<!-- 좋아요 상태 -->
+	<select id="statusLike">
+
+		SELECT status
+		FROM likes
+		WHERE user_id=#{userId} AND
+			product_id=#{productId}
+	
+	</select>
+	
+	
+	<!-- 새로운 좋아요 생성 -->
+	<insert id="newLike">
+	
+		INSERT INTO likes(user_id, product_id)
+		VALUES(#{userId}, #{productId})
+	
+	</insert>
+	
+	<!-- 상품 좋아요 갯수 -->
+	<select id="countLike"
+		resultType="int">
+
+		SELECT product_id
+		FROM recommendation
+		WHERE product_id=#{productId}
+	
+	</select>
+	
+	
+	<!-- 추천상품 데이터 생성 -->
+	<insert id="setupProductData">
+	
+		INSERT INTO recommendation(product_id)
+		VALUES(#{productId})
+	
+	</insert>
+	
+	
+	<!-- 좋아요 증감 -->
+	<update id="likeUpdown">
+	
+		UPDATE recommendation RE
+		JOIN likes L
+		ON RE.product_id=L.product_id
+		SET like_count= like_count +
+			CASE
+				WHEN status=true THEN -1
+				WHEN status=false THEN 1
+			END,
+			status =
+			CASE
+				WHEN status=true THEN false
+				WHEN status=false THEN true
+			END
+		WHERE RE.product_id=#{productId} AND
+			L.user_id=#{userId}
+	
+	</update>
+	
+	
+	<!-- 상품 조회수 증가 -->
+	<update id="viewCount">
+	
+		UPDATE recommendation
+		SET view_count = view_count + 1
+		WHERE product_id=#{productId}
+	
+	</update>
+	
+	
+	<!-- 기록 갯수 조회 -->
+	<select id="countHistory">
+	
+		SELECT count(user_id)
+		FROM view_history
+		WHERE user_id=#{userId}
+		
+	</select>
+	
+	
+	
+	<!-- 기록 삭제 -->
+	<delete id="oldHistory">
+	
+		DELETE view_history
+		WHERE user_id=#{userId} AND
+			view_id=(
+				SELECT min(view_id)
+				FROM view_history
+				WHERE user_id=#{userId})
+		<!-- 가장 오래된기록 서브쿼리 -->
+	
+	</delete>
+	
+	
+	<!-- 상품 기록 -->
+	
+</mapper>

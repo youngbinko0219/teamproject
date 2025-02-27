@@ -1,0 +1,6 @@
+GitRepositoriesView.GitDirectories=D\:\\Myproject\\BabyloopProcject\\BabyLoop-02-20\\.git;D\:\\Myproject\\BabyloopProcject\\BabyLoop-02-20\\Backend\\.git;
+GitRepositoriesView.GitDirectories.relative=.git;Backend\\.git;
+core_autoIgnoreDerivedResources=false
+core_defaultRepositoryDir=D\:\\Myproject\\BabyLoopFireStorage\\Backend
+core_ssh_default_agent=\\\\.\\pageant
+eclipse.preferences.version=1

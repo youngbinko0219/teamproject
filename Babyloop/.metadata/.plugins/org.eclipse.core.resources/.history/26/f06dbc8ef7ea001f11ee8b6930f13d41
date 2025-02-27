@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>babyloop 결제 영수증</title>
+	<!-- Google Fonts (Roboto) -->
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
+	
+	<link href="../static/css/receipt.css" rel="stylesheet"/>
+</head>
+<body>
+  <div class="receipt-container">
+    <!-- 헤더 영역 -->
+    <div class="header">
+      <h1>babyloop 결제 영수증</h1>
+      <p>유아용품 대여시스템</p>
+    </div>
+    
+    <!-- 결제 내역 영역 -->
+    <div class="content">
+      <!-- 3x2 그리드 결제 상세 정보 -->
+      <div class="details">
+        <div class="details-item">
+          <strong>결제번호</strong>
+          <span th:text="${payinfo.paymentId}">1234</span>
+        </div>
+        <div class="details-item">
+          <strong>회원 ID</strong>
+          <span th:text="${payinfo.userId}">test</span>
+        </div>
+        <div class="details-item">
+          <strong>보유 포인트</strong>
+          <span th:text="${payinfo.rentalId}">500</span>
+        </div>
+        <div class="details-item">
+          <strong>사용 포인트</strong>
+          <span th:text="${payinfo.paymentMethod}">200</span>
+        </div>
+        <div class="details-item">
+          <strong>결제 방법</strong>
+          <span th:text="${payinfo.createAt}">카드</span>
+        </div>
+        <div class="details-item">
+          <strong>결제 날짜</strong>
+          <span th:text="${payinfo.createAt}">2020-12-01</span>
+        </div>
+      </div>
+      
+      <!-- 상세 표 -->
+      <table>
+        <thead>
+          <tr>
+            <th>대여 물품</th>
+            <th>수량</th>
+            <th>포인트 적립</th>
+            <th>차감 금액</th>
+            <th>금액</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>장난감</td>
+            <td>1</td>
+            <td>100pt</td>
+            <td>0pt</td>
+            <td>20,000</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th>합 계</th>
+            <td>1</td>
+            <td>100pt</td>
+            <td>0pt</td>
+            <td>20,000</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    
+    <!-- 푸터 영역 -->
+    <div class="footer">
+      babyloop &copy; 2025. All rights reserved.
+    </div>
+  </div>
+</body>
+</html>

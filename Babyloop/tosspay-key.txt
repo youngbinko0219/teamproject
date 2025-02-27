@@ -1,0 +1,12 @@
+Tosspay
+
+클라이언트 키
+test_ck_4yKeq5bgrpykb6oQ1my48GX0lzW6
+
+시크릿 키
+test_sk_QbgMGZzorzjQlxEjab6krl5E1em4
+
+보안 키
+a3e7e9fa198adc86a0b18e66999ab4f1f558b3dfd0ad91fc134deca242f9b5e5
+
+API v-2022-11-16

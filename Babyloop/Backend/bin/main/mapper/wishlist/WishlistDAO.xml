@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.babyloop.wishlist.repository.WishlistMapper">
+
+    <!-- 특정 상품이 위시리스트에 있는지 확인 (userId, productId 기준) -->
+    <select id="getWishlistItemByUserAndProduct" resultType="com.babyloop.wishlist.repository.WishlistDTO">
+        SELECT w.wish_id AS wishId, 
+               w.user_id AS userId, 
+               w.product_id AS productId, 
+               p.product_name AS productName
+        FROM wishlist w
+        JOIN products p ON w.product_id = p.product_id
+        WHERE w.user_id = #{userId} 
+          AND w.product_id = #{productId}
+    </select>
+
+    <!-- 위시리스트에 상품 추가 -->
+    <insert id="addToWishlist" parameterType="com.babyloop.wishlist.repository.WishlistDTO" useGeneratedKeys="true" keyProperty="wishId">
+        INSERT INTO wishlist (user_id, product_id)
+        VALUES (#{userId}, #{productId})
+    </insert>
+
+    <!-- 추가된 위시리스트 아이템 조회 -->
+    <select id="getWishlistItems" resultType="com.babyloop.wishlist.repository.WishlistDTO">
+        SELECT w.wish_id AS wishId, 
+               w.user_id AS userId, 
+               w.product_id AS productId, 
+               p.product_name AS productName
+        FROM wishlist w
+        JOIN products p ON w.product_id = p.product_id
+        WHERE w.user_id = #{userId} AND w.product_id = #{productId}
+    </select>
+
+    <!-- 특정 유저의 위시리스트 조회 -->
+    <select id="getWishlistByUserId" resultType="com.babyloop.wishlist.repository.WishlistDTO">
+        SELECT w.wish_id AS wishId, 
+               w.user_id AS userId, 
+               w.product_id AS productId, 
+               p.product_name AS productName
+        FROM wishlist w
+        JOIN products p ON w.product_id = p.product_id
+        WHERE w.user_id = #{userId}
+    </select>
+
+    <!-- 위시리스트에서 특정 (userId, productId)를 기준으로 삭제 -->
+    <delete id="removeFromWishlist" parameterType="map">
+        DELETE FROM wishlist WHERE user_id = #{userId} 
+                              AND product_id = #{productId}
+    </delete>
+
+</mapper>
+

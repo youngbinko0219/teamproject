@@ -1,0 +1,158 @@
+package com.babyloop.auth.controller;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.TransactionCallbackWithoutResult;
+import org.springframework.transaction.support.TransactionTemplate;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.babyloop.auth.repository.GradesDTO;
+import com.babyloop.auth.repository.IGradesMapper;
+import com.babyloop.auth.repository.IMemberMapper;
+import com.babyloop.auth.repository.MemberDTO;
+import com.babyloop.product.repository.PayinfoDTO;
+
+@RestController
+@RequestMapping("/user")
+public class MypageCtrl {
+
+	//쿼리 인터페이스 가져오기
+	@Autowired
+	IMemberMapper memberDAO;
+	
+	@Autowired
+	IGradesMapper greadesDAO;
+	
+	@Autowired
+	TransactionTemplate transaction;
+	
+	private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+	
+	
+	/**
+	 * 회원 정보
+	 * @param userId : 로그인중인 유저 아이디.
+	 * @return 회원의 정보
+	 */
+	@GetMapping("/{user_id}")
+	public Map<String, Object> userInfo(@PathVariable("user_id") String userId){
+		
+		HashMap<String, Object> result = memberDAO.memberInfo(userId);
+
+		return result;
+	}
+	
+	
+	/**
+	 * 회원 정보 수정
+	 * @PathVariable user_id : 로그인중인 사용자 아이디  
+	 * @param memberDTO : 사용자의 수정할 내용
+	 * @return : 수정 성공 여부 반환
+	 */
+	@PutMapping("/{user_id}")
+	public Map<String,String> userEdit(@PathVariable("user_id") String userId,
+			@RequestBody MemberDTO memberDTO){
+		
+		Map<String, String> map = new HashMap<>();
+		
+		try {
+			
+			transaction.execute(new TransactionCallbackWithoutResult() {
+				
+				@Override
+				protected void doInTransactionWithoutResult(TransactionStatus status) {
+					
+					/**
+					 * 새로운 비빌번호가 비어있지않거나 null아니면
+					 * 비밀번호 변경
+					 */
+					if(memberDTO.getNewPw() != null ||
+							!memberDTO.getNewPw().isEmpty()) {
+						
+						/**
+						 * 비밀번호 찾기
+						 */
+						String encryptedPassword = memberDAO.pwSearch(memberDTO);
+						
+						/**
+						 * 기존의 비밀번호가 일치하면
+						 * 새로운 비밀번호 암호화후 저장
+						 */
+						if(encoder.matches(memberDTO.getUser_pw(),
+								encryptedPassword)) {
+							
+							String newPw  = encoder.encode(memberDTO.getNewPw());
+							
+							memberDAO.infoEdit(memberDTO, newPw);
+							
+							map.put("message", "success");
+							
+						}else {
+							map.put("message", "notEquals");
+						}
+					}
+					
+				}
+			});
+
+		} catch (Exception e) {
+			map.put("message", "error");
+			e.printStackTrace();
+		}
+		return map;
+	}
+	
+	
+	//개인정보 수정
+	@DeleteMapping("/{user_id}")
+	public Map<String,String> userDelete(@PathVariable("user_id") String userId){
+		
+		Map<String,String> map = new HashMap<>();
+		
+		try {
+			int result = memberDAO.userDelete(userId);
+			
+			if(result==1) {
+				map.put("message", "success");
+			}else {
+				map.put("message", "fail");
+			}
+		} catch (Exception e) {
+			map.put("message", "error");
+			e.printStackTrace();
+		}
+		
+		return map;
+	}
+	
+	
+	/**
+	 * 등급 조회
+	 * @param gradesDTO : 회원의 등급 정보
+	 * @param payinfoDTO : 회원의 결제 포인트 변동
+	 * @return
+	 */
+	@GetMapping("/{user_id}/grade")
+	public Map<String,Object> geradeInfo(GradesDTO gradesDTO, PayinfoDTO payinfoDTO){
+		
+		HashMap<String,Object> grades = greadesDAO.gradeInfo(gradesDTO);
+		
+		ArrayList<PayinfoDTO> points = greadesDAO.pointInfo(payinfoDTO);
+		
+		grades.put("list", points);
+		
+		return grades;
+	}
+	
+}

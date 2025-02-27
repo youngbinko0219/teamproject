@@ -1,0 +1,12 @@
+package com.babyloop.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.thymeleaf.spring6.SpringTemplateEngine;
+
+@Service
+public class PdfService {
+	
+	@Autowired
+	private SpringTemplateEngine templateEngine;
+}

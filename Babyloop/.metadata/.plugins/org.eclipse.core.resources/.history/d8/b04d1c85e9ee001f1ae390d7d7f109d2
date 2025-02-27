@@ -1,0 +1,8 @@
+package com.babyloop.service;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class HistoryViewService {
+	
+}

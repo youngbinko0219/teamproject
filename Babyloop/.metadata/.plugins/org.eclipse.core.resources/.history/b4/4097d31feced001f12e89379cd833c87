@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.babyloop.auth.repository.IGradesMapper">
+
+	<!-- 등급 조회 -->
+	<select id="gradeInfo"
+		parameterType="com.babyloop.auth.repository.GradesDTO">
+	
+		SELECT grade_name, point_rate,
+			required_points, m.points
+		FROM grades g
+		JOIN MEMBER m
+		ON g.user_id=m.user_id
+		WHERE g.user_id=#{grades.user_id}
+	
+	</select>
+	<select id="pointInfo"
+		parameterType="com.babyloop.product.repository.PayinfoDTO">
+	
+		SELECT payment_name, user_depoints,
+			user_addpoints, create_at
+		FROM PAYINFO 
+		WHERE user_id=#{user_id}
+	
+	</select>
+	
+	
+	<!-- 리뷰 추가 포인트 -->
+	<update id="reviewPoint">
+	
+		UPDATE member M
+		JOIN grades G
+		ON G.user_id = M.user_id
+		SET M.points = points + #{addPoint},
+			G.required_points = required_points - #{addPoint}
+		WHERE M.user_id = #{userId}
+			
+	</update>
+	<!-- 포인트 추가 이력 -->
+	<insert id="statusPoint">
+		
+		INSERT INTO payinfo(user_id, payment_name,
+			user_addpoints)
+		VALUES(#{userId} ,'리뷰 작성 포인트',
+			#{addPoint})
+		
+	</insert>
+	
+	
+	<!-- 회원 등급가능 조회 -->
+	<select id="selectGrade">
+	
+		SELECT required_points
+		FROM grades
+		WHERE user_id=#{userId}
+	
+	</select>
+	<!-- 등급 업 -->
+	<update id="geradeUp">
+	
+		<if test="(SELECT grade_name
+				FROM grades
+				WHERE user_id=#{userId}) =='Basic' ">
+				
+			UPDATE grades
+			SET
+				grade_name='Silver'
+			WHERE user_id=#{userId}
+			
+		</if>
+				<if test="(SELECT grade_name
+				FROM grades
+				WHERE user_id=#{userId}) =='Silver' ">
+				
+			UPDATE grades
+			SET
+				grade_name='Gold'
+			WHERE user_id=#{userId}
+			
+		</if>
+				<if test="(SELECT grade_name
+				FROM grades
+				WHERE user_id=#{userId}) =='Basic' ">
+				
+			UPDATE grades
+			SET
+				grade_name='Silver'
+			WHERE user_id=#{userId}
+		</if>
+				<if test="(SELECT grade_name
+				FROM grades
+				WHERE user_id=#{userId}) =='Basic' ">
+				
+			UPDATE grades
+			SET
+				grade_name='Silver'
+			WHERE user_id=#{userId}
+		</if>
+		
+	</update>
+
+</mapper>

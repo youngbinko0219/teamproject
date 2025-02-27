@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.babyloop.auth.repository.IMemberMapper">
+
+
+	<!-- 로그인 쿼리 -->
+	<select id="login"
+		parameterType="com.babyloop.auth.repository.MemberDTO">
+	
+		SELECT user_pw
+		FROM member
+		WHERE user_id=#{user_id}
+
+	</select>
+	
+	
+	<!-- 회원가입 쿼리 -->
+	<insert id="signupMember"
+		parameterType="com.babyloop.auth.repository.MemberDTO">
+		
+		INSERT INTO member(
+			user_id,user_pw, user_name, user_email,
+    		user_phone, user_addr1, user_addr2, user_addr3,
+    		user_gender, user_birth)
+    	VALUES(
+	        #{member.user_id}, #{encryptedPassword},
+	        #{member.user_name}, #{member.user_email}, #{member.user_phone},
+	        #{member.user_addr1}, #{member.user_addr2}, #{member.user_addr3},
+	        #{member.user_gender}, #{member.user_birth})
+		
+	</insert>
+	<insert id="signupGrade"
+		parameterType="com.babyloop.auth.repository.MemberDTO">
+	
+		INSERT INTO grades(user_id)
+	   	VALUES (#{user_id})
+	
+	</insert>
+	
+	
+	<!-- 아이디 중복체크 쿼리 -->
+	<select id="idcheck"
+		parameterType="com.babyloop.auth.repository.MemberDTO">
+		
+		SELECT user_id
+		FROM member
+		WHERE user_id=#{user_id}
+		
+	</select>
+	
+	
+	<!-- 아이디 찾기 쿼리 -->
+	<select id="idSearch"
+		parameterType="com.babyloop.auth.repository.MemberDTO">
+		
+		SELECT user_id
+		FROM member
+		WHERE user_email=#{user_email}
+		
+	</select>
+	
+	
+	<!-- 비밀번호 찾기 -->
+	<select id="pwSearch"
+		parameterType="com.babyloop.auth.repository.MemberDTO">
+		
+		SELECT user_pw
+		FROM member
+		WHERE user_id=#{user_id}
+		
+	</select>
+	
+	
+	<!-- 이미 인증한 이메일 체크 -->
+	<select id="emailCheck"
+		parameterType="com.babyloop.auth.repository.MemberDTO">
+	
+		SELECT user_email
+		FROM member
+		WHERE user_email=#{user_email}
+	
+	</select>
+	
+	
+	<!-- 임시비밀번호 저장 -->
+	<update id="changePw"
+		parameterType="com.babyloop.auth.repository.MemberDTO">
+	
+		UPDATE member
+		SET user_pw=#{encryptedPassword}
+		WHERE user_id=#{member.user_id} AND
+			user_email=#{member.user_email} AND
+			user_name=#{member.user_name}
+	
+	</update>
+	
+	
+	<!-- 회원 정보 -->
+	<select id="memberInfo"
+		parameterType="com.babyloop.auth.repository.MemberDTO"
+		resultType="map">
+	
+		SELECT *
+		FROM member
+		WHERE user_id=#{user_id}
+	
+	</select>
+	
+	
+	<!-- 비밀번호 수정 -->
+	<update id="pwEdit"
+		parameterType="com.babyloop.auth.repository.MemberDTO">
+	
+		UPDATE member
+		SET
+			user_pw=#{newPw}
+		WHERE user_id=#{userId}
+		
+	</update>
+	
+	<!-- 비번 변경전 비번찾기 -->
+	<select id="pwEditSearch"
+		parameterType="com.babyloop.auth.repository.MemberDTO">
+		
+		SELECT user_pw
+		FROM member
+		WHERE user_id=#{userId}
+		
+	</select>
+	
+	<!-- 개인정보 수정 -->
+	<update id="infoEdit"
+		parameterType="com.babyloop.auth.repository.MemberDTO">
+	
+		UPDATE member
+		SET
+			user_name=#{member.user_name}, user_email=#{member.user_email},
+			user_phone=#{member.user_phone}, user_addr1=#{member.user_addr1},
+			user_addr2=#{member.user_addr2}, user_addr3=#{member.user_addr3}
+		WHERE user_id=#{userId}
+		
+	</update>
+	
+		
+	<!-- 회원 탈퇴 -->
+	<delete id="userDelete"
+		parameterType="com.babyloop.auth.repository.MemberDTO">
+	
+		DELETE FROM member
+		WHERE user_id=#{user_id}
+	
+	</delete>
+	
+	
+	<!-- 관리자 회원관리 페이징 -->
+	<select id="adminMember"
+		resultType="map">
+	
+		SELECT user_id
+		FROM member
+		LIMIT #{limit} OFFSET #{offset}
+	
+	</select>
+	<!-- 전체 상품 조회 -->
+	<select id="countMember">
+		SELECT COUNT(*)
+		FROM member
+	</select>
+	
+	
+	<!-- 관지라 회원 정지 -->
+	<update id="userBan">
+	
+		UPDATE member
+		SET
+			
+	
+	</update>
+</mapper>

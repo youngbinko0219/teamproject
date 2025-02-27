@@ -1,0 +1,42 @@
+package com.babyloop.product.repository;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+@Mapper
+public interface IProductsMapper {
+
+	/* 사용자 */
+	
+	/*관리자 상품 등록*/
+	public int insertProduct(ProductsDTO productsDTO);
+
+	/*상품 목록*/
+	public ArrayList<Map<String,Object>> selectProduct(@Param("category") String category);
+
+	/*상품 상세정보*/
+	public HashMap<String, Object> productView(@Param("productId") String productId);
+	
+	/*상품 좋아요*/
+	public int statusLike(@Param("userId") String userId,
+						@Param("productId") String productId);
+	
+	/*좋아요 증가*/
+	public int likeUp(@Param("userId") String userId,
+					@Param("productId") String productId);
+	
+	
+	/* 관리자 */
+	
+	/*관리자 상품 목록*/
+	public ArrayList<?> adminProduct(@Param("limit") int limit,
+									@Param("offset") int offset);
+	
+	/* 페이징 */
+	public int countProduct();
+	
+}

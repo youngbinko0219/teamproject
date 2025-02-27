@@ -1,0 +1,32 @@
+package com.babyloop.auth.repository;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import com.babyloop.product.repository.PayinfoDTO;
+
+@Mapper
+public interface IGradesMapper {
+
+	
+	/*포인트 내역 조회*/
+	ArrayList<PayinfoDTO> pointInfo(PayinfoDTO payinfoDTO);
+	
+	/*회원 등급 가능 조회*/
+	int selectGrade(@Param("userId") String userId);
+	
+	/*등급 업*/
+	int geradeUp(@Param("userId") String userId);
+	
+	/*리뷰 추가 포인트*/
+	boolean reviewPoint(@Param("addPoint") int addPoint,
+						@Param("userId") String userId);
+	
+	/*포인트 내역 상태추가*/
+	boolean statusPoint(@Param("addPoint") int addPoint,
+						@Param("userId") String userId);
+	
+}

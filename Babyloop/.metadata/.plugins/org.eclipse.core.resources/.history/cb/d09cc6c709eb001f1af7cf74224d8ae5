@@ -1,0 +1,53 @@
+package com.babyloop.auth.repository;
+
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.Optional;
+
+@Repository
+public class MemberDAO {
+
+    private final JdbcTemplate jdbcTemplate;
+
+    public MemberDAO(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
+    public Optional<MemberDTO> findByProviderId(String provider_id) {
+        String sql = "SELECT * FROM member WHERE provider_id = ?";
+
+        RowMapper<MemberDTO> rowMapper = (rs, rowNum) -> new MemberDTO(
+                rs.getString("user_id"),
+                rs.getString("user_pw"),
+                rs.getString("user_name"),
+                rs.getString("user_email"),
+                rs.getString("user_phone"),
+                rs.getString("user_addr1"),
+                rs.getString("user_addr2"),
+                rs.getString("user_addr3"),
+                rs.getString("user_gender"),
+                rs.getString("user_birth"),
+                rs.getTimestamp("created_at").toLocalDateTime(),
+                rs.getInt("points"),
+                rs.getString("provider"),
+                rs.getString("provider_id")
+        );
+
+        return jdbcTemplate.query(sql, rowMapper, provider_id).stream().findFirst();
+    }
+
+    public void save(MemberDTO memberDTO) {
+    	String sql = "INSERT INTO member (user_id, user_pw, user_name, user_email, user_phone, user_addr1, user_addr2, " +
+                "user_addr3, user_gender, user_birth, created_at, points, provider, provider_id) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+		jdbcTemplate.update(sql, memberDTO.getUser_id(), memberDTO.getUser_pw(), memberDTO.getUser_name(), memberDTO.getUser_email(),
+		   memberDTO.getUser_phone(), memberDTO.getUser_addr1(), memberDTO.getUser_addr2(), memberDTO.getUser_addr3(),
+		   memberDTO.getUser_gender(), memberDTO.getUser_birth(), Timestamp.valueOf(LocalDateTime.now()), memberDTO.getPoints(),
+		   memberDTO.getProvider(), memberDTO.getProvider_id());
+    }
+}

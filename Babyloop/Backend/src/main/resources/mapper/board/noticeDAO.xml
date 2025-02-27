@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.babyloop.board.repository.NoticeMapper">
+
+
+	<!-- 공지사항 입력 -->
+	<insert id="insertNotice"
+		parameterType="com.babyloop.board.repository.NoticeDTO">
+	
+		INSERT INTO notice(notice_title, notice_com)
+		VALUES(#{notice_title}, #{notice_com})
+	
+	</insert>
+	
+	
+	<!-- 공지사항 목록 (페이징)-->
+	<select id="listNotice"
+		resultType="map">
+	
+		SELECT notice_title, notice_com,
+			created_at
+		FROM notice
+		ORDER BY notice_id DESC
+		LIMIT #{limit} OFFSET #{offset}
+	
+	</select>
+	<!-- 전체 공지 조회 -->
+	<select id="countNotice">
+	
+		SELECT COUNT(*)
+		FROM notice
+		
+	</select>
+
+</mapper>

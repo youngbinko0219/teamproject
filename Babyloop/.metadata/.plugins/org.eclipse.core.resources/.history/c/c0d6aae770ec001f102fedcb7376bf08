@@ -1,0 +1,15 @@
+package com.babyloop.product.repository;
+
+import java.util.ArrayList;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+@Mapper
+public interface IImgMapper {
+	
+	public int insertImgs(ImgDTO imgDTO);
+	public String selectImgs();
+	public ArrayList<String> productImgs(@Param("productId")String productId);
+	
+}

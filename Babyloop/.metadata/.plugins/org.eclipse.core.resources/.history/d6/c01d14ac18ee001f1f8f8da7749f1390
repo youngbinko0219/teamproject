@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.babyloop.product.repository.IReviewMapper">
+
+
+	<!-- 상품 리뷰 등록 -->
+	<insert id="insertReview"
+		parameterType="com.babyloop.product.repository.ReviewDTO">
+		
+		INSERT INTO review(product_id, user_id, rating,
+			review_text)
+		VALUES (#{productId}, #{review.user_id}, #{review.rating},
+			#{review.review_text})
+		
+	</insert>
+	
+	
+	<!-- 리뷰작성 체크 -->
+	<select id="noReview">
+	
+    SELECT review_id
+    FROM review
+    WHERE user_id=#{userId} AND
+    	product_id=#{productId}
+	
+	</select>
+	
+	
+	<!-- 구매 여부 체크 -->
+	<select id="checkPurchase">
+	
+		SELECT COUNT(*)
+    	FROM payinfo P
+    	JOIN payment_items PI
+    	ON P.payment_id=PI.payment_id
+    	WHERE P.user_id=#{userId} AND
+    	PI.product_id = #{productId}
+	
+	</select>
+
+</mapper>

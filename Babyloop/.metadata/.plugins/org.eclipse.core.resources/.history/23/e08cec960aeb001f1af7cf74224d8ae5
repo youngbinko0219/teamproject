@@ -1,0 +1,75 @@
+package com.babyloop.config;
+
+
+import java.util.Arrays;
+
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
+
+import com.babyloop.jwt.JwtFilter;
+import com.babyloop.oauth2.CustomOAuth2UserService;
+
+
+@Configuration
+@EnableWebSecurity
+public class WebSecurityConfig {
+	
+	private final JwtFilter jwtFilter;
+	
+	public WebSecurityConfig(JwtFilter jwtFilter) {
+		this.jwtFilter = jwtFilter;
+	}
+	
+	private final CustomOAuth2UserService customOAuth2UserService;
+	
+	@Bean
+	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
+		
+		http
+			.cors((cors)-> cors.disable())
+			.csrf((csrf)-> csrf.disable())
+			.authorizeHttpRequests((auth)->auth
+				.requestMatchers("/").permitAll()
+				/* auth에대한 권한 */
+				.requestMatchers("/auth/login","/auth/signup",
+						"/auth/logout","/auth/emailSend").permitAll()
+				.requestMatchers("/auth/search-id").permitAll()
+//				.requestMatchers("/auth/**").authenticated()
+				.requestMatchers("/admin/**").permitAll()
+				/* product에대한 권한*/
+				.requestMatchers("/product/list/**").permitAll()
+				.anyRequest().authenticated()
+			)
+			.formLogin((form)-> form.disable())
+			.oauth2Login(oauth2 -> oauth2
+	                .userInfoEndpoint(userInfo -> userInfo.userService(customOAuth2UserService))
+	                .defaultSuccessUrl("http://localhost:5173", true)// 사용자 정보 처리
+	            )
+			.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+				
+		return http.build();
+	}
+	
+	
+	//CORS 설정 추가
+	@Bean
+	public CorsFilter corsFilter() {
+	    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+	    CorsConfiguration config = new CorsConfiguration();
+	    config.setAllowCredentials(true); // 자격증명 허용
+	    config.setAllowedOrigins(Arrays.asList("http://localhost:5173"));
+	    config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE","OPTIONS"));
+	    config.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
+	    source.registerCorsConfiguration("/**", config);
+	    return new CorsFilter(source);
+	}
+
+}

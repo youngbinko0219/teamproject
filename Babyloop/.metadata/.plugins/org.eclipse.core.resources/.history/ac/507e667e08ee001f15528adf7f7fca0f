@@ -1,0 +1,17 @@
+package com.babyloop.product.repository;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+@Mapper
+public interface IReviewMapper {
+
+	/*리뷰 등록*/
+	public int insertReview(@Param("review")ReviewDTO  reviewDTO,
+						@Param("productId") String productId);
+	
+	/*리뷰 작성 체크*/
+	public boolean reReview(@Param("userId") String userId,
+							@Param("productId") String productId);
+	
+}

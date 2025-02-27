@@ -1,0 +1,79 @@
+package com.babyloop.admin.controller;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.babyloop.auth.repository.IMemberMapper;
+
+@RestController
+@RequestMapping("/admin")
+public class AdminMemberCtrl {
+
+	
+	@Autowired
+	IMemberMapper memberDAO;
+	
+	
+    /**
+     * 관리자 회원목록
+     * @RequestParam "page" : 페이징 페이지
+     * @RequestParam "size" : 페이지 사이즈
+    */
+    @GetMapping("/users")
+    public Map<?,?> allProducts(
+    		@RequestParam(name="page", defaultValue="1") int page,
+    		@RequestParam(name="size", defaultValue="10") int size){
+    	
+    	int offset = (page - 1) * size;
+    	
+    	List<?> members = memberDAO.adminMember(size, offset);
+    	
+    	int totalCount = memberDAO.countMember();
+    	
+    	Map<String, Object> map = new HashMap<>();
+    	
+    	map.put("products", members);
+    	map.put("totalCount", totalCount);
+    	map.put("page", page);
+    	map.put("totalPages", (int) Math.ceil((double) totalCount / size));
+    	
+    	return map;
+    	
+    }
+    
+    /**
+     * 관리자 회원 정지
+     * @param user_id : 정지 on/off 할 사용자
+     * @return : ban 컬럼을 ture로하고 반환
+     */
+    @PutMapping("users/{user_id}/suspend")
+    public Map<String, Object> putMethodName(
+    		@PathVariable("user_id") String userId) {
+
+    	Map<String, Object> map = new HashMap<>();
+    	try {
+    		int result = memberDAO.userBan(userId);
+    		
+    		if(result == 1) {
+    			map.put("message", "success");
+    			return map;
+    		}else {    			
+    			throw new RuntimeException("정지 실패!");
+    		}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+    	
+    }
+}

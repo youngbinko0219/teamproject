@@ -1,0 +1,49 @@
+package com.babyloop.auth.repository;
+
+import java.util.ArrayList;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+@Mapper
+public interface IMemberMapper {
+
+	/* 회원 */
+	
+	/*로그인*/
+	public String login(MemberDTO memberDTO);
+	
+	//회원가입
+	public int signupMember(@Param("member") MemberDTO memberDTO,
+						@Param("encryptedPassword") String encryptedPaString);
+	public int signupGrade(MemberDTO memberDTO);
+	
+	//아이디 중복체크
+	public String idcheck(MemberDTO emberDTO);
+
+	//아이디 찾기
+	public String idSearch(MemberDTO memberDTO);
+	
+	//비밀번호 찾기
+	public String pwSearch(MemberDTO memberDTO);
+	
+	//인증받은 이메일 체크
+	public String emailCheck(MemberDTO memberDTO);
+	
+	//임시비밀번호 저장
+	public int changePw(@Param("member") MemberDTO memberDTO,
+			@Param("encryptedPassword") String encryptedPaString);
+	
+	//회원정보
+	public ArrayList<MemberDTO> memberInfo(String userId);
+	
+	//회원정보 수정
+	public int infoEdit(@Param("member") MemberDTO memberDTO,
+			@Param("newPw") String newPw);
+	
+	//회원탈퇴
+	public int userDelete(@Param("user_id") String userId);
+	
+	
+	/* 관리자 */
+}

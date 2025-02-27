@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.babyloop.order.repository.OrderMapper">
+    <!-- 바로 주문 미리보기 정보 조회 -->
+    <select id="getNowOrderPreview" parameterType="map" resultType="com.babyloop.order.repository.OrderDTO">
+        SELECT 
+            m.user_id AS userId,
+            p.product_id AS productId,
+            p.product_name AS productName,
+            p.price AS price,
+            i.images AS productImage,
+            m.user_name AS userName,
+            m.user_phone AS userPhone,
+            m.user_addr1 AS userAddr1,
+            m.user_addr2 AS userAddr2,
+            m.user_addr3 AS userAddr3,
+            m.user_email AS userEmail
+        FROM products p
+        JOIN member m ON m.user_id = #{userId}
+        LEFT JOIN images i ON p.product_id = i.product_id AND i.flag = 'main'
+        WHERE p.product_id = #{productId}
+    </select>
+
+    <!-- 사용자 포인트 조회 -->
+    <select id="getUserPoints" parameterType="String" resultType="int">
+        SELECT points
+        FROM member
+        WHERE user_id = #{userId}
+    </select>
+    
+    <!-- 사용자의 적립 퍼센트 조회 (등급) -->
+    <select id="getPointRate" parameterType="String" resultType="float">
+        SELECT point_rate
+        FROM grades
+        WHERE user_id = #{userId}
+    </select>
+
+    <!-- 재고량 확인 -->
+    <select id="getStock" parameterType="int" resultType="int">
+        SELECT stock
+        FROM products
+        WHERE product_id = #{productId}
+    </select>
+</mapper>

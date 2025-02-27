@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.babyloop.payment.repository.IRentalsMapper">
+
+	<!--결제 승인시 정보 저장-->
+	<insert id="insertPayment"
+		parameterType="com.babyloop.payment.repository.RentalsDTO">
+	
+		INSERT INTO rentals(user_id, total_price,
+			rental_end, payment_key, approved_at)
+		VALUES(#{user_id}, #{total_price},
+			#{rental_end}, #{payment_key},
+			#{approved_at})
+			
+	</insert>
+	
+	
+	<!-- 결제내역 저장 -->
+	<insert id="insertPayinfo">
+	
+		INSERT INTO payinfo(user_id, rental_id,
+			user_depotints, user_addpoints,
+			payment_method)
+		VALUES(#{user_id}, #{rental_id},
+			#{user_depotints}, #{user_addpoints})
+	
+	</insert>
+	
+	
+	<!-- 사용자 포인트 조회 -->
+	<select id="userPoint">
+	
+		SELECT points
+		FROM member
+		WHERE user_id=#{userId}
+	
+	</select>
+	
+	
+	<!-- 대여 내역 저장 -->
+	<insert id="insertRentals" parameterType="com.babyloop.payment.repository.RentalsDTO">
+	
+    	<selectKey resultType="int" keyProperty="rental_id" order="BEFORE">
+        	SELECT LAST_INSERT_ID()
+    	</selectKey>
+    	
+    	INSERT INTO rentals(user_id, total_price,
+    		rental_end, rental_start)
+    	VALUES(#{userId}, #{total}, #{rentalEnd}, #{start})
+	
+	</insert>
+
+
+</mapper>

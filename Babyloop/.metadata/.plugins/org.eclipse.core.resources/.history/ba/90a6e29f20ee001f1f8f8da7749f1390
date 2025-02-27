@@ -1,0 +1,10 @@
+package com.babyloop.product.repository;
+
+import lombok.Data;
+
+@Data
+public class LikesDTO {
+
+	private user_id
+	private status
+}

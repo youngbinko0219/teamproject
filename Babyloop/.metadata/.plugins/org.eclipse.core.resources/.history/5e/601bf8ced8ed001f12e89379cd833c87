@@ -1,0 +1,16 @@
+package com.babyloop.product.repository;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+import lombok.Data;
+
+@Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class PayinfoDTO {
+	
+	private String user_id;
+	private String payment_name;
+	private int user_depoints;
+	private int user_addpoints;
+	private String paymen_method; //결제방법
+}

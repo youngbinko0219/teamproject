@@ -1,0 +1,13 @@
+package com.babyloop.product.repository;
+
+import lombok.Data;
+
+@Data
+public class ReviewDTO {
+
+	private String review_id; // 리뷰 번호
+	private String product_id; // 상품 번호
+	private String ;
+	private String product_id;
+	private String product_id;
+}

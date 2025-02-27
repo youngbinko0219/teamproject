@@ -1,0 +1,55 @@
+package com.babyloop.oauth2;
+
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.oauth2.core.user.OAuth2User;
+
+import lombok.Getter;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Map;
+
+
+public class CustomOAuth2User implements OAuth2User {
+	
+	@Getter
+	private String userId;
+	private String userName;
+    private String userEmail;
+    private String provider;
+    private String providerId;
+    private String token;
+
+    // Constructor
+    public CustomOAuth2User(String userId, String userName, String userEmail, String provider, String providerId, String token) {
+    	this.userId = userId;
+    	this.userName = userName;
+        this.userEmail = userEmail;
+        this.provider = provider;
+        this.providerId = providerId;
+        this.token = token;
+    }
+
+    @Override
+    public Map<String, Object> getAttributes() {
+        return Map.of(
+        		"userName", userName,
+                "userEmail", userEmail,
+                "provider", provider,
+                "providerId", providerId,
+                "token", token
+        );
+    }
+
+    @Override
+    public String getName() {
+        return userName != null ? userName : userEmail;  // 카카오 일 경우, userName 없어서 대신 userEmail 사용
+        												 
+    }
+
+    @Override
+    public Collection<SimpleGrantedAuthority> getAuthorities() {
+        return Collections.singleton(new SimpleGrantedAuthority("ROLE_USER"));
+    }
+
+}

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.babyloop.auth.repository.IGradesMapper">
+
+	<!-- 등급 조회 -->
+	<select id="gradeInfo"
+		parameterType="com.babyloop.auth.repository.GradesDTO">
+	
+		SELECT grade_name, point_rate,
+			required_points, m.points
+		FROM grades g
+		JOIN MEMBER m
+		ON g.user_id=m.user_id
+		WHERE g.user_id=#{grades.user_id}
+	
+	</select>
+	<select id="pointInfo"
+		parameterType="com.babyloop.product.repository.PayinfoDTO">
+	
+		SELECT PI.product_name, price, quantity,
+			user_depoints, payment_method,
+			user_addpoints, create_at
+		FROM payinfo P
+		JOIN rentals R
+		ON P.user_id=R.user_id
+		JOIN payment_items PI
+		ON PI.payment_id=P.payment_id
+		WHERE P.user_id=#{user_id}
+	
+	</select>
+	
+	
+	<!-- 리뷰 추가 포인트 -->
+	<update id="reviewPoint">
+	
+		UPDATE member M
+		JOIN grades G
+		ON G.user_id = M.user_id
+		SET M.points = points + #{addPoint},
+			G.required_points = required_points - #{addPoint}
+		WHERE M.user_id = #{userId}
+			
+	</update>
+	<!-- 포인트 추가 이력 -->
+	<insert id="statusPoint">
+		
+		INSERT INTO payinfo(user_id, user_addpoints,
+			payment_method)
+		VALUES(#{userId}, #{addPoint}, '리뷰')
+		
+	</insert>
+	
+
+	<!-- 상품구매 추가 포인트 -->
+	<update id="productPoint"
+		parameterType="com.babyloop.product.repository.PayinfoDTO">
+	
+		UPDATE member M
+		JOIN grades G
+		ON G.user_id = M.user_id
+		SET M.points = points + #{pay.user_addpoints},
+			G.required_points = required_points - #{pay.user_addpoints}
+		WHERE M.user_id = #{userId}
+			
+	</update>
+	
+	
+	<!-- 포인트 차감 -->
+	<update id="productDePoint"
+		parameterType="com.babyloop.product.repository.PayinfoDTO">
+	
+		UPDATE member
+		SET points = points - #{pay.user_depoints}
+		WHERE user_id=#{userId}
+	
+	</update>
+	
+	
+	<!-- 등급 업 -->
+	<update id="gradeUp">
+	
+		UPDATE grades
+		SET grade_name = 
+			CASE
+				WHEN grade_name = 'Basic' THEN 'Silver'
+				WHEN grade_name = 'Silver' THEN 'Gold'
+				WHEN grade_name = 'Gold' THEN 'Platinum'
+				ELSE grade_name
+			END
+		WHERE user_id=#{userId} AND
+			(SELECT required_points
+			FROM grades
+			WHERE user_id=#{userId})<![CDATA[<=]]>0
+			<!-- 등급업 조건 서브쿼리 -->
+			
+	</update>
+	
+
+</mapper>

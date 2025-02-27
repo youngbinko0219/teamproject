@@ -1,0 +1,42 @@
+package com.babyloop.admin.controller;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/admin/users")
+public class AdminMemberCtrl {
+
+	
+    /**
+     * 관리자 회원목록
+     * @RequestParam "page" : 페이징 페이지
+     * @RequestParam "size" : 페이지 사이즈
+    */
+    @GetMapping("/")
+    public Map<?,?> allProducts(
+    		@RequestParam(name="page", defaultValue="1") int page,
+    		@RequestParam(name="size", defaultValue="10") int size){
+    	
+    	int offset = (page - 1) * size;
+    	
+    	List<?> products = productsDAO.adminProduct(size, offset);
+    	
+    	int totalCount = productsDAO.countProduct();
+    	
+    	Map<String, Object> map = new HashMap<>();
+    	
+    	map.put("products", products);
+    	map.put("totalCount", totalCount);
+    	map.put("page", page);
+    	map.put("totalPages", (int) Math.ceil((double) totalCount / size));
+    	
+    	return map; 
+    }
+}

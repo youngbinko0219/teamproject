@@ -1,0 +1,9 @@
+package com.babyloop.auth.repository;
+
+import lombok.Data;
+
+@Data
+public class PwDTO {
+
+	private String newPw; // 회원 새로운 비번
+}

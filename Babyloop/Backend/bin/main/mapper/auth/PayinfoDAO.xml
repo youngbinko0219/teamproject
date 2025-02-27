@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.babyloop.product.repository.IPayinfoMapper">
+
+	<insert id="pointPayment"
+		parameterType="com.babyloop.product.repository.PayinfoDTO">
+	
+		INSERT INTO payinfo(user_id, user_addpoints,
+			user_depoints, payment_method)	
+		VALUES(#{userId}, #{pay.user_addpoints},
+			#{pay.user_depoints}, '상품 구매')
+	
+	</insert>
+	
+	
+	<!-- 포인트 전체 -->
+	<select id="totalPoint">
+	
+		SELECT m.points
+		FROM member
+		WHERE m.user_id=#{userId}
+	
+	</select>
+	
+	
+	<!-- 포이트 내역 조회 -->
+	<select id="pointList"
+		resultType="map">
+	
+		SELECT user_addpoints, user_depoints,
+			created_at
+		FROM payinfo
+		WHERE user_id=#{userId}
+	
+	</select>
+	
+	
+	<!-- 등급 이름 -->
+	<select id="gradeName">
+	
+		SELECT grade_name
+		FROM grades
+		WHERE user_id=#{userId}
+	
+	</select>
+	
+	
+	<!-- 대여내역 조회 -->
+	<select id="userRentals"
+		resultType="map">
+	
+		SELECT total_price, status, rental_end,
+			rental_start
+		FROM rentals
+		WHERE user_id=#{userId}
+		ORDER BY rental_id DESC
+	
+	</select>
+	
+	
+	<!-- 대여내역 업데이트 -->
+	<update id="userRentalsUpdate">
+	
+		UPDATE rentals
+		SET status =
+			CASE
+				WHEN rental_end<![CDATA[<=]]>#{date} THEN '대여 종료'
+				ELSE status
+			END
+		WHERE user_id=#{userId}
+	
+	</update>
+	
+</mapper>

@@ -1,0 +1,48 @@
+1739254724288	Rename compilation unit 'IMyFileService.java'
+1739254749334	Rename package 'com.babyloop.myfile'
+1739255176557	Move files
+1739255718258	Rename resource 'imgFile.xml'
+1739255819627	Rename type 'IImg'
+1739286740300	Move compilation units
+1739286825201	Move compilation unit
+1739286829883	Move compilation unit
+1739286881283	Move compilation units
+1739286889772	Delete elements
+1739287042812	Rename package 'com.babyloop.auth.security'
+1739287075878	Move compilation unit
+1739287080862	Delete element
+1739287104189	Rename package 'com.babyloop.auth.smtp'
+1739287173969	Move compilation units
+1739287177563	Delete element
+1739287192775	Move compilation unit
+1739287314643	Move compilation units
+1739287319029	Delete element
+1739287374782	Move compilation unit
+1739287382421	Move compilation units
+1739287450818	Delete element
+1739287556499	Move compilation unit
+1739287563188	Delete element
+1739292210328	Delete element
+1739295595558	Rename type 'IImgService'
+1739295624108	Rename type 'IPayinfoService'
+1739295649951	Rename type 'IImgMapper'
+1739295674809	Rename type 'IImgService'
+1739295719313	Rename type 'IProductsService'
+1739295753961	Rename type 'IGradesService'
+1739295767200	Rename type 'IMemberService'
+1739296269563	Rename package 'mapper.imgs'
+1739296289251	Rename resource 'ImgDAO.xml'
+1739343795282	Rename resource 'babyloop-4264d-firebase-adminsdk-fbsvc-076927f7ed.json'
+1739344717488	Move compilation unit
+1739347834727	Delete element
+1739347918335	Rename resource 'service-account.json'
+1739348775132	Delete element
+1739355647627	Delete element
+1739443997311	Rename package 'com.babyloop.admin.service'
+1739526571803	Delete element
+1739527133161	Rename type 'AdminCtrl'
+1739527527721	Rename type 'AdminSales'
+1739550273187	Delete element
+1739550477186	Delete element
+1739561222170	Delete element
+1739561271074	Rename compilation unit 'memberDAO.java'

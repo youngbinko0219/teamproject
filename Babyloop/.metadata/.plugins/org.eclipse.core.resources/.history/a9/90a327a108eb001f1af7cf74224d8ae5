@@ -1,0 +1,5 @@
+package com.babyloop.oauth2;
+
+public class CustomOAuth2User {
+
+}

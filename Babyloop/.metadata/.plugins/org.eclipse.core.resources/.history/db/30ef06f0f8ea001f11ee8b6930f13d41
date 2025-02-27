@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>babyloop 결제 영수증</title>
+	<!-- 로컬 폰트 선언 (Roboto) -->
+	<style>
+	  @font-face {
+	    font-family: 'Roboto';
+	    src: url('/fonts/Roboto-Regular.ttf') format('truetype');
+	    font-weight: 400;
+	    font-style: normal;
+	  }
+	  @font-face {
+	    font-family: 'Roboto';
+	    src: url('/fonts/Roboto-Medium.ttf') format('truetype');
+	    font-weight: 500;
+	    font-style: normal;
+	  }
+	  @font-face {
+	    font-family: 'Roboto';
+	    src: url('/fonts/Roboto-Bold.ttf') format('truetype');
+	    font-weight: 700;
+	    font-style: normal;
+	  }
+	  
+	  body {
+	    font-family: 'Roboto', sans-serif;
+	    background: #f0f2f5;
+	    margin: 0;
+	    padding: 0;
+	  }
+	  .receipt-container {
+	    max-width: 800px;
+	    margin: 30px auto;
+	    background: #ffffff;
+	    padding: 30px;
+	    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+	    border-radius: 8px;
+	  }
+	  .header {
+	    text-align: center;
+	    margin-bottom: 25px;
+	    border-bottom: 2px solid #eaeaea;
+	    padding-bottom: 15px;
+	  }
+	  .header h1 {
+	    font-size: 32px;
+	    margin: 0;
+	    color: #2c3e50;
+	  }
+	  .header p {
+	    font-size: 16px;
+	    margin: 8px 0 0;
+	    color: #7f8c8d;
+	  }
+	  .content {
+	    margin: 20px 0;
+	    color: #34495e;
+	  }
+	  .details {
+	    display: grid;
+	    grid-template-columns: repeat(3, 1fr);
+	    gap: 15px;
+	    margin-bottom: 30px;
+	  }
+	  .details-item {
+	    background: #f9f9f9;
+	    border: 1px solid #eaeaea;
+	    border-radius: 6px;
+	    padding: 15px;
+	    text-align: center;
+	  }
+	  .details-item strong {
+	    display: block;
+	    margin-bottom: 5px;
+	    color: #4e73df;
+	    font-size: 14px;
+	  }
+	  .details-item span {
+	    font-size: 16px;
+	    font-weight: 500;
+	  }
+	  table {
+	    width: 100%;
+	    border-collapse: collapse;
+	    margin-top: 20px;
+	  }
+	  table, th, td {
+	    border: 1px solid #ecf0f1;
+	  }
+	  th, td {
+	    padding: 12px 15px;
+	    text-align: left;
+	  }
+	  th {
+	    background: linear-gradient(45deg, #3498db, #2980b9);
+	    color: #fff;
+	    font-size: 16px;
+	  }
+	  td {
+	    font-size: 14px;
+	  }
+	  .footer {
+	    text-align: center;
+	    margin-top: 30px;
+	    font-size: 14px;
+	    color: #95a5a6;
+	    border-top: 1px solid #ecf0f1;
+	    padding-top: 10px;
+	  }
+	</style>
+	
+	<!-- 별도의 CSS 파일이 필요하다면 아래와 같이 추가 (경로 확인 필수) -->
+	<!-- <link rel="stylesheet" th:href="@{/css/receipt.css}" /> -->
+</head>
+<body>
+  <div class="receipt-container">
+    <!-- 헤더 영역 -->
+    <div class="header">
+      <h1>babyloop 결제 영수증</h1>
+      <p>유아용품 대여시스템</p>
+    </div>
+    
+    <!-- 결제 내역 영역 -->
+    <div class="content">
+      <!-- 3x2 그리드 결제 상세 정보 -->
+      <div class="details">
+        <div class="details-item">
+          <strong>결제번호</strong>
+          <span th:text="${payinfo.paymentId}">1234</span>
+        </div>
+        <div class="details-item">
+          <strong>회원 ID</strong>
+          <span th:text="${payinfo.userId}">test</span>
+        </div>
+        <div class="details-item">
+          <strong>보유 포인트</strong>
+          <span th:text="${payinfo.rentalId}">500</span>
+        </div>
+        <div class="details-item">
+          <strong>사용 포인트</strong>
+          <span th:text="${payinfo.paymentMethod}">200</span>
+        </div>
+        <div class="details-item">
+          <strong>결제 방법</strong>
+          <span th:text="${payinfo.createAt}">카드</span>
+        </div>
+        <div class="details-item">
+          <strong>결제 날짜</strong>
+          <span th:text="${payinfo.createAt}">2020-12-01</span>
+        </div>
+      </div>
+      
+      <!-- 상세 표 -->
+      <table>
+        <thead>
+          <tr>
+            <th>대여 물품</th>
+            <th>수량</th>
+            <th>포인트 적립</th>
+            <th>차감 금액</th>
+            <th>금액</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>장난감</td>
+            <td>1</td>
+            <td>100pt</td>
+            <td>0pt</td>
+            <td>20,000</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th>합 계</th>
+            <td>1</td>
+            <td>100pt</td>
+            <td>0pt</td>
+            <td>20,000</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    
+    <!-- 푸터 영역 -->
+    <div class="footer">
+      babyloop &copy; 2025. All rights reserved.
+    </div>
+  </div>
+</body>
+</html>

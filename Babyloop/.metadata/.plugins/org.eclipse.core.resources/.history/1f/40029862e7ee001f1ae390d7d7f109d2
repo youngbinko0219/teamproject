@@ -1,0 +1,18 @@
+package com.babyloop.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.babyloop.auth.repository.IGradesMapper;
+
+public class MemberGradeUp {
+
+	@Autowired
+	IGradesMapper gradesDAO;
+	
+	
+	public void upgrade(String userId) {
+		
+		/*등급업*/
+		gradesDAO.geradeUp(reviewDTO.getUser_id());
+	}
+}

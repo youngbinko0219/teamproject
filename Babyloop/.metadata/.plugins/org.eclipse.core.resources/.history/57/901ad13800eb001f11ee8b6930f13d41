@@ -1,0 +1,30 @@
+package com.babyloop.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.spring6.SpringTemplateEngine;
+
+import com.babyloop.product.repository.PayinfoDTO;
+
+@Service
+public class PdfService {
+	
+	@Autowired
+	private SpringTemplateEngine templateEngine;
+	
+	
+	/**
+     * 결제 정보(payinfo)를 기반으로 receipt.html 템플릿을 렌더링하여 HTML 문자열을 생성한다.
+     *
+     * @param payinfo 결제 정보 객체
+     * @return HTML 문자열 (receipt 템플릿에 데이터가 바인딩됨)
+     */
+    public String generateHtmlTemplate(PayinfoDTO payinfoDTO) {
+        Context context = new Context();
+        context.setVariable("payinfo", payinfo);
+        // "receipt"는 templates 폴더 내에 있는 receipt.html 파일을 가리킵니다.
+        return templateEngine.process("receipt", context);
+    }
+
+}

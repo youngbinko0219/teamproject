@@ -1,0 +1,10 @@
+package com.babyloop.service;
+
+public class MemberGradeUp {
+
+	public void upgrade(String userId) {
+		
+		/*등급업*/
+		gradesDAO.geradeUp(reviewDTO.getUser_id());
+	}
+}
