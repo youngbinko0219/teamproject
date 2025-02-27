@@ -40,7 +40,7 @@ const Grade = () => {
         </div>
         <div className="grade-page-point-info">
           <p>
-            <strong>회원 등급:</strong> {grade_name}
+            <strong>회원 등급:Basic</strong> {grade_name}
           </p>
         </div>
       </div>

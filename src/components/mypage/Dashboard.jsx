@@ -50,7 +50,7 @@ const Dashboard = () => {
                   <h2 className="mypage-point-title">적립금 및 회원 등급</h2>
                   <div className="point-content">
                     <p>적립금: {points} 점</p>  {/* points 상태 출력 */}
-                    <p>회원 등급: {grade_name}</p>  {/* grade_name 상태 출력 */}
+                    <p>회원 등급: Basic</p>  {/* grade_name 상태 출력 */}
                     <Link to="/mypage/grade"
                       style={{
                         textDecoration: "none",

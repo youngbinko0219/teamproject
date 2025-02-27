@@ -19,7 +19,7 @@ const RentalHistory = () => {
 
     const fetchRentalHistory = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/auth/user/${user_id}/rentals`);
+        const response = await axios.get(`http://localhost:8080/user/${user_id}/rentals`);
         setOrders(response.data);  // axios는 response.data에 데이터를 반환
       } catch (error) {
         console.error("Error fetching rental history:", error);

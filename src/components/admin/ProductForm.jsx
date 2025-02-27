@@ -24,10 +24,10 @@ const ProductForm = () => {
   const navigate = useNavigate();
 
   const categories = {
-    아기가구: ["바운서", "아기 체육관", "아기 침대"],
-    놀이용품: ["쏘서/점퍼루", "보행기/러닝홈", "대형완구", "장난감"],
-    이동용품: ["유모차/웨건", "카시트"],
-    유아식사: ["식탁의자", "유축기/소독기"],
+    아기가구: ["바운서", "아기체육관", "아기침대"],
+    놀이용품: ["쏘서&점퍼루", "보행기&러닝홈", "대형완구", "장난감"],
+    이동용품: ["유모차&웨건", "카시트"],
+    유아식사: ["식탁의자", "유축기&소독기"],
     위생건강: ["기저귀 갈이대", "유아욕조"],
   };
 
@@ -62,8 +62,7 @@ const ProductForm = () => {
       product_name,
       price,
       stock,
-      category,
-      subCategory,
+      category:subCategory,
       description,
     };
 

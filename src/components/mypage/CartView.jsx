@@ -14,9 +14,11 @@ const CartView = () => {
   const [cartItems, setCartItems] = useState([]);
   const [usePoints, setUsePoints] = useState(false);
   const [pointsToUse, setPointsToUse] = useState(0);
+  // 추가: 주소 입력을 위한 상태 변수
+  const [address, setAddress] = useState("");
   const navigate = useNavigate();
 
-  // zustand 스토어에서 사용자 정보를 가져옴 (userInfo에 포인트가 포함되어 있다고 가정)
+  // zustand 스토어에서 사용자 정보를 가져옴 (userInfo에 포인트 등 정보가 포함되어 있다고 가정)
   const userInfo = useUserStore((state) => state.userInfo);
 
   useEffect(() => {
@@ -103,13 +105,68 @@ const CartView = () => {
       });
   };
 
-  // 결제 페이지로 이동하는 함수
-  const goToCheckout = () => {
+  // 결제 미리보기 API에 POST 요청을 백그라운드로 진행하고, 바로 /checkout으로 이동
+  const handleCheckout = () => {
+    // 각 아이템에 대해 rewardPoints 계산: productId가 10 미만이면 1%, 10 이상이면 2%
+    const mappedCartItems = cartItems.map((item) => {
+      const price = item.price || 10000;
+      const rewardPoints =
+        item.productId < 10
+          ? Math.round(price * 0.01)
+          : Math.round(price * 0.02);
+      return {
+        productId: item.productId,
+        productName: `Product ${item.productId}`, // 실제 제품명이 있다면 해당 값을 사용
+        price: price,
+        quantity: item.quantity,
+        orderStock: 1,
+        rentalStart: item.rentalDate,
+        rewardPoints: rewardPoints,
+        productImage: "default-image.png", // 실제 이미지 URL이 있다면 해당 값을 사용
+      };
+    });
+
+    // 전체 보상 포인트 합계 계산
+    const totalRewardPoints = mappedCartItems.reduce(
+      (sum, item) => sum + item.rewardPoints * item.quantity,
+      0
+    );
+
+    const totalPrice = cartItems.reduce(
+      (sum, item) => sum + (item.price || 10000) * item.quantity,
+      0
+    );
+
+    const payload = {
+      userId: userInfo?.id || "user1",
+      userName: userInfo?.name || "홍길동1",
+      userPhone: userInfo?.phone || "010-1111-0001",
+      // 주소는 사용자가 입력한 값 사용 (예시로 userAddr2에 저장)
+      userAddr1: "",
+      userAddr2: address,
+      userAddr3: "",
+      userEmail: userInfo?.email || "user1@example.com",
+      userPoints: userInfo?.points || 3000,
+      cartItems: mappedCartItems,
+      totalRewardPoints: totalRewardPoints,
+      totalProductPrice: totalPrice,
+    };
+
+    // POST API 호출 (결과를 기다리지 않고 백그라운드에서 진행)
+    fetch("http://localhost:8080/cart-order/preview", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    }).catch((error) => {
+      console.error("결제 미리보기 요청 중 오류 발생:", error);
+    });
+
+    // POST API 호출 여부와 상관없이 무조건 /checkout으로 이동
     navigate("/checkout");
   };
 
-  // 각 장바구니 아이템에 price 프로퍼티가 있다고 가정합니다.
-  // 만약 없다면 기본 가격(예: 10000원)을 사용하도록 처리함.
   const totalPrice = cartItems.reduce(
     (sum, item) => sum + (item.price || 10000) * item.quantity,
     0
@@ -179,8 +236,22 @@ const CartView = () => {
         <p>총 상품 금액: {totalPrice}원</p>
         {usePoints && <p>할인 후 금액: {finalPrice}원</p>}
       </div>
+
+      {/* 주소 입력 필드 */}
+      <div className="cart-address-section">
+        <label>
+          배송 주소 :&nbsp;
+          <input
+            type="text"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            placeholder="주소를 입력하세요"
+          />
+        </label>
+      </div>
+
       {/* 결제하기 버튼 */}
-      <button className="checkout-button" onClick={goToCheckout}>
+      <button className="checkout-button" onClick={handleCheckout}>
         결제하기
       </button>
     </div>

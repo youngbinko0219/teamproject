@@ -139,7 +139,7 @@ const SignupForm = ({ onSubmit }) => {
       return;
     }
     try {
-      const response = await axios.post("http://localhost:8080/email/send", {
+      const response = await axios.post("http://localhost:8080/auth/email/send", {
         user_email: formData.user_email,
       });
       if (response.status === 200) {
